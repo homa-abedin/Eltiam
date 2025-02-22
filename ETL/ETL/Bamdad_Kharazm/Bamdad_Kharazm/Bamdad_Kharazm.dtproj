@@ -26,7 +26,7 @@
           <SSIS:Property SSIS:Name="CreatorComputerName">APPBI</SSIS:Property>
           <SSIS:Property SSIS:Name="Description">
           </SSIS:Property>
-          <SSIS:Property SSIS:Name="PasswordVerifier" SSIS:Sensitive="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAc4dEkMZ0BkeyiNJXTOxMrgAAAAACAAAAAAADZgAAwAAAABAAAACeJoOE7NSAylWZnbTSnggYAAAAAASAAACgAAAAEAAAAL9tyDght8emCQIf9GFnz8CIAAAAxPNzh3C95PQxSSrsxLkqa5U+MGNUCPgHKm9oG78tAix5VS1Ll3bAqEeD+sNkpI2T3G9XxrdtRbEE3QEsA4CEZ6DCKENGKWK7Wf5WWvaxje0icORVwVnqiJQ8N7pq5XFFlk4F4MPKQmH0kmZQhlVN2s8TIGcA6RAvdpEXXCj7zOakXzy9ZKIwsRQAAACfNPY4+6Ory+qcu4ztyhDku7oqaA==</SSIS:Property>
+          <SSIS:Property SSIS:Name="PasswordVerifier" SSIS:Sensitive="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAc4dEkMZ0BkeyiNJXTOxMrgAAAAACAAAAAAADZgAAwAAAABAAAADpMcvXrJX1CRTs85g3SwfyAAAAAASAAACgAAAAEAAAAJbdyyBgq8U4qchJdFa67naIAAAAf5S922BjIbyPeM2bfCVQEnLDfIEsxdmqYefk054YVIotiFo9RXJEQ0TT52XWHhVDg8ra05+vTN7uInw3scfmv9M8RBTa3M8P4r6YFoT90XnYHJeEBsztZIuyhDcGZdPQDgnpAwDbM8qLbl7eWoBfo5wOlKdtGBhTrs+9kqtzMjY38M3FuwFtXhQAAABn7ScGHwMRh1o8jG4cOuifhqQXTg==</SSIS:Property>
           <SSIS:Property SSIS:Name="FormatVersion">1</SSIS:Property>
         </SSIS:Properties>
         <SSIS:Packages>
@@ -1043,17 +1043,17 @@
                 <SSIS:Property SSIS:Name="Name">Package1</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMajor">1</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMinor">0</SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionBuild">1</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionBuild">27</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionComments">
                 </SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionGUID">{2CAD7F49-DCA2-4B31-B7C0-2DCBF0D37596}</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionGUID">{D7F91894-9CE3-491D-8DB6-60C5DC0F98E0}</SSIS:Property>
                 <SSIS:Property SSIS:Name="PackageFormatVersion">8</SSIS:Property>
                 <SSIS:Property SSIS:Name="Description">
                 </SSIS:Property>
                 <SSIS:Property SSIS:Name="ProtectionLevel">1</SSIS:Property>
               </SSIS:Properties>
               <SSIS:Parameters>
-                <SSIS:Parameter SSIS:Name="CM.192.168.200.12.Rahkarandb_sg3.abedin.ConnectByProxy">
+                <SSIS:Parameter SSIS:Name="CM.192.168.10.10.stage.ConnectByProxy">
                   <SSIS:Properties>
                     <SSIS:Property SSIS:Name="ID">
                     </SSIS:Property>
@@ -1068,7 +1068,7 @@
                     <SSIS:Property SSIS:Name="DataType">3</SSIS:Property>
                   </SSIS:Properties>
                 </SSIS:Parameter>
-                <SSIS:Parameter SSIS:Name="CM.192.168.200.12.Rahkarandb_sg3.abedin.ConnectionString">
+                <SSIS:Parameter SSIS:Name="CM.192.168.10.10.stage.ConnectionString">
                   <SSIS:Properties>
                     <SSIS:Property SSIS:Name="ID">
                     </SSIS:Property>
@@ -1079,11 +1079,11 @@
                     <SSIS:Property SSIS:Name="IncludeInDebugDump">0</SSIS:Property>
                     <SSIS:Property SSIS:Name="Required">0</SSIS:Property>
                     <SSIS:Property SSIS:Name="Sensitive">0</SSIS:Property>
-                    <SSIS:Property SSIS:Name="Value">Data Source=192.168.200.12;User ID=abedin;Initial Catalog=Rahkarandb_sg3;Provider=SQLNCLI11.1;Application Name=SSIS-Package1-{CFE9A99F-0A98-4288-BC57-5D7546ACA5E9}192.168.200.12.Rahkarandb_sg3.abedin;Auto Translate=False;</SSIS:Property>
+                    <SSIS:Property SSIS:Name="Value">Data Source=192.168.10.10;Initial Catalog=Stage;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;Application Name=SSIS-Package1-{CFE9A99F-0A98-4288-BC57-5D7546ACA5E9}192.168.200.12.Rahkarandb_sg3.abedin;</SSIS:Property>
                     <SSIS:Property SSIS:Name="DataType">18</SSIS:Property>
                   </SSIS:Properties>
                 </SSIS:Parameter>
-                <SSIS:Parameter SSIS:Name="CM.192.168.200.12.Rahkarandb_sg3.abedin.ConnectRetryCount">
+                <SSIS:Parameter SSIS:Name="CM.192.168.10.10.stage.ConnectRetryCount">
                   <SSIS:Properties>
                     <SSIS:Property SSIS:Name="ID">
                     </SSIS:Property>
@@ -1098,7 +1098,7 @@
                     <SSIS:Property SSIS:Name="DataType">9</SSIS:Property>
                   </SSIS:Properties>
                 </SSIS:Parameter>
-                <SSIS:Parameter SSIS:Name="CM.192.168.200.12.Rahkarandb_sg3.abedin.ConnectRetryInterval">
+                <SSIS:Parameter SSIS:Name="CM.192.168.10.10.stage.ConnectRetryInterval">
                   <SSIS:Properties>
                     <SSIS:Property SSIS:Name="ID">
                     </SSIS:Property>
@@ -1113,7 +1113,7 @@
                     <SSIS:Property SSIS:Name="DataType">9</SSIS:Property>
                   </SSIS:Properties>
                 </SSIS:Parameter>
-                <SSIS:Parameter SSIS:Name="CM.192.168.200.12.Rahkarandb_sg3.abedin.ConnectUsingManagedIdentity">
+                <SSIS:Parameter SSIS:Name="CM.192.168.10.10.stage.ConnectUsingManagedIdentity">
                   <SSIS:Properties>
                     <SSIS:Property SSIS:Name="ID">
                     </SSIS:Property>
@@ -1128,7 +1128,7 @@
                     <SSIS:Property SSIS:Name="DataType">3</SSIS:Property>
                   </SSIS:Properties>
                 </SSIS:Parameter>
-                <SSIS:Parameter SSIS:Name="CM.192.168.200.12.Rahkarandb_sg3.abedin.InitialCatalog">
+                <SSIS:Parameter SSIS:Name="CM.192.168.10.10.stage.InitialCatalog">
                   <SSIS:Properties>
                     <SSIS:Property SSIS:Name="ID">
                     </SSIS:Property>
@@ -1139,11 +1139,11 @@
                     <SSIS:Property SSIS:Name="IncludeInDebugDump">0</SSIS:Property>
                     <SSIS:Property SSIS:Name="Required">0</SSIS:Property>
                     <SSIS:Property SSIS:Name="Sensitive">0</SSIS:Property>
-                    <SSIS:Property SSIS:Name="Value">Rahkarandb_sg3</SSIS:Property>
+                    <SSIS:Property SSIS:Name="Value">Stage</SSIS:Property>
                     <SSIS:Property SSIS:Name="DataType">18</SSIS:Property>
                   </SSIS:Properties>
                 </SSIS:Parameter>
-                <SSIS:Parameter SSIS:Name="CM.192.168.200.12.Rahkarandb_sg3.abedin.Password">
+                <SSIS:Parameter SSIS:Name="CM.192.168.10.10.stage.Password">
                   <SSIS:Properties>
                     <SSIS:Property SSIS:Name="ID">
                     </SSIS:Property>
@@ -1157,7 +1157,7 @@
                     <SSIS:Property SSIS:Name="DataType">18</SSIS:Property>
                   </SSIS:Properties>
                 </SSIS:Parameter>
-                <SSIS:Parameter SSIS:Name="CM.192.168.200.12.Rahkarandb_sg3.abedin.RetainSameConnection">
+                <SSIS:Parameter SSIS:Name="CM.192.168.10.10.stage.RetainSameConnection">
                   <SSIS:Properties>
                     <SSIS:Property SSIS:Name="ID">
                     </SSIS:Property>
@@ -1172,7 +1172,7 @@
                     <SSIS:Property SSIS:Name="DataType">3</SSIS:Property>
                   </SSIS:Properties>
                 </SSIS:Parameter>
-                <SSIS:Parameter SSIS:Name="CM.192.168.200.12.Rahkarandb_sg3.abedin.ServerName">
+                <SSIS:Parameter SSIS:Name="CM.192.168.10.10.stage.ServerName">
                   <SSIS:Properties>
                     <SSIS:Property SSIS:Name="ID">
                     </SSIS:Property>
@@ -1183,11 +1183,11 @@
                     <SSIS:Property SSIS:Name="IncludeInDebugDump">0</SSIS:Property>
                     <SSIS:Property SSIS:Name="Required">0</SSIS:Property>
                     <SSIS:Property SSIS:Name="Sensitive">0</SSIS:Property>
-                    <SSIS:Property SSIS:Name="Value">192.168.200.12</SSIS:Property>
+                    <SSIS:Property SSIS:Name="Value">192.168.10.10</SSIS:Property>
                     <SSIS:Property SSIS:Name="DataType">18</SSIS:Property>
                   </SSIS:Properties>
                 </SSIS:Parameter>
-                <SSIS:Parameter SSIS:Name="CM.192.168.200.12.Rahkarandb_sg3.abedin.UserName">
+                <SSIS:Parameter SSIS:Name="CM.192.168.10.10.stage.UserName">
                   <SSIS:Properties>
                     <SSIS:Property SSIS:Name="ID">
                     </SSIS:Property>
@@ -1198,7 +1198,6 @@
                     <SSIS:Property SSIS:Name="IncludeInDebugDump">0</SSIS:Property>
                     <SSIS:Property SSIS:Name="Required">0</SSIS:Property>
                     <SSIS:Property SSIS:Name="Sensitive">0</SSIS:Property>
-                    <SSIS:Property SSIS:Name="Value">abedin</SSIS:Property>
                     <SSIS:Property SSIS:Name="DataType">18</SSIS:Property>
                   </SSIS:Properties>
                 </SSIS:Parameter>

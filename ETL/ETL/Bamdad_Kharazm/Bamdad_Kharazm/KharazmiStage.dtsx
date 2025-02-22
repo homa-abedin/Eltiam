@@ -11,31 +11,419 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="Package1"
   DTS:PackageType="5"
-  DTS:VersionBuild="1"
-  DTS:VersionGUID="{2CAD7F49-DCA2-4B31-B7C0-2DCBF0D37596}">
+  DTS:VersionBuild="27"
+  DTS:VersionGUID="{D7F91894-9CE3-491D-8DB6-60C5DC0F98E0}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
     <DTS:ConnectionManager
-      DTS:refId="Package.ConnectionManagers[192.168.200.12.Rahkarandb_sg3.abedin]"
+      DTS:refId="Package.ConnectionManagers[192.168.10.10.stage]"
       DTS:CreationName="OLEDB"
       DTS:DTSID="{CFE9A99F-0A98-4288-BC57-5D7546ACA5E9}"
-      DTS:ObjectName="192.168.200.12.Rahkarandb_sg3.abedin">
+      DTS:ObjectName="192.168.10.10.stage">
       <DTS:ObjectData>
         <DTS:ConnectionManager
           DTS:ConnectRetryCount="1"
           DTS:ConnectRetryInterval="5"
-          DTS:ConnectionString="Data Source=192.168.200.12;User ID=abedin;Initial Catalog=Rahkarandb_sg3;Provider=SQLNCLI11.1;Application Name=SSIS-Package1-{CFE9A99F-0A98-4288-BC57-5D7546ACA5E9}192.168.200.12.Rahkarandb_sg3.abedin;Auto Translate=False;">
-          <DTS:Password
-            DTS:Name="Password"
-            Sensitive="1"
-            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAc4dEkMZ0BkeyiNJXTOxMrgAAAAAIAAAARABUAFMAAAADZgAAwAAAABAAAAAAkIP9eSek89tbZos8QWSSAAAAAASAAACgAAAAEAAAAHS3yDvs8iqEDztIpEQjG8oYAAAAcOFk8SoUGhtaybm1Ff0hbsLGIZmT9Yr9FAAAAJUu4w2q66qTNy9mUv2wONoiLPog</DTS:Password>
-        </DTS:ConnectionManager>
+          DTS:ConnectionString="Data Source=192.168.10.10;Initial Catalog=Stage;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;Application Name=SSIS-Package1-{CFE9A99F-0A98-4288-BC57-5D7546ACA5E9}192.168.200.12.Rahkarandb_sg3.abedin;" />
       </DTS:ObjectData>
     </DTS:ConnectionManager>
   </DTS:ConnectionManagers>
   <DTS:Variables />
   <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\InventoryVoucher"
+      DTS:CreationName="STOCK:SEQUENCE"
+      DTS:Description="Sequence Container"
+      DTS:DTSID="{309efaef-19b8-49c9-9fae-9d1a8266686f}"
+      DTS:ExecutableType="STOCK:SEQUENCE"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="InventoryVoucher">
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\InventoryVoucher\Delete"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{c2fce94d-4c77-4a65-86c0-0937deb72eb3}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Delete"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="2">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{CFE9A99F-0A98-4288-BC57-5D7546ACA5E9}"
+              SQLTask:SqlStatementSource="&#xA;   delete  from kharazmi.LGS3InventoryVoucher&#xA;where not exists   (select * from [192.168.200.12].[Rahkarandb_sg3].[LGS3].InventoryVoucher ii where  ii.InventoryVoucherid=LGS3InventoryVoucher.InventoryVoucherID)&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\InventoryVoucher\Delete T"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{7a8f3d15-73e7-4712-b97e-3d0e65435ec7}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Delete T"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="2">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{CFE9A99F-0A98-4288-BC57-5D7546ACA5E9}"
+              SQLTask:SqlStatementSource=" &#xA;  delete ft &#xA;  from [stage].[kharazmi].LGS3InventoryVoucher ft&#xA; inner join (select * from [stage].[dbo].updates) tft1 on tft1.[id]=ft.[InventoryVoucherID]" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\InventoryVoucher\Insert"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{f52fff96-118c-49b0-bb7d-baa907cb02a8}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Insert"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="2">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{CFE9A99F-0A98-4288-BC57-5D7546ACA5E9}"
+              SQLTask:SqlStatementSource="&#xA;&#xA;    insert into [stage].[kharazmi].LGS3InventoryVoucher&#xA;(&#xA;[InventoryVoucherID]&#xA;      ,[InventoryVoucherSpecificationRef]&#xA;      ,[State]&#xA;      ,[Version]&#xA;      ,[StoreRef]&#xA;      ,[CounterpartStoreRef]&#xA;      ,[Date]&#xA;      ,[Number]&#xA;      ,[DelivererOrReceiverPartyRef]&#xA;      ,[CreationDate]&#xA;      ,[LastModificationDate]&#xA;      ,[Creator]&#xA;      ,[LastModifier]&#xA;      ,[SLRef]&#xA;      ,[CounterpartEntityCode]&#xA;      ,[CounterpartEntityRef]&#xA;      ,[CounterpartEntityText]&#xA;      ,[CounterpartDLCode]&#xA;      ,[Level5DLCode]&#xA;      ,[Level6DLCode]&#xA;      ,[BranchRef]&#xA;      ,[Editable]&#xA;      ,[ReferenceType]&#xA;      ,[ReferenceRef]&#xA;      ,[Description]&#xA;      ,[LedgerRef]&#xA;      ,[FiscalYearRef]&#xA;      ,[Additional1]&#xA;      ,[Additional2]&#xA;      ,[Additional3]&#xA;      ,[Additional4]&#xA;      ,[Additional5]&#xA;      ,[HandheldSpecificId]&#xA;      ,[isinsert]&#xA;      ,[isupdate]  )                  &#xA;   select&#xA;[InventoryVoucherID]&#xA;      ,[InventoryVoucherSpecificationRef]&#xA;      ,[State]&#xA;      ,[Version]&#xA;      ,[StoreRef]&#xA;      ,[CounterpartStoreRef]&#xA;      ,[Date]&#xA;      ,[Number]&#xA;      ,[DelivererOrReceiverPartyRef]&#xA;      ,[CreationDate]&#xA;      ,[LastModificationDate]&#xA;      ,[Creator]&#xA;      ,[LastModifier]&#xA;      ,[SLRef]&#xA;      ,[CounterpartEntityCode]&#xA;      ,[CounterpartEntityRef]&#xA;      ,[CounterpartEntityText]&#xA;      ,[CounterpartDLCode]&#xA;      ,[Level5DLCode]&#xA;      ,[Level6DLCode]&#xA;      ,[BranchRef]&#xA;      ,[Editable]&#xA;      ,[ReferenceType]&#xA;      ,[ReferenceRef]&#xA;      ,[Description]&#xA;      ,[LedgerRef]&#xA;      ,[FiscalYearRef]&#xA;      ,[Additional1]&#xA;      ,[Additional2]&#xA;      ,[Additional3]&#xA;      ,[Additional4]&#xA;      ,[Additional5]&#xA;      ,[HandheldSpecificId]&#xA;   ,1&#xA; ,NULL&#xA;&#xA;   FROM [192.168.200.12].[Rahkarandb_sg3].[LGS3].[InventoryVoucher] InventoryVoucher&#xA;where &#xA;--invoiceitem.date&gt;=cast (cast( year(getdate()) as varchar )+'-01-01' as date) and &#xA;not exists(&#xA; select [InventoryVoucherId] from [stage].[kharazmi].LGS3InventoryVoucher z1 where z1.[InventoryVoucherId] = InventoryVoucher.[InventoryVoucherId])&#xA;&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\InventoryVoucher\update"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{4e4a749c-5d72-4020-86a1-3a769f51cb44}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="update"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="2">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{CFE9A99F-0A98-4288-BC57-5D7546ACA5E9}"
+              SQLTask:SqlStatementSource=" truncate table [Stage].[dbo].[Updates]&#xA; insert into [stage].[dbo].[updates]&#xA; (id)&#xA; select sc.InventoryVoucherID&#xA; from  [stage].[kharazmi].LGS3InventoryVoucher c&#xA;&#xA; inner join [192.168.200.12].[Rahkarandb_sg3].[LGS3].[InventoryVoucher] sc on   sc.InventoryVoucherID=c.InventoryVoucherID and sc.Version&lt;&gt; c.Version&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\InventoryVoucher\Update T"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{f71c2c88-27a3-4d75-a8cd-7c4e9f52e0ad}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Update T"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="2">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{CFE9A99F-0A98-4288-BC57-5D7546ACA5E9}"
+              SQLTask:SqlStatementSource="&#xA;    insert into [stage].[kharazmi].LGS3InventoryVoucher&#xA;(&#xA;[InventoryVoucherID]&#xA;      ,[InventoryVoucherSpecificationRef]&#xA;      ,[State]&#xA;      ,[Version]&#xA;      ,[StoreRef]&#xA;      ,[CounterpartStoreRef]&#xA;      ,[Date]&#xA;      ,[Number]&#xA;      ,[DelivererOrReceiverPartyRef]&#xA;      ,[CreationDate]&#xA;      ,[LastModificationDate]&#xA;      ,[Creator]&#xA;      ,[LastModifier]&#xA;      ,[SLRef]&#xA;      ,[CounterpartEntityCode]&#xA;      ,[CounterpartEntityRef]&#xA;      ,[CounterpartEntityText]&#xA;      ,[CounterpartDLCode]&#xA;      ,[Level5DLCode]&#xA;      ,[Level6DLCode]&#xA;      ,[BranchRef]&#xA;      ,[Editable]&#xA;      ,[ReferenceType]&#xA;      ,[ReferenceRef]&#xA;      ,[Description]&#xA;      ,[LedgerRef]&#xA;      ,[FiscalYearRef]&#xA;      ,[Additional1]&#xA;      ,[Additional2]&#xA;      ,[Additional3]&#xA;      ,[Additional4]&#xA;      ,[Additional5]&#xA;      ,[HandheldSpecificId]&#xA;      ,[isinsert]&#xA;      ,[isupdate]  )                  &#xA;   select&#xA;[InventoryVoucherID]&#xA;      ,[InventoryVoucherSpecificationRef]&#xA;      ,[State]&#xA;      ,[Version]&#xA;      ,[StoreRef]&#xA;      ,[CounterpartStoreRef]&#xA;      ,[Date]&#xA;      ,[Number]&#xA;      ,[DelivererOrReceiverPartyRef]&#xA;      ,[CreationDate]&#xA;      ,[LastModificationDate]&#xA;      ,[Creator]&#xA;      ,[LastModifier]&#xA;      ,[SLRef]&#xA;      ,[CounterpartEntityCode]&#xA;      ,[CounterpartEntityRef]&#xA;      ,[CounterpartEntityText]&#xA;      ,[CounterpartDLCode]&#xA;      ,[Level5DLCode]&#xA;      ,[Level6DLCode]&#xA;      ,[BranchRef]&#xA;      ,[Editable]&#xA;      ,[ReferenceType]&#xA;      ,[ReferenceRef]&#xA;      ,[Description]&#xA;      ,[LedgerRef]&#xA;      ,[FiscalYearRef]&#xA;      ,[Additional1]&#xA;      ,[Additional2]&#xA;      ,[Additional3]&#xA;      ,[Additional4]&#xA;      ,[Additional5]&#xA;      ,[HandheldSpecificId]&#xA;   ,NULL&#xA; ,1&#xA;&#xA;   FROM [192.168.200.12].[Rahkarandb_sg3].[LGS3].[InventoryVoucher] InventoryVoucher&#xA;where &#xA;--invoiceitem.date&gt;=cast (cast( year(getdate()) as varchar )+'-01-01' as date) and &#xA;not exists(&#xA; select [InventoryVoucherId] from [stage].[kharazmi].LGS3InventoryVoucher z1 where z1.[InventoryVoucherId] = InventoryVoucher.[InventoryVoucherId])&#xA;&#xA;&#xA;&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\InventoryVoucher.PrecedenceConstraints[Constraint]"
+          DTS:CreationName=""
+          DTS:DTSID="{534b58d4-9895-4ee2-a660-a10926676168}"
+          DTS:From="Package\InventoryVoucher\Delete"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint"
+          DTS:To="Package\InventoryVoucher\update" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\InventoryVoucher.PrecedenceConstraints[Constraint 1]"
+          DTS:CreationName=""
+          DTS:DTSID="{33ea7a34-9723-4782-8bf7-73dd90bd6922}"
+          DTS:From="Package\InventoryVoucher\update"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 1"
+          DTS:To="Package\InventoryVoucher\Insert" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\InventoryVoucher.PrecedenceConstraints[Constraint 2]"
+          DTS:CreationName=""
+          DTS:DTSID="{b66a1f15-2717-430f-897b-531f9d0fb62a}"
+          DTS:From="Package\InventoryVoucher\Insert"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 2"
+          DTS:To="Package\InventoryVoucher\Delete T" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\InventoryVoucher.PrecedenceConstraints[Constraint 3]"
+          DTS:CreationName=""
+          DTS:DTSID="{e6489c00-cdb3-456c-872e-71a792393404}"
+          DTS:From="Package\InventoryVoucher\Delete T"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 3"
+          DTS:To="Package\InventoryVoucher\Update T" />
+      </DTS:PrecedenceConstraints>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\InventoryVoucheritem"
+      DTS:CreationName="STOCK:SEQUENCE"
+      DTS:Description="Sequence Container"
+      DTS:DTSID="{358b3e09-6f9c-4dd4-abb0-abbcd25e5a50}"
+      DTS:ExecutableType="STOCK:SEQUENCE"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="InventoryVoucheritem">
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\InventoryVoucheritem\Delete"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{26cb1328-b2bd-445f-a589-66853cd4940a}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Delete"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="3">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{CFE9A99F-0A98-4288-BC57-5D7546ACA5E9}"
+              SQLTask:SqlStatementSource="    delete  from kharazmi.LGS3InventoryVoucheritem&#xA;where not exists   (select * from [192.168.200.12].[Rahkarandb_sg3].[LGS3].InventoryVoucheritem ii where  ii.InventoryVoucheritemid=LGS3InventoryVoucheritem.InventoryVoucheritemID)&#xA;&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\InventoryVoucheritem\Delete T"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{bea1e69e-da57-42f3-8f47-46fa8b4ad642}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Delete T"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="3">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{CFE9A99F-0A98-4288-BC57-5D7546ACA5E9}"
+              SQLTask:SqlStatementSource="  delete ft &#xA;  from [stage].[kharazmi].LGS3InventoryVoucherItem ft&#xA; inner join (select * from [stage].[dbo].updates) tft1 on tft1.[id]=ft.[InventoryVoucherItemID]" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\InventoryVoucheritem\Insert"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{341d1afb-d46e-4d3c-917b-7ae62e9a0904}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Insert"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="3">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{CFE9A99F-0A98-4288-BC57-5D7546ACA5E9}"
+              SQLTask:SqlStatementSource=" &#xA;&#xA;    insert into [stage].[kharazmi].LGS3InventoryVoucheritem&#xA;(&#xA;[InventoryVoucherItemID]&#xA;      ,[InventoryVoucherRef]&#xA;      ,[ReferenceType]&#xA;      ,[ReferenceRef]&#xA;      ,[ReferenceCode]&#xA;      ,[State]&#xA;      ,[Version]&#xA;      ,[Description]&#xA;      ,[DelivererOrReceiverPartyRef]&#xA;      ,[PartRef]&#xA;      ,[PartUnitRef]&#xA;      ,[ReturnableVoucherItemRef]&#xA;      ,[SLRef]&#xA;      ,[CounterpartEntityCode]&#xA;      ,[CounterpartEntityRef]&#xA;      ,[CounterpartEntityText]&#xA;      ,[CounterpartDLCode]&#xA;      ,[Level5DLCode]&#xA;      ,[Level6DLCode]&#xA;      ,[InventoryVoucherSpecificationRef]&#xA;      ,[Number]&#xA;      ,[UnitRef]&#xA;      ,[RowNumber]&#xA;      ,[MajorUnitQuantity]&#xA;      ,[Quantity]&#xA;      ,[SecondUnitQuantity]&#xA;      ,[Additional1]&#xA;      ,[Additional2]&#xA;      ,[Additional3]&#xA;      ,[Additional4]&#xA;      ,[Additional5]&#xA;      ,[BarcodeTemplateRef]&#xA;      ,[Barcode]&#xA;      ,[FiscalYearRef]&#xA;      ,[StoreRef]&#xA;      ,[Date]&#xA;      ,[VoucherCreationDate]&#xA;      ,[HasQualityControl]&#xA;      ,[SLResolvingType]&#xA;      ,[DatesAsNumber]&#xA;      ,[isinsert]&#xA;      ,[isupdate]&#xA;&#x9;  )                  &#xA;   select&#xA;[InventoryVoucherItemID]&#xA;      ,[InventoryVoucherRef]&#xA;      ,[ReferenceType]&#xA;      ,[ReferenceRef]&#xA;      ,[ReferenceCode]&#xA;      ,[State]&#xA;      ,[Version]&#xA;      ,[Description]&#xA;      ,[DelivererOrReceiverPartyRef]&#xA;      ,[PartRef]&#xA;      ,[PartUnitRef]&#xA;      ,[ReturnableVoucherItemRef]&#xA;      ,[SLRef]&#xA;      ,[CounterpartEntityCode]&#xA;      ,[CounterpartEntityRef]&#xA;      ,[CounterpartEntityText]&#xA;      ,[CounterpartDLCode]&#xA;      ,[Level5DLCode]&#xA;      ,[Level6DLCode]&#xA;      ,[InventoryVoucherSpecificationRef]&#xA;      ,[Number]&#xA;      ,[UnitRef]&#xA;      ,[RowNumber]&#xA;      ,[MajorUnitQuantity]&#xA;      ,[Quantity]&#xA;      ,[SecondUnitQuantity]&#xA;      ,[Additional1]&#xA;      ,[Additional2]&#xA;      ,[Additional3]&#xA;      ,[Additional4]&#xA;      ,[Additional5]&#xA;      ,[BarcodeTemplateRef]&#xA;      ,[Barcode]&#xA;      ,[FiscalYearRef]&#xA;      ,[StoreRef]&#xA;      ,[Date]&#xA;      ,[VoucherCreationDate]&#xA;      ,[HasQualityControl]&#xA;      ,[SLResolvingType]&#xA;      ,[DatesAsNumber]&#xA;  ,1&#xA; ,NULL&#xA;&#xA;   FROM [192.168.200.12].[Rahkarandb_sg3].[LGS3].[InventoryVoucherItem] InventoryVoucher&#xA;where &#xA;--invoiceitem.date&gt;=cast (cast( year(getdate()) as varchar )+'-01-01' as date) and &#xA;not exists(&#xA; select [InventoryVoucherItemId] from [stage].[kharazmi].LGS3InventoryVoucherItem z1 where z1.[InventoryVoucherItemId] = InventoryVoucher.[InventoryVoucherItemId])&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\InventoryVoucheritem\update"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{a6bb8674-b02d-4747-bff1-2976b85fd79f}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="update"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="3">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{CFE9A99F-0A98-4288-BC57-5D7546ACA5E9}"
+              SQLTask:SqlStatementSource=" truncate table [Stage].[dbo].[Updates]&#xA; insert into [stage].[dbo].[updates]&#xA; (id)&#xA; select sc.InventoryVoucheritemID&#xA; from  [stage].[kharazmi].LGS3InventoryVoucheritem c&#xA;&#xA; inner join [192.168.200.12].[Rahkarandb_sg3].[LGS3].[InventoryVoucheritem] sc on   sc.InventoryVoucheritemID=c.InventoryVoucheritemID and sc.Version&lt;&gt; c.Version&#xA;&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\InventoryVoucheritem\Update T"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{b2c91fc4-6e15-47ef-b367-513e0121cf9d}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Update T"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="3">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{CFE9A99F-0A98-4288-BC57-5D7546ACA5E9}"
+              SQLTask:SqlStatementSource=" &#xA;&#xA;    insert into [stage].[kharazmi].LGS3InventoryVoucheritem&#xA;(&#xA;[InventoryVoucherItemID]&#xA;      ,[InventoryVoucherRef]&#xA;      ,[ReferenceType]&#xA;      ,[ReferenceRef]&#xA;      ,[ReferenceCode]&#xA;      ,[State]&#xA;      ,[Version]&#xA;      ,[Description]&#xA;      ,[DelivererOrReceiverPartyRef]&#xA;      ,[PartRef]&#xA;      ,[PartUnitRef]&#xA;      ,[ReturnableVoucherItemRef]&#xA;      ,[SLRef]&#xA;      ,[CounterpartEntityCode]&#xA;      ,[CounterpartEntityRef]&#xA;      ,[CounterpartEntityText]&#xA;      ,[CounterpartDLCode]&#xA;      ,[Level5DLCode]&#xA;      ,[Level6DLCode]&#xA;      ,[InventoryVoucherSpecificationRef]&#xA;      ,[Number]&#xA;      ,[UnitRef]&#xA;      ,[RowNumber]&#xA;      ,[MajorUnitQuantity]&#xA;      ,[Quantity]&#xA;      ,[SecondUnitQuantity]&#xA;      ,[Additional1]&#xA;      ,[Additional2]&#xA;      ,[Additional3]&#xA;      ,[Additional4]&#xA;      ,[Additional5]&#xA;      ,[BarcodeTemplateRef]&#xA;      ,[Barcode]&#xA;      ,[FiscalYearRef]&#xA;      ,[StoreRef]&#xA;      ,[Date]&#xA;      ,[VoucherCreationDate]&#xA;      ,[HasQualityControl]&#xA;      ,[SLResolvingType]&#xA;      ,[DatesAsNumber]&#xA;      ,[isinsert]&#xA;      ,[isupdate]&#xA;&#x9;  )                  &#xA;   select&#xA;[InventoryVoucherItemID]&#xA;      ,[InventoryVoucherRef]&#xA;      ,[ReferenceType]&#xA;      ,[ReferenceRef]&#xA;      ,[ReferenceCode]&#xA;      ,[State]&#xA;      ,[Version]&#xA;      ,[Description]&#xA;      ,[DelivererOrReceiverPartyRef]&#xA;      ,[PartRef]&#xA;      ,[PartUnitRef]&#xA;      ,[ReturnableVoucherItemRef]&#xA;      ,[SLRef]&#xA;      ,[CounterpartEntityCode]&#xA;      ,[CounterpartEntityRef]&#xA;      ,[CounterpartEntityText]&#xA;      ,[CounterpartDLCode]&#xA;      ,[Level5DLCode]&#xA;      ,[Level6DLCode]&#xA;      ,[InventoryVoucherSpecificationRef]&#xA;      ,[Number]&#xA;      ,[UnitRef]&#xA;      ,[RowNumber]&#xA;      ,[MajorUnitQuantity]&#xA;      ,[Quantity]&#xA;      ,[SecondUnitQuantity]&#xA;      ,[Additional1]&#xA;      ,[Additional2]&#xA;      ,[Additional3]&#xA;      ,[Additional4]&#xA;      ,[Additional5]&#xA;      ,[BarcodeTemplateRef]&#xA;      ,[Barcode]&#xA;      ,[FiscalYearRef]&#xA;      ,[StoreRef]&#xA;      ,[Date]&#xA;      ,[VoucherCreationDate]&#xA;      ,[HasQualityControl]&#xA;      ,[SLResolvingType]&#xA;      ,[DatesAsNumber]&#xA;  ,Null&#xA; ,1&#xA;&#xA;   FROM [192.168.200.12].[Rahkarandb_sg3].[LGS3].[InventoryVoucherItem] InventoryVoucher&#xA;where &#xA;--invoiceitem.date&gt;=cast (cast( year(getdate()) as varchar )+'-01-01' as date) and &#xA;not exists(&#xA; select [InventoryVoucherItemId] from [stage].[kharazmi].LGS3InventoryVoucherItem z1 where z1.[InventoryVoucherItemId] = InventoryVoucher.[InventoryVoucherItemId])&#xA;&#xA;&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\InventoryVoucheritem.PrecedenceConstraints[Constraint]"
+          DTS:CreationName=""
+          DTS:DTSID="{ddac4f65-ff62-4262-956c-786d0a248e60}"
+          DTS:From="Package\InventoryVoucheritem\Delete"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint"
+          DTS:To="Package\InventoryVoucheritem\update" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\InventoryVoucheritem.PrecedenceConstraints[Constraint 1]"
+          DTS:CreationName=""
+          DTS:DTSID="{cec42a2a-ffac-483c-81d8-e92c801df9db}"
+          DTS:From="Package\InventoryVoucheritem\update"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 1"
+          DTS:To="Package\InventoryVoucheritem\Insert" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\InventoryVoucheritem.PrecedenceConstraints[Constraint 2]"
+          DTS:CreationName=""
+          DTS:DTSID="{c289a651-fbb2-43b0-bcb5-107a1f28b26e}"
+          DTS:From="Package\InventoryVoucheritem\Insert"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 2"
+          DTS:To="Package\InventoryVoucheritem\Delete T" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\InventoryVoucheritem.PrecedenceConstraints[Constraint 3]"
+          DTS:CreationName=""
+          DTS:DTSID="{7fd519a0-33b2-4e7d-a508-c4295d28faca}"
+          DTS:From="Package\InventoryVoucheritem\Delete T"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 3"
+          DTS:To="Package\InventoryVoucheritem\Update T" />
+      </DTS:PrecedenceConstraints>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Invoice"
+      DTS:CreationName="STOCK:SEQUENCE"
+      DTS:Description="Sequence Container"
+      DTS:DTSID="{4ce0757b-77eb-459b-918f-e361ea10c394}"
+      DTS:ExecutableType="STOCK:SEQUENCE"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Invoice">
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\Invoice\Delete"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{f67d043a-a79c-4f54-a036-b9daf9d8f28b}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Delete"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="14">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{CFE9A99F-0A98-4288-BC57-5D7546ACA5E9}"
+              SQLTask:SqlStatementSource="  delete  from kharazmi.SLS3Invoice&#xA;where not exists   (select * from [192.168.200.12].[Rahkarandb_sg3].[sls3].Invoice ii where  ii.invoiceid=SLS3Invoice.InvoiceID)&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Invoice\Delete T"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{654b58ce-99af-4e87-ab4e-013e9d72f341}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Delete T"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="14">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{CFE9A99F-0A98-4288-BC57-5D7546ACA5E9}"
+              SQLTask:SqlStatementSource="&#xA;  delete ft &#xA;  from [stage].[kharazmi].[sls3invoice] ft&#xA; inner join (select * from [stage].[dbo].updates) tft1 on tft1.[id]=ft.[invoiceID]" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Invoice\Insert"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{ec730de2-55bd-4de9-a9d7-3c4db3a1be87}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Insert"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="14">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{CFE9A99F-0A98-4288-BC57-5D7546ACA5E9}"
+              SQLTask:SqlStatementSource="&#xA;&#xA;    insert into [stage].[kharazmi].sls3invoice&#xA;(&#xA; [InvoiceID]&#xA;      ,[CompanyRef]&#xA;      ,[SalesOfficeRef]&#xA;      ,[CurrencyRef]&#xA;      ,[OperationalCurrencyExchangeRateRef]&#xA;      ,[OperationalCurrencyExchangeRate]&#xA;      ,[OperationalCurrencyExchangeRateIsReversed]&#xA;      ,[Number]&#xA;      ,[AutoNumber]&#xA;      ,[Date]&#xA;      ,[CustomerRef]&#xA;      ,[OneTimeCustomerRef]&#xA;      ,[BrokerRef]&#xA;      ,[AgentRef]&#xA;      ,[PayerType]&#xA;      ,[PayerAccountRef]&#xA;      ,[DeliveryMethod]&#xA;      ,[ShippingPointRef]&#xA;      ,[InventoryRef]&#xA;      ,[RecipientType]&#xA;      ,[RecipientRef]&#xA;      ,[DeliveryAddressType]&#xA;      ,[DeliveryAddressRef]&#xA;      ,[DeliveryState]&#xA;      ,[InitiallyDelivered]&#xA;      ,[PlantRef]&#xA;      ,[Price]&#xA;      ,[AdditionAmount]&#xA;      ,[ReductionAmount]&#xA;      ,[EffectiveNetPrice]&#xA;      ,[NetPrice]&#xA;      ,[Status]&#xA;      ,[Creator]&#xA;      ,[CreationDate]&#xA;      ,[LastModifier]&#xA;      ,[LastModificationDate]&#xA;      ,[SalesAreaRef]&#xA;      ,[CalculationDate]&#xA;      ,[FiscalYearRef]&#xA;      ,[BranchRef]&#xA;      ,[CustomerType]&#xA;      ,[PaymentAgreementRef]&#xA;      ,[SalesTypeRef]&#xA;      ,[AmendState]&#xA;      ,[Description]&#xA;      ,[ContractRef]&#xA;      ,[PolicyCalculationDateType]&#xA;      ,[IncludedPolicies]&#xA;      ,[ExcludedPolicies]&#xA;      ,[ReferenceInvoiceRef]&#xA;      ,[PolicyCalculationConsideringBaseDocumentPolicyIsApplied]&#xA;      ,[TotalWeight]&#xA;      ,[WeightUnitRef]&#xA;      ,[TotalVolume]&#xA;      ,[VolumeUnitRef]&#xA;      ,[Version]&#xA;      ,[SettlementRespite]&#xA;      ,[IsSettlementRespiteCalculated]&#xA;      ,[SettlementDate]&#xA;      ,[IsImported]&#xA;      ,[WithoutDistributorUnderTaker]&#xA;      ,[ContributionInTaxPayerBillCollection]&#xA;      ,[WithoutUndertaker]&#xA;      ,[ContractRegistrationNumber]&#xA;      ,[isinsert]&#xA;      ,[isupdate]   )                  &#xA;   select&#xA; [InvoiceID]&#xA;      ,[CompanyRef]&#xA;      ,[SalesOfficeRef]&#xA;      ,[CurrencyRef]&#xA;      ,[OperationalCurrencyExchangeRateRef]&#xA;      ,[OperationalCurrencyExchangeRate]&#xA;      ,[OperationalCurrencyExchangeRateIsReversed]&#xA;      ,[Number]&#xA;      ,[AutoNumber]&#xA;      ,[Date]&#xA;      ,[CustomerRef]&#xA;      ,[OneTimeCustomerRef]&#xA;      ,[BrokerRef]&#xA;      ,[AgentRef]&#xA;      ,[PayerType]&#xA;      ,[PayerAccountRef]&#xA;      ,[DeliveryMethod]&#xA;      ,[ShippingPointRef]&#xA;      ,[InventoryRef]&#xA;      ,[RecipientType]&#xA;      ,[RecipientRef]&#xA;      ,[DeliveryAddressType]&#xA;      ,[DeliveryAddressRef]&#xA;      ,[DeliveryState]&#xA;      ,[InitiallyDelivered]&#xA;      ,[PlantRef]&#xA;      ,[Price]&#xA;      ,[AdditionAmount]&#xA;      ,[ReductionAmount]&#xA;      ,[EffectiveNetPrice]&#xA;      ,[NetPrice]&#xA;      ,[Status]&#xA;      ,[Creator]&#xA;      ,[CreationDate]&#xA;      ,[LastModifier]&#xA;      ,[LastModificationDate]&#xA;      ,[SalesAreaRef]&#xA;      ,[CalculationDate]&#xA;      ,[FiscalYearRef]&#xA;      ,[BranchRef]&#xA;      ,[CustomerType]&#xA;      ,[PaymentAgreementRef]&#xA;      ,[SalesTypeRef]&#xA;      ,[AmendState]&#xA;      ,[Description]&#xA;      ,[ContractRef]&#xA;      ,[PolicyCalculationDateType]&#xA;      ,[IncludedPolicies]&#xA;      ,[ExcludedPolicies]&#xA;      ,[ReferenceInvoiceRef]&#xA;      ,[PolicyCalculationConsideringBaseDocumentPolicyIsApplied]&#xA;      ,[TotalWeight]&#xA;      ,[WeightUnitRef]&#xA;      ,[TotalVolume]&#xA;      ,[VolumeUnitRef]&#xA;      ,[Version]&#xA;      ,[SettlementRespite]&#xA;      ,[IsSettlementRespiteCalculated]&#xA;      ,[SettlementDate]&#xA;      ,[IsImported]&#xA;      ,[WithoutDistributorUnderTaker]&#xA;      ,[ContributionInTaxPayerBillCollection]&#xA;      ,[WithoutUndertaker]&#xA;      ,[ContractRegistrationNumber] &#xA;&#x9;  ,1&#xA; ,NULL&#xA;&#xA;   FROM [192.168.200.12].[Rahkarandb_sg3].[SLS3].[invoice] invoiceitem&#xA;where &#xA;--invoiceitem.date&gt;=cast (cast( year(getdate()) as varchar )+'-01-01' as date) and &#xA;not exists(&#xA; select [invoiceId] from [stage].[kharazmi].sls3invoice z1 where z1.[invoiceId] = invoiceitem.[invoiceId])&#xA;&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Invoice\update"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{81f67a6c-f3b3-498c-bdef-01958bacdfcc}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="update"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="14">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{CFE9A99F-0A98-4288-BC57-5D7546ACA5E9}"
+              SQLTask:SqlStatementSource=" truncate table [Stage].[dbo].[Updates]&#xA; insert into [stage].[dbo].[updates]&#xA; (id)&#xA; select sc.invoiceID&#xA; from  [stage].[kharazmi].sls3invoice c&#xA;&#xA; inner join [192.168.200.12].[Rahkarandb_sg3].[SLS3].[invoice] sc on   sc.invoiceID=c.invoiceID and sc.Version&lt;&gt; c.Version&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Invoice\Update T"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{63defb81-fe76-4d5a-819e-8715a7f498fa}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Update T"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="14">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{CFE9A99F-0A98-4288-BC57-5D7546ACA5E9}"
+              SQLTask:SqlStatementSource="     insert into [stage].[kharazmi].sls3invoice&#xA;(&#xA; [InvoiceID]&#xA;      ,[CompanyRef]&#xA;      ,[SalesOfficeRef]&#xA;      ,[CurrencyRef]&#xA;      ,[OperationalCurrencyExchangeRateRef]&#xA;      ,[OperationalCurrencyExchangeRate]&#xA;      ,[OperationalCurrencyExchangeRateIsReversed]&#xA;      ,[Number]&#xA;      ,[AutoNumber]&#xA;      ,[Date]&#xA;      ,[CustomerRef]&#xA;      ,[OneTimeCustomerRef]&#xA;      ,[BrokerRef]&#xA;      ,[AgentRef]&#xA;      ,[PayerType]&#xA;      ,[PayerAccountRef]&#xA;      ,[DeliveryMethod]&#xA;      ,[ShippingPointRef]&#xA;      ,[InventoryRef]&#xA;      ,[RecipientType]&#xA;      ,[RecipientRef]&#xA;      ,[DeliveryAddressType]&#xA;      ,[DeliveryAddressRef]&#xA;      ,[DeliveryState]&#xA;      ,[InitiallyDelivered]&#xA;      ,[PlantRef]&#xA;      ,[Price]&#xA;      ,[AdditionAmount]&#xA;      ,[ReductionAmount]&#xA;      ,[EffectiveNetPrice]&#xA;      ,[NetPrice]&#xA;      ,[Status]&#xA;      ,[Creator]&#xA;      ,[CreationDate]&#xA;      ,[LastModifier]&#xA;      ,[LastModificationDate]&#xA;      ,[SalesAreaRef]&#xA;      ,[CalculationDate]&#xA;      ,[FiscalYearRef]&#xA;      ,[BranchRef]&#xA;      ,[CustomerType]&#xA;      ,[PaymentAgreementRef]&#xA;      ,[SalesTypeRef]&#xA;      ,[AmendState]&#xA;      ,[Description]&#xA;      ,[ContractRef]&#xA;      ,[PolicyCalculationDateType]&#xA;      ,[IncludedPolicies]&#xA;      ,[ExcludedPolicies]&#xA;      ,[ReferenceInvoiceRef]&#xA;      ,[PolicyCalculationConsideringBaseDocumentPolicyIsApplied]&#xA;      ,[TotalWeight]&#xA;      ,[WeightUnitRef]&#xA;      ,[TotalVolume]&#xA;      ,[VolumeUnitRef]&#xA;      ,[Version]&#xA;      ,[SettlementRespite]&#xA;      ,[IsSettlementRespiteCalculated]&#xA;      ,[SettlementDate]&#xA;      ,[IsImported]&#xA;      ,[WithoutDistributorUnderTaker]&#xA;      ,[ContributionInTaxPayerBillCollection]&#xA;      ,[WithoutUndertaker]&#xA;      ,[ContractRegistrationNumber]&#xA;      ,[isinsert]&#xA;      ,[isupdate]   )                  &#xA;   select&#xA; [InvoiceID]&#xA;      ,[CompanyRef]&#xA;      ,[SalesOfficeRef]&#xA;      ,[CurrencyRef]&#xA;      ,[OperationalCurrencyExchangeRateRef]&#xA;      ,[OperationalCurrencyExchangeRate]&#xA;      ,[OperationalCurrencyExchangeRateIsReversed]&#xA;      ,[Number]&#xA;      ,[AutoNumber]&#xA;      ,[Date]&#xA;      ,[CustomerRef]&#xA;      ,[OneTimeCustomerRef]&#xA;      ,[BrokerRef]&#xA;      ,[AgentRef]&#xA;      ,[PayerType]&#xA;      ,[PayerAccountRef]&#xA;      ,[DeliveryMethod]&#xA;      ,[ShippingPointRef]&#xA;      ,[InventoryRef]&#xA;      ,[RecipientType]&#xA;      ,[RecipientRef]&#xA;      ,[DeliveryAddressType]&#xA;      ,[DeliveryAddressRef]&#xA;      ,[DeliveryState]&#xA;      ,[InitiallyDelivered]&#xA;      ,[PlantRef]&#xA;      ,[Price]&#xA;      ,[AdditionAmount]&#xA;      ,[ReductionAmount]&#xA;      ,[EffectiveNetPrice]&#xA;      ,[NetPrice]&#xA;      ,[Status]&#xA;      ,[Creator]&#xA;      ,[CreationDate]&#xA;      ,[LastModifier]&#xA;      ,[LastModificationDate]&#xA;      ,[SalesAreaRef]&#xA;      ,[CalculationDate]&#xA;      ,[FiscalYearRef]&#xA;      ,[BranchRef]&#xA;      ,[CustomerType]&#xA;      ,[PaymentAgreementRef]&#xA;      ,[SalesTypeRef]&#xA;      ,[AmendState]&#xA;      ,[Description]&#xA;      ,[ContractRef]&#xA;      ,[PolicyCalculationDateType]&#xA;      ,[IncludedPolicies]&#xA;      ,[ExcludedPolicies]&#xA;      ,[ReferenceInvoiceRef]&#xA;      ,[PolicyCalculationConsideringBaseDocumentPolicyIsApplied]&#xA;      ,[TotalWeight]&#xA;      ,[WeightUnitRef]&#xA;      ,[TotalVolume]&#xA;      ,[VolumeUnitRef]&#xA;      ,[Version]&#xA;      ,[SettlementRespite]&#xA;      ,[IsSettlementRespiteCalculated]&#xA;      ,[SettlementDate]&#xA;      ,[IsImported]&#xA;      ,[WithoutDistributorUnderTaker]&#xA;      ,[ContributionInTaxPayerBillCollection]&#xA;      ,[WithoutUndertaker]&#xA;      ,[ContractRegistrationNumber] &#xA;&#x9;  ,NUll&#xA; ,1&#xA;&#xA;   FROM [192.168.200.12].[Rahkarandb_sg3].[SLS3].[invoice] invoiceitem&#xA;where &#xA;--invoiceitem.date&gt;=cast (cast( year(getdate()) as varchar )+'-01-01' as date) and &#xA;not exists(&#xA; select [invoiceId] from [stage].[kharazmi].sls3invoice z1 where z1.[invoiceId] = invoiceitem.[invoiceId])&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Invoice.PrecedenceConstraints[Constraint]"
+          DTS:CreationName=""
+          DTS:DTSID="{c503c17c-0682-484a-a314-2e0bc0cba959}"
+          DTS:From="Package\Invoice\Delete"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint"
+          DTS:To="Package\Invoice\update" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Invoice.PrecedenceConstraints[Constraint 1]"
+          DTS:CreationName=""
+          DTS:DTSID="{391d0a73-6af5-4239-b109-c89159141757}"
+          DTS:From="Package\Invoice\update"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 1"
+          DTS:To="Package\Invoice\Insert" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Invoice.PrecedenceConstraints[Constraint 2]"
+          DTS:CreationName=""
+          DTS:DTSID="{8bd5a72a-a697-43be-a26f-b858ed8ade12}"
+          DTS:From="Package\Invoice\Insert"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 2"
+          DTS:To="Package\Invoice\Delete T" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Invoice.PrecedenceConstraints[Constraint 3]"
+          DTS:CreationName=""
+          DTS:DTSID="{55ec18a9-0674-4921-909e-01f3b8aa85db}"
+          DTS:From="Package\Invoice\Delete T"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 3"
+          DTS:To="Package\Invoice\Update T" />
+      </DTS:PrecedenceConstraints>
+    </DTS:Executable>
     <DTS:Executable
       DTS:refId="Package\InvoiceItem"
       DTS:CreationName="STOCK:SEQUENCE"
@@ -55,12 +443,12 @@
           DTS:LocaleID="-1"
           DTS:ObjectName="Delete"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="0">
+          DTS:ThreadHint="16">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
-              SQLTask:Connection="{77B1D012-A2BC-4B83-A26F-ADCFCAA2F12B}"
-              SQLTask:SqlStatementSource="delete from [eltiam].[ARPReceivables] &#xA;where not exists (select * from [192.168.10.5].[Eltiam].[dbo].[ARPReceivables] f where f.ID=eltiam.ARPReceivables.ID)&#xA;&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+              SQLTask:Connection="{CFE9A99F-0A98-4288-BC57-5D7546ACA5E9}"
+              SQLTask:SqlStatementSource=" delete  from kharazmi.SLS3InvoiceItem &#xA;where not exists   (select * from [192.168.200.12].[Rahkarandb_sg3].[sls3].InvoiceItem ii where  ii.invoiceitemid=SLS3InvoiceItem.InvoiceItemID)&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
           </DTS:ObjectData>
         </DTS:Executable>
         <DTS:Executable
@@ -72,12 +460,12 @@
           DTS:LocaleID="-1"
           DTS:ObjectName="Delete T"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="0">
+          DTS:ThreadHint="16">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
-              SQLTask:Connection="{77B1D012-A2BC-4B83-A26F-ADCFCAA2F12B}"
-              SQLTask:SqlStatementSource="  delete ft &#xA;  from eltiam.ARPReceivables ft&#xA; inner join (select * from [Stage].[dbo].updates) tft1 on tft1.[id]=ft.ID" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+              SQLTask:Connection="{CFE9A99F-0A98-4288-BC57-5D7546ACA5E9}"
+              SQLTask:SqlStatementSource=" delete ft &#xA;  from [stage].[kharazmi].[sls3invoiceitem] ft&#xA; inner join (select * from [stage].[dbo].updates) tft1 on tft1.[id]=ft.[invoiceitemID]" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
           </DTS:ObjectData>
         </DTS:Executable>
         <DTS:Executable
@@ -89,12 +477,12 @@
           DTS:LocaleID="-1"
           DTS:ObjectName="Insert"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="0">
+          DTS:ThreadHint="16">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
-              SQLTask:Connection="{77B1D012-A2BC-4B83-A26F-ADCFCAA2F12B}"
-              SQLTask:SqlStatementSource=" insert into eltiam.ARPReceivables &#xA;(&#xA;[Id]&#xA;      ,[PUBFiscalYearKey]&#xA;      ,[CenterKey]&#xA;      ,[CustomerKey]&#xA;      ,[ARPersonnelKey]&#xA;      ,[PaymentMethodLookup]&#xA;      ,[DateKey]&#xA;      ,[ChequeDateKey]&#xA;      ,[Amount]&#xA;      ,[Number]&#xA;      ,[LastStatusLookup]&#xA;      ,[Dsc]&#xA;      ,[CreatedBy]&#xA;      ,[Created]&#xA;      ,[ModifiedBy]&#xA;      ,[Modified]&#xA;      ,[RowVersion]&#xA;      ,[CustomerBankAccountKey]&#xA;      ,[AppliedAmount]&#xA;      ,[IsOverPayApr]&#xA;      ,[BankAccountKey]&#xA;      ,[RemainAmountIfBounced]&#xA;      ,[ConvertedId]&#xA;      ,[IsPostedToDT]&#xA;      ,[IsNewType]&#xA;      ,[isupdate]&#xA;      ,[isinsert]&#xA;   )                  &#xA;   select&#xA;[Id]&#xA;      ,[PUBFiscalYearKey]&#xA;      ,[CenterKey]&#xA;      ,[CustomerKey]&#xA;      ,[ARPersonnelKey]&#xA;      ,[PaymentMethodLookup]&#xA;      ,[DateKey]&#xA;      ,[ChequeDateKey]&#xA;      ,[Amount]&#xA;      ,[Number]&#xA;      ,[LastStatusLookup]&#xA;      ,[Dsc]&#xA;      ,[CreatedBy]&#xA;      ,[Created]&#xA;      ,[ModifiedBy]&#xA;      ,[Modified]&#xA;      ,[RowVersion]&#xA;      ,[CustomerBankAccountKey]&#xA;      ,[AppliedAmount]&#xA;      ,[IsOverPayApr]&#xA;      ,[BankAccountKey]&#xA;      ,[RemainAmountIfBounced]&#xA;      ,[ConvertedId]&#xA;      ,[IsPostedToDT]&#xA;      ,[IsNewType]&#xA;&#xA;   ,1&#xA;   ,NULL&#xA;   FROM [192.168.10.5].[Eltiam].[dbo].ARPReceivables QuotasDetails&#xA;where&#xA;--QuotasDetails.created&gt;=cast (cast( year(getdate()) as varchar )+'-01-01' as date) and &#xA;not exists(&#xA; select id from eltiam.ARPReceivables z1 where z1.[id] = QuotasDetails.[Id])&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+              SQLTask:Connection="{CFE9A99F-0A98-4288-BC57-5D7546ACA5E9}"
+              SQLTask:SqlStatementSource="   insert into [stage].[kharazmi].sls3invoiceitem&#xA;(&#xA;[InvoiceItemID]&#xA;      ,[SalesAreaRef]&#xA;      ,[InvoiceRef]&#xA;      ,[RowNumber]&#xA;      ,[Type]&#xA;      ,[ReferenceType]&#xA;      ,[ReferenceRef]&#xA;      ,[Date]&#xA;      ,[ProductRef]&#xA;      ,[ProductUnitRef]&#xA;      ,[PriceBaseUnitRef]&#xA;      ,[PriceBaseFee]&#xA;      ,[Quantity]&#xA;      ,[ProductPackRef]&#xA;      ,[ProductPackItemRef]&#xA;      ,[ProductPackQuantity]&#xA;      ,[MajorUnitQuantity]&#xA;      ,[MajorUnitInitialQuantity]&#xA;      ,[InitialQuantity]&#xA;      ,[ShippingPointRef]&#xA;      ,[RecipientType]&#xA;      ,[RecipientRef]&#xA;      ,[RecipientPartyRef]&#xA;      ,[DeliveryAddressType]&#xA;      ,[DeliveryAddressRef]&#xA;      ,[Version]&#xA;      ,[Fee]&#xA;      ,[Price]&#xA;      ,[PrepaidBaseDocumentRef]&#xA;      ,[PrepaidBaseDocumentType]&#xA;      ,[PrepaidBaseDocumentReferenceType]&#xA;      ,[PrepaidAmount]&#xA;      ,[PrepaidAmountSetByUser]&#xA;      ,[EffectiveNetPrice]&#xA;      ,[Status]&#xA;      ,[ReductionAmount]&#xA;      ,[AdditionAmount]&#xA;      ,[PlantRef]&#xA;      ,[InventoryRef]&#xA;      ,[Description]&#xA;      ,[ParentRef]&#xA;      ,[OriginalFreeProductRef]&#xA;      ,[FreeProductBusinessPolicyRef]&#xA;      ,[FreeProductBusinessPolicyConditionRowRef]&#xA;      ,[NetPrice]&#xA;      ,[ContractRef]&#xA;      ,[ContractItemRef]&#xA;      ,[ContractItemVersionNumber]&#xA;      ,[HasReservation]&#xA;      ,[ReferenceHasReservation]&#xA;      ,[TrackingFactor1]&#xA;      ,[TrackingFactor2]&#xA;      ,[TrackingFactor3]&#xA;      ,[TrackingFactor4]&#xA;      ,[TrackingFactor5]&#xA;      ,[PartTrackingFactorRef1]&#xA;      ,[PartTrackingFactorRef2]&#xA;      ,[PartTrackingFactorRef3]&#xA;      ,[PartTrackingFactorRef4]&#xA;      ,[PartTrackingFactorRef5]&#xA;      ,[TrackingFactorInputMode1]&#xA;      ,[TrackingFactorInputMode2]&#xA;      ,[TrackingFactorInputMode3]&#xA;      ,[TrackingFactorInputMode4]&#xA;      ,[TrackingFactorInputMode5]&#xA;      ,[TrackingFactorValue]&#xA;      ,[BatchRef]&#xA;      ,[IncludedPolicies]&#xA;      ,[ExcludedPolicies]&#xA;      ,[InclusiveRelatedInitialQuantity]&#xA;      ,[InclusiveRelatedInitialUnit]&#xA;      ,[CanSetTrackingFactorManually]&#xA;      ,[ExitPolicyRef]&#xA;      ,[SettlementRespite]&#xA;      ,[IsSettlementRespiteSetByReference]&#xA;      ,[CanceledBy]&#xA;      ,[CanceledDate]&#xA;      ,[isinsert]&#xA;      ,[isupdate]   )                  &#xA;   select&#xA;[InvoiceItemID]&#xA;      ,[SalesAreaRef]&#xA;      ,[InvoiceRef]&#xA;      ,[RowNumber]&#xA;      ,[Type]&#xA;      ,[ReferenceType]&#xA;      ,[ReferenceRef]&#xA;      ,[Date]&#xA;      ,[ProductRef]&#xA;      ,[ProductUnitRef]&#xA;      ,[PriceBaseUnitRef]&#xA;      ,[PriceBaseFee]&#xA;      ,[Quantity]&#xA;      ,[ProductPackRef]&#xA;      ,[ProductPackItemRef]&#xA;      ,[ProductPackQuantity]&#xA;      ,[MajorUnitQuantity]&#xA;      ,[MajorUnitInitialQuantity]&#xA;      ,[InitialQuantity]&#xA;      ,[ShippingPointRef]&#xA;      ,[RecipientType]&#xA;      ,[RecipientRef]&#xA;      ,[RecipientPartyRef]&#xA;      ,[DeliveryAddressType]&#xA;      ,[DeliveryAddressRef]&#xA;      ,[Version]&#xA;      ,[Fee]&#xA;      ,[Price]&#xA;      ,[PrepaidBaseDocumentRef]&#xA;      ,[PrepaidBaseDocumentType]&#xA;      ,[PrepaidBaseDocumentReferenceType]&#xA;      ,[PrepaidAmount]&#xA;      ,[PrepaidAmountSetByUser]&#xA;      ,[EffectiveNetPrice]&#xA;      ,[Status]&#xA;      ,[ReductionAmount]&#xA;      ,[AdditionAmount]&#xA;      ,[PlantRef]&#xA;      ,[InventoryRef]&#xA;      ,[Description]&#xA;      ,[ParentRef]&#xA;      ,[OriginalFreeProductRef]&#xA;      ,[FreeProductBusinessPolicyRef]&#xA;      ,[FreeProductBusinessPolicyConditionRowRef]&#xA;      ,[NetPrice]&#xA;      ,[ContractRef]&#xA;      ,[ContractItemRef]&#xA;      ,[ContractItemVersionNumber]&#xA;      ,[HasReservation]&#xA;      ,[ReferenceHasReservation]&#xA;      ,[TrackingFactor1]&#xA;      ,[TrackingFactor2]&#xA;      ,[TrackingFactor3]&#xA;      ,[TrackingFactor4]&#xA;      ,[TrackingFactor5]&#xA;      ,[PartTrackingFactorRef1]&#xA;      ,[PartTrackingFactorRef2]&#xA;      ,[PartTrackingFactorRef3]&#xA;      ,[PartTrackingFactorRef4]&#xA;      ,[PartTrackingFactorRef5]&#xA;      ,[TrackingFactorInputMode1]&#xA;      ,[TrackingFactorInputMode2]&#xA;      ,[TrackingFactorInputMode3]&#xA;      ,[TrackingFactorInputMode4]&#xA;      ,[TrackingFactorInputMode5]&#xA;      ,[TrackingFactorValue]&#xA;      ,[BatchRef]&#xA;      ,[IncludedPolicies]&#xA;      ,[ExcludedPolicies]&#xA;      ,[InclusiveRelatedInitialQuantity]&#xA;      ,[InclusiveRelatedInitialUnit]&#xA;      ,[CanSetTrackingFactorManually]&#xA;      ,[ExitPolicyRef]&#xA;      ,[SettlementRespite]&#xA;      ,[IsSettlementRespiteSetByReference]&#xA;      ,[CanceledBy]&#xA;      ,[CanceledDate]&#xA;  ,1&#xA; ,NULL&#xA;&#xA;   FROM [192.168.200.12].[Rahkarandb_sg3].[SLS3].[invoiceitem] invoiceitem&#xA;where &#xA;--invoiceitem.date&gt;=cast (cast( year(getdate()) as varchar )+'-01-01' as date) and &#xA;not exists(&#xA; select [invoiceitemId] from [stage].[kharazmi].sls3invoiceitem z1 where z1.[invoiceitemId] = invoiceitem.[invoiceitemId])&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
           </DTS:ObjectData>
         </DTS:Executable>
         <DTS:Executable
@@ -106,12 +494,12 @@
           DTS:LocaleID="-1"
           DTS:ObjectName="update"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="0">
+          DTS:ThreadHint="16">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
-              SQLTask:Connection="{77B1D012-A2BC-4B83-A26F-ADCFCAA2F12B}"
-              SQLTask:SqlStatementSource=" truncate table [Stage].[dbo].[Updates]&#xA; insert into [stage].[dbo].[updates]&#xA; (id)&#xA; select sc.id&#xA; from  eltiam.ARPReceivables c&#xA;&#xA; inner join  (select * from [192.168.10.5].[Eltiam].[dbo].[ARPReceivables])  sc  on  sc.created&gt;=cast (cast( year(getdate()) as varchar )+'-01-01' as date) and&#xA; sc.ID=c.ID and sc.RowVersion&lt;&gt; c.RowVersion&#xA;&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+              SQLTask:Connection="{CFE9A99F-0A98-4288-BC57-5D7546ACA5E9}"
+              SQLTask:SqlStatementSource=" truncate table [Stage].[dbo].[Updates]&#xA; insert into [stage].[dbo].[updates]&#xA; (id)&#xA; select sc.invoiceitemID&#xA; from  [stage].[kharazmi].sls3invoiceitem c&#xA;&#xA; inner join [192.168.200.12].[Rahkarandb_sg3].[SLS3].[invoiceitem] sc on   sc.invoiceitemID=c.invoiceitemID and sc.Version&lt;&gt; c.Version&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
           </DTS:ObjectData>
         </DTS:Executable>
         <DTS:Executable
@@ -123,12 +511,12 @@
           DTS:LocaleID="-1"
           DTS:ObjectName="Update T"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="0">
+          DTS:ThreadHint="16">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
-              SQLTask:Connection="{77B1D012-A2BC-4B83-A26F-ADCFCAA2F12B}"
-              SQLTask:SqlStatementSource=" insert into eltiam.ARPReceivables &#xA;(&#xA;[Id]&#xA;      ,[PUBFiscalYearKey]&#xA;      ,[CenterKey]&#xA;      ,[CustomerKey]&#xA;      ,[ARPersonnelKey]&#xA;      ,[PaymentMethodLookup]&#xA;      ,[DateKey]&#xA;      ,[ChequeDateKey]&#xA;      ,[Amount]&#xA;      ,[Number]&#xA;      ,[LastStatusLookup]&#xA;      ,[Dsc]&#xA;      ,[CreatedBy]&#xA;      ,[Created]&#xA;      ,[ModifiedBy]&#xA;      ,[Modified]&#xA;      ,[RowVersion]&#xA;      ,[CustomerBankAccountKey]&#xA;      ,[AppliedAmount]&#xA;      ,[IsOverPayApr]&#xA;      ,[BankAccountKey]&#xA;      ,[RemainAmountIfBounced]&#xA;      ,[ConvertedId]&#xA;      ,[IsPostedToDT]&#xA;      ,[IsNewType]&#xA;      ,[isupdate]&#xA;      ,[isinsert]&#xA;   )                  &#xA;   select&#xA;[Id]&#xA;      ,[PUBFiscalYearKey]&#xA;      ,[CenterKey]&#xA;      ,[CustomerKey]&#xA;      ,[ARPersonnelKey]&#xA;      ,[PaymentMethodLookup]&#xA;      ,[DateKey]&#xA;      ,[ChequeDateKey]&#xA;      ,[Amount]&#xA;      ,[Number]&#xA;      ,[LastStatusLookup]&#xA;      ,[Dsc]&#xA;      ,[CreatedBy]&#xA;      ,[Created]&#xA;      ,[ModifiedBy]&#xA;      ,[Modified]&#xA;      ,[RowVersion]&#xA;      ,[CustomerBankAccountKey]&#xA;      ,[AppliedAmount]&#xA;      ,[IsOverPayApr]&#xA;      ,[BankAccountKey]&#xA;      ,[RemainAmountIfBounced]&#xA;      ,[ConvertedId]&#xA;      ,[IsPostedToDT]&#xA;      ,[IsNewType]&#xA;&#xA;   ,null&#xA;   ,1&#xA;   FROM [192.168.10.5].[Eltiam].[dbo].ARPReceivables QuotasDetails&#xA;where&#xA;--QuotasDetails.created&gt;=cast (cast( year(getdate()) as varchar )+'-01-01' as date) and &#xA;not exists(&#xA; select id from eltiam.ARPReceivables z1 where z1.[id] = QuotasDetails.[Id])" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+              SQLTask:Connection="{CFE9A99F-0A98-4288-BC57-5D7546ACA5E9}"
+              SQLTask:SqlStatementSource="  insert into [stage].[kharazmi].sls3invoiceitem&#xA;(&#xA;[InvoiceItemID]&#xA;      ,[SalesAreaRef]&#xA;      ,[InvoiceRef]&#xA;      ,[RowNumber]&#xA;      ,[Type]&#xA;      ,[ReferenceType]&#xA;      ,[ReferenceRef]&#xA;      ,[Date]&#xA;      ,[ProductRef]&#xA;      ,[ProductUnitRef]&#xA;      ,[PriceBaseUnitRef]&#xA;      ,[PriceBaseFee]&#xA;      ,[Quantity]&#xA;      ,[ProductPackRef]&#xA;      ,[ProductPackItemRef]&#xA;      ,[ProductPackQuantity]&#xA;      ,[MajorUnitQuantity]&#xA;      ,[MajorUnitInitialQuantity]&#xA;      ,[InitialQuantity]&#xA;      ,[ShippingPointRef]&#xA;      ,[RecipientType]&#xA;      ,[RecipientRef]&#xA;      ,[RecipientPartyRef]&#xA;      ,[DeliveryAddressType]&#xA;      ,[DeliveryAddressRef]&#xA;      ,[Version]&#xA;      ,[Fee]&#xA;      ,[Price]&#xA;      ,[PrepaidBaseDocumentRef]&#xA;      ,[PrepaidBaseDocumentType]&#xA;      ,[PrepaidBaseDocumentReferenceType]&#xA;      ,[PrepaidAmount]&#xA;      ,[PrepaidAmountSetByUser]&#xA;      ,[EffectiveNetPrice]&#xA;      ,[Status]&#xA;      ,[ReductionAmount]&#xA;      ,[AdditionAmount]&#xA;      ,[PlantRef]&#xA;      ,[InventoryRef]&#xA;      ,[Description]&#xA;      ,[ParentRef]&#xA;      ,[OriginalFreeProductRef]&#xA;      ,[FreeProductBusinessPolicyRef]&#xA;      ,[FreeProductBusinessPolicyConditionRowRef]&#xA;      ,[NetPrice]&#xA;      ,[ContractRef]&#xA;      ,[ContractItemRef]&#xA;      ,[ContractItemVersionNumber]&#xA;      ,[HasReservation]&#xA;      ,[ReferenceHasReservation]&#xA;      ,[TrackingFactor1]&#xA;      ,[TrackingFactor2]&#xA;      ,[TrackingFactor3]&#xA;      ,[TrackingFactor4]&#xA;      ,[TrackingFactor5]&#xA;      ,[PartTrackingFactorRef1]&#xA;      ,[PartTrackingFactorRef2]&#xA;      ,[PartTrackingFactorRef3]&#xA;      ,[PartTrackingFactorRef4]&#xA;      ,[PartTrackingFactorRef5]&#xA;      ,[TrackingFactorInputMode1]&#xA;      ,[TrackingFactorInputMode2]&#xA;      ,[TrackingFactorInputMode3]&#xA;      ,[TrackingFactorInputMode4]&#xA;      ,[TrackingFactorInputMode5]&#xA;      ,[TrackingFactorValue]&#xA;      ,[BatchRef]&#xA;      ,[IncludedPolicies]&#xA;      ,[ExcludedPolicies]&#xA;      ,[InclusiveRelatedInitialQuantity]&#xA;      ,[InclusiveRelatedInitialUnit]&#xA;      ,[CanSetTrackingFactorManually]&#xA;      ,[ExitPolicyRef]&#xA;      ,[SettlementRespite]&#xA;      ,[IsSettlementRespiteSetByReference]&#xA;      ,[CanceledBy]&#xA;      ,[CanceledDate]&#xA;      ,[isinsert]&#xA;      ,[isupdate]   )                  &#xA;   select&#xA;[InvoiceItemID]&#xA;      ,[SalesAreaRef]&#xA;      ,[InvoiceRef]&#xA;      ,[RowNumber]&#xA;      ,[Type]&#xA;      ,[ReferenceType]&#xA;      ,[ReferenceRef]&#xA;      ,[Date]&#xA;      ,[ProductRef]&#xA;      ,[ProductUnitRef]&#xA;      ,[PriceBaseUnitRef]&#xA;      ,[PriceBaseFee]&#xA;      ,[Quantity]&#xA;      ,[ProductPackRef]&#xA;      ,[ProductPackItemRef]&#xA;      ,[ProductPackQuantity]&#xA;      ,[MajorUnitQuantity]&#xA;      ,[MajorUnitInitialQuantity]&#xA;      ,[InitialQuantity]&#xA;      ,[ShippingPointRef]&#xA;      ,[RecipientType]&#xA;      ,[RecipientRef]&#xA;      ,[RecipientPartyRef]&#xA;      ,[DeliveryAddressType]&#xA;      ,[DeliveryAddressRef]&#xA;      ,[Version]&#xA;      ,[Fee]&#xA;      ,[Price]&#xA;      ,[PrepaidBaseDocumentRef]&#xA;      ,[PrepaidBaseDocumentType]&#xA;      ,[PrepaidBaseDocumentReferenceType]&#xA;      ,[PrepaidAmount]&#xA;      ,[PrepaidAmountSetByUser]&#xA;      ,[EffectiveNetPrice]&#xA;      ,[Status]&#xA;      ,[ReductionAmount]&#xA;      ,[AdditionAmount]&#xA;      ,[PlantRef]&#xA;      ,[InventoryRef]&#xA;      ,[Description]&#xA;      ,[ParentRef]&#xA;      ,[OriginalFreeProductRef]&#xA;      ,[FreeProductBusinessPolicyRef]&#xA;      ,[FreeProductBusinessPolicyConditionRowRef]&#xA;      ,[NetPrice]&#xA;      ,[ContractRef]&#xA;      ,[ContractItemRef]&#xA;      ,[ContractItemVersionNumber]&#xA;      ,[HasReservation]&#xA;      ,[ReferenceHasReservation]&#xA;      ,[TrackingFactor1]&#xA;      ,[TrackingFactor2]&#xA;      ,[TrackingFactor3]&#xA;      ,[TrackingFactor4]&#xA;      ,[TrackingFactor5]&#xA;      ,[PartTrackingFactorRef1]&#xA;      ,[PartTrackingFactorRef2]&#xA;      ,[PartTrackingFactorRef3]&#xA;      ,[PartTrackingFactorRef4]&#xA;      ,[PartTrackingFactorRef5]&#xA;      ,[TrackingFactorInputMode1]&#xA;      ,[TrackingFactorInputMode2]&#xA;      ,[TrackingFactorInputMode3]&#xA;      ,[TrackingFactorInputMode4]&#xA;      ,[TrackingFactorInputMode5]&#xA;      ,[TrackingFactorValue]&#xA;      ,[BatchRef]&#xA;      ,[IncludedPolicies]&#xA;      ,[ExcludedPolicies]&#xA;      ,[InclusiveRelatedInitialQuantity]&#xA;      ,[InclusiveRelatedInitialUnit]&#xA;      ,[CanSetTrackingFactorManually]&#xA;      ,[ExitPolicyRef]&#xA;      ,[SettlementRespite]&#xA;      ,[IsSettlementRespiteSetByReference]&#xA;      ,[CanceledBy]&#xA;      ,[CanceledDate]&#xA;  ,null&#xA; ,1&#xA;&#xA;   FROM [192.168.200.12].[Rahkarandb_sg3].[SLS3].[invoiceitem] invoiceitem&#xA;where &#xA;--invoiceitem.date&gt;=cast (cast( year(getdate()) as varchar )+'-01-01' as date) and &#xA;not exists(&#xA; select [invoiceitemId] from [stage].[kharazmi].sls3invoiceitem z1 where z1.[invoiceitemId] = invoiceitem.[invoiceitemId])" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
           </DTS:ObjectData>
         </DTS:Executable>
       </DTS:Executables>
@@ -167,6 +555,739 @@
           DTS:To="Package\InvoiceItem\Update T" />
       </DTS:PrecedenceConstraints>
     </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\IssuePermit"
+      DTS:CreationName="STOCK:SEQUENCE"
+      DTS:Description="Sequence Container"
+      DTS:DTSID="{1ceed9e5-7ea5-4fb7-bb62-e4c0c1ac6fe8}"
+      DTS:ExecutableType="STOCK:SEQUENCE"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="IssuePermit">
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\IssuePermit\Delete"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{fbfa55e1-d505-46f6-aa9b-beaff2f885ae}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Delete"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{CFE9A99F-0A98-4288-BC57-5D7546ACA5E9}"
+              SQLTask:SqlStatementSource="   delete  from kharazmi.LGS3IssuePermit&#xA;where not exists   (select * from [192.168.200.12].[Rahkarandb_sg3].[LGS3].[IssuePermit] ii where  ii.IssuePermitid=LGS3IssuePermit.IssuePermitID)" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\IssuePermit\Delete T"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{2b496ab0-b685-45b5-a806-7a4a12e17e8c}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Delete T"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{CFE9A99F-0A98-4288-BC57-5D7546ACA5E9}"
+              SQLTask:SqlStatementSource="   delete ft &#xA;  from [stage].[kharazmi].[LGS3IssuePermit] ft&#xA; inner join (select * from [stage].[dbo].updates) tft1 on tft1.[id]=ft.[IssuePermitID]" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\IssuePermit\Insert"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{794d4a7d-a84a-4a38-b6cb-be5a4e41af41}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Insert"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{CFE9A99F-0A98-4288-BC57-5D7546ACA5E9}"
+              SQLTask:SqlStatementSource="&#xA;  &#xA;&#xA;    insert into [stage].[kharazmi].LGS3IssuePermit&#xA;(&#xA; [IssuePermitID]&#xA;      ,[Date]&#xA;      ,[ShippingPointRef]&#xA;      ,[StoreRef]&#xA;      ,[RecipientRef]&#xA;      ,[Version]&#xA;      ,[ExpirationDate]&#xA;      ,[ReferenceType]&#xA;      ,[ReferenceRef]&#xA;      ,[PlantRef]&#xA;      ,[State]&#xA;      ,[CounterpartEntityCode]&#xA;      ,[CounterpartEntityRef]&#xA;      ,[CounterpartEntityText]&#xA;      ,[CounterpartStoreRef]&#xA;      ,[Number]&#xA;      ,[BranchRef]&#xA;      ,[Additional1]&#xA;      ,[Additional2]&#xA;      ,[Additional3]&#xA;      ,[Additional4]&#xA;      ,[Additional5]&#xA;      ,[IssuePermitType]&#xA;      ,[RegisterBranchRef]&#xA;      ,[CreationDate]&#xA;      ,[LastModificationDate]&#xA;      ,[Creator]&#xA;      ,[LastModifier]&#xA;      ,[FiscalYearRef]&#xA;      ,[LedgerRef]&#xA;      ,[CounterpartPlantRef]&#xA;      ,[PrevState]&#xA;      ,[Description]&#xA;      ,[isinert]&#xA;      ,[isupdate]&#xA;   )                  &#xA;   select&#xA; [IssuePermitID]&#xA;      ,[Date]&#xA;      ,[ShippingPointRef]&#xA;      ,[StoreRef]&#xA;      ,[RecipientRef]&#xA;      ,[Version]&#xA;      ,[ExpirationDate]&#xA;      ,[ReferenceType]&#xA;      ,[ReferenceRef]&#xA;      ,[PlantRef]&#xA;      ,[State]&#xA;      ,[CounterpartEntityCode]&#xA;      ,[CounterpartEntityRef]&#xA;      ,[CounterpartEntityText]&#xA;      ,[CounterpartStoreRef]&#xA;      ,[Number]&#xA;      ,[BranchRef]&#xA;      ,[Additional1]&#xA;      ,[Additional2]&#xA;      ,[Additional3]&#xA;      ,[Additional4]&#xA;      ,[Additional5]&#xA;      ,[IssuePermitType]&#xA;      ,[RegisterBranchRef]&#xA;      ,[CreationDate]&#xA;      ,[LastModificationDate]&#xA;      ,[Creator]&#xA;      ,[LastModifier]&#xA;      ,[FiscalYearRef]&#xA;      ,[LedgerRef]&#xA;      ,[CounterpartPlantRef]&#xA;      ,[PrevState]&#xA;      ,[Description]&#xA;   ,1&#xA; ,NULL&#xA;&#xA;   FROM [192.168.200.12].[Rahkarandb_sg3].[LGS3].[IssuePermit] invoiceitem&#xA;where &#xA;--invoiceitem.date&gt;=cast (cast( year(getdate()) as varchar )+'-01-01' as date) and &#xA;not exists(&#xA; select [IssuePermitId] from [stage].[kharazmi].LGS3IssuePermit z1 where z1.[IssuePermitId] = invoiceitem.[IssuePermitId])&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\IssuePermit\update"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{153cc7b0-1df6-4af6-88cf-0152dfe55d8c}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="update"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{CFE9A99F-0A98-4288-BC57-5D7546ACA5E9}"
+              SQLTask:SqlStatementSource=" truncate table [Stage].[dbo].[Updates]&#xA; insert into [stage].[dbo].[updates]&#xA; (id)&#xA; select sc.IssuePermitID&#xA; from  [stage].[kharazmi].LGS3IssuePermit c&#xA;&#xA; inner join [192.168.200.12].[Rahkarandb_sg3].[LGS3].[IssuePermit] sc on   sc.IssuePermitID=c.IssuePermitID and sc.Version&lt;&gt; c.Version&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\IssuePermit\Update T"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{989b5788-3d10-42d1-a260-7369a93c6c88}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Update T"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{CFE9A99F-0A98-4288-BC57-5D7546ACA5E9}"
+              SQLTask:SqlStatementSource="   insert into [stage].[kharazmi].LGS3IssuePermit&#xA;(&#xA; [IssuePermitID]&#xA;      ,[Date]&#xA;      ,[ShippingPointRef]&#xA;      ,[StoreRef]&#xA;      ,[RecipientRef]&#xA;      ,[Version]&#xA;      ,[ExpirationDate]&#xA;      ,[ReferenceType]&#xA;      ,[ReferenceRef]&#xA;      ,[PlantRef]&#xA;      ,[State]&#xA;      ,[CounterpartEntityCode]&#xA;      ,[CounterpartEntityRef]&#xA;      ,[CounterpartEntityText]&#xA;      ,[CounterpartStoreRef]&#xA;      ,[Number]&#xA;      ,[BranchRef]&#xA;      ,[Additional1]&#xA;      ,[Additional2]&#xA;      ,[Additional3]&#xA;      ,[Additional4]&#xA;      ,[Additional5]&#xA;      ,[IssuePermitType]&#xA;      ,[RegisterBranchRef]&#xA;      ,[CreationDate]&#xA;      ,[LastModificationDate]&#xA;      ,[Creator]&#xA;      ,[LastModifier]&#xA;      ,[FiscalYearRef]&#xA;      ,[LedgerRef]&#xA;      ,[CounterpartPlantRef]&#xA;      ,[PrevState]&#xA;      ,[Description]&#xA;      ,[isinert]&#xA;      ,[isupdate]&#xA;   )                  &#xA;   select&#xA; [IssuePermitID]&#xA;      ,[Date]&#xA;      ,[ShippingPointRef]&#xA;      ,[StoreRef]&#xA;      ,[RecipientRef]&#xA;      ,[Version]&#xA;      ,[ExpirationDate]&#xA;      ,[ReferenceType]&#xA;      ,[ReferenceRef]&#xA;      ,[PlantRef]&#xA;      ,[State]&#xA;      ,[CounterpartEntityCode]&#xA;      ,[CounterpartEntityRef]&#xA;      ,[CounterpartEntityText]&#xA;      ,[CounterpartStoreRef]&#xA;      ,[Number]&#xA;      ,[BranchRef]&#xA;      ,[Additional1]&#xA;      ,[Additional2]&#xA;      ,[Additional3]&#xA;      ,[Additional4]&#xA;      ,[Additional5]&#xA;      ,[IssuePermitType]&#xA;      ,[RegisterBranchRef]&#xA;      ,[CreationDate]&#xA;      ,[LastModificationDate]&#xA;      ,[Creator]&#xA;      ,[LastModifier]&#xA;      ,[FiscalYearRef]&#xA;      ,[LedgerRef]&#xA;      ,[CounterpartPlantRef]&#xA;      ,[PrevState]&#xA;      ,[Description]&#xA;   ,null&#xA; ,1&#xA;&#xA;   FROM [192.168.200.12].[Rahkarandb_sg3].[LGS3].[IssuePermit] invoiceitem&#xA;where &#xA;--invoiceitem.date&gt;=cast (cast( year(getdate()) as varchar )+'-01-01' as date) and &#xA;not exists(&#xA; select [IssuePermitId] from [stage].[kharazmi].LGS3IssuePermit z1 where z1.[IssuePermitId] = invoiceitem.[IssuePermitId])" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\IssuePermit.PrecedenceConstraints[Constraint]"
+          DTS:CreationName=""
+          DTS:DTSID="{07be71dd-00c4-4f20-a204-4a2941c1236f}"
+          DTS:From="Package\IssuePermit\Delete"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint"
+          DTS:To="Package\IssuePermit\update" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\IssuePermit.PrecedenceConstraints[Constraint 1]"
+          DTS:CreationName=""
+          DTS:DTSID="{83fc5871-f6e2-4686-b3bb-07d821e608ed}"
+          DTS:From="Package\IssuePermit\update"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 1"
+          DTS:To="Package\IssuePermit\Insert" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\IssuePermit.PrecedenceConstraints[Constraint 2]"
+          DTS:CreationName=""
+          DTS:DTSID="{d9888214-09aa-4a2e-858e-0ff822d029bf}"
+          DTS:From="Package\IssuePermit\Insert"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 2"
+          DTS:To="Package\IssuePermit\Delete T" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\IssuePermit.PrecedenceConstraints[Constraint 3]"
+          DTS:CreationName=""
+          DTS:DTSID="{49d0de02-d47e-476c-8cc0-664ccfb3db6c}"
+          DTS:From="Package\IssuePermit\Delete T"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 3"
+          DTS:To="Package\IssuePermit\Update T" />
+      </DTS:PrecedenceConstraints>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\IssuePermit item"
+      DTS:CreationName="STOCK:SEQUENCE"
+      DTS:Description="Sequence Container"
+      DTS:DTSID="{7d275fb0-ada8-4eee-a8f2-85c269b4ed65}"
+      DTS:ExecutableType="STOCK:SEQUENCE"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="IssuePermit item">
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\IssuePermit item\Delete"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{0a33b9bd-1640-46f8-a31e-bf54fa545ffa}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Delete"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="17">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{CFE9A99F-0A98-4288-BC57-5D7546ACA5E9}"
+              SQLTask:SqlStatementSource=" delete  from kharazmi.LGS3IssuePermitItem&#xA;where not exists   (  SELECT [IssuePermitItemID] FROM OPENQUERY([192.168.200.12], 'select [IssuePermitItemID] from [Rahkarandb_sg3].[LGS3].[IssuePermititem]')ii  &#xA;where  ii.IssuePermititemid=LGS3IssuePermititem.IssuePermititemID)&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\IssuePermit item\Delete T"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{dab1bbf8-1798-4085-b7c2-36a1fce900ca}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Delete T"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="17">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{CFE9A99F-0A98-4288-BC57-5D7546ACA5E9}"
+              SQLTask:SqlStatementSource="    delete ft &#xA;  from [stage].[kharazmi].[LGS3IssuePermititem] ft&#xA; inner join (select * from [stage].[dbo].updates) tft1 on tft1.[id]=ft.[IssuePermititemID]" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\IssuePermit item\Insert"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{52ef1580-a6b3-49ac-9bcd-ed3700203dc3}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Insert"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="17">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{CFE9A99F-0A98-4288-BC57-5D7546ACA5E9}"
+              SQLTask:SqlStatementSource="    insert into [stage].[kharazmi].LGS3IssuePermititem&#xA;(&#xA;[IssuePermitItemID]&#xA;      ,[IssuePermitRef]&#xA;      ,[RowNumber]&#xA;      ,[ReferenceType]&#xA;      ,[ReferenceRef]&#xA;      ,[PartRef]&#xA;      ,[UnitRef]&#xA;      ,[PartUnitRef]&#xA;      ,[Quantity]&#xA;      ,[MajorUnitQuantity]&#xA;      ,[State]&#xA;      ,[Version]&#xA;      ,[CounterpartEntityCode]&#xA;      ,[CounterpartEntityRef]&#xA;      ,[CounterpartEntityText]&#xA;      ,[Additional1]&#xA;      ,[Additional2]&#xA;      ,[Additional3]&#xA;      ,[Additional4]&#xA;      ,[Additional5]&#xA;      ,[IssuePermitTolerancePercent]&#xA;      ,[MaxMajorUnitQuantity]&#xA;      ,[PrevState]&#xA;      ,[ReferenceCode]&#xA;      ,[Description]&#xA;      ,[isinsert]&#xA;      ,[isupdate]   )                  &#xA;   select&#xA;[IssuePermitItemID]&#xA;      ,[IssuePermitRef]&#xA;      ,[RowNumber]&#xA;      ,[ReferenceType]&#xA;      ,[ReferenceRef]&#xA;      ,[PartRef]&#xA;      ,[UnitRef]&#xA;      ,[PartUnitRef]&#xA;      ,[Quantity]&#xA;      ,[MajorUnitQuantity]&#xA;      ,[State]&#xA;      ,[Version]&#xA;      ,[CounterpartEntityCode]&#xA;      ,[CounterpartEntityRef]&#xA;      ,[CounterpartEntityText]&#xA;      ,[Additional1]&#xA;      ,[Additional2]&#xA;      ,[Additional3]&#xA;      ,[Additional4]&#xA;      ,[Additional5]&#xA;      ,[IssuePermitTolerancePercent]&#xA;      ,[MaxMajorUnitQuantity]&#xA;      ,[PrevState]&#xA;      ,[ReferenceCode]&#xA;      ,[Description]&#xA;   ,1&#xA; ,NULL&#xA;&#xA; &#xA;&#xA;    FROM OPENQUERY([192.168.200.12], 'select [IssuePermitItemID]&#xA;      ,[IssuePermitRef]&#xA;      ,[RowNumber]&#xA;      ,[ReferenceType]&#xA;      ,[ReferenceRef]&#xA;      ,[PartRef]&#xA;      ,[UnitRef]&#xA;      ,[PartUnitRef]&#xA;      ,[Quantity]&#xA;      ,[MajorUnitQuantity]&#xA;      ,[State]&#xA;      ,[Version]&#xA;      ,[CounterpartEntityCode]&#xA;      ,[CounterpartEntityRef]&#xA;      ,[CounterpartEntityText]&#xA;      ,[Additional1]&#xA;      ,[Additional2]&#xA;      ,[Additional3]&#xA;      ,[Additional4]&#xA;      ,[Additional5]&#xA;      ,[IssuePermitTolerancePercent]&#xA;      ,[MaxMajorUnitQuantity]&#xA;      ,[PrevState]&#xA;      ,[ReferenceCode]&#xA;      ,[Description]&#xA; from [Rahkarandb_sg3].[LGS3].[IssuePermititem]') invoiceitem&#xA;where &#xA;--invoiceitem.date&gt;=cast (cast( year(getdate()) as varchar )+'-01-01' as date) and &#xA;not exists(&#xA; select [IssuePermititemId] from [stage].[kharazmi].LGS3IssuePermititem z1 where z1.[IssuePermititemId] = invoiceitem.[IssuePermititemId])&#xA;&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\IssuePermit item\update"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{a8def7ac-72f1-4c7b-905c-cab22b90f5b5}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="update"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="17">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{CFE9A99F-0A98-4288-BC57-5D7546ACA5E9}"
+              SQLTask:SqlStatementSource="&#xA; truncate table [Stage].[dbo].[Updates]&#xA; insert into [stage].[dbo].[updates]&#xA; (id)&#xA; select sc.IssuePermitItemID&#xA; from  [stage].kharazmi.LGS3IssuePermitItem c&#xA;&#xA; inner join ( SELECT  &#xA; [IssuePermitItemID]&#xA; ,[IssuePermitRef]&#xA;      ,[RowNumber]&#xA;      ,[ReferenceType]&#xA;      ,[ReferenceRef]&#xA;      ,[PartRef]&#xA;      ,[UnitRef]&#xA;      ,[PartUnitRef]&#xA;      ,[Quantity]&#xA;      ,[MajorUnitQuantity]&#xA;      ,[State]&#xA;      ,[Version]&#xA;      ,[CounterpartEntityCode]&#xA;      ,[CounterpartEntityRef]&#xA;      ,[CounterpartEntityText]&#xA;      ,[Additional1]&#xA;      ,[Additional2]&#xA;      ,[Additional3]&#xA;      ,[Additional4]&#xA;      ,[Additional5]&#xA;      ,[IssuePermitTolerancePercent]&#xA;      ,[MaxMajorUnitQuantity]&#xA;      ,[PrevState]&#xA;      ,[ReferenceCode]&#xA;      ,[Description] FROM OPENQUERY([192.168.200.12], 'select&#xA;&#x9;  [IssuePermitItemID]&#xA;      ,[IssuePermitRef]&#xA;      ,[RowNumber]&#xA;      ,[ReferenceType]&#xA;      ,[ReferenceRef]&#xA;      ,[PartRef]&#xA;      ,[UnitRef]&#xA;      ,[PartUnitRef]&#xA;      ,[Quantity]&#xA;      ,[MajorUnitQuantity]&#xA;      ,[State]&#xA;      ,[Version]&#xA;      ,[CounterpartEntityCode]&#xA;      ,[CounterpartEntityRef]&#xA;      ,[CounterpartEntityText]&#xA;      ,[Additional1]&#xA;      ,[Additional2]&#xA;      ,[Additional3]&#xA;      ,[Additional4]&#xA;      ,[Additional5]&#xA;      ,[IssuePermitTolerancePercent]&#xA;      ,[MaxMajorUnitQuantity]&#xA;      ,[PrevState]&#xA;      ,[ReferenceCode]&#xA;      ,[Description] from [Rahkarandb_sg3].[LGS3].[IssuePermititem]' )kk)sc&#xA; on   sc.IssuePermitItemID=c.IssuePermitItemID and sc.[Version]&lt;&gt; c.[Version]&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\IssuePermit item\Update T"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{cd6eadf0-41e5-46bd-af88-321f7a379b73}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Update T"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="17">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{CFE9A99F-0A98-4288-BC57-5D7546ACA5E9}"
+              SQLTask:SqlStatementSource="insert into [stage].[kharazmi].LGS3IssuePermititem&#xA;(&#xA;[IssuePermitItemID]&#xA;      ,[IssuePermitRef]&#xA;      ,[RowNumber]&#xA;      ,[ReferenceType]&#xA;      ,[ReferenceRef]&#xA;      ,[PartRef]&#xA;      ,[UnitRef]&#xA;      ,[PartUnitRef]&#xA;      ,[Quantity]&#xA;      ,[MajorUnitQuantity]&#xA;      ,[State]&#xA;      ,[Version]&#xA;      ,[CounterpartEntityCode]&#xA;      ,[CounterpartEntityRef]&#xA;      ,[CounterpartEntityText]&#xA;      ,[Additional1]&#xA;      ,[Additional2]&#xA;      ,[Additional3]&#xA;      ,[Additional4]&#xA;      ,[Additional5]&#xA;      ,[IssuePermitTolerancePercent]&#xA;      ,[MaxMajorUnitQuantity]&#xA;      ,[PrevState]&#xA;      ,[ReferenceCode]&#xA;      ,[Description]&#xA;      ,[isinsert]&#xA;      ,[isupdate]   )                  &#xA;   select&#xA;[IssuePermitItemID]&#xA;      ,[IssuePermitRef]&#xA;      ,[RowNumber]&#xA;      ,[ReferenceType]&#xA;      ,[ReferenceRef]&#xA;      ,[PartRef]&#xA;      ,[UnitRef]&#xA;      ,[PartUnitRef]&#xA;      ,[Quantity]&#xA;      ,[MajorUnitQuantity]&#xA;      ,[State]&#xA;      ,[Version]&#xA;      ,[CounterpartEntityCode]&#xA;      ,[CounterpartEntityRef]&#xA;      ,[CounterpartEntityText]&#xA;      ,[Additional1]&#xA;      ,[Additional2]&#xA;      ,[Additional3]&#xA;      ,[Additional4]&#xA;      ,[Additional5]&#xA;      ,[IssuePermitTolerancePercent]&#xA;      ,[MaxMajorUnitQuantity]&#xA;      ,[PrevState]&#xA;      ,[ReferenceCode]&#xA;      ,[Description]&#xA;   ,null&#xA; ,1&#xA;&#xA; &#xA;&#xA;    FROM OPENQUERY([192.168.200.12], 'select [IssuePermitItemID]&#xA;      ,[IssuePermitRef]&#xA;      ,[RowNumber]&#xA;      ,[ReferenceType]&#xA;      ,[ReferenceRef]&#xA;      ,[PartRef]&#xA;      ,[UnitRef]&#xA;      ,[PartUnitRef]&#xA;      ,[Quantity]&#xA;      ,[MajorUnitQuantity]&#xA;      ,[State]&#xA;      ,[Version]&#xA;      ,[CounterpartEntityCode]&#xA;      ,[CounterpartEntityRef]&#xA;      ,[CounterpartEntityText]&#xA;      ,[Additional1]&#xA;      ,[Additional2]&#xA;      ,[Additional3]&#xA;      ,[Additional4]&#xA;      ,[Additional5]&#xA;      ,[IssuePermitTolerancePercent]&#xA;      ,[MaxMajorUnitQuantity]&#xA;      ,[PrevState]&#xA;      ,[ReferenceCode]&#xA;      ,[Description]&#xA; from [Rahkarandb_sg3].[LGS3].[IssuePermititem]') invoiceitem&#xA;where &#xA;--invoiceitem.date&gt;=cast (cast( year(getdate()) as varchar )+'-01-01' as date) and &#xA;not exists(&#xA; select [IssuePermititemId] from [stage].[kharazmi].LGS3IssuePermititem z1 where z1.[IssuePermititemId] = invoiceitem.[IssuePermititemId])&#xA;&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\IssuePermit item.PrecedenceConstraints[Constraint]"
+          DTS:CreationName=""
+          DTS:DTSID="{50fd3c92-09ae-4318-9d62-527933178385}"
+          DTS:From="Package\IssuePermit item\Delete"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint"
+          DTS:To="Package\IssuePermit item\update" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\IssuePermit item.PrecedenceConstraints[Constraint 1]"
+          DTS:CreationName=""
+          DTS:DTSID="{e8de8251-78f3-4b1b-a651-e1c12eacad88}"
+          DTS:From="Package\IssuePermit item\update"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 1"
+          DTS:To="Package\IssuePermit item\Insert" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\IssuePermit item.PrecedenceConstraints[Constraint 2]"
+          DTS:CreationName=""
+          DTS:DTSID="{e334a887-748b-41cc-a921-8bdeb34d8669}"
+          DTS:From="Package\IssuePermit item\Insert"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 2"
+          DTS:To="Package\IssuePermit item\Delete T" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\IssuePermit item.PrecedenceConstraints[Constraint 3]"
+          DTS:CreationName=""
+          DTS:DTSID="{77c1ec18-dc2d-4365-98f7-a5371afef013}"
+          DTS:From="Package\IssuePermit item\Delete T"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 3"
+          DTS:To="Package\IssuePermit item\Update T" />
+      </DTS:PrecedenceConstraints>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Order"
+      DTS:CreationName="STOCK:SEQUENCE"
+      DTS:Description="Sequence Container"
+      DTS:DTSID="{1f03e0c8-5503-493d-b13b-f928a99c233c}"
+      DTS:ExecutableType="STOCK:SEQUENCE"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Order">
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\Order\Delete"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{47ac2ce3-d479-4dd8-b3ee-0f4848d9834f}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Delete"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="15">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{CFE9A99F-0A98-4288-BC57-5D7546ACA5E9}"
+              SQLTask:SqlStatementSource="&#xA;   delete  from kharazmi.SLS3order&#xA;where not exists   (select * from [192.168.200.12].[Rahkarandb_sg3].[sls3].[order] ii where  ii.orderid=SLS3order.orderID)" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Order\Delete T"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{7734a239-e269-4458-85c3-c70ef3e40193}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Delete T"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="15">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{CFE9A99F-0A98-4288-BC57-5D7546ACA5E9}"
+              SQLTask:SqlStatementSource="  delete ft &#xA;  from [stage].[kharazmi].[sls3order] ft&#xA; inner join (select * from [stage].[dbo].updates) tft1 on tft1.[id]=ft.[orderID]" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Order\Insert"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{e863a1c5-c91f-4e12-8017-5174c1913b55}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Insert"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="15">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{CFE9A99F-0A98-4288-BC57-5D7546ACA5E9}"
+              SQLTask:SqlStatementSource=" &#xA;&#xA;    insert into [stage].[kharazmi].sls3order&#xA;(&#xA;  [OrderID]&#xA;      ,[Number]&#xA;      ,[State]&#xA;      ,[CustomerType]&#xA;      ,[CustomerRef]&#xA;      ,[Price]&#xA;      ,[AdditionAmount]&#xA;      ,[ReductionAmount]&#xA;      ,[NetPrice]&#xA;      ,[EffectiveNetPrice]&#xA;      ,[CurrencyRef]&#xA;      ,[OperationalCurrencyExchangeRateRef]&#xA;      ,[OperationalCurrencyExchangeRate]&#xA;      ,[OperationalCurrencyExchangeRateIsReversed]&#xA;      ,[Date]&#xA;      ,[DeliveryDate]&#xA;      ,[SalesOfficeRef]&#xA;      ,[CompanyRef]&#xA;      ,[SalesAreaRef]&#xA;      ,[PayerType]&#xA;      ,[RecipientType]&#xA;      ,[RecipientRef]&#xA;      ,[RecipientPartyRef]&#xA;      ,[CustomRecipientName]&#xA;      ,[CustomRecipientPhoneNo]&#xA;      ,[CustomRecipientEMail]&#xA;      ,[BrokerRef]&#xA;      ,[AgentRef]&#xA;      ,[ShippingPointRef]&#xA;      ,[LoadingPointRef]&#xA;      ,[DeliveryAddressType]&#xA;      ,[DeliveryAddressRef]&#xA;      ,[DeliveryAddressAsFinal]&#xA;      ,[CustomDeliveryAddressRef]&#xA;      ,[ExpirationDate]&#xA;      ,[OneTimeCustomerRef]&#xA;      ,[PayerAccountRef]&#xA;      ,[Creator]&#xA;      ,[CreationDate]&#xA;      ,[LastModifier]&#xA;      ,[LastModificationDate]&#xA;      ,[PlantRef]&#xA;      ,[InventoryRef]&#xA;      ,[CalculationDate]&#xA;      ,[FiscalYearRef]&#xA;      ,[BranchRef]&#xA;      ,[Type]&#xA;      ,[DeliveryPlaceType]&#xA;      ,[DeliveryPlaceref]&#xA;      ,[TransportationType]&#xA;      ,[PaymentAgreementRef]&#xA;      ,[SalesTypeRef]&#xA;      ,[DeliveryMethod]&#xA;      ,[BillIssueTime]&#xA;      ,[PrepaidAmount]&#xA;      ,[ContractRef]&#xA;      ,[PolicyCalculationDateType]&#xA;      ,[IsImported]&#xA;      ,[NoPolicyCalculation]&#xA;      ,[DistributionShiftRef]&#xA;      ,[DistributionShiftIsFixed]&#xA;      ,[TotalWeight]&#xA;      ,[WeightUnitRef]&#xA;      ,[TotalVolume]&#xA;      ,[VolumeUnitRef]&#xA;      ,[Description]&#xA;      ,[IncludedPolicies]&#xA;      ,[ExcludedPolicies]&#xA;      ,[Version]&#xA;      ,[SettlementRespite]&#xA;      ,[IsSettlementRespiteCalculated]&#xA;      ,[WithoutDistributorUnderTaker]&#xA;      ,[WithoutUndertaker]&#xA;      ,[isinsert]&#xA;      ,[isupdate]&#xA;&#x9;  )                  &#xA;   select&#xA; [OrderID]&#xA;      ,[Number]&#xA;      ,[State]&#xA;      ,[CustomerType]&#xA;      ,[CustomerRef]&#xA;      ,[Price]&#xA;      ,[AdditionAmount]&#xA;      ,[ReductionAmount]&#xA;      ,[NetPrice]&#xA;      ,[EffectiveNetPrice]&#xA;      ,[CurrencyRef]&#xA;      ,[OperationalCurrencyExchangeRateRef]&#xA;      ,[OperationalCurrencyExchangeRate]&#xA;      ,[OperationalCurrencyExchangeRateIsReversed]&#xA;      ,[Date]&#xA;      ,[DeliveryDate]&#xA;      ,[SalesOfficeRef]&#xA;      ,[CompanyRef]&#xA;      ,[SalesAreaRef]&#xA;      ,[PayerType]&#xA;      ,[RecipientType]&#xA;      ,[RecipientRef]&#xA;      ,[RecipientPartyRef]&#xA;      ,[CustomRecipientName]&#xA;      ,[CustomRecipientPhoneNo]&#xA;      ,[CustomRecipientEMail]&#xA;      ,[BrokerRef]&#xA;      ,[AgentRef]&#xA;      ,[ShippingPointRef]&#xA;      ,[LoadingPointRef]&#xA;      ,[DeliveryAddressType]&#xA;      ,[DeliveryAddressRef]&#xA;      ,[DeliveryAddressAsFinal]&#xA;      ,[CustomDeliveryAddressRef]&#xA;      ,[ExpirationDate]&#xA;      ,[OneTimeCustomerRef]&#xA;      ,[PayerAccountRef]&#xA;      ,[Creator]&#xA;      ,[CreationDate]&#xA;      ,[LastModifier]&#xA;      ,[LastModificationDate]&#xA;      ,[PlantRef]&#xA;      ,[InventoryRef]&#xA;      ,[CalculationDate]&#xA;      ,[FiscalYearRef]&#xA;      ,[BranchRef]&#xA;      ,[Type]&#xA;      ,[DeliveryPlaceType]&#xA;      ,[DeliveryPlaceref]&#xA;      ,[TransportationType]&#xA;      ,[PaymentAgreementRef]&#xA;      ,[SalesTypeRef]&#xA;      ,[DeliveryMethod]&#xA;      ,[BillIssueTime]&#xA;      ,[PrepaidAmount]&#xA;      ,[ContractRef]&#xA;      ,[PolicyCalculationDateType]&#xA;      ,[IsImported]&#xA;      ,[NoPolicyCalculation]&#xA;      ,[DistributionShiftRef]&#xA;      ,[DistributionShiftIsFixed]&#xA;      ,[TotalWeight]&#xA;      ,[WeightUnitRef]&#xA;      ,[TotalVolume]&#xA;      ,[VolumeUnitRef]&#xA;      ,[Description]&#xA;      ,[IncludedPolicies]&#xA;      ,[ExcludedPolicies]&#xA;      ,[Version]&#xA;      ,[SettlementRespite]&#xA;      ,[IsSettlementRespiteCalculated]&#xA;      ,[WithoutDistributorUnderTaker]&#xA;      ,[WithoutUndertaker]&#xA;   ,1&#xA; ,NULL&#xA;&#xA;   FROM [192.168.200.12].[Rahkarandb_sg3].[SLS3].[order] invoiceitem&#xA;where &#xA;--invoiceitem.date&gt;=cast (cast( year(getdate()) as varchar )+'-01-01' as date) and &#xA;not exists(&#xA; select [orderId] from [stage].[kharazmi].sls3order z1 where z1.[orderId] = invoiceitem.[orderId])&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Order\update"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{54525592-dbbd-482c-85af-29b73d2f04a6}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="update"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="15">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{CFE9A99F-0A98-4288-BC57-5D7546ACA5E9}"
+              SQLTask:SqlStatementSource=" truncate table [Stage].[dbo].[Updates]&#xA; insert into [stage].[dbo].[updates]&#xA; (id)&#xA; select sc.orderID&#xA; from  [stage].[kharazmi].SLS3order c&#xA;&#xA; inner join [192.168.200.12].[Rahkarandb_sg3].[SLS3].[order] sc on   sc.orderID=c.orderID and sc.Version&lt;&gt; c.Version&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Order\Update T"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{ac9d990b-3867-4e55-850f-4fc90134ebdf}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Update T"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="15">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{CFE9A99F-0A98-4288-BC57-5D7546ACA5E9}"
+              SQLTask:SqlStatementSource="&#xA;&#xA;&#xA;    insert into [stage].[kharazmi].sls3order&#xA;(&#xA;  [OrderID]&#xA;      ,[Number]&#xA;      ,[State]&#xA;      ,[CustomerType]&#xA;      ,[CustomerRef]&#xA;      ,[Price]&#xA;      ,[AdditionAmount]&#xA;      ,[ReductionAmount]&#xA;      ,[NetPrice]&#xA;      ,[EffectiveNetPrice]&#xA;      ,[CurrencyRef]&#xA;      ,[OperationalCurrencyExchangeRateRef]&#xA;      ,[OperationalCurrencyExchangeRate]&#xA;      ,[OperationalCurrencyExchangeRateIsReversed]&#xA;      ,[Date]&#xA;      ,[DeliveryDate]&#xA;      ,[SalesOfficeRef]&#xA;      ,[CompanyRef]&#xA;      ,[SalesAreaRef]&#xA;      ,[PayerType]&#xA;      ,[RecipientType]&#xA;      ,[RecipientRef]&#xA;      ,[RecipientPartyRef]&#xA;      ,[CustomRecipientName]&#xA;      ,[CustomRecipientPhoneNo]&#xA;      ,[CustomRecipientEMail]&#xA;      ,[BrokerRef]&#xA;      ,[AgentRef]&#xA;      ,[ShippingPointRef]&#xA;      ,[LoadingPointRef]&#xA;      ,[DeliveryAddressType]&#xA;      ,[DeliveryAddressRef]&#xA;      ,[DeliveryAddressAsFinal]&#xA;      ,[CustomDeliveryAddressRef]&#xA;      ,[ExpirationDate]&#xA;      ,[OneTimeCustomerRef]&#xA;      ,[PayerAccountRef]&#xA;      ,[Creator]&#xA;      ,[CreationDate]&#xA;      ,[LastModifier]&#xA;      ,[LastModificationDate]&#xA;      ,[PlantRef]&#xA;      ,[InventoryRef]&#xA;      ,[CalculationDate]&#xA;      ,[FiscalYearRef]&#xA;      ,[BranchRef]&#xA;      ,[Type]&#xA;      ,[DeliveryPlaceType]&#xA;      ,[DeliveryPlaceref]&#xA;      ,[TransportationType]&#xA;      ,[PaymentAgreementRef]&#xA;      ,[SalesTypeRef]&#xA;      ,[DeliveryMethod]&#xA;      ,[BillIssueTime]&#xA;      ,[PrepaidAmount]&#xA;      ,[ContractRef]&#xA;      ,[PolicyCalculationDateType]&#xA;      ,[IsImported]&#xA;      ,[NoPolicyCalculation]&#xA;      ,[DistributionShiftRef]&#xA;      ,[DistributionShiftIsFixed]&#xA;      ,[TotalWeight]&#xA;      ,[WeightUnitRef]&#xA;      ,[TotalVolume]&#xA;      ,[VolumeUnitRef]&#xA;      ,[Description]&#xA;      ,[IncludedPolicies]&#xA;      ,[ExcludedPolicies]&#xA;      ,[Version]&#xA;      ,[SettlementRespite]&#xA;      ,[IsSettlementRespiteCalculated]&#xA;      ,[WithoutDistributorUnderTaker]&#xA;      ,[WithoutUndertaker]&#xA;      ,[isinsert]&#xA;      ,[isupdate]&#xA;&#x9;  )                  &#xA;   select&#xA; [OrderID]&#xA;      ,[Number]&#xA;      ,[State]&#xA;      ,[CustomerType]&#xA;      ,[CustomerRef]&#xA;      ,[Price]&#xA;      ,[AdditionAmount]&#xA;      ,[ReductionAmount]&#xA;      ,[NetPrice]&#xA;      ,[EffectiveNetPrice]&#xA;      ,[CurrencyRef]&#xA;      ,[OperationalCurrencyExchangeRateRef]&#xA;      ,[OperationalCurrencyExchangeRate]&#xA;      ,[OperationalCurrencyExchangeRateIsReversed]&#xA;      ,[Date]&#xA;      ,[DeliveryDate]&#xA;      ,[SalesOfficeRef]&#xA;      ,[CompanyRef]&#xA;      ,[SalesAreaRef]&#xA;      ,[PayerType]&#xA;      ,[RecipientType]&#xA;      ,[RecipientRef]&#xA;      ,[RecipientPartyRef]&#xA;      ,[CustomRecipientName]&#xA;      ,[CustomRecipientPhoneNo]&#xA;      ,[CustomRecipientEMail]&#xA;      ,[BrokerRef]&#xA;      ,[AgentRef]&#xA;      ,[ShippingPointRef]&#xA;      ,[LoadingPointRef]&#xA;      ,[DeliveryAddressType]&#xA;      ,[DeliveryAddressRef]&#xA;      ,[DeliveryAddressAsFinal]&#xA;      ,[CustomDeliveryAddressRef]&#xA;      ,[ExpirationDate]&#xA;      ,[OneTimeCustomerRef]&#xA;      ,[PayerAccountRef]&#xA;      ,[Creator]&#xA;      ,[CreationDate]&#xA;      ,[LastModifier]&#xA;      ,[LastModificationDate]&#xA;      ,[PlantRef]&#xA;      ,[InventoryRef]&#xA;      ,[CalculationDate]&#xA;      ,[FiscalYearRef]&#xA;      ,[BranchRef]&#xA;      ,[Type]&#xA;      ,[DeliveryPlaceType]&#xA;      ,[DeliveryPlaceref]&#xA;      ,[TransportationType]&#xA;      ,[PaymentAgreementRef]&#xA;      ,[SalesTypeRef]&#xA;      ,[DeliveryMethod]&#xA;      ,[BillIssueTime]&#xA;      ,[PrepaidAmount]&#xA;      ,[ContractRef]&#xA;      ,[PolicyCalculationDateType]&#xA;      ,[IsImported]&#xA;      ,[NoPolicyCalculation]&#xA;      ,[DistributionShiftRef]&#xA;      ,[DistributionShiftIsFixed]&#xA;      ,[TotalWeight]&#xA;      ,[WeightUnitRef]&#xA;      ,[TotalVolume]&#xA;      ,[VolumeUnitRef]&#xA;      ,[Description]&#xA;      ,[IncludedPolicies]&#xA;      ,[ExcludedPolicies]&#xA;      ,[Version]&#xA;      ,[SettlementRespite]&#xA;      ,[IsSettlementRespiteCalculated]&#xA;      ,[WithoutDistributorUnderTaker]&#xA;      ,[WithoutUndertaker]&#xA;   ,Null&#xA; ,1&#xA;&#xA;   FROM [192.168.200.12].[Rahkarandb_sg3].[SLS3].[order] invoiceitem&#xA;where &#xA;--invoiceitem.date&gt;=cast (cast( year(getdate()) as varchar )+'-01-01' as date) and &#xA;not exists(&#xA; select [orderId] from [stage].[kharazmi].sls3order z1 where z1.[orderId] = invoiceitem.[orderId])" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Order.PrecedenceConstraints[Constraint]"
+          DTS:CreationName=""
+          DTS:DTSID="{260cd3df-9ddc-4cf6-a2bd-f98d3a9e405d}"
+          DTS:From="Package\Order\Delete"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint"
+          DTS:To="Package\Order\update" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Order.PrecedenceConstraints[Constraint 1]"
+          DTS:CreationName=""
+          DTS:DTSID="{841e59bb-dedf-44e5-a110-ba5f57255d18}"
+          DTS:From="Package\Order\update"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 1"
+          DTS:To="Package\Order\Insert" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Order.PrecedenceConstraints[Constraint 2]"
+          DTS:CreationName=""
+          DTS:DTSID="{134e77c0-1090-4641-bdc9-ef09d17ff0bf}"
+          DTS:From="Package\Order\Insert"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 2"
+          DTS:To="Package\Order\Delete T" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Order.PrecedenceConstraints[Constraint 3]"
+          DTS:CreationName=""
+          DTS:DTSID="{4c7fef32-5c5e-4892-a58e-76bcdc8e8574}"
+          DTS:From="Package\Order\Delete T"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 3"
+          DTS:To="Package\Order\Update T" />
+      </DTS:PrecedenceConstraints>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\OrderItem"
+      DTS:CreationName="STOCK:SEQUENCE"
+      DTS:Description="Sequence Container"
+      DTS:DTSID="{ef7e0667-d6c9-435d-866b-d19f83037722}"
+      DTS:ExecutableType="STOCK:SEQUENCE"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="OrderItem">
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\OrderItem\Delete"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{6a7cd3a9-0a80-455d-8f50-d1f220fecd50}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Delete"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{CFE9A99F-0A98-4288-BC57-5D7546ACA5E9}"
+              SQLTask:SqlStatementSource=" &#xA;   delete  from kharazmi.SLS3orderitem&#xA;where not exists   (select * from [192.168.200.12].[Rahkarandb_sg3].[sls3].[orderitem] ii where  ii.orderitemid=SLS3orderitem.orderitemID)&#xA;&#xA;&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\OrderItem\Delete T"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{f8bfd201-52a7-493a-8444-b7cb917a78b9}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Delete T"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{CFE9A99F-0A98-4288-BC57-5D7546ACA5E9}"
+              SQLTask:SqlStatementSource=" delete ft &#xA;  from [stage].[kharazmi].[sls3orderitem] ft&#xA; inner join (select * from [stage].[dbo].updates) tft1 on tft1.[id]=ft.[orderitemID]" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\OrderItem\Insert"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{336710bb-a9c3-4ab8-8c6c-6767c68dee55}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Insert"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{CFE9A99F-0A98-4288-BC57-5D7546ACA5E9}"
+              SQLTask:SqlStatementSource="insert into [stage].[kharazmi].sls3orderitem&#xA;(&#xA;   [OrderItemID]&#xA;      ,[OrderRef]&#xA;      ,[OrderNumber]&#xA;      ,[OrderDate]&#xA;      ,[RowNumber]&#xA;      ,[Type]&#xA;      ,[State]&#xA;      ,[ReferenceType]&#xA;      ,[ReferenceRef]&#xA;      ,[ProductRef]&#xA;      ,[ProductUnitRef]&#xA;      ,[PriceBaseUnitRef]&#xA;      ,[PriceBaseFee]&#xA;      ,[Quantity]&#xA;      ,[ProductPackRef]&#xA;      ,[ProductPackItemRef]&#xA;      ,[ProductPackQuantity]&#xA;      ,[PackagingMethodRef]&#xA;      ,[PackageRef]&#xA;      ,[MajorUnitQuantity]&#xA;      ,[InitialQuantity]&#xA;      ,[MajorUnitInitialQuantity]&#xA;      ,[Tolerance]&#xA;      ,[Fee]&#xA;      ,[Price]&#xA;      ,[AdditionAmount]&#xA;      ,[ReductionAmount]&#xA;      ,[NetPrice]&#xA;      ,[EffectiveNetPrice]&#xA;      ,[SalesAreaRef]&#xA;      ,[RecipientType]&#xA;      ,[RecipientRef]&#xA;      ,[RecipientPartyRef]&#xA;      ,[DeliveryAddressType]&#xA;      ,[DeliveryAddressRef]&#xA;      ,[DeliveryAddressAsFinal]&#xA;      ,[CustomDeliveryAddressRef]&#xA;      ,[ShippingPointRef]&#xA;      ,[LoadingPointRef]&#xA;      ,[BaseDeliveryAddressRef]&#xA;      ,[OriginalFreeProductRef]&#xA;      ,[FreeProductBusinessPolicyRef]&#xA;      ,[FreeProductBusinessPolicyConditionRowRef]&#xA;      ,[ParentRef]&#xA;      ,[Description]&#xA;      ,[OperationalCurrencyExchangeRateRef]&#xA;      ,[DestinationCountryRef]&#xA;      ,[ContractRef]&#xA;      ,[ContractItemRef]&#xA;      ,[ContractItemVersionNumber]&#xA;      ,[HasReservation]&#xA;      ,[ReferenceHasReservation]&#xA;      ,[TrackingFactor1]&#xA;      ,[TrackingFactor2]&#xA;      ,[TrackingFactor3]&#xA;      ,[TrackingFactor4]&#xA;      ,[TrackingFactor5]&#xA;      ,[PartTrackingFactorRef1]&#xA;      ,[PartTrackingFactorRef2]&#xA;      ,[PartTrackingFactorRef3]&#xA;      ,[PartTrackingFactorRef4]&#xA;      ,[PartTrackingFactorRef5]&#xA;      ,[TrackingFactorInputMode1]&#xA;      ,[TrackingFactorInputMode2]&#xA;      ,[TrackingFactorInputMode3]&#xA;      ,[TrackingFactorInputMode4]&#xA;      ,[TrackingFactorInputMode5]&#xA;      ,[TrackingFactorValue]&#xA;      ,[BatchRef]&#xA;      ,[MaxIncreasePercent]&#xA;      ,[IncludedPolicies]&#xA;      ,[ExcludedPolicies]&#xA;      ,[InclusiveRelatedInitialQuantity]&#xA;      ,[InclusiveRelatedInitialUnit]&#xA;      ,[CanSetTrackingFactorManually]&#xA;      ,[ExitPolicyRef]&#xA;      ,[Version]&#xA;      ,[SettlementRespite]&#xA;      ,[IsSettlementRespiteSetByReference]&#xA;      ,[ReserveStatus]&#xA;      ,[isinsert]&#xA;      ,[isupdate]&#xA;   )                  &#xA;   select&#xA; [OrderItemID]&#xA;      ,[OrderRef]&#xA;      ,[OrderNumber]&#xA;      ,[OrderDate]&#xA;      ,[RowNumber]&#xA;      ,[Type]&#xA;      ,[State]&#xA;      ,[ReferenceType]&#xA;      ,[ReferenceRef]&#xA;      ,[ProductRef]&#xA;      ,[ProductUnitRef]&#xA;      ,[PriceBaseUnitRef]&#xA;      ,[PriceBaseFee]&#xA;      ,[Quantity]&#xA;      ,[ProductPackRef]&#xA;      ,[ProductPackItemRef]&#xA;      ,[ProductPackQuantity]&#xA;      ,[PackagingMethodRef]&#xA;      ,[PackageRef]&#xA;      ,[MajorUnitQuantity]&#xA;      ,[InitialQuantity]&#xA;      ,[MajorUnitInitialQuantity]&#xA;      ,[Tolerance]&#xA;      ,[Fee]&#xA;      ,[Price]&#xA;      ,[AdditionAmount]&#xA;      ,[ReductionAmount]&#xA;      ,[NetPrice]&#xA;      ,[EffectiveNetPrice]&#xA;      ,[SalesAreaRef]&#xA;      ,[RecipientType]&#xA;      ,[RecipientRef]&#xA;      ,[RecipientPartyRef]&#xA;      ,[DeliveryAddressType]&#xA;      ,[DeliveryAddressRef]&#xA;      ,[DeliveryAddressAsFinal]&#xA;      ,[CustomDeliveryAddressRef]&#xA;      ,[ShippingPointRef]&#xA;      ,[LoadingPointRef]&#xA;      ,[BaseDeliveryAddressRef]&#xA;      ,[OriginalFreeProductRef]&#xA;      ,[FreeProductBusinessPolicyRef]&#xA;      ,[FreeProductBusinessPolicyConditionRowRef]&#xA;      ,[ParentRef]&#xA;      ,[Description]&#xA;      ,[OperationalCurrencyExchangeRateRef]&#xA;      ,[DestinationCountryRef]&#xA;      ,[ContractRef]&#xA;      ,[ContractItemRef]&#xA;      ,[ContractItemVersionNumber]&#xA;      ,[HasReservation]&#xA;      ,[ReferenceHasReservation]&#xA;      ,[TrackingFactor1]&#xA;      ,[TrackingFactor2]&#xA;      ,[TrackingFactor3]&#xA;      ,[TrackingFactor4]&#xA;      ,[TrackingFactor5]&#xA;      ,[PartTrackingFactorRef1]&#xA;      ,[PartTrackingFactorRef2]&#xA;      ,[PartTrackingFactorRef3]&#xA;      ,[PartTrackingFactorRef4]&#xA;      ,[PartTrackingFactorRef5]&#xA;      ,[TrackingFactorInputMode1]&#xA;      ,[TrackingFactorInputMode2]&#xA;      ,[TrackingFactorInputMode3]&#xA;      ,[TrackingFactorInputMode4]&#xA;      ,[TrackingFactorInputMode5]&#xA;      ,[TrackingFactorValue]&#xA;      ,[BatchRef]&#xA;      ,[MaxIncreasePercent]&#xA;      ,[IncludedPolicies]&#xA;      ,[ExcludedPolicies]&#xA;      ,[InclusiveRelatedInitialQuantity]&#xA;      ,[InclusiveRelatedInitialUnit]&#xA;      ,[CanSetTrackingFactorManually]&#xA;      ,[ExitPolicyRef]&#xA;      ,[Version]&#xA;      ,[SettlementRespite]&#xA;      ,[IsSettlementRespiteSetByReference]&#xA;      ,[ReserveStatus]&#xA;   ,1&#xA; ,NULL&#xA;&#xA;   FROM [192.168.200.12].[Rahkarandb_sg3].[SLS3].[orderitem] invoiceitem&#xA;where &#xA;--invoiceitem.date&gt;=cast (cast( year(getdate()) as varchar )+'-01-01' as date) and &#xA;not exists(&#xA; select [orderitemId] from [stage].[kharazmi].sls3orderitem z1 where z1.[orderitemId] = invoiceitem.[orderitemId])" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\OrderItem\update"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{097208c0-ddf2-41ee-8161-67fd12c6721f}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="update"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{CFE9A99F-0A98-4288-BC57-5D7546ACA5E9}"
+              SQLTask:SqlStatementSource=" truncate table [Stage].[dbo].[Updates]&#xA; insert into [stage].[dbo].[updates]&#xA; (id)&#xA; select sc.orderitemID&#xA; from  [stage].[kharazmi].SLS3orderitem c&#xA;&#xA; inner join [192.168.200.12].[Rahkarandb_sg3].[SLS3].[orderitem] sc on   sc.orderitemID=c.orderitemID and sc.Version&lt;&gt; c.Version&#xA;&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\OrderItem\Update T"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{8bfa0b8f-79ec-48a9-bf36-252204d8f7e7}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Update T"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{CFE9A99F-0A98-4288-BC57-5D7546ACA5E9}"
+              SQLTask:SqlStatementSource="&#xA;&#xA;  &#xA;&#xA;    insert into [stage].[kharazmi].sls3orderitem&#xA;(&#xA;   [OrderItemID]&#xA;      ,[OrderRef]&#xA;      ,[OrderNumber]&#xA;      ,[OrderDate]&#xA;      ,[RowNumber]&#xA;      ,[Type]&#xA;      ,[State]&#xA;      ,[ReferenceType]&#xA;      ,[ReferenceRef]&#xA;      ,[ProductRef]&#xA;      ,[ProductUnitRef]&#xA;      ,[PriceBaseUnitRef]&#xA;      ,[PriceBaseFee]&#xA;      ,[Quantity]&#xA;      ,[ProductPackRef]&#xA;      ,[ProductPackItemRef]&#xA;      ,[ProductPackQuantity]&#xA;      ,[PackagingMethodRef]&#xA;      ,[PackageRef]&#xA;      ,[MajorUnitQuantity]&#xA;      ,[InitialQuantity]&#xA;      ,[MajorUnitInitialQuantity]&#xA;      ,[Tolerance]&#xA;      ,[Fee]&#xA;      ,[Price]&#xA;      ,[AdditionAmount]&#xA;      ,[ReductionAmount]&#xA;      ,[NetPrice]&#xA;      ,[EffectiveNetPrice]&#xA;      ,[SalesAreaRef]&#xA;      ,[RecipientType]&#xA;      ,[RecipientRef]&#xA;      ,[RecipientPartyRef]&#xA;      ,[DeliveryAddressType]&#xA;      ,[DeliveryAddressRef]&#xA;      ,[DeliveryAddressAsFinal]&#xA;      ,[CustomDeliveryAddressRef]&#xA;      ,[ShippingPointRef]&#xA;      ,[LoadingPointRef]&#xA;      ,[BaseDeliveryAddressRef]&#xA;      ,[OriginalFreeProductRef]&#xA;      ,[FreeProductBusinessPolicyRef]&#xA;      ,[FreeProductBusinessPolicyConditionRowRef]&#xA;      ,[ParentRef]&#xA;      ,[Description]&#xA;      ,[OperationalCurrencyExchangeRateRef]&#xA;      ,[DestinationCountryRef]&#xA;      ,[ContractRef]&#xA;      ,[ContractItemRef]&#xA;      ,[ContractItemVersionNumber]&#xA;      ,[HasReservation]&#xA;      ,[ReferenceHasReservation]&#xA;      ,[TrackingFactor1]&#xA;      ,[TrackingFactor2]&#xA;      ,[TrackingFactor3]&#xA;      ,[TrackingFactor4]&#xA;      ,[TrackingFactor5]&#xA;      ,[PartTrackingFactorRef1]&#xA;      ,[PartTrackingFactorRef2]&#xA;      ,[PartTrackingFactorRef3]&#xA;      ,[PartTrackingFactorRef4]&#xA;      ,[PartTrackingFactorRef5]&#xA;      ,[TrackingFactorInputMode1]&#xA;      ,[TrackingFactorInputMode2]&#xA;      ,[TrackingFactorInputMode3]&#xA;      ,[TrackingFactorInputMode4]&#xA;      ,[TrackingFactorInputMode5]&#xA;      ,[TrackingFactorValue]&#xA;      ,[BatchRef]&#xA;      ,[MaxIncreasePercent]&#xA;      ,[IncludedPolicies]&#xA;      ,[ExcludedPolicies]&#xA;      ,[InclusiveRelatedInitialQuantity]&#xA;      ,[InclusiveRelatedInitialUnit]&#xA;      ,[CanSetTrackingFactorManually]&#xA;      ,[ExitPolicyRef]&#xA;      ,[Version]&#xA;      ,[SettlementRespite]&#xA;      ,[IsSettlementRespiteSetByReference]&#xA;      ,[ReserveStatus]&#xA;      ,[isinsert]&#xA;      ,[isupdate]&#xA;   )                  &#xA;   select&#xA; [OrderItemID]&#xA;      ,[OrderRef]&#xA;      ,[OrderNumber]&#xA;      ,[OrderDate]&#xA;      ,[RowNumber]&#xA;      ,[Type]&#xA;      ,[State]&#xA;      ,[ReferenceType]&#xA;      ,[ReferenceRef]&#xA;      ,[ProductRef]&#xA;      ,[ProductUnitRef]&#xA;      ,[PriceBaseUnitRef]&#xA;      ,[PriceBaseFee]&#xA;      ,[Quantity]&#xA;      ,[ProductPackRef]&#xA;      ,[ProductPackItemRef]&#xA;      ,[ProductPackQuantity]&#xA;      ,[PackagingMethodRef]&#xA;      ,[PackageRef]&#xA;      ,[MajorUnitQuantity]&#xA;      ,[InitialQuantity]&#xA;      ,[MajorUnitInitialQuantity]&#xA;      ,[Tolerance]&#xA;      ,[Fee]&#xA;      ,[Price]&#xA;      ,[AdditionAmount]&#xA;      ,[ReductionAmount]&#xA;      ,[NetPrice]&#xA;      ,[EffectiveNetPrice]&#xA;      ,[SalesAreaRef]&#xA;      ,[RecipientType]&#xA;      ,[RecipientRef]&#xA;      ,[RecipientPartyRef]&#xA;      ,[DeliveryAddressType]&#xA;      ,[DeliveryAddressRef]&#xA;      ,[DeliveryAddressAsFinal]&#xA;      ,[CustomDeliveryAddressRef]&#xA;      ,[ShippingPointRef]&#xA;      ,[LoadingPointRef]&#xA;      ,[BaseDeliveryAddressRef]&#xA;      ,[OriginalFreeProductRef]&#xA;      ,[FreeProductBusinessPolicyRef]&#xA;      ,[FreeProductBusinessPolicyConditionRowRef]&#xA;      ,[ParentRef]&#xA;      ,[Description]&#xA;      ,[OperationalCurrencyExchangeRateRef]&#xA;      ,[DestinationCountryRef]&#xA;      ,[ContractRef]&#xA;      ,[ContractItemRef]&#xA;      ,[ContractItemVersionNumber]&#xA;      ,[HasReservation]&#xA;      ,[ReferenceHasReservation]&#xA;      ,[TrackingFactor1]&#xA;      ,[TrackingFactor2]&#xA;      ,[TrackingFactor3]&#xA;      ,[TrackingFactor4]&#xA;      ,[TrackingFactor5]&#xA;      ,[PartTrackingFactorRef1]&#xA;      ,[PartTrackingFactorRef2]&#xA;      ,[PartTrackingFactorRef3]&#xA;      ,[PartTrackingFactorRef4]&#xA;      ,[PartTrackingFactorRef5]&#xA;      ,[TrackingFactorInputMode1]&#xA;      ,[TrackingFactorInputMode2]&#xA;      ,[TrackingFactorInputMode3]&#xA;      ,[TrackingFactorInputMode4]&#xA;      ,[TrackingFactorInputMode5]&#xA;      ,[TrackingFactorValue]&#xA;      ,[BatchRef]&#xA;      ,[MaxIncreasePercent]&#xA;      ,[IncludedPolicies]&#xA;      ,[ExcludedPolicies]&#xA;      ,[InclusiveRelatedInitialQuantity]&#xA;      ,[InclusiveRelatedInitialUnit]&#xA;      ,[CanSetTrackingFactorManually]&#xA;      ,[ExitPolicyRef]&#xA;      ,[Version]&#xA;      ,[SettlementRespite]&#xA;      ,[IsSettlementRespiteSetByReference]&#xA;      ,[ReserveStatus]&#xA;   ,null&#xA; ,1&#xA;&#xA;   FROM [192.168.200.12].[Rahkarandb_sg3].[SLS3].[orderitem] invoiceitem&#xA;where &#xA;--invoiceitem.date&gt;=cast (cast( year(getdate()) as varchar )+'-01-01' as date) and &#xA;not exists(&#xA; select [orderitemId] from [stage].[kharazmi].sls3orderitem z1 where z1.[orderitemId] = invoiceitem.[orderitemId])&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\OrderItem.PrecedenceConstraints[Constraint]"
+          DTS:CreationName=""
+          DTS:DTSID="{96208e3d-992f-4468-8626-00cd2a04dc22}"
+          DTS:From="Package\OrderItem\Delete"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint"
+          DTS:To="Package\OrderItem\update" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\OrderItem.PrecedenceConstraints[Constraint 1]"
+          DTS:CreationName=""
+          DTS:DTSID="{d2fe6c46-9851-4ef7-b69c-dd541fa483f0}"
+          DTS:From="Package\OrderItem\update"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 1"
+          DTS:To="Package\OrderItem\Insert" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\OrderItem.PrecedenceConstraints[Constraint 2]"
+          DTS:CreationName=""
+          DTS:DTSID="{a2b37f5f-4d6b-4a72-922a-68f5d282a012}"
+          DTS:From="Package\OrderItem\Insert"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 2"
+          DTS:To="Package\OrderItem\Delete T" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\OrderItem.PrecedenceConstraints[Constraint 3]"
+          DTS:CreationName=""
+          DTS:DTSID="{db253fff-3468-4ab7-83f9-b6d907106fe7}"
+          DTS:From="Package\OrderItem\Delete T"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 3"
+          DTS:To="Package\OrderItem\Update T" />
+      </DTS:PrecedenceConstraints>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Sequence Container"
+      DTS:CreationName="STOCK:SEQUENCE"
+      DTS:Description="Sequence Container"
+      DTS:DTSID="{78040158-BE53-4FB9-A9BD-B5424495F052}"
+      DTS:ExecutableType="STOCK:SEQUENCE"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Sequence Container">
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\Sequence Container\Currency"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{c82e5bde-7d53-4b2e-8dca-b803105aa3dc}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Currency"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="11">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{CFE9A99F-0A98-4288-BC57-5D7546ACA5E9}"
+              SQLTask:SqlStatementSource="  use [Stage]&#xA; Go&#xA; drop table if exists kharazmi.Currency&#xA; Go&#xA;&#xA; select * into kharazmi.Currency&#xA;from[192.168.200.12].[Rahkarandb_sg3].[GNR3].[Currency]&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Sequence Container\Currency Change"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{7a4f49cf-c108-412d-aee9-b7d06ce09f0d}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Currency Change"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="13">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{CFE9A99F-0A98-4288-BC57-5D7546ACA5E9}"
+              SQLTask:SqlStatementSource="  use [Stage]&#xA; Go&#xA; drop table if exists kharazmi.[CurrencyExchangeRate]&#xA; Go&#xA;&#xA; select * into kharazmi.[CurrencyExchangeRate]&#xA;from [192.168.200.12].[Rahkarandb_sg3].[GNR3].[CurrencyExchangeRate]&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Sequence Container\Customer"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{6cbe0f9e-1aa4-46b6-8143-b36b596228ca}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Customer"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="10">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{CFE9A99F-0A98-4288-BC57-5D7546ACA5E9}"
+              SQLTask:SqlStatementSource="use [Stage]&#xA; Go&#xA; drop table if exists  kharazmi.customer&#xA; Go&#xA;&#xA; select * into  kharazmi.customer&#xA;from [192.168.200.12].[Rahkarandb_sg3].[sls3].[customer]" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Sequence Container\EntityGroup"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{631af631-9902-403e-8428-2c1c6c8a0c5d}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="EntityGroup"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="12">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{CFE9A99F-0A98-4288-BC57-5D7546ACA5E9}"
+              SQLTask:SqlStatementSource="  use [Stage]&#xA; Go&#xA; drop table if exists kharazmi.[CurrencyExchangeRate]&#xA; Go&#xA;&#xA; select * into kharazmi.[CurrencyExchangeRate]&#xA;from [192.168.200.12].[Rahkarandb_sg3].[GNR3].[CurrencyExchangeRate]&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Sequence Container\EntityGrouping"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{d2b23bb3-84e2-4a81-880d-4114af117edd}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="EntityGrouping"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="5">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{CFE9A99F-0A98-4288-BC57-5D7546ACA5E9}"
+              SQLTask:SqlStatementSource="  use [Stage]&#xA; Go&#xA; drop table if exists kharazmi.EntityGrouping&#xA; Go&#xA;&#xA; select * into kharazmi.EntityGrouping&#xA;&#xA;  FROM [192.168.200.12].[Rahkarandb_sg3].[GNR3].[EntityGrouping]" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Sequence Container\part"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{b1c0bc28-7d83-4570-ad08-8a09a51878e5}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="part"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="9">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{CFE9A99F-0A98-4288-BC57-5D7546ACA5E9}"
+              SQLTask:SqlStatementSource="  use [Stage]&#xA; Go&#xA; drop table if exists kharazmi.part&#xA; Go&#xA;&#xA; select * into kharazmi.part&#xA;from [192.168.200.12].[Rahkarandb_sg3].[lgs3].[part]" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Sequence Container\partUnit"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{933045f2-d7ab-408d-801f-8937555c9baa}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="partUnit"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="9">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{CFE9A99F-0A98-4288-BC57-5D7546ACA5E9}"
+              SQLTask:SqlStatementSource="&#xA;&#xA;use [Stage]&#xA; Go&#xA; drop table if exists kharazmi.PartUnit&#xA; Go&#xA;&#xA; select * into kharazmi.PartUnit&#xA;from [192.168.200.12].[Rahkarandb_sg3].[lgs3].[PartUnit]" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Sequence Container\Product"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{3CC0D3CC-7587-4222-A89E-BDDCB9282D05}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Product"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="4">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{CFE9A99F-0A98-4288-BC57-5D7546ACA5E9}"
+              SQLTask:SqlStatementSource="&#xA;  use [Stage]&#xA; Go&#xA; drop table if exists kharazmi.[product]&#xA; Go&#xA;&#xA; select * into kharazmi.[product]&#xA; from [192.168.200.12].[Rahkarandb_sg3].[sls3].[product]" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Sequence Container\ProductUnit"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{8d766d2b-f69b-47ba-922d-5d167153a82e}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="ProductUnit"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="7">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{CFE9A99F-0A98-4288-BC57-5D7546ACA5E9}"
+              SQLTask:SqlStatementSource="  use [Stage]&#xA; Go&#xA; drop table if exists kharazmi.ProductUnit&#xA; Go&#xA;&#xA; select * into kharazmi. ProductUnit&#xA;from [192.168.200.12].[Rahkarandb_sg3].[SLS3].[ProductUnit]" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Sequence Container\salesarea"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{963c6255-beed-40d2-84cf-5e7e431a7a93}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="salesarea"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="6">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{CFE9A99F-0A98-4288-BC57-5D7546ACA5E9}"
+              SQLTask:SqlStatementSource="&#xA;  use [Stage]&#xA; Go&#xA; drop table if exists kharazmi.salesarea&#xA; Go&#xA;&#xA; select * into kharazmi.[salesarea]&#xA;from [192.168.200.12].[Rahkarandb_sg3].[sls3].[salesarea]" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Sequence Container\Unit"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{fd297fb6-3545-49e9-a10f-6c20a8d04ee5}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Unit"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="8">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{CFE9A99F-0A98-4288-BC57-5D7546ACA5E9}"
+              SQLTask:SqlStatementSource="&#xA;   use [Stage]&#xA; Go&#xA; drop table if exists kharazmi.Unit&#xA; Go&#xA;&#xA; select * into kharazmi.Unit&#xA; from [192.168.200.12].[Rahkarandb_sg3].[GNR3].[Unit]&#xA;GO" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Sequence Container.PrecedenceConstraints[Constraint]"
+          DTS:CreationName=""
+          DTS:DTSID="{0C3C900E-A022-4F6C-A66D-292A9B0F9C90}"
+          DTS:From="Package\Sequence Container\partUnit"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint"
+          DTS:To="Package\Sequence Container\part" />
+      </DTS:PrecedenceConstraints>
+    </DTS:Executable>
   </DTS:Executables>
   <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
 <!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
@@ -179,7 +1300,7 @@
     design-time-name="Package">
     <LayoutInfo>
       <GraphLayout
-        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        Capacity="128" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
           Size="109,42"
           Id="Package\InvoiceItem\Delete"
@@ -291,10 +1412,900 @@
         <ContainerLayout
           HeaderHeight="43"
           IsExpanded="True"
-          PanelSize="176,356"
-          Size="176,399"
+          PanelSize="158,367"
+          Size="158,410"
           Id="Package\InvoiceItem"
-          TopLeft="230,162" />
+          TopLeft="80,61" />
+        <NodeLayout
+          Size="109,42"
+          Id="Package\Invoice\Delete"
+          TopLeft="26,10" />
+        <NodeLayout
+          Size="119,42"
+          Id="Package\Invoice\Delete T"
+          TopLeft="28,216" />
+        <NodeLayout
+          Size="107,42"
+          Id="Package\Invoice\Insert"
+          TopLeft="31,146" />
+        <NodeLayout
+          Size="112,42"
+          Id="Package\Invoice\update"
+          TopLeft="26,78" />
+        <NodeLayout
+          Size="122,42"
+          Id="Package\Invoice\Update T"
+          TopLeft="22,287" />
+        <EdgeLayout
+          Id="Package\Invoice.PrecedenceConstraints[Constraint]"
+          TopLeft="81.25,52">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,26"
+              Start="0,0"
+              End="0,18.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,18.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Invoice.PrecedenceConstraints[Constraint 1]"
+          TopLeft="83.25,120">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,26"
+              Start="0,0"
+              End="0,18.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,18.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Invoice.PrecedenceConstraints[Constraint 2]"
+          TopLeft="86,188">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,28"
+              Start="0,0"
+              End="0,20.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,20.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Invoice.PrecedenceConstraints[Constraint 3]"
+          TopLeft="85.25,258">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,29"
+              Start="0,0"
+              End="0,21.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,21.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="176,362"
+          Size="176,405"
+          Id="Package\Invoice"
+          TopLeft="288,64" />
+        <NodeLayout
+          Size="109,42"
+          Id="Package\Order\Delete"
+          TopLeft="26,10" />
+        <NodeLayout
+          Size="119,42"
+          Id="Package\Order\Delete T"
+          TopLeft="28,216" />
+        <NodeLayout
+          Size="107,42"
+          Id="Package\Order\Insert"
+          TopLeft="31,146" />
+        <NodeLayout
+          Size="112,42"
+          Id="Package\Order\update"
+          TopLeft="26,78" />
+        <NodeLayout
+          Size="122,42"
+          Id="Package\Order\Update T"
+          TopLeft="22,287" />
+        <EdgeLayout
+          Id="Package\Order.PrecedenceConstraints[Constraint]"
+          TopLeft="81.25,52">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,26"
+              Start="0,0"
+              End="0,18.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,18.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Order.PrecedenceConstraints[Constraint 1]"
+          TopLeft="83.25,120">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,26"
+              Start="0,0"
+              End="0,18.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,18.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Order.PrecedenceConstraints[Constraint 2]"
+          TopLeft="86,188">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,28"
+              Start="0,0"
+              End="0,20.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,20.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Order.PrecedenceConstraints[Constraint 3]"
+          TopLeft="85.25,258">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,29"
+              Start="0,0"
+              End="0,21.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,21.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="165,352"
+          Size="165,395"
+          Id="Package\Order"
+          TopLeft="495,67" />
+        <NodeLayout
+          Size="109,42"
+          Id="Package\OrderItem\Delete"
+          TopLeft="26,10" />
+        <NodeLayout
+          Size="119,42"
+          Id="Package\OrderItem\Delete T"
+          TopLeft="28,216" />
+        <NodeLayout
+          Size="107,42"
+          Id="Package\OrderItem\Insert"
+          TopLeft="31,146" />
+        <NodeLayout
+          Size="112,42"
+          Id="Package\OrderItem\update"
+          TopLeft="26,78" />
+        <NodeLayout
+          Size="122,42"
+          Id="Package\OrderItem\Update T"
+          TopLeft="22,287" />
+        <EdgeLayout
+          Id="Package\OrderItem.PrecedenceConstraints[Constraint]"
+          TopLeft="81.25,52">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,26"
+              Start="0,0"
+              End="0,18.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,18.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\OrderItem.PrecedenceConstraints[Constraint 1]"
+          TopLeft="83.25,120">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,26"
+              Start="0,0"
+              End="0,18.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,18.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\OrderItem.PrecedenceConstraints[Constraint 2]"
+          TopLeft="86,188">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,28"
+              Start="0,0"
+              End="0,20.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,20.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\OrderItem.PrecedenceConstraints[Constraint 3]"
+          TopLeft="85.25,258">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,29"
+              Start="0,0"
+              End="0,21.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,21.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="176,352"
+          Size="176,395"
+          Id="Package\OrderItem"
+          TopLeft="688,73" />
+        <NodeLayout
+          Size="109,42"
+          Id="Package\IssuePermit\Delete"
+          TopLeft="26,10" />
+        <NodeLayout
+          Size="119,42"
+          Id="Package\IssuePermit\Delete T"
+          TopLeft="28,216" />
+        <NodeLayout
+          Size="107,42"
+          Id="Package\IssuePermit\Insert"
+          TopLeft="31,146" />
+        <NodeLayout
+          Size="112,42"
+          Id="Package\IssuePermit\update"
+          TopLeft="26,78" />
+        <NodeLayout
+          Size="122,42"
+          Id="Package\IssuePermit\Update T"
+          TopLeft="22,287" />
+        <EdgeLayout
+          Id="Package\IssuePermit.PrecedenceConstraints[Constraint]"
+          TopLeft="81.25,52">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,26"
+              Start="0,0"
+              End="0,18.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,18.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\IssuePermit.PrecedenceConstraints[Constraint 1]"
+          TopLeft="83.25,120">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,26"
+              Start="0,0"
+              End="0,18.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,18.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\IssuePermit.PrecedenceConstraints[Constraint 2]"
+          TopLeft="86,188">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,28"
+              Start="0,0"
+              End="0,20.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,20.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\IssuePermit.PrecedenceConstraints[Constraint 3]"
+          TopLeft="85.25,258">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,29"
+              Start="0,0"
+              End="0,21.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,21.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="165,352"
+          Size="165,395"
+          Id="Package\IssuePermit"
+          TopLeft="892,77" />
+        <NodeLayout
+          Size="109,42"
+          Id="Package\IssuePermit item\Delete"
+          TopLeft="26,10" />
+        <NodeLayout
+          Size="119,42"
+          Id="Package\IssuePermit item\Delete T"
+          TopLeft="28,216" />
+        <NodeLayout
+          Size="107,42"
+          Id="Package\IssuePermit item\Insert"
+          TopLeft="31,146" />
+        <NodeLayout
+          Size="112,42"
+          Id="Package\IssuePermit item\update"
+          TopLeft="26,78" />
+        <NodeLayout
+          Size="122,42"
+          Id="Package\IssuePermit item\Update T"
+          TopLeft="22,287" />
+        <EdgeLayout
+          Id="Package\IssuePermit item.PrecedenceConstraints[Constraint]"
+          TopLeft="81.25,52">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,26"
+              Start="0,0"
+              End="0,18.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,18.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\IssuePermit item.PrecedenceConstraints[Constraint 1]"
+          TopLeft="83.25,120">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,26"
+              Start="0,0"
+              End="0,18.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,18.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\IssuePermit item.PrecedenceConstraints[Constraint 2]"
+          TopLeft="86,188">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,28"
+              Start="0,0"
+              End="0,20.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,20.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\IssuePermit item.PrecedenceConstraints[Constraint 3]"
+          TopLeft="85.25,258">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,29"
+              Start="0,0"
+              End="0,21.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,21.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="181,352"
+          Size="181,395"
+          Id="Package\IssuePermit item"
+          TopLeft="1077,83" />
+        <NodeLayout
+          Size="109,42"
+          Id="Package\InventoryVoucher\Delete"
+          TopLeft="26,10" />
+        <NodeLayout
+          Size="119,42"
+          Id="Package\InventoryVoucher\Delete T"
+          TopLeft="28,216" />
+        <NodeLayout
+          Size="107,42"
+          Id="Package\InventoryVoucher\Insert"
+          TopLeft="31,146" />
+        <NodeLayout
+          Size="112,42"
+          Id="Package\InventoryVoucher\update"
+          TopLeft="26,78" />
+        <NodeLayout
+          Size="122,42"
+          Id="Package\InventoryVoucher\Update T"
+          TopLeft="22,287" />
+        <EdgeLayout
+          Id="Package\InventoryVoucher.PrecedenceConstraints[Constraint]"
+          TopLeft="81.25,52">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,26"
+              Start="0,0"
+              End="0,18.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,18.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\InventoryVoucher.PrecedenceConstraints[Constraint 1]"
+          TopLeft="83.25,120">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,26"
+              Start="0,0"
+              End="0,18.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,18.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\InventoryVoucher.PrecedenceConstraints[Constraint 2]"
+          TopLeft="86,188">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,28"
+              Start="0,0"
+              End="0,20.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,20.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\InventoryVoucher.PrecedenceConstraints[Constraint 3]"
+          TopLeft="85.25,258">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,29"
+              Start="0,0"
+              End="0,21.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,21.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="176,334"
+          Size="186,377"
+          Id="Package\InventoryVoucher"
+          TopLeft="82,496.5" />
+        <NodeLayout
+          Size="109,42"
+          Id="Package\InventoryVoucheritem\Delete"
+          TopLeft="26,10" />
+        <NodeLayout
+          Size="119,42"
+          Id="Package\InventoryVoucheritem\Delete T"
+          TopLeft="28,216" />
+        <NodeLayout
+          Size="107,42"
+          Id="Package\InventoryVoucheritem\Insert"
+          TopLeft="31,146" />
+        <NodeLayout
+          Size="112,42"
+          Id="Package\InventoryVoucheritem\update"
+          TopLeft="26,78" />
+        <NodeLayout
+          Size="122,42"
+          Id="Package\InventoryVoucheritem\Update T"
+          TopLeft="22,287" />
+        <EdgeLayout
+          Id="Package\InventoryVoucheritem.PrecedenceConstraints[Constraint]"
+          TopLeft="81.25,52">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,26"
+              Start="0,0"
+              End="0,18.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,18.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\InventoryVoucheritem.PrecedenceConstraints[Constraint 1]"
+          TopLeft="83.25,120">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,26"
+              Start="0,0"
+              End="0,18.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,18.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\InventoryVoucheritem.PrecedenceConstraints[Constraint 2]"
+          TopLeft="86,188">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,28"
+              Start="0,0"
+              End="0,20.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,20.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\InventoryVoucheritem.PrecedenceConstraints[Constraint 3]"
+          TopLeft="85.25,258">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,29"
+              Start="0,0"
+              End="0,21.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,21.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="190,334"
+          Size="206,377"
+          Id="Package\InventoryVoucheritem"
+          TopLeft="284,499" />
+        <NodeLayout
+          Size="115,42"
+          Id="Package\Sequence Container\Product"
+          TopLeft="28,19" />
+        <NodeLayout
+          Size="98,42"
+          Id="Package\Sequence Container\Unit"
+          TopLeft="39,83" />
+        <NodeLayout
+          Size="117,42"
+          Id="Package\Sequence Container\partUnit"
+          TopLeft="30,149" />
+        <NodeLayout
+          Size="98,42"
+          Id="Package\Sequence Container\part"
+          TopLeft="42,200" />
+        <EdgeLayout
+          Id="Package\Sequence Container.PrecedenceConstraints[Constraint]"
+          TopLeft="30,170">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="12,51"
+              Start="0,0"
+              End="4.5,51">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="-18.5,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-18.5,0"
+                    Point2="-22.5,0"
+                    Point3="-22.5,4" />
+                  <mssgle:LineSegment
+                    End="-22.5,47" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-22.5,47"
+                    Point2="-22.5,51"
+                    Point3="-18.5,51" />
+                  <mssgle:LineSegment
+                    End="4.5,51" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="124,42"
+          Id="Package\Sequence Container\Customer"
+          TopLeft="24,251" />
+        <NodeLayout
+          Size="123,42"
+          Id="Package\Sequence Container\salesarea"
+          TopLeft="168,18" />
+        <NodeLayout
+          Size="134,42"
+          Id="Package\Sequence Container\ProductUnit"
+          TopLeft="164,79" />
+        <NodeLayout
+          Size="121,42"
+          Id="Package\Sequence Container\Currency"
+          TopLeft="177,137" />
+        <NodeLayout
+          Size="160,42"
+          Id="Package\Sequence Container\Currency Change"
+          TopLeft="170,200" />
+        <NodeLayout
+          Size="134,42"
+          Id="Package\Sequence Container\EntityGroup"
+          TopLeft="25,309" />
+        <NodeLayout
+          Size="149,42"
+          Id="Package\Sequence Container\EntityGrouping"
+          TopLeft="173,265" />
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="335,552"
+          Size="335,595"
+          Id="Package\Sequence Container"
+          TopLeft="586,502" />
       </GraphLayout>
     </LayoutInfo>
   </Package>
