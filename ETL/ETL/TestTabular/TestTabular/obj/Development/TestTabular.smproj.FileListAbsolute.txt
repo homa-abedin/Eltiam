@@ -1,0 +1,8 @@
+E:\ETL\TestTabular\TestTabular\bin\Model.asdatabase
+E:\ETL\TestTabular\TestTabular\bin\Model.deploymenttargets
+E:\ETL\TestTabular\TestTabular\bin\Model.deploymentoptions
+E:\ETL\TestTabular\TestTabular\obj\Development\TestTabular.smproj.AssemblyReference.cache
+E:\ETL\TestTabular\TestTabular\obj\Development\TestTabular.smproj.CoreCompileInputs.cache
+E:\ETL\TestTabular\TestTabular\obj\Development\Model.asdatabase
+E:\ETL\TestTabular\TestTabular\obj\Development\Model.deploymentoptions
+E:\ETL\TestTabular\TestTabular\obj\Development\Model.deploymenttargets

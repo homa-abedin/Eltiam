@@ -1,0 +1,302 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="2/15/2025 9:47:05 AM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="APPBI"
+  DTS:CreatorName="EL\abedinzadehh"
+  DTS:DTSID="{709059AE-F1B8-46D6-BAF7-0E76EEFE0A37}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="16.0.5685.0"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="Package1"
+  DTS:PackageType="5"
+  DTS:VersionBuild="1"
+  DTS:VersionGUID="{2CAD7F49-DCA2-4B31-B7C0-2DCBF0D37596}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[192.168.200.12.Rahkarandb_sg3.abedin]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{CFE9A99F-0A98-4288-BC57-5D7546ACA5E9}"
+      DTS:ObjectName="192.168.200.12.Rahkarandb_sg3.abedin">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="1"
+          DTS:ConnectRetryInterval="5"
+          DTS:ConnectionString="Data Source=192.168.200.12;User ID=abedin;Initial Catalog=Rahkarandb_sg3;Provider=SQLNCLI11.1;Application Name=SSIS-Package1-{CFE9A99F-0A98-4288-BC57-5D7546ACA5E9}192.168.200.12.Rahkarandb_sg3.abedin;Auto Translate=False;">
+          <DTS:Password
+            DTS:Name="Password"
+            Sensitive="1"
+            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAc4dEkMZ0BkeyiNJXTOxMrgAAAAAIAAAARABUAFMAAAADZgAAwAAAABAAAAAAkIP9eSek89tbZos8QWSSAAAAAASAAACgAAAAEAAAAHS3yDvs8iqEDztIpEQjG8oYAAAAcOFk8SoUGhtaybm1Ff0hbsLGIZmT9Yr9FAAAAJUu4w2q66qTNy9mUv2wONoiLPog</DTS:Password>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\InvoiceItem"
+      DTS:CreationName="STOCK:SEQUENCE"
+      DTS:Description="Sequence Container"
+      DTS:DTSID="{eaa9fe5f-0d34-4113-8e92-7b32ea078d57}"
+      DTS:ExecutableType="STOCK:SEQUENCE"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="InvoiceItem">
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\InvoiceItem\Delete"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{bc7751d3-a46d-4d2e-a147-ab8b042a8041}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Delete"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{77B1D012-A2BC-4B83-A26F-ADCFCAA2F12B}"
+              SQLTask:SqlStatementSource="delete from [eltiam].[ARPReceivables] &#xA;where not exists (select * from [192.168.10.5].[Eltiam].[dbo].[ARPReceivables] f where f.ID=eltiam.ARPReceivables.ID)&#xA;&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\InvoiceItem\Delete T"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{36ab9918-dc61-471a-9b23-4b921b7d9f60}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Delete T"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{77B1D012-A2BC-4B83-A26F-ADCFCAA2F12B}"
+              SQLTask:SqlStatementSource="  delete ft &#xA;  from eltiam.ARPReceivables ft&#xA; inner join (select * from [Stage].[dbo].updates) tft1 on tft1.[id]=ft.ID" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\InvoiceItem\Insert"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{82b07c9a-798a-42ad-bfdb-145f820da348}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Insert"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{77B1D012-A2BC-4B83-A26F-ADCFCAA2F12B}"
+              SQLTask:SqlStatementSource=" insert into eltiam.ARPReceivables &#xA;(&#xA;[Id]&#xA;      ,[PUBFiscalYearKey]&#xA;      ,[CenterKey]&#xA;      ,[CustomerKey]&#xA;      ,[ARPersonnelKey]&#xA;      ,[PaymentMethodLookup]&#xA;      ,[DateKey]&#xA;      ,[ChequeDateKey]&#xA;      ,[Amount]&#xA;      ,[Number]&#xA;      ,[LastStatusLookup]&#xA;      ,[Dsc]&#xA;      ,[CreatedBy]&#xA;      ,[Created]&#xA;      ,[ModifiedBy]&#xA;      ,[Modified]&#xA;      ,[RowVersion]&#xA;      ,[CustomerBankAccountKey]&#xA;      ,[AppliedAmount]&#xA;      ,[IsOverPayApr]&#xA;      ,[BankAccountKey]&#xA;      ,[RemainAmountIfBounced]&#xA;      ,[ConvertedId]&#xA;      ,[IsPostedToDT]&#xA;      ,[IsNewType]&#xA;      ,[isupdate]&#xA;      ,[isinsert]&#xA;   )                  &#xA;   select&#xA;[Id]&#xA;      ,[PUBFiscalYearKey]&#xA;      ,[CenterKey]&#xA;      ,[CustomerKey]&#xA;      ,[ARPersonnelKey]&#xA;      ,[PaymentMethodLookup]&#xA;      ,[DateKey]&#xA;      ,[ChequeDateKey]&#xA;      ,[Amount]&#xA;      ,[Number]&#xA;      ,[LastStatusLookup]&#xA;      ,[Dsc]&#xA;      ,[CreatedBy]&#xA;      ,[Created]&#xA;      ,[ModifiedBy]&#xA;      ,[Modified]&#xA;      ,[RowVersion]&#xA;      ,[CustomerBankAccountKey]&#xA;      ,[AppliedAmount]&#xA;      ,[IsOverPayApr]&#xA;      ,[BankAccountKey]&#xA;      ,[RemainAmountIfBounced]&#xA;      ,[ConvertedId]&#xA;      ,[IsPostedToDT]&#xA;      ,[IsNewType]&#xA;&#xA;   ,1&#xA;   ,NULL&#xA;   FROM [192.168.10.5].[Eltiam].[dbo].ARPReceivables QuotasDetails&#xA;where&#xA;--QuotasDetails.created&gt;=cast (cast( year(getdate()) as varchar )+'-01-01' as date) and &#xA;not exists(&#xA; select id from eltiam.ARPReceivables z1 where z1.[id] = QuotasDetails.[Id])&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\InvoiceItem\update"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{eab8f8f9-c412-476b-ad64-1c6b712744fd}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="update"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{77B1D012-A2BC-4B83-A26F-ADCFCAA2F12B}"
+              SQLTask:SqlStatementSource=" truncate table [Stage].[dbo].[Updates]&#xA; insert into [stage].[dbo].[updates]&#xA; (id)&#xA; select sc.id&#xA; from  eltiam.ARPReceivables c&#xA;&#xA; inner join  (select * from [192.168.10.5].[Eltiam].[dbo].[ARPReceivables])  sc  on  sc.created&gt;=cast (cast( year(getdate()) as varchar )+'-01-01' as date) and&#xA; sc.ID=c.ID and sc.RowVersion&lt;&gt; c.RowVersion&#xA;&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\InvoiceItem\Update T"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{20b2f2bb-8e26-44cf-a5e3-adda692f9421}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Update T"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{77B1D012-A2BC-4B83-A26F-ADCFCAA2F12B}"
+              SQLTask:SqlStatementSource=" insert into eltiam.ARPReceivables &#xA;(&#xA;[Id]&#xA;      ,[PUBFiscalYearKey]&#xA;      ,[CenterKey]&#xA;      ,[CustomerKey]&#xA;      ,[ARPersonnelKey]&#xA;      ,[PaymentMethodLookup]&#xA;      ,[DateKey]&#xA;      ,[ChequeDateKey]&#xA;      ,[Amount]&#xA;      ,[Number]&#xA;      ,[LastStatusLookup]&#xA;      ,[Dsc]&#xA;      ,[CreatedBy]&#xA;      ,[Created]&#xA;      ,[ModifiedBy]&#xA;      ,[Modified]&#xA;      ,[RowVersion]&#xA;      ,[CustomerBankAccountKey]&#xA;      ,[AppliedAmount]&#xA;      ,[IsOverPayApr]&#xA;      ,[BankAccountKey]&#xA;      ,[RemainAmountIfBounced]&#xA;      ,[ConvertedId]&#xA;      ,[IsPostedToDT]&#xA;      ,[IsNewType]&#xA;      ,[isupdate]&#xA;      ,[isinsert]&#xA;   )                  &#xA;   select&#xA;[Id]&#xA;      ,[PUBFiscalYearKey]&#xA;      ,[CenterKey]&#xA;      ,[CustomerKey]&#xA;      ,[ARPersonnelKey]&#xA;      ,[PaymentMethodLookup]&#xA;      ,[DateKey]&#xA;      ,[ChequeDateKey]&#xA;      ,[Amount]&#xA;      ,[Number]&#xA;      ,[LastStatusLookup]&#xA;      ,[Dsc]&#xA;      ,[CreatedBy]&#xA;      ,[Created]&#xA;      ,[ModifiedBy]&#xA;      ,[Modified]&#xA;      ,[RowVersion]&#xA;      ,[CustomerBankAccountKey]&#xA;      ,[AppliedAmount]&#xA;      ,[IsOverPayApr]&#xA;      ,[BankAccountKey]&#xA;      ,[RemainAmountIfBounced]&#xA;      ,[ConvertedId]&#xA;      ,[IsPostedToDT]&#xA;      ,[IsNewType]&#xA;&#xA;   ,null&#xA;   ,1&#xA;   FROM [192.168.10.5].[Eltiam].[dbo].ARPReceivables QuotasDetails&#xA;where&#xA;--QuotasDetails.created&gt;=cast (cast( year(getdate()) as varchar )+'-01-01' as date) and &#xA;not exists(&#xA; select id from eltiam.ARPReceivables z1 where z1.[id] = QuotasDetails.[Id])" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\InvoiceItem.PrecedenceConstraints[Constraint]"
+          DTS:CreationName=""
+          DTS:DTSID="{c34da9d6-086d-406b-8a00-dd8ce5ac4eb4}"
+          DTS:From="Package\InvoiceItem\Delete"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint"
+          DTS:To="Package\InvoiceItem\update" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\InvoiceItem.PrecedenceConstraints[Constraint 1]"
+          DTS:CreationName=""
+          DTS:DTSID="{a3fa6696-9e15-4f7c-b5f9-38028d876f05}"
+          DTS:From="Package\InvoiceItem\update"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 1"
+          DTS:To="Package\InvoiceItem\Insert" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\InvoiceItem.PrecedenceConstraints[Constraint 2]"
+          DTS:CreationName=""
+          DTS:DTSID="{ffc7911e-7a6e-4c14-ae1f-031b665e580e}"
+          DTS:From="Package\InvoiceItem\Insert"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 2"
+          DTS:To="Package\InvoiceItem\Delete T" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\InvoiceItem.PrecedenceConstraints[Constraint 3]"
+          DTS:CreationName=""
+          DTS:DTSID="{c1595286-d358-4de9-b9b3-bcf3926c0883}"
+          DTS:From="Package\InvoiceItem\Delete T"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 3"
+          DTS:To="Package\InvoiceItem\Update T" />
+      </DTS:PrecedenceConstraints>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="109,42"
+          Id="Package\InvoiceItem\Delete"
+          TopLeft="26,10" />
+        <NodeLayout
+          Size="119,42"
+          Id="Package\InvoiceItem\Delete T"
+          TopLeft="28,216" />
+        <NodeLayout
+          Size="107,42"
+          Id="Package\InvoiceItem\Insert"
+          TopLeft="31,146" />
+        <NodeLayout
+          Size="112,42"
+          Id="Package\InvoiceItem\update"
+          TopLeft="26,78" />
+        <NodeLayout
+          Size="122,42"
+          Id="Package\InvoiceItem\Update T"
+          TopLeft="22,287" />
+        <EdgeLayout
+          Id="Package\InvoiceItem.PrecedenceConstraints[Constraint]"
+          TopLeft="81.25,52">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,26"
+              Start="0,0"
+              End="0,18.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,18.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\InvoiceItem.PrecedenceConstraints[Constraint 1]"
+          TopLeft="83.25,120">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,26"
+              Start="0,0"
+              End="0,18.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,18.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\InvoiceItem.PrecedenceConstraints[Constraint 2]"
+          TopLeft="86,188">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,28"
+              Start="0,0"
+              End="0,20.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,20.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\InvoiceItem.PrecedenceConstraints[Constraint 3]"
+          TopLeft="85.25,258">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,29"
+              Start="0,0"
+              End="0,21.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,21.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="176,356"
+          Size="176,399"
+          Id="Package\InvoiceItem"
+          TopLeft="230,162" />
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>
