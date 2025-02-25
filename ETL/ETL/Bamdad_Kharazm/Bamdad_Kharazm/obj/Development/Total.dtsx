@@ -11,8 +11,8 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="Total"
   DTS:PackageType="5"
-  DTS:VersionBuild="7"
-  DTS:VersionGUID="{7DA9C18D-386C-4575-90E3-871D25B03C5E}">
+  DTS:VersionBuild="8"
+  DTS:VersionGUID="{85E741A6-A31F-4214-A33A-F49B3D603C8A}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -44,7 +44,7 @@
       <DTS:ObjectData>
         <ASProcessingData
           ConnectionName="192.168.10.10.BamdadTabular"
-          ProcessingCommands="{&#xA;  &quot;sequence&quot;: {&#xA;    &quot;operations&quot;: [&#xA;      {&#xA;        &quot;refresh&quot;: {&#xA;          &quot;type&quot;: &quot;automatic&quot;,&#xA;          &quot;objects&quot;: [&#xA;            {&#xA;              &quot;database&quot;: &quot;BamdadTabular&quot;&#xA;            }&#xA;          ]&#xA;        }&#xA;      }&#xA;    ]&#xA;  }&#xA;}" />
+          ProcessingCommands="{&#xA;  &quot;sequence&quot;: {&#xA;    &quot;operations&quot;: [&#xA;      {&#xA;        &quot;refresh&quot;: {&#xA;          &quot;type&quot;: &quot;full&quot;,&#xA;          &quot;objects&quot;: [&#xA;            {&#xA;              &quot;database&quot;: &quot;BamdadTabular&quot;&#xA;            }&#xA;          ]&#xA;        }&#xA;      }&#xA;    ]&#xA;  }&#xA;}" />
       </DTS:ObjectData>
     </DTS:Executable>
     <DTS:Executable
@@ -113,13 +113,17 @@
       <GraphLayout
         Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
-          Size="106,42"
-          Id="Package\Stage"
-          TopLeft="188,84" />
+          Size="237,42"
+          Id="Package\Analysis Services Processing Task"
+          TopLeft="134,295" />
         <NodeLayout
           Size="96,42"
           Id="Package\DW"
           TopLeft="188,186" />
+        <NodeLayout
+          Size="106,42"
+          Id="Package\Stage"
+          TopLeft="188,84" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint]"
           TopLeft="238.5,126">
@@ -142,10 +146,6 @@
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <NodeLayout
-          Size="237,42"
-          Id="Package\Analysis Services Processing Task"
-          TopLeft="134,295" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 1]"
           TopLeft="236,228">
