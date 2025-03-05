@@ -1,0 +1,408 @@
+{
+  "name": "KharazmiTabular",
+  "compatibilityLevel": 1600,
+  "model": {
+    "culture": "en-US",
+    "dataSources": [
+      {
+        "type": "structured",
+        "name": "SQL/192 168 10 10;DW_kharazmi",
+        "connectionDetails": {
+          "protocol": "tds",
+          "address": {
+            "server": "192.168.10.10",
+            "database": "DW_kharazmi"
+          },
+          "authentication": null,
+          "query": null
+        },
+        "credential": {
+          "AuthenticationKind": "Windows",
+          "Username": "el\\abedinzadehh",
+          "EncryptConnection": false
+        }
+      }
+    ],
+    "tables": [
+      {
+        "name": "dimcustomer",
+        "columns": [
+          {
+            "name": "CustomerID",
+            "dataType": "int64",
+            "sourceColumn": "CustomerID"
+          },
+          {
+            "name": "Number",
+            "dataType": "string",
+            "sourceColumn": "Number"
+          },
+          {
+            "name": "DLID",
+            "dataType": "int64",
+            "sourceColumn": "DLID"
+          },
+          {
+            "name": "firstname",
+            "dataType": "string",
+            "sourceColumn": "firstname"
+          },
+          {
+            "name": "lastname",
+            "dataType": "string",
+            "sourceColumn": "lastname"
+          },
+          {
+            "name": "namecustomer",
+            "dataType": "string",
+            "sourceColumn": "namecustomer"
+          },
+          {
+            "name": "State",
+            "dataType": "int64",
+            "sourceColumn": "State"
+          },
+          {
+            "name": "partyid",
+            "dataType": "int64",
+            "sourceColumn": "partyid"
+          },
+          {
+            "name": "CreationDate",
+            "dataType": "dateTime",
+            "sourceColumn": "CreationDate"
+          },
+          {
+            "name": "Latitude",
+            "dataType": "string",
+            "sourceColumn": "Latitude"
+          },
+          {
+            "name": "Longitude",
+            "dataType": "string",
+            "sourceColumn": "Longitude"
+          },
+          {
+            "name": "RegionalDivisionRef",
+            "dataType": "int64",
+            "sourceColumn": "RegionalDivisionRef"
+          },
+          {
+            "name": "Details",
+            "dataType": "string",
+            "sourceColumn": "Details"
+          },
+          {
+            "name": "TitleDl",
+            "dataType": "string",
+            "sourceColumn": "TitleDl"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "Partition",
+            "dataView": "full",
+            "source": {
+              "type": "m",
+              "expression": [
+                "let",
+                "    Source = #\"SQL/192 168 10 10;DW_kharazmi\",",
+                "    dbo_dimcustomer = Source{[Schema=\"dbo\",Item=\"dimcustomer\"]}[Data]",
+                "in",
+                "    dbo_dimcustomer"
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "name": "DimProduct",
+        "columns": [
+          {
+            "name": "idSath1",
+            "dataType": "int64",
+            "sourceColumn": "idSath1"
+          },
+          {
+            "name": "NameSath1",
+            "dataType": "string",
+            "sourceColumn": "NameSath1"
+          },
+          {
+            "name": "idSath2",
+            "dataType": "int64",
+            "sourceColumn": "idSath2"
+          },
+          {
+            "name": "NameSath2",
+            "dataType": "string",
+            "sourceColumn": "NameSath2"
+          },
+          {
+            "name": "idSath3",
+            "dataType": "int64",
+            "sourceColumn": "idSath3"
+          },
+          {
+            "name": "NameSath3",
+            "dataType": "string",
+            "sourceColumn": "NameSath3"
+          },
+          {
+            "name": "idSath4",
+            "dataType": "int64",
+            "sourceColumn": "idSath4"
+          },
+          {
+            "name": "NameSath4",
+            "dataType": "string",
+            "sourceColumn": "NameSath4"
+          },
+          {
+            "name": "EntityName",
+            "dataType": "string",
+            "sourceColumn": "EntityName"
+          },
+          {
+            "name": "id",
+            "dataType": "int64",
+            "sourceColumn": "id"
+          },
+          {
+            "name": "ProductID",
+            "dataType": "int64",
+            "sourceColumn": "ProductID"
+          },
+          {
+            "name": "Name",
+            "dataType": "string",
+            "sourceColumn": "Name"
+          },
+          {
+            "name": "Number",
+            "dataType": "string",
+            "sourceColumn": "Number"
+          },
+          {
+            "name": "State",
+            "dataType": "int64",
+            "sourceColumn": "State"
+          },
+          {
+            "name": "statename",
+            "dataType": "string",
+            "sourceColumn": "statename"
+          },
+          {
+            "name": "PartRef",
+            "dataType": "int64",
+            "sourceColumn": "PartRef"
+          },
+          {
+            "name": "Bigname",
+            "dataType": "string",
+            "sourceColumn": "Bigname"
+          },
+          {
+            "name": "Bigsize",
+            "dataType": "double",
+            "sourceColumn": "Bigsize"
+          },
+          {
+            "name": "smallname",
+            "dataType": "string",
+            "sourceColumn": "smallname"
+          },
+          {
+            "name": "SmallSize",
+            "dataType": "double",
+            "sourceColumn": "SmallSize"
+          },
+          {
+            "name": "majorname",
+            "dataType": "string",
+            "sourceColumn": "majorname"
+          },
+          {
+            "name": "MajorSize",
+            "dataType": "double",
+            "sourceColumn": "MajorSize"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "Partition",
+            "dataView": "full",
+            "source": {
+              "type": "m",
+              "expression": [
+                "let",
+                "    Source = #\"SQL/192 168 10 10;DW_kharazmi\",",
+                "    dbo_DimProduct = Source{[Schema=\"dbo\",Item=\"DimProduct\"]}[Data]",
+                "in",
+                "    dbo_DimProduct"
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "name": "Factsales",
+        "columns": [
+          {
+            "name": "OrderID",
+            "dataType": "int64",
+            "sourceColumn": "OrderID"
+          },
+          {
+            "name": "OrderItemID",
+            "dataType": "int64",
+            "sourceColumn": "OrderItemID"
+          },
+          {
+            "name": "CustomerRef",
+            "dataType": "int64",
+            "sourceColumn": "CustomerRef"
+          },
+          {
+            "name": "BrokerRef",
+            "dataType": "int64",
+            "sourceColumn": "BrokerRef"
+          },
+          {
+            "name": "AgentRef",
+            "dataType": "int64",
+            "sourceColumn": "AgentRef"
+          },
+          {
+            "name": "OrderDate",
+            "dataType": "int64",
+            "sourceColumn": "OrderDate"
+          },
+          {
+            "name": "InvoiceDate",
+            "dataType": "int64",
+            "sourceColumn": "InvoiceDate"
+          },
+          {
+            "name": "InventoryRef",
+            "dataType": "int64",
+            "sourceColumn": "InventoryRef"
+          },
+          {
+            "name": "OrderNumber",
+            "dataType": "string",
+            "sourceColumn": "OrderNumber"
+          },
+          {
+            "name": "SalesAreaRef",
+            "dataType": "int64",
+            "sourceColumn": "SalesAreaRef"
+          },
+          {
+            "name": "State",
+            "dataType": "int64",
+            "sourceColumn": "State"
+          },
+          {
+            "name": "Type",
+            "dataType": "int64",
+            "sourceColumn": "Type"
+          },
+          {
+            "name": "ProductRef",
+            "dataType": "int64",
+            "sourceColumn": "ProductRef"
+          },
+          {
+            "name": "InvoiceID",
+            "dataType": "int64",
+            "sourceColumn": "InvoiceID"
+          },
+          {
+            "name": "InvoiceItemID",
+            "dataType": "int64",
+            "sourceColumn": "InvoiceItemID"
+          },
+          {
+            "name": "InvoiceNumber",
+            "dataType": "string",
+            "sourceColumn": "InvoiceNumber"
+          },
+          {
+            "name": "ReductionAmount",
+            "dataType": "double",
+            "sourceColumn": "ReductionAmount"
+          },
+          {
+            "name": "AdditionAmount",
+            "dataType": "double",
+            "sourceColumn": "AdditionAmount"
+          },
+          {
+            "name": "InvoiceNetPrice",
+            "dataType": "double",
+            "sourceColumn": "InvoiceNetPrice"
+          },
+          {
+            "name": "Quantity",
+            "dataType": "double",
+            "sourceColumn": "Quantity"
+          },
+          {
+            "name": "ReturnInvoiceItemID",
+            "dataType": "int64",
+            "sourceColumn": "ReturnInvoiceItemID"
+          },
+          {
+            "name": "ReturnInvoiceRef",
+            "dataType": "int64",
+            "sourceColumn": "ReturnInvoiceRef"
+          },
+          {
+            "name": "ReturnNetPrice",
+            "dataType": "double",
+            "sourceColumn": "ReturnNetPrice"
+          },
+          {
+            "name": "ReturnQuantity",
+            "dataType": "double",
+            "sourceColumn": "ReturnQuantity"
+          },
+          {
+            "name": "ReturnAdditionAmount",
+            "dataType": "double",
+            "sourceColumn": "ReturnAdditionAmount"
+          },
+          {
+            "name": "ReturnReductionAmount",
+            "dataType": "double",
+            "sourceColumn": "ReturnReductionAmount"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "Partition",
+            "dataView": "full",
+            "source": {
+              "type": "m",
+              "expression": [
+                "let",
+                "    Source = #\"SQL/192 168 10 10;DW_kharazmi\",",
+                "    dbo_Factsales = Source{[Schema=\"dbo\",Item=\"Factsales\"]}[Data]",
+                "in",
+                "    dbo_Factsales"
+              ]
+            }
+          }
+        ]
+      }
+    ],
+    "annotations": [
+      {
+        "name": "ClientCompatibilityLevel",
+        "value": "700"
+      }
+    ]
+  }
+}

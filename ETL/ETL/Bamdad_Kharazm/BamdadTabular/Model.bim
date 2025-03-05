@@ -21,8 +21,6 @@
         },
         "credential": {
           "AuthenticationKind": "Windows",
-          "kind": "SQL",
-          "path": "192.168.10.10;DW",
           "Username": "el\\abedinzadehh",
           "EncryptConnection": false
         }
