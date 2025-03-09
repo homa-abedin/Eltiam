@@ -6,12 +6,12 @@
     "dataSources": [
       {
         "type": "structured",
-        "name": "SQL/192 168 10 10;DW_kharazmi",
+        "name": "SQL/192 168 10 10;DW",
         "connectionDetails": {
           "protocol": "tds",
           "address": {
             "server": "192.168.10.10",
-            "database": "DW_kharazmi"
+            "database": "DW"
           },
           "authentication": null,
           "query": null
@@ -106,17 +106,63 @@
               "type": "m",
               "expression": [
                 "let",
-                "    Source = #\"SQL/192 168 10 10;DW_kharazmi\",",
-                "    dbo_dimcustomer = Source{[Schema=\"dbo\",Item=\"dimcustomer\"]}[Data]",
+                "    Source = #\"SQL/192 168 10 10;DW\",",
+                "    kharazmi_dimcustomer = Source{[Schema=\"kharazmi\",Item=\"dimcustomer\"]}[Data]",
                 "in",
-                "    dbo_dimcustomer"
+                "    kharazmi_dimcustomer"
               ]
             }
           }
         ]
       },
       {
-        "name": "DimProduct",
+        "name": "dimproduct",
+        "columns": [
+          {
+            "name": "ProductID",
+            "dataType": "int64",
+            "sourceColumn": "ProductID"
+          },
+          {
+            "name": "Number",
+            "dataType": "string",
+            "sourceColumn": "Number"
+          },
+          {
+            "name": "name",
+            "dataType": "string",
+            "sourceColumn": "name"
+          },
+          {
+            "name": "state",
+            "dataType": "int64",
+            "sourceColumn": "state"
+          },
+          {
+            "name": "statename",
+            "dataType": "string",
+            "sourceColumn": "statename"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "Partition",
+            "dataView": "full",
+            "source": {
+              "type": "m",
+              "expression": [
+                "let",
+                "    Source = #\"SQL/192 168 10 10;DW\",",
+                "    kharazmi_dimproduct = Source{[Schema=\"kharazmi\",Item=\"dimproduct\"]}[Data]",
+                "in",
+                "    kharazmi_dimproduct"
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "name": "dimproductgroup",
         "columns": [
           {
             "name": "idSath1",
@@ -237,10 +283,10 @@
               "type": "m",
               "expression": [
                 "let",
-                "    Source = #\"SQL/192 168 10 10;DW_kharazmi\",",
-                "    dbo_DimProduct = Source{[Schema=\"dbo\",Item=\"DimProduct\"]}[Data]",
+                "    Source = #\"SQL/192 168 10 10;DW\",",
+                "    kharazmi_dimproductgroup = Source{[Schema=\"kharazmi\",Item=\"dimproductgroup\"]}[Data]",
                 "in",
-                "    dbo_DimProduct"
+                "    kharazmi_dimproductgroup"
               ]
             }
           }
@@ -388,14 +434,434 @@
               "type": "m",
               "expression": [
                 "let",
-                "    Source = #\"SQL/192 168 10 10;DW_kharazmi\",",
-                "    dbo_Factsales = Source{[Schema=\"dbo\",Item=\"Factsales\"]}[Data]",
+                "    Source = #\"SQL/192 168 10 10;DW\",",
+                "    kharazmi_Factsales = Source{[Schema=\"kharazmi\",Item=\"Factsales\"]}[Data]",
                 "in",
-                "    dbo_Factsales"
+                "    kharazmi_Factsales"
+              ]
+            }
+          }
+        ],
+        "measures": [
+          {
+            "name": "NetPrice",
+            "expression": " SUMX('Factsales', 'Factsales'[InvoiceNetPrice]-'Factsales'[ReturnNetPrice])",
+            "formatString": "#,0"
+          },
+          {
+            "name": "NetQuantity",
+            "expression": "SUMX('Factsales', 'Factsales'[Quantity]- 'Factsales'[ReturnQuantity])",
+            "formatString": "#,0"
+          },
+          {
+            "name": "ReductAmount",
+            "expression": " sumx('Factsales','Factsales'[ReductionAmount]-'Factsales'[ReturnReductionAmount])",
+            "formatString": "#,0"
+          },
+          {
+            "name": "Ratio Reduction To sales",
+            "expression": "  DIVIDE([ReductAmount], [NetPrice])"
+          },
+          {
+            "name": "NetPriceLastYear",
+            "expression": " CALCULATE([NetPrice], FILTER(All(DimDate),DimDate[Last_Year]=1))",
+            "formatString": "#,0"
+          },
+          {
+            "name": "NetPriceCurrentYear",
+            "expression": " CALCULATE([NetPrice],  FILTER(All(DimDate),DimDate[Current_Year]=1))",
+            "formatString": "#,0"
+          },
+          {
+            "name": "NetPriceLastMonth",
+            "expression": " CALCULATE([NetPrice],FILTER(All(DimDate), DimDate[Last_Month]=1))",
+            "formatString": "#,0"
+          },
+          {
+            "name": "NetPriceCurrentMonth",
+            "expression": " CALCULATE([NetPrice],FILTER(All(DimDate),DimDate[Curren_Month]=1))",
+            "formatString": "#,0"
+          },
+          {
+            "name": "RatioNetPriceCurrent/LastYear",
+            "expression": " [NetPriceCurrentYear]/[NetPriceLastYear]",
+            "formatString": "0 %;-0 %;0 %"
+          },
+          {
+            "name": "RatioNetPriceCurrent/Lastmonth",
+            "expression": " [NetPriceCurrentMonth]/[NetPriceLastMonth]",
+            "formatString": "0 %;-0 %;0 %"
+          },
+          {
+            "name": "NetPriceLastMonth*1.5",
+            "expression": " [NetPriceLastMonth]*1.5"
+          },
+          {
+            "name": "Cumulative Total No Dates",
+            "expression": [
+              " ",
+              "",
+              "var staterev= [NetPrice]",
+              "return ",
+              "sumx(",
+              "    FILTER(",
+              "        SUMMARIZE(ALLSELECTED(Factsales), dimproduct[name],",
+              "           \"TotalSales\", [NetPrice]),",
+              "                [TotalSales]>=staterev), [TotalSales])"
+            ],
+            "formatString": "#,0"
+          },
+          {
+            "name": "AllSales",
+            "expression": [
+              " CALCULATE([NetPrice], ALLSELECTED(Factsales))",
+              ""
+            ],
+            "formatString": "#,0"
+          },
+          {
+            "name": "Pareto Chart",
+            "expression": [
+              " ",
+              "",
+              "var staterev= [NetPrice]",
+              "var allsales= CALCULATE([NetPrice],ALLSELECTED(Factsales))",
+              "return ",
+              "DIVIDE(",
+              "    sumx(",
+              "        FILTER(",
+              "            SUMMARIZE(ALLSELECTED(Factsales), dimproduct[name],",
+              "               \"TotalSales\", [NetPrice]),",
+              "                    [TotalSales]>=staterev), [TotalSales]),",
+              "allsales, 0)",
+              "",
+              ""
+            ],
+            "formatString": "0 %;-0 %;0 %"
+          },
+          {
+            "name": "RatioTargetVSSalesYear_1",
+            "expression": [
+              "1-[RatioTargetVSSalesYear]",
+              ""
+            ],
+            "formatString": "0.00 %;-0.00 %;0.00 %"
+          },
+          {
+            "name": "RatioTargetVSSalesYear",
+            "expression": [
+              "DIVIDE([NetPriceCurrentYear],  DimTarget[TargetAmountCurrentYear])",
+              ""
+            ]
+          },
+          {
+            "name": "RatioTargetVSSalesMonth",
+            "expression": "DIVIDE([NetPriceCurrentMonth],  DimTarget[TargetAmountCurrentMonth])"
+          },
+          {
+            "name": "RatioTargetVSSalesMonth_1",
+            "expression": "1 -[RatioTargetVSSalesMonth]",
+            "formatString": "0.00 %;-0.00 %;0.00 %"
+          },
+          {
+            "name": "RemainTargetYear",
+            "expression": " DimTarget[TargetAmountCurrentYear]-[NetPriceCurrentYear] "
+          },
+          {
+            "name": "RemainTargetMonth",
+            "expression": "  DimTarget[TargetAmountCurrentMonth]-[NetPriceCurrentMonth]"
+          }
+        ]
+      },
+      {
+        "name": "DimDate",
+        "columns": [
+          {
+            "name": "Date",
+            "dataType": "dateTime",
+            "sourceColumn": "Date"
+          },
+          {
+            "name": "Gregorian",
+            "dataType": "string",
+            "sourceColumn": "Gregorian"
+          },
+          {
+            "name": "Gregorian_Year",
+            "dataType": "int64",
+            "sourceColumn": "Gregorian_Year"
+          },
+          {
+            "name": "Gregorian_Month",
+            "dataType": "int64",
+            "sourceColumn": "Gregorian_Month"
+          },
+          {
+            "name": "Gregorian_MonthStr",
+            "dataType": "string",
+            "sourceColumn": "Gregorian_MonthStr"
+          },
+          {
+            "name": "Gregorian_MonthString",
+            "dataType": "string",
+            "sourceColumn": "Gregorian_MonthString"
+          },
+          {
+            "name": "Gregorian_Day",
+            "dataType": "int64",
+            "sourceColumn": "Gregorian_Day"
+          },
+          {
+            "name": "Gregorian_DayOfWeekId",
+            "dataType": "int64",
+            "sourceColumn": "Gregorian_DayOfWeekId"
+          },
+          {
+            "name": "Gregorian_DayOfWeek",
+            "dataType": "string",
+            "sourceColumn": "Gregorian_DayOfWeek"
+          },
+          {
+            "name": "Gregorian_DayOfWeekStr",
+            "dataType": "string",
+            "sourceColumn": "Gregorian_DayOfWeekStr"
+          },
+          {
+            "name": "Gregorian_DayOfYear",
+            "dataType": "int64",
+            "sourceColumn": "Gregorian_DayOfYear"
+          },
+          {
+            "name": "Gregorian_ToLongDateString",
+            "dataType": "string",
+            "sourceColumn": "Gregorian_ToLongDateString"
+          },
+          {
+            "name": "Gregorian_YearMonth",
+            "dataType": "string",
+            "sourceColumn": "Gregorian_YearMonth"
+          },
+          {
+            "name": "Gregorian_MonthDay",
+            "dataType": "string",
+            "sourceColumn": "Gregorian_MonthDay"
+          },
+          {
+            "name": "SeasonEn",
+            "dataType": "string",
+            "sourceColumn": "SeasonEn"
+          },
+          {
+            "name": "Gregorian_Format1",
+            "dataType": "string",
+            "sourceColumn": "Gregorian_Format1"
+          },
+          {
+            "name": "Gregorian_Format2",
+            "dataType": "string",
+            "sourceColumn": "Gregorian_Format2"
+          },
+          {
+            "name": "Gregorian_Format3",
+            "dataType": "string",
+            "sourceColumn": "Gregorian_Format3"
+          },
+          {
+            "name": "Gregorian_Format4",
+            "dataType": "string",
+            "sourceColumn": "Gregorian_Format4"
+          },
+          {
+            "name": "Gregorian_Format5",
+            "dataType": "string",
+            "sourceColumn": "Gregorian_Format5"
+          },
+          {
+            "name": "Gregorian_Format6",
+            "dataType": "string",
+            "sourceColumn": "Gregorian_Format6"
+          },
+          {
+            "name": "Jalali",
+            "dataType": "string",
+            "sourceColumn": "Jalali"
+          },
+          {
+            "name": "Jalali_Year",
+            "dataType": "int64",
+            "sourceColumn": "Jalali_Year",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Jalali_Month",
+            "dataType": "int64",
+            "sourceColumn": "Jalali_Month"
+          },
+          {
+            "name": "Jalali_MonthString",
+            "dataType": "string",
+            "sourceColumn": "Jalali_MonthString",
+            "sortByColumn": "Jalali_Month"
+          },
+          {
+            "name": "Jalali_Day",
+            "dataType": "int64",
+            "sourceColumn": "Jalali_Day"
+          },
+          {
+            "name": "Jalali_DayOfWeekId",
+            "dataType": "int64",
+            "sourceColumn": "Jalali_DayOfWeekId"
+          },
+          {
+            "name": "Jalali_DayOfWeek",
+            "dataType": "string",
+            "sourceColumn": "Jalali_DayOfWeek"
+          },
+          {
+            "name": "Jalali_DayOfYear",
+            "dataType": "int64",
+            "sourceColumn": "Jalali_DayOfYear"
+          },
+          {
+            "name": "Jalali_ToLongDateString",
+            "dataType": "string",
+            "sourceColumn": "Jalali_ToLongDateString"
+          },
+          {
+            "name": "Jalali_YearMonth",
+            "dataType": "string",
+            "sourceColumn": "Jalali_YearMonth"
+          },
+          {
+            "name": "Jalali_MonthDay",
+            "dataType": "string",
+            "sourceColumn": "Jalali_MonthDay"
+          },
+          {
+            "name": "SeasonFa",
+            "dataType": "string",
+            "sourceColumn": "SeasonFa",
+            "sortByColumn": "seasonID"
+          },
+          {
+            "name": "Jalali_Format1",
+            "dataType": "string",
+            "sourceColumn": "Jalali_Format1"
+          },
+          {
+            "name": "Jalali_Format2",
+            "dataType": "string",
+            "sourceColumn": "Jalali_Format2"
+          },
+          {
+            "name": "Jalali_Format3",
+            "dataType": "string",
+            "sourceColumn": "Jalali_Format3"
+          },
+          {
+            "name": "Jalali_Format4",
+            "dataType": "string",
+            "sourceColumn": "Jalali_Format4"
+          },
+          {
+            "name": "Jalali_Format5",
+            "dataType": "string",
+            "sourceColumn": "Jalali_Format5"
+          },
+          {
+            "name": "Jalali_Format6",
+            "dataType": "string",
+            "sourceColumn": "Jalali_Format6"
+          },
+          {
+            "name": "datekey",
+            "dataType": "int64",
+            "sourceColumn": "datekey"
+          },
+          {
+            "name": "isworkingday",
+            "dataType": "int64",
+            "sourceColumn": "isworkingday"
+          },
+          {
+            "name": "seasonID",
+            "dataType": "int64",
+            "sourceColumn": "seasonID"
+          },
+          {
+            "name": "Curren_Month",
+            "dataType": "int64",
+            "sourceColumn": "Curren_Month"
+          },
+          {
+            "name": "Current_Year",
+            "dataType": "int64",
+            "sourceColumn": "Current_Year"
+          },
+          {
+            "name": "Last_Month",
+            "dataType": "int64",
+            "sourceColumn": "Last_Month"
+          },
+          {
+            "name": "Last_Year",
+            "dataType": "int64",
+            "sourceColumn": "Last_Year"
+          },
+          {
+            "name": "Semester",
+            "dataType": "int64",
+            "sourceColumn": "Semester"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "Partition",
+            "dataView": "full",
+            "source": {
+              "type": "m",
+              "expression": [
+                "let",
+                "    Source = #\"SQL/192 168 10 10;DW\",",
+                "    dbo_vw_DimDate_Big = Source{[Schema=\"dbo\",Item=\"vw_DimDate_Big\"]}[Data]",
+                "in",
+                "    dbo_vw_DimDate_Big"
               ]
             }
           }
         ]
+      }
+    ],
+    "relationships": [
+      {
+        "name": "20455fa0-803e-4c50-a10d-a0457a3d681e",
+        "fromTable": "Factsales",
+        "fromColumn": "ProductRef",
+        "toTable": "dimproduct",
+        "toColumn": "ProductID"
+      },
+      {
+        "name": "644e5797-d63d-4c39-92a9-34fa4ad10807",
+        "fromTable": "Factsales",
+        "fromColumn": "CustomerRef",
+        "toTable": "dimcustomer",
+        "toColumn": "CustomerID"
+      },
+      {
+        "name": "891857e0-de76-40f3-bc7b-5452ef261116",
+        "fromTable": "Factsales",
+        "fromColumn": "InvoiceDate",
+        "toTable": "DimDate",
+        "toColumn": "datekey"
+      },
+      {
+        "name": "a8ca1cbc-32ab-48e5-8512-eecc307c32d3",
+        "fromTable": "dimproductgroup",
+        "fromColumn": "ProductID",
+        "toTable": "dimproduct",
+        "toColumn": "ProductID",
+        "crossFilteringBehavior": "bothDirections"
       }
     ],
     "annotations": [

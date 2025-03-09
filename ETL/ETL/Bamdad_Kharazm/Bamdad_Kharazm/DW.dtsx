@@ -11,8 +11,8 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="DW"
   DTS:PackageType="5"
-  DTS:VersionBuild="160"
-  DTS:VersionGUID="{FE43BBCC-9BD0-4F34-A9D4-3847BBE6963C}">
+  DTS:VersionBuild="175"
+  DTS:VersionGUID="{3682DB64-A0C5-4F4D-94D5-DB9720D93F96}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -7023,7 +7023,7 @@ where
           DTS:LocaleID="-1"
           DTS:ObjectName="Dimcenter"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="0">
+          DTS:ThreadHint="1">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
@@ -7477,7 +7477,7 @@ from eltiam.PUBCities CI
           DTS:refId="Package\Sequence Container\DimCustomer"
           DTS:CreationName="Microsoft.Pipeline"
           DTS:Description="Data Flow Task"
-          DTS:DTSID="{3EDD37D8-FB01-41F2-A876-0008DCAE999F}"
+          DTS:DTSID="{7ff19562-d999-460b-935b-4b1821246feb}"
           DTS:ExecutableType="Microsoft.Pipeline"
           DTS:LocaleID="-1"
           DTS:ObjectName="DimCustomer"
@@ -7488,452 +7488,11 @@ from eltiam.PUBCities CI
               version="1">
               <components>
                 <component
-                  refId="Package\Sequence Container\DimCustomer\OLE DB Destination"
-                  componentClassID="Microsoft.OLEDBDestination"
-                  contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
-                  description="OLE DB Destination"
-                  name="OLE DB Destination"
-                  usesDispositions="true"
-                  version="4">
-                  <properties>
-                    <property
-                      dataType="System.Int32"
-                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
-                      name="CommandTimeout">0</property>
-                    <property
-                      dataType="System.String"
-                      description="Specifies the name of the database object used to open a rowset."
-                      name="OpenRowset">[dbo].[dimcustomer]</property>
-                    <property
-                      dataType="System.String"
-                      description="Specifies the variable that contains the name of the database object used to open a rowset."
-                      name="OpenRowsetVariable"></property>
-                    <property
-                      dataType="System.String"
-                      description="The SQL command to be executed."
-                      name="SqlCommand"
-                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
-                    <property
-                      dataType="System.Int32"
-                      description="Specifies the column code page to use when code page information is unavailable from the data source."
-                      name="DefaultCodePage">1252</property>
-                    <property
-                      dataType="System.Boolean"
-                      description="Forces the use of the DefaultCodePage property value when describing character data."
-                      name="AlwaysUseDefaultCodePage">false</property>
-                    <property
-                      dataType="System.Int32"
-                      description="Specifies the mode used to access the database."
-                      name="AccessMode"
-                      typeConverter="AccessMode">0</property>
-                    <property
-                      dataType="System.Boolean"
-                      description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
-                      name="FastLoadKeepIdentity">false</property>
-                    <property
-                      dataType="System.Boolean"
-                      description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
-                      name="FastLoadKeepNulls">false</property>
-                    <property
-                      dataType="System.String"
-                      description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
-                      name="FastLoadOptions"></property>
-                    <property
-                      dataType="System.Int32"
-                      description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
-                      name="FastLoadMaxInsertCommitSize">2147483647</property>
-                  </properties>
-                  <connections>
-                    <connection
-                      refId="Package\Sequence Container\DimCustomer\OLE DB Destination.Connections[OleDbConnection]"
-                      connectionManagerID="Package.ConnectionManagers[192.168.10.10.DW]"
-                      connectionManagerRefId="Package.ConnectionManagers[192.168.10.10.DW]"
-                      description="The OLE DB runtime connection used to access the database."
-                      name="OleDbConnection" />
-                  </connections>
-                  <inputs>
-                    <input
-                      refId="Package\Sequence Container\DimCustomer\OLE DB Destination.Inputs[OLE DB Destination Input]"
-                      errorOrTruncationOperation="Insert"
-                      errorRowDisposition="FailComponent"
-                      hasSideEffects="true"
-                      name="OLE DB Destination Input">
-                      <inputColumns>
-                        <inputColumn
-                          refId="Package\Sequence Container\DimCustomer\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[CustomerKey]"
-                          cachedDataType="i4"
-                          cachedName="CustomerKey"
-                          externalMetadataColumnId="Package\Sequence Container\DimCustomer\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[CustomerKey]"
-                          lineageId="Package\Sequence Container\DimCustomer\OLE DB Source.Outputs[OLE DB Source Output].Columns[CustomerKey]" />
-                        <inputColumn
-                          refId="Package\Sequence Container\DimCustomer\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[CustomerCode]"
-                          cachedDataType="i4"
-                          cachedName="CustomerCode"
-                          externalMetadataColumnId="Package\Sequence Container\DimCustomer\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[CustomerCode]"
-                          lineageId="Package\Sequence Container\DimCustomer\OLE DB Source.Outputs[OLE DB Source Output].Columns[CustomerCode]" />
-                        <inputColumn
-                          refId="Package\Sequence Container\DimCustomer\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[IsDeactivated]"
-                          cachedDataType="bool"
-                          cachedName="IsDeactivated"
-                          externalMetadataColumnId="Package\Sequence Container\DimCustomer\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[IsDeactivated]"
-                          lineageId="Package\Sequence Container\DimCustomer\OLE DB Source.Outputs[OLE DB Source Output].Columns[IsDeactivated]" />
-                        <inputColumn
-                          refId="Package\Sequence Container\DimCustomer\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[status]"
-                          cachedDataType="bool"
-                          cachedName="status"
-                          externalMetadataColumnId="Package\Sequence Container\DimCustomer\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[status]"
-                          lineageId="Package\Sequence Container\DimCustomer\OLE DB Source.Outputs[OLE DB Source Output].Columns[status]" />
-                        <inputColumn
-                          refId="Package\Sequence Container\DimCustomer\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Customer]"
-                          cachedDataType="wstr"
-                          cachedLength="255"
-                          cachedName="Customer"
-                          externalMetadataColumnId="Package\Sequence Container\DimCustomer\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Customer]"
-                          lineageId="Package\Sequence Container\DimCustomer\OLE DB Source.Outputs[OLE DB Source Output].Columns[Customer]" />
-                        <inputColumn
-                          refId="Package\Sequence Container\DimCustomer\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[CenterKeyNow]"
-                          cachedDataType="i4"
-                          cachedName="CenterKeyNow"
-                          externalMetadataColumnId="Package\Sequence Container\DimCustomer\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[CenterKeyNow]"
-                          lineageId="Package\Sequence Container\DimCustomer\OLE DB Source.Outputs[OLE DB Source Output].Columns[CenterKeyNow]" />
-                        <inputColumn
-                          refId="Package\Sequence Container\DimCustomer\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[CenterNow]"
-                          cachedDataType="wstr"
-                          cachedLength="50"
-                          cachedName="CenterNow"
-                          externalMetadataColumnId="Package\Sequence Container\DimCustomer\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[CenterNow]"
-                          lineageId="Package\Sequence Container\DimCustomer\OLE DB Source.Outputs[OLE DB Source Output].Columns[CenterNow]" />
-                        <inputColumn
-                          refId="Package\Sequence Container\DimCustomer\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[CityKey]"
-                          cachedDataType="i4"
-                          cachedName="CityKey"
-                          externalMetadataColumnId="Package\Sequence Container\DimCustomer\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[CityKey]"
-                          lineageId="Package\Sequence Container\DimCustomer\OLE DB Source.Outputs[OLE DB Source Output].Columns[CityKey]" />
-                        <inputColumn
-                          refId="Package\Sequence Container\DimCustomer\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[CustomerTypeKey]"
-                          cachedDataType="i4"
-                          cachedName="CustomerTypeKey"
-                          externalMetadataColumnId="Package\Sequence Container\DimCustomer\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[CustomerTypeKey]"
-                          lineageId="Package\Sequence Container\DimCustomer\OLE DB Source.Outputs[OLE DB Source Output].Columns[CustomerTypeKey]" />
-                        <inputColumn
-                          refId="Package\Sequence Container\DimCustomer\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[CustomerType]"
-                          cachedDataType="wstr"
-                          cachedLength="50"
-                          cachedName="CustomerType"
-                          externalMetadataColumnId="Package\Sequence Container\DimCustomer\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[CustomerType]"
-                          lineageId="Package\Sequence Container\DimCustomer\OLE DB Source.Outputs[OLE DB Source Output].Columns[CustomerType]" />
-                        <inputColumn
-                          refId="Package\Sequence Container\DimCustomer\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[PharmacyType]"
-                          cachedDataType="wstr"
-                          cachedLength="50"
-                          cachedName="PharmacyType"
-                          externalMetadataColumnId="Package\Sequence Container\DimCustomer\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[PharmacyType]"
-                          lineageId="Package\Sequence Container\DimCustomer\OLE DB Source.Outputs[OLE DB Source Output].Columns[PharmacyType]" />
-                        <inputColumn
-                          refId="Package\Sequence Container\DimCustomer\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[OwnershipTypeKey]"
-                          cachedDataType="ui1"
-                          cachedName="OwnershipTypeKey"
-                          externalMetadataColumnId="Package\Sequence Container\DimCustomer\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[OwnershipTypeKey]"
-                          lineageId="Package\Sequence Container\DimCustomer\OLE DB Source.Outputs[OLE DB Source Output].Columns[OwnershipTypeKey]" />
-                        <inputColumn
-                          refId="Package\Sequence Container\DimCustomer\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[OwnershipType]"
-                          cachedDataType="wstr"
-                          cachedLength="5"
-                          cachedName="OwnershipType"
-                          externalMetadataColumnId="Package\Sequence Container\DimCustomer\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[OwnershipType]"
-                          lineageId="Package\Sequence Container\DimCustomer\OLE DB Source.Outputs[OLE DB Source Output].Columns[OwnershipType]" />
-                        <inputColumn
-                          refId="Package\Sequence Container\DimCustomer\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[PaymentBehaviorKey]"
-                          cachedDataType="ui1"
-                          cachedName="PaymentBehaviorKey"
-                          externalMetadataColumnId="Package\Sequence Container\DimCustomer\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[PaymentBehaviorKey]"
-                          lineageId="Package\Sequence Container\DimCustomer\OLE DB Source.Outputs[OLE DB Source Output].Columns[PaymentBehaviorKey]" />
-                        <inputColumn
-                          refId="Package\Sequence Container\DimCustomer\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[PaymentBehavior]"
-                          cachedDataType="wstr"
-                          cachedLength="5"
-                          cachedName="PaymentBehavior"
-                          externalMetadataColumnId="Package\Sequence Container\DimCustomer\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[PaymentBehavior]"
-                          lineageId="Package\Sequence Container\DimCustomer\OLE DB Source.Outputs[OLE DB Source Output].Columns[PaymentBehavior]" />
-                        <inputColumn
-                          refId="Package\Sequence Container\DimCustomer\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[RegulatoryAgencyKey]"
-                          cachedDataType="i4"
-                          cachedName="RegulatoryAgencyKey"
-                          externalMetadataColumnId="Package\Sequence Container\DimCustomer\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[RegulatoryAgencyKey]"
-                          lineageId="Package\Sequence Container\DimCustomer\OLE DB Source.Outputs[OLE DB Source Output].Columns[RegulatoryAgencyKey]" />
-                        <inputColumn
-                          refId="Package\Sequence Container\DimCustomer\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[RegulatoryAgency]"
-                          cachedDataType="wstr"
-                          cachedLength="50"
-                          cachedName="RegulatoryAgency"
-                          externalMetadataColumnId="Package\Sequence Container\DimCustomer\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[RegulatoryAgency]"
-                          lineageId="Package\Sequence Container\DimCustomer\OLE DB Source.Outputs[OLE DB Source Output].Columns[RegulatoryAgency]" />
-                        <inputColumn
-                          refId="Package\Sequence Container\DimCustomer\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[CustomerAddressNow]"
-                          cachedDataType="wstr"
-                          cachedLength="1024"
-                          cachedName="CustomerAddressNow"
-                          externalMetadataColumnId="Package\Sequence Container\DimCustomer\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[CustomerAddressNow]"
-                          lineageId="Package\Sequence Container\DimCustomer\OLE DB Source.Outputs[OLE DB Source Output].Columns[CustomerAddressNow]" />
-                        <inputColumn
-                          refId="Package\Sequence Container\DimCustomer\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[DefaultSalesmanKey]"
-                          cachedDataType="i4"
-                          cachedName="DefaultSalesmanKey"
-                          externalMetadataColumnId="Package\Sequence Container\DimCustomer\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[DefaultSalesmanKey]"
-                          lineageId="Package\Sequence Container\DimCustomer\OLE DB Source.Outputs[OLE DB Source Output].Columns[DefaultSalesmanKey]" />
-                        <inputColumn
-                          refId="Package\Sequence Container\DimCustomer\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[DefaultSalesman]"
-                          cachedDataType="wstr"
-                          cachedLength="255"
-                          cachedName="DefaultSalesman"
-                          externalMetadataColumnId="Package\Sequence Container\DimCustomer\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[DefaultSalesman]"
-                          lineageId="Package\Sequence Container\DimCustomer\OLE DB Source.Outputs[OLE DB Source Output].Columns[DefaultSalesman]" />
-                        <inputColumn
-                          refId="Package\Sequence Container\DimCustomer\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[SalesRouteKeyNow]"
-                          cachedDataType="i4"
-                          cachedName="SalesRouteKeyNow"
-                          externalMetadataColumnId="Package\Sequence Container\DimCustomer\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[SalesRouteKeyNow]"
-                          lineageId="Package\Sequence Container\DimCustomer\OLE DB Source.Outputs[OLE DB Source Output].Columns[SalesRouteKeyNow]" />
-                        <inputColumn
-                          refId="Package\Sequence Container\DimCustomer\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[SalesRouteNow]"
-                          cachedDataType="wstr"
-                          cachedLength="255"
-                          cachedName="SalesRouteNow"
-                          externalMetadataColumnId="Package\Sequence Container\DimCustomer\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[SalesRouteNow]"
-                          lineageId="Package\Sequence Container\DimCustomer\OLE DB Source.Outputs[OLE DB Source Output].Columns[SalesRouteNow]" />
-                        <inputColumn
-                          refId="Package\Sequence Container\DimCustomer\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[CreatedDateKey]"
-                          cachedDataType="i4"
-                          cachedName="CreatedDateKey"
-                          externalMetadataColumnId="Package\Sequence Container\DimCustomer\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[CreatedDateKey]"
-                          lineageId="Package\Sequence Container\DimCustomer\OLE DB Source.Outputs[OLE DB Source Output].Columns[CreatedDateKey]" />
-                        <inputColumn
-                          refId="Package\Sequence Container\DimCustomer\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Latitude]"
-                          cachedDataType="r8"
-                          cachedName="Latitude"
-                          externalMetadataColumnId="Package\Sequence Container\DimCustomer\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Latitude]"
-                          lineageId="Package\Sequence Container\DimCustomer\OLE DB Source.Outputs[OLE DB Source Output].Columns[Latitude]" />
-                        <inputColumn
-                          refId="Package\Sequence Container\DimCustomer\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Longitude]"
-                          cachedDataType="r8"
-                          cachedName="Longitude"
-                          externalMetadataColumnId="Package\Sequence Container\DimCustomer\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Longitude]"
-                          lineageId="Package\Sequence Container\DimCustomer\OLE DB Source.Outputs[OLE DB Source Output].Columns[Longitude]" />
-                        <inputColumn
-                          refId="Package\Sequence Container\DimCustomer\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[HaveGLN]"
-                          cachedDataType="bool"
-                          cachedName="HaveGLN"
-                          externalMetadataColumnId="Package\Sequence Container\DimCustomer\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[HaveGLN]"
-                          lineageId="Package\Sequence Container\DimCustomer\OLE DB Source.Outputs[OLE DB Source Output].Columns[HaveGLN]" />
-                        <inputColumn
-                          refId="Package\Sequence Container\DimCustomer\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[company]"
-                          cachedDataType="i4"
-                          cachedName="company"
-                          externalMetadataColumnId="Package\Sequence Container\DimCustomer\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[company]"
-                          lineageId="Package\Sequence Container\DimCustomer\OLE DB Source.Outputs[OLE DB Source Output].Columns[company]" />
-                        <inputColumn
-                          refId="Package\Sequence Container\DimCustomer\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[GLN]"
-                          cachedDataType="wstr"
-                          cachedLength="50"
-                          cachedName="GLN"
-                          externalMetadataColumnId="Package\Sequence Container\DimCustomer\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[GLN]"
-                          lineageId="Package\Sequence Container\DimCustomer\OLE DB Source.Outputs[OLE DB Source Output].Columns[GLN]" />
-                        <inputColumn
-                          refId="Package\Sequence Container\DimCustomer\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[HIX]"
-                          cachedDataType="wstr"
-                          cachedLength="50"
-                          cachedName="HIX"
-                          externalMetadataColumnId="Package\Sequence Container\DimCustomer\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[HIX]"
-                          lineageId="Package\Sequence Container\DimCustomer\OLE DB Source.Outputs[OLE DB Source Output].Columns[HIX]" />
-                        <inputColumn
-                          refId="Package\Sequence Container\DimCustomer\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[CustomerStatus]"
-                          cachedDataType="wstr"
-                          cachedLength="7"
-                          cachedName="CustomerStatus"
-                          externalMetadataColumnId="Package\Sequence Container\DimCustomer\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[CustomerStatus]"
-                          lineageId="Package\Sequence Container\DimCustomer\OLE DB Source.Outputs[OLE DB Source Output].Columns[CustomerStatus]" />
-                        <inputColumn
-                          refId="Package\Sequence Container\DimCustomer\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[kind]"
-                          cachedDataType="wstr"
-                          cachedLength="9"
-                          cachedName="kind"
-                          externalMetadataColumnId="Package\Sequence Container\DimCustomer\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[kind]"
-                          lineageId="Package\Sequence Container\DimCustomer\OLE DB Source.Outputs[OLE DB Source Output].Columns[kind]" />
-                      </inputColumns>
-                      <externalMetadataColumns
-                        isUsed="True">
-                        <externalMetadataColumn
-                          refId="Package\Sequence Container\DimCustomer\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[CustomerKey]"
-                          dataType="i4"
-                          name="CustomerKey" />
-                        <externalMetadataColumn
-                          refId="Package\Sequence Container\DimCustomer\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[CustomerCode]"
-                          dataType="i4"
-                          name="CustomerCode" />
-                        <externalMetadataColumn
-                          refId="Package\Sequence Container\DimCustomer\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[IsDeactivated]"
-                          dataType="bool"
-                          name="IsDeactivated" />
-                        <externalMetadataColumn
-                          refId="Package\Sequence Container\DimCustomer\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[status]"
-                          dataType="bool"
-                          name="status" />
-                        <externalMetadataColumn
-                          refId="Package\Sequence Container\DimCustomer\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Customer]"
-                          dataType="wstr"
-                          length="255"
-                          name="Customer" />
-                        <externalMetadataColumn
-                          refId="Package\Sequence Container\DimCustomer\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[CenterKeyNow]"
-                          dataType="i4"
-                          name="CenterKeyNow" />
-                        <externalMetadataColumn
-                          refId="Package\Sequence Container\DimCustomer\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[CenterNow]"
-                          dataType="wstr"
-                          length="50"
-                          name="CenterNow" />
-                        <externalMetadataColumn
-                          refId="Package\Sequence Container\DimCustomer\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[CityKey]"
-                          dataType="i4"
-                          name="CityKey" />
-                        <externalMetadataColumn
-                          refId="Package\Sequence Container\DimCustomer\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[CustomerTypeKey]"
-                          dataType="i4"
-                          name="CustomerTypeKey" />
-                        <externalMetadataColumn
-                          refId="Package\Sequence Container\DimCustomer\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[CustomerType]"
-                          dataType="wstr"
-                          length="50"
-                          name="CustomerType" />
-                        <externalMetadataColumn
-                          refId="Package\Sequence Container\DimCustomer\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[PharmacyType]"
-                          dataType="wstr"
-                          length="50"
-                          name="PharmacyType" />
-                        <externalMetadataColumn
-                          refId="Package\Sequence Container\DimCustomer\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[OwnershipTypeKey]"
-                          dataType="ui1"
-                          name="OwnershipTypeKey" />
-                        <externalMetadataColumn
-                          refId="Package\Sequence Container\DimCustomer\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[OwnershipType]"
-                          dataType="wstr"
-                          length="5"
-                          name="OwnershipType" />
-                        <externalMetadataColumn
-                          refId="Package\Sequence Container\DimCustomer\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[PaymentBehaviorKey]"
-                          dataType="ui1"
-                          name="PaymentBehaviorKey" />
-                        <externalMetadataColumn
-                          refId="Package\Sequence Container\DimCustomer\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[PaymentBehavior]"
-                          dataType="wstr"
-                          length="5"
-                          name="PaymentBehavior" />
-                        <externalMetadataColumn
-                          refId="Package\Sequence Container\DimCustomer\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[RegulatoryAgencyKey]"
-                          dataType="i4"
-                          name="RegulatoryAgencyKey" />
-                        <externalMetadataColumn
-                          refId="Package\Sequence Container\DimCustomer\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[RegulatoryAgency]"
-                          dataType="wstr"
-                          length="50"
-                          name="RegulatoryAgency" />
-                        <externalMetadataColumn
-                          refId="Package\Sequence Container\DimCustomer\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[CustomerAddressNow]"
-                          dataType="wstr"
-                          length="1024"
-                          name="CustomerAddressNow" />
-                        <externalMetadataColumn
-                          refId="Package\Sequence Container\DimCustomer\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[DefaultSalesmanKey]"
-                          dataType="i4"
-                          name="DefaultSalesmanKey" />
-                        <externalMetadataColumn
-                          refId="Package\Sequence Container\DimCustomer\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[DefaultSalesman]"
-                          dataType="wstr"
-                          length="255"
-                          name="DefaultSalesman" />
-                        <externalMetadataColumn
-                          refId="Package\Sequence Container\DimCustomer\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[SalesRouteKeyNow]"
-                          dataType="i4"
-                          name="SalesRouteKeyNow" />
-                        <externalMetadataColumn
-                          refId="Package\Sequence Container\DimCustomer\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[SalesRouteNow]"
-                          dataType="wstr"
-                          length="255"
-                          name="SalesRouteNow" />
-                        <externalMetadataColumn
-                          refId="Package\Sequence Container\DimCustomer\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[CustomerStatus]"
-                          dataType="wstr"
-                          length="7"
-                          name="CustomerStatus" />
-                        <externalMetadataColumn
-                          refId="Package\Sequence Container\DimCustomer\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[CreatedDateKey]"
-                          dataType="i4"
-                          name="CreatedDateKey" />
-                        <externalMetadataColumn
-                          refId="Package\Sequence Container\DimCustomer\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Latitude]"
-                          dataType="r8"
-                          name="Latitude" />
-                        <externalMetadataColumn
-                          refId="Package\Sequence Container\DimCustomer\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Longitude]"
-                          dataType="r8"
-                          name="Longitude" />
-                        <externalMetadataColumn
-                          refId="Package\Sequence Container\DimCustomer\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[HaveGLN]"
-                          dataType="bool"
-                          name="HaveGLN" />
-                        <externalMetadataColumn
-                          refId="Package\Sequence Container\DimCustomer\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[company]"
-                          dataType="i4"
-                          name="company" />
-                        <externalMetadataColumn
-                          refId="Package\Sequence Container\DimCustomer\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[GLN]"
-                          dataType="wstr"
-                          length="50"
-                          name="GLN" />
-                        <externalMetadataColumn
-                          refId="Package\Sequence Container\DimCustomer\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[HIX]"
-                          dataType="wstr"
-                          length="50"
-                          name="HIX" />
-                        <externalMetadataColumn
-                          refId="Package\Sequence Container\DimCustomer\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[kind]"
-                          dataType="wstr"
-                          length="9"
-                          name="kind" />
-                      </externalMetadataColumns>
-                    </input>
-                  </inputs>
-                  <outputs>
-                    <output
-                      refId="Package\Sequence Container\DimCustomer\OLE DB Destination.Outputs[OLE DB Destination Error Output]"
-                      exclusionGroup="1"
-                      isErrorOut="true"
-                      name="OLE DB Destination Error Output"
-                      synchronousInputId="Package\Sequence Container\DimCustomer\OLE DB Destination.Inputs[OLE DB Destination Input]">
-                      <outputColumns>
-                        <outputColumn
-                          refId="Package\Sequence Container\DimCustomer\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
-                          dataType="i4"
-                          lineageId="Package\Sequence Container\DimCustomer\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
-                          name="ErrorCode"
-                          specialFlags="1" />
-                        <outputColumn
-                          refId="Package\Sequence Container\DimCustomer\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
-                          dataType="i4"
-                          lineageId="Package\Sequence Container\DimCustomer\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
-                          name="ErrorColumn"
-                          specialFlags="2" />
-                      </outputColumns>
-                      <externalMetadataColumns />
-                    </output>
-                  </outputs>
-                </component>
-                <component
-                  refId="Package\Sequence Container\DimCustomer\OLE DB Source"
+                  refId="Package\Sequence Container\DimCustomer\Eltiam"
                   componentClassID="Microsoft.OLEDBSource"
                   contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
                   description="OLE DB Source"
-                  name="OLE DB Source"
+                  name="Eltiam"
                   usesDispositions="true"
                   version="7">
                   <properties>
@@ -7954,36 +7513,55 @@ from eltiam.PUBCities CI
                       description="The SQL command to be executed."
                       name="SqlCommand"
                       UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">--drop table if exists dw..dimcustomer
+
+--alter table dw..dimcustomer
+--add id [bigint] identity (1,1) not null 
+
+
+--truncate table dw..dimcustomer
+
+
+
 SELECT  CU.Id as CustomerKey,
               CU.Code AS CustomerCode,
-              IsDeactivated  ,
-			  cu.status,
+			  isnull (c.FINDetailAccountKey, cu.Code) accountid,
               CU.Name AS Customer,
+			  cu.IsDeactivated status,
+
+
+              IsDeactivated  ,
               CU.CenterKey as CenterKeyNow,
               C.CenterName AS CenterNow,
-              cd.CityKey,          
+              cd.CityKey,  
+			  
               CT.Id AS CustomerTypeKey,
               CT.Name AS CustomerType,
+
               PT.Name AS PharmacyType,
-              CAST(CD.IsPrivatelyOwned AS tinyint) AS OwnershipTypeKey,
-              (CASE CD.IsPrivatelyOwned WHEN 1 THEN N'خصوصی' ELSE N'دولتی' END) AS OwnershipType,
-              CAST(CD.PaymentBehavior AS tinyint) AS PaymentBehaviorKey,
-              (CASE CD.PaymentBehavior WHEN 1 THEN N'خصوصی' ELSE N'دولتی' END) AS PaymentBehavior,
+              CAST(CD.IsPrivatelyOwned AS int) AS OwnershipTypeKey,
+
+              CASE CD.IsPrivatelyOwned WHEN 1 THEN N'خصوصی' ELSE N'دولتی' END  AS OwnershipType,
+
+             CD.PaymentBehavior  AS PaymentBehaviorKey,
+              CASE CD.PaymentBehavior WHEN 1 THEN N'خصوصی' ELSE N'دولتی' END  AS  PaymentBehavior,
               cd.CustomerRegulatoryAgencyKey AS RegulatoryAgencyKey,
-			  case when  cd.IsHospital =1 then N'بیمارستان' else N'سایر' end as kind,
+			  case when  cd.IsHospital =1 then N'بیمارستان' else N'سایر' end    as kind,
+
+
               RA.[Name] AS RegulatoryAgency,
               CA.[Address] AS CustomerAddressNow,
+
               cd.DefaultSalesman as DefaultSalesmanKey,
               s.Name as DefaultSalesman,        
+
               R.SalesRouteKey as SalesRouteKeyNow, 
-              R.SalesRoute as SalesRouteNow,
+              R.SalesRoute	  as SalesRouteNow,
+
               case when CU.Status =1 then N'فعال'  else N'غیرفعال' end AS CustomerStatus,
               D.DateKey AS CreatedDateKey,
-			  cu.Latitude,
-			  cu.Longitude,
-			  cd.HaveGLN,
+			  cu.Latitude ,
+			  cu.Longitude  ,
 			  cd.GLN,
-			  cd.HIX,
 
 			  1 as company
 
@@ -8051,7 +7629,7 @@ LEFT JOIN (select DateKey,date from dimdate) D
                   </properties>
                   <connections>
                     <connection
-                      refId="Package\Sequence Container\DimCustomer\OLE DB Source.Connections[OleDbConnection]"
+                      refId="Package\Sequence Container\DimCustomer\Eltiam.Connections[OleDbConnection]"
                       connectionManagerID="Package.ConnectionManagers[192.168.10.10.Stage]"
                       connectionManagerRefId="Package.ConnectionManagers[192.168.10.10.Stage]"
                       description="The OLE DB runtime connection used to access the database."
@@ -8059,629 +7637,1041 @@ LEFT JOIN (select DateKey,date from dimdate) D
                   </connections>
                   <outputs>
                     <output
-                      refId="Package\Sequence Container\DimCustomer\OLE DB Source.Outputs[OLE DB Source Output]"
+                      refId="Package\Sequence Container\DimCustomer\Eltiam.Outputs[OLE DB Source Output]"
                       name="OLE DB Source Output">
                       <outputColumns>
                         <outputColumn
-                          refId="Package\Sequence Container\DimCustomer\OLE DB Source.Outputs[OLE DB Source Output].Columns[CustomerKey]"
+                          refId="Package\Sequence Container\DimCustomer\Eltiam.Outputs[OLE DB Source Output].Columns[CustomerKey]"
                           dataType="i4"
                           errorOrTruncationOperation="Conversion"
                           errorRowDisposition="FailComponent"
-                          externalMetadataColumnId="Package\Sequence Container\DimCustomer\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[CustomerKey]"
-                          lineageId="Package\Sequence Container\DimCustomer\OLE DB Source.Outputs[OLE DB Source Output].Columns[CustomerKey]"
+                          externalMetadataColumnId="Package\Sequence Container\DimCustomer\Eltiam.Outputs[OLE DB Source Output].ExternalColumns[CustomerKey]"
+                          lineageId="Package\Sequence Container\DimCustomer\Eltiam.Outputs[OLE DB Source Output].Columns[CustomerKey]"
                           name="CustomerKey"
                           truncationRowDisposition="FailComponent" />
                         <outputColumn
-                          refId="Package\Sequence Container\DimCustomer\OLE DB Source.Outputs[OLE DB Source Output].Columns[CustomerCode]"
+                          refId="Package\Sequence Container\DimCustomer\Eltiam.Outputs[OLE DB Source Output].Columns[CustomerCode]"
                           dataType="i4"
                           errorOrTruncationOperation="Conversion"
                           errorRowDisposition="FailComponent"
-                          externalMetadataColumnId="Package\Sequence Container\DimCustomer\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[CustomerCode]"
-                          lineageId="Package\Sequence Container\DimCustomer\OLE DB Source.Outputs[OLE DB Source Output].Columns[CustomerCode]"
+                          externalMetadataColumnId="Package\Sequence Container\DimCustomer\Eltiam.Outputs[OLE DB Source Output].ExternalColumns[CustomerCode]"
+                          lineageId="Package\Sequence Container\DimCustomer\Eltiam.Outputs[OLE DB Source Output].Columns[CustomerCode]"
                           name="CustomerCode"
                           truncationRowDisposition="FailComponent" />
                         <outputColumn
-                          refId="Package\Sequence Container\DimCustomer\OLE DB Source.Outputs[OLE DB Source Output].Columns[IsDeactivated]"
+                          refId="Package\Sequence Container\DimCustomer\Eltiam.Outputs[OLE DB Source Output].Columns[status]"
                           dataType="bool"
                           errorOrTruncationOperation="Conversion"
                           errorRowDisposition="FailComponent"
-                          externalMetadataColumnId="Package\Sequence Container\DimCustomer\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[IsDeactivated]"
-                          lineageId="Package\Sequence Container\DimCustomer\OLE DB Source.Outputs[OLE DB Source Output].Columns[IsDeactivated]"
-                          name="IsDeactivated"
-                          truncationRowDisposition="FailComponent" />
-                        <outputColumn
-                          refId="Package\Sequence Container\DimCustomer\OLE DB Source.Outputs[OLE DB Source Output].Columns[status]"
-                          dataType="bool"
-                          errorOrTruncationOperation="Conversion"
-                          errorRowDisposition="FailComponent"
-                          externalMetadataColumnId="Package\Sequence Container\DimCustomer\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[status]"
-                          lineageId="Package\Sequence Container\DimCustomer\OLE DB Source.Outputs[OLE DB Source Output].Columns[status]"
+                          externalMetadataColumnId="Package\Sequence Container\DimCustomer\Eltiam.Outputs[OLE DB Source Output].ExternalColumns[status]"
+                          lineageId="Package\Sequence Container\DimCustomer\Eltiam.Outputs[OLE DB Source Output].Columns[status]"
                           name="status"
                           truncationRowDisposition="FailComponent" />
                         <outputColumn
-                          refId="Package\Sequence Container\DimCustomer\OLE DB Source.Outputs[OLE DB Source Output].Columns[Customer]"
+                          refId="Package\Sequence Container\DimCustomer\Eltiam.Outputs[OLE DB Source Output].Columns[Customer]"
                           dataType="wstr"
                           errorOrTruncationOperation="Conversion"
                           errorRowDisposition="FailComponent"
-                          externalMetadataColumnId="Package\Sequence Container\DimCustomer\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Customer]"
+                          externalMetadataColumnId="Package\Sequence Container\DimCustomer\Eltiam.Outputs[OLE DB Source Output].ExternalColumns[Customer]"
                           length="255"
-                          lineageId="Package\Sequence Container\DimCustomer\OLE DB Source.Outputs[OLE DB Source Output].Columns[Customer]"
+                          lineageId="Package\Sequence Container\DimCustomer\Eltiam.Outputs[OLE DB Source Output].Columns[Customer]"
                           name="Customer"
                           truncationRowDisposition="FailComponent" />
                         <outputColumn
-                          refId="Package\Sequence Container\DimCustomer\OLE DB Source.Outputs[OLE DB Source Output].Columns[CenterKeyNow]"
+                          refId="Package\Sequence Container\DimCustomer\Eltiam.Outputs[OLE DB Source Output].Columns[CenterKeyNow]"
                           dataType="i4"
                           errorOrTruncationOperation="Conversion"
                           errorRowDisposition="FailComponent"
-                          externalMetadataColumnId="Package\Sequence Container\DimCustomer\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[CenterKeyNow]"
-                          lineageId="Package\Sequence Container\DimCustomer\OLE DB Source.Outputs[OLE DB Source Output].Columns[CenterKeyNow]"
+                          externalMetadataColumnId="Package\Sequence Container\DimCustomer\Eltiam.Outputs[OLE DB Source Output].ExternalColumns[CenterKeyNow]"
+                          lineageId="Package\Sequence Container\DimCustomer\Eltiam.Outputs[OLE DB Source Output].Columns[CenterKeyNow]"
                           name="CenterKeyNow"
                           truncationRowDisposition="FailComponent" />
                         <outputColumn
-                          refId="Package\Sequence Container\DimCustomer\OLE DB Source.Outputs[OLE DB Source Output].Columns[CenterNow]"
+                          refId="Package\Sequence Container\DimCustomer\Eltiam.Outputs[OLE DB Source Output].Columns[CenterNow]"
                           dataType="wstr"
                           errorOrTruncationOperation="Conversion"
                           errorRowDisposition="FailComponent"
-                          externalMetadataColumnId="Package\Sequence Container\DimCustomer\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[CenterNow]"
+                          externalMetadataColumnId="Package\Sequence Container\DimCustomer\Eltiam.Outputs[OLE DB Source Output].ExternalColumns[CenterNow]"
                           length="50"
-                          lineageId="Package\Sequence Container\DimCustomer\OLE DB Source.Outputs[OLE DB Source Output].Columns[CenterNow]"
+                          lineageId="Package\Sequence Container\DimCustomer\Eltiam.Outputs[OLE DB Source Output].Columns[CenterNow]"
                           name="CenterNow"
                           truncationRowDisposition="FailComponent" />
                         <outputColumn
-                          refId="Package\Sequence Container\DimCustomer\OLE DB Source.Outputs[OLE DB Source Output].Columns[CityKey]"
+                          refId="Package\Sequence Container\DimCustomer\Eltiam.Outputs[OLE DB Source Output].Columns[CustomerTypeKey]"
                           dataType="i4"
                           errorOrTruncationOperation="Conversion"
                           errorRowDisposition="FailComponent"
-                          externalMetadataColumnId="Package\Sequence Container\DimCustomer\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[CityKey]"
-                          lineageId="Package\Sequence Container\DimCustomer\OLE DB Source.Outputs[OLE DB Source Output].Columns[CityKey]"
-                          name="CityKey"
-                          truncationRowDisposition="FailComponent" />
-                        <outputColumn
-                          refId="Package\Sequence Container\DimCustomer\OLE DB Source.Outputs[OLE DB Source Output].Columns[CustomerTypeKey]"
-                          dataType="i4"
-                          errorOrTruncationOperation="Conversion"
-                          errorRowDisposition="FailComponent"
-                          externalMetadataColumnId="Package\Sequence Container\DimCustomer\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[CustomerTypeKey]"
-                          lineageId="Package\Sequence Container\DimCustomer\OLE DB Source.Outputs[OLE DB Source Output].Columns[CustomerTypeKey]"
+                          externalMetadataColumnId="Package\Sequence Container\DimCustomer\Eltiam.Outputs[OLE DB Source Output].ExternalColumns[CustomerTypeKey]"
+                          lineageId="Package\Sequence Container\DimCustomer\Eltiam.Outputs[OLE DB Source Output].Columns[CustomerTypeKey]"
                           name="CustomerTypeKey"
                           truncationRowDisposition="FailComponent" />
                         <outputColumn
-                          refId="Package\Sequence Container\DimCustomer\OLE DB Source.Outputs[OLE DB Source Output].Columns[CustomerType]"
+                          refId="Package\Sequence Container\DimCustomer\Eltiam.Outputs[OLE DB Source Output].Columns[CustomerType]"
                           dataType="wstr"
                           errorOrTruncationOperation="Conversion"
                           errorRowDisposition="FailComponent"
-                          externalMetadataColumnId="Package\Sequence Container\DimCustomer\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[CustomerType]"
+                          externalMetadataColumnId="Package\Sequence Container\DimCustomer\Eltiam.Outputs[OLE DB Source Output].ExternalColumns[CustomerType]"
                           length="50"
-                          lineageId="Package\Sequence Container\DimCustomer\OLE DB Source.Outputs[OLE DB Source Output].Columns[CustomerType]"
+                          lineageId="Package\Sequence Container\DimCustomer\Eltiam.Outputs[OLE DB Source Output].Columns[CustomerType]"
                           name="CustomerType"
                           truncationRowDisposition="FailComponent" />
                         <outputColumn
-                          refId="Package\Sequence Container\DimCustomer\OLE DB Source.Outputs[OLE DB Source Output].Columns[PharmacyType]"
+                          refId="Package\Sequence Container\DimCustomer\Eltiam.Outputs[OLE DB Source Output].Columns[PharmacyType]"
                           dataType="wstr"
                           errorOrTruncationOperation="Conversion"
                           errorRowDisposition="FailComponent"
-                          externalMetadataColumnId="Package\Sequence Container\DimCustomer\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[PharmacyType]"
+                          externalMetadataColumnId="Package\Sequence Container\DimCustomer\Eltiam.Outputs[OLE DB Source Output].ExternalColumns[PharmacyType]"
                           length="50"
-                          lineageId="Package\Sequence Container\DimCustomer\OLE DB Source.Outputs[OLE DB Source Output].Columns[PharmacyType]"
+                          lineageId="Package\Sequence Container\DimCustomer\Eltiam.Outputs[OLE DB Source Output].Columns[PharmacyType]"
                           name="PharmacyType"
                           truncationRowDisposition="FailComponent" />
                         <outputColumn
-                          refId="Package\Sequence Container\DimCustomer\OLE DB Source.Outputs[OLE DB Source Output].Columns[OwnershipTypeKey]"
+                          refId="Package\Sequence Container\DimCustomer\Eltiam.Outputs[OLE DB Source Output].Columns[OwnershipTypeKey]"
                           dataType="ui1"
                           errorOrTruncationOperation="Conversion"
                           errorRowDisposition="FailComponent"
-                          externalMetadataColumnId="Package\Sequence Container\DimCustomer\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[OwnershipTypeKey]"
-                          lineageId="Package\Sequence Container\DimCustomer\OLE DB Source.Outputs[OLE DB Source Output].Columns[OwnershipTypeKey]"
+                          externalMetadataColumnId="Package\Sequence Container\DimCustomer\Eltiam.Outputs[OLE DB Source Output].ExternalColumns[OwnershipTypeKey]"
+                          lineageId="Package\Sequence Container\DimCustomer\Eltiam.Outputs[OLE DB Source Output].Columns[OwnershipTypeKey]"
                           name="OwnershipTypeKey"
                           truncationRowDisposition="FailComponent" />
                         <outputColumn
-                          refId="Package\Sequence Container\DimCustomer\OLE DB Source.Outputs[OLE DB Source Output].Columns[OwnershipType]"
+                          refId="Package\Sequence Container\DimCustomer\Eltiam.Outputs[OLE DB Source Output].Columns[OwnershipType]"
                           dataType="wstr"
                           errorOrTruncationOperation="Conversion"
                           errorRowDisposition="FailComponent"
-                          externalMetadataColumnId="Package\Sequence Container\DimCustomer\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[OwnershipType]"
+                          externalMetadataColumnId="Package\Sequence Container\DimCustomer\Eltiam.Outputs[OLE DB Source Output].ExternalColumns[OwnershipType]"
                           length="5"
-                          lineageId="Package\Sequence Container\DimCustomer\OLE DB Source.Outputs[OLE DB Source Output].Columns[OwnershipType]"
+                          lineageId="Package\Sequence Container\DimCustomer\Eltiam.Outputs[OLE DB Source Output].Columns[OwnershipType]"
                           name="OwnershipType"
                           truncationRowDisposition="FailComponent" />
                         <outputColumn
-                          refId="Package\Sequence Container\DimCustomer\OLE DB Source.Outputs[OLE DB Source Output].Columns[PaymentBehaviorKey]"
+                          refId="Package\Sequence Container\DimCustomer\Eltiam.Outputs[OLE DB Source Output].Columns[PaymentBehaviorKey]"
                           dataType="ui1"
                           errorOrTruncationOperation="Conversion"
                           errorRowDisposition="FailComponent"
-                          externalMetadataColumnId="Package\Sequence Container\DimCustomer\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[PaymentBehaviorKey]"
-                          lineageId="Package\Sequence Container\DimCustomer\OLE DB Source.Outputs[OLE DB Source Output].Columns[PaymentBehaviorKey]"
+                          externalMetadataColumnId="Package\Sequence Container\DimCustomer\Eltiam.Outputs[OLE DB Source Output].ExternalColumns[PaymentBehaviorKey]"
+                          lineageId="Package\Sequence Container\DimCustomer\Eltiam.Outputs[OLE DB Source Output].Columns[PaymentBehaviorKey]"
                           name="PaymentBehaviorKey"
                           truncationRowDisposition="FailComponent" />
                         <outputColumn
-                          refId="Package\Sequence Container\DimCustomer\OLE DB Source.Outputs[OLE DB Source Output].Columns[PaymentBehavior]"
+                          refId="Package\Sequence Container\DimCustomer\Eltiam.Outputs[OLE DB Source Output].Columns[PaymentBehavior]"
                           dataType="wstr"
                           errorOrTruncationOperation="Conversion"
                           errorRowDisposition="FailComponent"
-                          externalMetadataColumnId="Package\Sequence Container\DimCustomer\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[PaymentBehavior]"
+                          externalMetadataColumnId="Package\Sequence Container\DimCustomer\Eltiam.Outputs[OLE DB Source Output].ExternalColumns[PaymentBehavior]"
                           length="5"
-                          lineageId="Package\Sequence Container\DimCustomer\OLE DB Source.Outputs[OLE DB Source Output].Columns[PaymentBehavior]"
+                          lineageId="Package\Sequence Container\DimCustomer\Eltiam.Outputs[OLE DB Source Output].Columns[PaymentBehavior]"
                           name="PaymentBehavior"
                           truncationRowDisposition="FailComponent" />
                         <outputColumn
-                          refId="Package\Sequence Container\DimCustomer\OLE DB Source.Outputs[OLE DB Source Output].Columns[RegulatoryAgencyKey]"
-                          dataType="i4"
-                          errorOrTruncationOperation="Conversion"
-                          errorRowDisposition="FailComponent"
-                          externalMetadataColumnId="Package\Sequence Container\DimCustomer\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[RegulatoryAgencyKey]"
-                          lineageId="Package\Sequence Container\DimCustomer\OLE DB Source.Outputs[OLE DB Source Output].Columns[RegulatoryAgencyKey]"
-                          name="RegulatoryAgencyKey"
-                          truncationRowDisposition="FailComponent" />
-                        <outputColumn
-                          refId="Package\Sequence Container\DimCustomer\OLE DB Source.Outputs[OLE DB Source Output].Columns[kind]"
+                          refId="Package\Sequence Container\DimCustomer\Eltiam.Outputs[OLE DB Source Output].Columns[kind]"
                           dataType="wstr"
                           errorOrTruncationOperation="Conversion"
                           errorRowDisposition="FailComponent"
-                          externalMetadataColumnId="Package\Sequence Container\DimCustomer\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[kind]"
+                          externalMetadataColumnId="Package\Sequence Container\DimCustomer\Eltiam.Outputs[OLE DB Source Output].ExternalColumns[kind]"
                           length="9"
-                          lineageId="Package\Sequence Container\DimCustomer\OLE DB Source.Outputs[OLE DB Source Output].Columns[kind]"
+                          lineageId="Package\Sequence Container\DimCustomer\Eltiam.Outputs[OLE DB Source Output].Columns[kind]"
                           name="kind"
                           truncationRowDisposition="FailComponent" />
                         <outputColumn
-                          refId="Package\Sequence Container\DimCustomer\OLE DB Source.Outputs[OLE DB Source Output].Columns[RegulatoryAgency]"
+                          refId="Package\Sequence Container\DimCustomer\Eltiam.Outputs[OLE DB Source Output].Columns[RegulatoryAgency]"
                           dataType="wstr"
                           errorOrTruncationOperation="Conversion"
                           errorRowDisposition="FailComponent"
-                          externalMetadataColumnId="Package\Sequence Container\DimCustomer\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[RegulatoryAgency]"
+                          externalMetadataColumnId="Package\Sequence Container\DimCustomer\Eltiam.Outputs[OLE DB Source Output].ExternalColumns[RegulatoryAgency]"
                           length="50"
-                          lineageId="Package\Sequence Container\DimCustomer\OLE DB Source.Outputs[OLE DB Source Output].Columns[RegulatoryAgency]"
+                          lineageId="Package\Sequence Container\DimCustomer\Eltiam.Outputs[OLE DB Source Output].Columns[RegulatoryAgency]"
                           name="RegulatoryAgency"
                           truncationRowDisposition="FailComponent" />
                         <outputColumn
-                          refId="Package\Sequence Container\DimCustomer\OLE DB Source.Outputs[OLE DB Source Output].Columns[CustomerAddressNow]"
+                          refId="Package\Sequence Container\DimCustomer\Eltiam.Outputs[OLE DB Source Output].Columns[CustomerAddressNow]"
                           dataType="wstr"
                           errorOrTruncationOperation="Conversion"
                           errorRowDisposition="FailComponent"
-                          externalMetadataColumnId="Package\Sequence Container\DimCustomer\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[CustomerAddressNow]"
+                          externalMetadataColumnId="Package\Sequence Container\DimCustomer\Eltiam.Outputs[OLE DB Source Output].ExternalColumns[CustomerAddressNow]"
                           length="1024"
-                          lineageId="Package\Sequence Container\DimCustomer\OLE DB Source.Outputs[OLE DB Source Output].Columns[CustomerAddressNow]"
+                          lineageId="Package\Sequence Container\DimCustomer\Eltiam.Outputs[OLE DB Source Output].Columns[CustomerAddressNow]"
                           name="CustomerAddressNow"
                           truncationRowDisposition="FailComponent" />
                         <outputColumn
-                          refId="Package\Sequence Container\DimCustomer\OLE DB Source.Outputs[OLE DB Source Output].Columns[DefaultSalesmanKey]"
+                          refId="Package\Sequence Container\DimCustomer\Eltiam.Outputs[OLE DB Source Output].Columns[DefaultSalesmanKey]"
                           dataType="i4"
                           errorOrTruncationOperation="Conversion"
                           errorRowDisposition="FailComponent"
-                          externalMetadataColumnId="Package\Sequence Container\DimCustomer\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[DefaultSalesmanKey]"
-                          lineageId="Package\Sequence Container\DimCustomer\OLE DB Source.Outputs[OLE DB Source Output].Columns[DefaultSalesmanKey]"
+                          externalMetadataColumnId="Package\Sequence Container\DimCustomer\Eltiam.Outputs[OLE DB Source Output].ExternalColumns[DefaultSalesmanKey]"
+                          lineageId="Package\Sequence Container\DimCustomer\Eltiam.Outputs[OLE DB Source Output].Columns[DefaultSalesmanKey]"
                           name="DefaultSalesmanKey"
                           truncationRowDisposition="FailComponent" />
                         <outputColumn
-                          refId="Package\Sequence Container\DimCustomer\OLE DB Source.Outputs[OLE DB Source Output].Columns[DefaultSalesman]"
+                          refId="Package\Sequence Container\DimCustomer\Eltiam.Outputs[OLE DB Source Output].Columns[DefaultSalesman]"
                           dataType="wstr"
                           errorOrTruncationOperation="Conversion"
                           errorRowDisposition="FailComponent"
-                          externalMetadataColumnId="Package\Sequence Container\DimCustomer\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[DefaultSalesman]"
+                          externalMetadataColumnId="Package\Sequence Container\DimCustomer\Eltiam.Outputs[OLE DB Source Output].ExternalColumns[DefaultSalesman]"
                           length="255"
-                          lineageId="Package\Sequence Container\DimCustomer\OLE DB Source.Outputs[OLE DB Source Output].Columns[DefaultSalesman]"
+                          lineageId="Package\Sequence Container\DimCustomer\Eltiam.Outputs[OLE DB Source Output].Columns[DefaultSalesman]"
                           name="DefaultSalesman"
                           truncationRowDisposition="FailComponent" />
                         <outputColumn
-                          refId="Package\Sequence Container\DimCustomer\OLE DB Source.Outputs[OLE DB Source Output].Columns[SalesRouteKeyNow]"
+                          refId="Package\Sequence Container\DimCustomer\Eltiam.Outputs[OLE DB Source Output].Columns[SalesRouteKeyNow]"
                           dataType="i4"
                           errorOrTruncationOperation="Conversion"
                           errorRowDisposition="FailComponent"
-                          externalMetadataColumnId="Package\Sequence Container\DimCustomer\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[SalesRouteKeyNow]"
-                          lineageId="Package\Sequence Container\DimCustomer\OLE DB Source.Outputs[OLE DB Source Output].Columns[SalesRouteKeyNow]"
+                          externalMetadataColumnId="Package\Sequence Container\DimCustomer\Eltiam.Outputs[OLE DB Source Output].ExternalColumns[SalesRouteKeyNow]"
+                          lineageId="Package\Sequence Container\DimCustomer\Eltiam.Outputs[OLE DB Source Output].Columns[SalesRouteKeyNow]"
                           name="SalesRouteKeyNow"
                           truncationRowDisposition="FailComponent" />
                         <outputColumn
-                          refId="Package\Sequence Container\DimCustomer\OLE DB Source.Outputs[OLE DB Source Output].Columns[SalesRouteNow]"
+                          refId="Package\Sequence Container\DimCustomer\Eltiam.Outputs[OLE DB Source Output].Columns[SalesRouteNow]"
                           dataType="wstr"
                           errorOrTruncationOperation="Conversion"
                           errorRowDisposition="FailComponent"
-                          externalMetadataColumnId="Package\Sequence Container\DimCustomer\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[SalesRouteNow]"
+                          externalMetadataColumnId="Package\Sequence Container\DimCustomer\Eltiam.Outputs[OLE DB Source Output].ExternalColumns[SalesRouteNow]"
                           length="255"
-                          lineageId="Package\Sequence Container\DimCustomer\OLE DB Source.Outputs[OLE DB Source Output].Columns[SalesRouteNow]"
+                          lineageId="Package\Sequence Container\DimCustomer\Eltiam.Outputs[OLE DB Source Output].Columns[SalesRouteNow]"
                           name="SalesRouteNow"
                           truncationRowDisposition="FailComponent" />
                         <outputColumn
-                          refId="Package\Sequence Container\DimCustomer\OLE DB Source.Outputs[OLE DB Source Output].Columns[CustomerStatus]"
+                          refId="Package\Sequence Container\DimCustomer\Eltiam.Outputs[OLE DB Source Output].Columns[CustomerStatus]"
                           dataType="wstr"
                           errorOrTruncationOperation="Conversion"
                           errorRowDisposition="FailComponent"
-                          externalMetadataColumnId="Package\Sequence Container\DimCustomer\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[CustomerStatus]"
+                          externalMetadataColumnId="Package\Sequence Container\DimCustomer\Eltiam.Outputs[OLE DB Source Output].ExternalColumns[CustomerStatus]"
                           length="7"
-                          lineageId="Package\Sequence Container\DimCustomer\OLE DB Source.Outputs[OLE DB Source Output].Columns[CustomerStatus]"
+                          lineageId="Package\Sequence Container\DimCustomer\Eltiam.Outputs[OLE DB Source Output].Columns[CustomerStatus]"
                           name="CustomerStatus"
                           truncationRowDisposition="FailComponent" />
                         <outputColumn
-                          refId="Package\Sequence Container\DimCustomer\OLE DB Source.Outputs[OLE DB Source Output].Columns[CreatedDateKey]"
+                          refId="Package\Sequence Container\DimCustomer\Eltiam.Outputs[OLE DB Source Output].Columns[CreatedDateKey]"
                           dataType="i4"
                           errorOrTruncationOperation="Conversion"
                           errorRowDisposition="FailComponent"
-                          externalMetadataColumnId="Package\Sequence Container\DimCustomer\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[CreatedDateKey]"
-                          lineageId="Package\Sequence Container\DimCustomer\OLE DB Source.Outputs[OLE DB Source Output].Columns[CreatedDateKey]"
+                          externalMetadataColumnId="Package\Sequence Container\DimCustomer\Eltiam.Outputs[OLE DB Source Output].ExternalColumns[CreatedDateKey]"
+                          lineageId="Package\Sequence Container\DimCustomer\Eltiam.Outputs[OLE DB Source Output].Columns[CreatedDateKey]"
                           name="CreatedDateKey"
                           truncationRowDisposition="FailComponent" />
                         <outputColumn
-                          refId="Package\Sequence Container\DimCustomer\OLE DB Source.Outputs[OLE DB Source Output].Columns[Latitude]"
+                          refId="Package\Sequence Container\DimCustomer\Eltiam.Outputs[OLE DB Source Output].Columns[Latitude]"
                           dataType="r8"
                           errorOrTruncationOperation="Conversion"
                           errorRowDisposition="FailComponent"
-                          externalMetadataColumnId="Package\Sequence Container\DimCustomer\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Latitude]"
-                          lineageId="Package\Sequence Container\DimCustomer\OLE DB Source.Outputs[OLE DB Source Output].Columns[Latitude]"
+                          externalMetadataColumnId="Package\Sequence Container\DimCustomer\Eltiam.Outputs[OLE DB Source Output].ExternalColumns[Latitude]"
+                          lineageId="Package\Sequence Container\DimCustomer\Eltiam.Outputs[OLE DB Source Output].Columns[Latitude]"
                           name="Latitude"
                           truncationRowDisposition="FailComponent" />
                         <outputColumn
-                          refId="Package\Sequence Container\DimCustomer\OLE DB Source.Outputs[OLE DB Source Output].Columns[Longitude]"
+                          refId="Package\Sequence Container\DimCustomer\Eltiam.Outputs[OLE DB Source Output].Columns[Longitude]"
                           dataType="r8"
                           errorOrTruncationOperation="Conversion"
                           errorRowDisposition="FailComponent"
-                          externalMetadataColumnId="Package\Sequence Container\DimCustomer\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Longitude]"
-                          lineageId="Package\Sequence Container\DimCustomer\OLE DB Source.Outputs[OLE DB Source Output].Columns[Longitude]"
+                          externalMetadataColumnId="Package\Sequence Container\DimCustomer\Eltiam.Outputs[OLE DB Source Output].ExternalColumns[Longitude]"
+                          lineageId="Package\Sequence Container\DimCustomer\Eltiam.Outputs[OLE DB Source Output].Columns[Longitude]"
                           name="Longitude"
                           truncationRowDisposition="FailComponent" />
                         <outputColumn
-                          refId="Package\Sequence Container\DimCustomer\OLE DB Source.Outputs[OLE DB Source Output].Columns[HaveGLN]"
-                          dataType="bool"
-                          errorOrTruncationOperation="Conversion"
-                          errorRowDisposition="FailComponent"
-                          externalMetadataColumnId="Package\Sequence Container\DimCustomer\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[HaveGLN]"
-                          lineageId="Package\Sequence Container\DimCustomer\OLE DB Source.Outputs[OLE DB Source Output].Columns[HaveGLN]"
-                          name="HaveGLN"
-                          truncationRowDisposition="FailComponent" />
-                        <outputColumn
-                          refId="Package\Sequence Container\DimCustomer\OLE DB Source.Outputs[OLE DB Source Output].Columns[GLN]"
+                          refId="Package\Sequence Container\DimCustomer\Eltiam.Outputs[OLE DB Source Output].Columns[GLN]"
                           dataType="wstr"
                           errorOrTruncationOperation="Conversion"
                           errorRowDisposition="FailComponent"
-                          externalMetadataColumnId="Package\Sequence Container\DimCustomer\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[GLN]"
+                          externalMetadataColumnId="Package\Sequence Container\DimCustomer\Eltiam.Outputs[OLE DB Source Output].ExternalColumns[GLN]"
                           length="50"
-                          lineageId="Package\Sequence Container\DimCustomer\OLE DB Source.Outputs[OLE DB Source Output].Columns[GLN]"
+                          lineageId="Package\Sequence Container\DimCustomer\Eltiam.Outputs[OLE DB Source Output].Columns[GLN]"
                           name="GLN"
                           truncationRowDisposition="FailComponent" />
                         <outputColumn
-                          refId="Package\Sequence Container\DimCustomer\OLE DB Source.Outputs[OLE DB Source Output].Columns[HIX]"
-                          dataType="wstr"
-                          errorOrTruncationOperation="Conversion"
-                          errorRowDisposition="FailComponent"
-                          externalMetadataColumnId="Package\Sequence Container\DimCustomer\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[HIX]"
-                          length="50"
-                          lineageId="Package\Sequence Container\DimCustomer\OLE DB Source.Outputs[OLE DB Source Output].Columns[HIX]"
-                          name="HIX"
-                          truncationRowDisposition="FailComponent" />
-                        <outputColumn
-                          refId="Package\Sequence Container\DimCustomer\OLE DB Source.Outputs[OLE DB Source Output].Columns[company]"
+                          refId="Package\Sequence Container\DimCustomer\Eltiam.Outputs[OLE DB Source Output].Columns[company]"
                           dataType="i4"
                           errorOrTruncationOperation="Conversion"
                           errorRowDisposition="FailComponent"
-                          externalMetadataColumnId="Package\Sequence Container\DimCustomer\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[company]"
-                          lineageId="Package\Sequence Container\DimCustomer\OLE DB Source.Outputs[OLE DB Source Output].Columns[company]"
+                          externalMetadataColumnId="Package\Sequence Container\DimCustomer\Eltiam.Outputs[OLE DB Source Output].ExternalColumns[company]"
+                          lineageId="Package\Sequence Container\DimCustomer\Eltiam.Outputs[OLE DB Source Output].Columns[company]"
                           name="company"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Sequence Container\DimCustomer\Eltiam.Outputs[OLE DB Source Output].Columns[accountid]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Sequence Container\DimCustomer\Eltiam.Outputs[OLE DB Source Output].ExternalColumns[accountid]"
+                          lineageId="Package\Sequence Container\DimCustomer\Eltiam.Outputs[OLE DB Source Output].Columns[accountid]"
+                          name="accountid"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Sequence Container\DimCustomer\Eltiam.Outputs[OLE DB Source Output].Columns[IsDeactivated]"
+                          dataType="bool"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Sequence Container\DimCustomer\Eltiam.Outputs[OLE DB Source Output].ExternalColumns[IsDeactivated]"
+                          lineageId="Package\Sequence Container\DimCustomer\Eltiam.Outputs[OLE DB Source Output].Columns[IsDeactivated]"
+                          name="IsDeactivated"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Sequence Container\DimCustomer\Eltiam.Outputs[OLE DB Source Output].Columns[CityKey]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Sequence Container\DimCustomer\Eltiam.Outputs[OLE DB Source Output].ExternalColumns[CityKey]"
+                          lineageId="Package\Sequence Container\DimCustomer\Eltiam.Outputs[OLE DB Source Output].Columns[CityKey]"
+                          name="CityKey"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Sequence Container\DimCustomer\Eltiam.Outputs[OLE DB Source Output].Columns[RegulatoryAgencyKey]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Sequence Container\DimCustomer\Eltiam.Outputs[OLE DB Source Output].ExternalColumns[RegulatoryAgencyKey]"
+                          lineageId="Package\Sequence Container\DimCustomer\Eltiam.Outputs[OLE DB Source Output].Columns[RegulatoryAgencyKey]"
+                          name="RegulatoryAgencyKey"
                           truncationRowDisposition="FailComponent" />
                       </outputColumns>
                       <externalMetadataColumns
                         isUsed="True">
                         <externalMetadataColumn
-                          refId="Package\Sequence Container\DimCustomer\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[CustomerKey]"
+                          refId="Package\Sequence Container\DimCustomer\Eltiam.Outputs[OLE DB Source Output].ExternalColumns[CustomerKey]"
                           dataType="i4"
                           name="CustomerKey" />
                         <externalMetadataColumn
-                          refId="Package\Sequence Container\DimCustomer\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[CustomerCode]"
+                          refId="Package\Sequence Container\DimCustomer\Eltiam.Outputs[OLE DB Source Output].ExternalColumns[CustomerCode]"
                           dataType="i4"
                           name="CustomerCode" />
                         <externalMetadataColumn
-                          refId="Package\Sequence Container\DimCustomer\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[IsDeactivated]"
-                          dataType="bool"
-                          name="IsDeactivated" />
-                        <externalMetadataColumn
-                          refId="Package\Sequence Container\DimCustomer\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[status]"
+                          refId="Package\Sequence Container\DimCustomer\Eltiam.Outputs[OLE DB Source Output].ExternalColumns[status]"
                           dataType="bool"
                           name="status" />
                         <externalMetadataColumn
-                          refId="Package\Sequence Container\DimCustomer\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Customer]"
+                          refId="Package\Sequence Container\DimCustomer\Eltiam.Outputs[OLE DB Source Output].ExternalColumns[Customer]"
                           dataType="wstr"
                           length="255"
                           name="Customer" />
                         <externalMetadataColumn
-                          refId="Package\Sequence Container\DimCustomer\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[CenterKeyNow]"
+                          refId="Package\Sequence Container\DimCustomer\Eltiam.Outputs[OLE DB Source Output].ExternalColumns[CenterKeyNow]"
                           dataType="i4"
                           name="CenterKeyNow" />
                         <externalMetadataColumn
-                          refId="Package\Sequence Container\DimCustomer\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[CenterNow]"
+                          refId="Package\Sequence Container\DimCustomer\Eltiam.Outputs[OLE DB Source Output].ExternalColumns[CenterNow]"
                           dataType="wstr"
                           length="50"
                           name="CenterNow" />
                         <externalMetadataColumn
-                          refId="Package\Sequence Container\DimCustomer\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[CityKey]"
-                          dataType="i4"
-                          name="CityKey" />
-                        <externalMetadataColumn
-                          refId="Package\Sequence Container\DimCustomer\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[CustomerTypeKey]"
+                          refId="Package\Sequence Container\DimCustomer\Eltiam.Outputs[OLE DB Source Output].ExternalColumns[CustomerTypeKey]"
                           dataType="i4"
                           name="CustomerTypeKey" />
                         <externalMetadataColumn
-                          refId="Package\Sequence Container\DimCustomer\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[CustomerType]"
+                          refId="Package\Sequence Container\DimCustomer\Eltiam.Outputs[OLE DB Source Output].ExternalColumns[CustomerType]"
                           dataType="wstr"
                           length="50"
                           name="CustomerType" />
                         <externalMetadataColumn
-                          refId="Package\Sequence Container\DimCustomer\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[PharmacyType]"
+                          refId="Package\Sequence Container\DimCustomer\Eltiam.Outputs[OLE DB Source Output].ExternalColumns[PharmacyType]"
                           dataType="wstr"
                           length="50"
                           name="PharmacyType" />
                         <externalMetadataColumn
-                          refId="Package\Sequence Container\DimCustomer\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[OwnershipTypeKey]"
-                          dataType="ui1"
+                          refId="Package\Sequence Container\DimCustomer\Eltiam.Outputs[OLE DB Source Output].ExternalColumns[OwnershipTypeKey]"
+                          dataType="i4"
                           name="OwnershipTypeKey" />
                         <externalMetadataColumn
-                          refId="Package\Sequence Container\DimCustomer\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[OwnershipType]"
+                          refId="Package\Sequence Container\DimCustomer\Eltiam.Outputs[OLE DB Source Output].ExternalColumns[OwnershipType]"
                           dataType="wstr"
                           length="5"
                           name="OwnershipType" />
                         <externalMetadataColumn
-                          refId="Package\Sequence Container\DimCustomer\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[PaymentBehaviorKey]"
-                          dataType="ui1"
+                          refId="Package\Sequence Container\DimCustomer\Eltiam.Outputs[OLE DB Source Output].ExternalColumns[PaymentBehaviorKey]"
+                          dataType="bool"
                           name="PaymentBehaviorKey" />
                         <externalMetadataColumn
-                          refId="Package\Sequence Container\DimCustomer\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[PaymentBehavior]"
+                          refId="Package\Sequence Container\DimCustomer\Eltiam.Outputs[OLE DB Source Output].ExternalColumns[PaymentBehavior]"
                           dataType="wstr"
                           length="5"
                           name="PaymentBehavior" />
                         <externalMetadataColumn
-                          refId="Package\Sequence Container\DimCustomer\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[RegulatoryAgencyKey]"
-                          dataType="i4"
-                          name="RegulatoryAgencyKey" />
-                        <externalMetadataColumn
-                          refId="Package\Sequence Container\DimCustomer\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[kind]"
+                          refId="Package\Sequence Container\DimCustomer\Eltiam.Outputs[OLE DB Source Output].ExternalColumns[kind]"
                           dataType="wstr"
                           length="9"
                           name="kind" />
                         <externalMetadataColumn
-                          refId="Package\Sequence Container\DimCustomer\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[RegulatoryAgency]"
+                          refId="Package\Sequence Container\DimCustomer\Eltiam.Outputs[OLE DB Source Output].ExternalColumns[RegulatoryAgency]"
                           dataType="wstr"
                           length="50"
                           name="RegulatoryAgency" />
                         <externalMetadataColumn
-                          refId="Package\Sequence Container\DimCustomer\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[CustomerAddressNow]"
+                          refId="Package\Sequence Container\DimCustomer\Eltiam.Outputs[OLE DB Source Output].ExternalColumns[CustomerAddressNow]"
                           dataType="wstr"
                           length="1024"
                           name="CustomerAddressNow" />
                         <externalMetadataColumn
-                          refId="Package\Sequence Container\DimCustomer\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[DefaultSalesmanKey]"
+                          refId="Package\Sequence Container\DimCustomer\Eltiam.Outputs[OLE DB Source Output].ExternalColumns[DefaultSalesmanKey]"
                           dataType="i4"
                           name="DefaultSalesmanKey" />
                         <externalMetadataColumn
-                          refId="Package\Sequence Container\DimCustomer\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[DefaultSalesman]"
+                          refId="Package\Sequence Container\DimCustomer\Eltiam.Outputs[OLE DB Source Output].ExternalColumns[DefaultSalesman]"
                           dataType="wstr"
                           length="255"
                           name="DefaultSalesman" />
                         <externalMetadataColumn
-                          refId="Package\Sequence Container\DimCustomer\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[SalesRouteKeyNow]"
+                          refId="Package\Sequence Container\DimCustomer\Eltiam.Outputs[OLE DB Source Output].ExternalColumns[SalesRouteKeyNow]"
                           dataType="i4"
                           name="SalesRouteKeyNow" />
                         <externalMetadataColumn
-                          refId="Package\Sequence Container\DimCustomer\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[SalesRouteNow]"
+                          refId="Package\Sequence Container\DimCustomer\Eltiam.Outputs[OLE DB Source Output].ExternalColumns[SalesRouteNow]"
                           dataType="wstr"
                           length="255"
                           name="SalesRouteNow" />
                         <externalMetadataColumn
-                          refId="Package\Sequence Container\DimCustomer\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[CustomerStatus]"
+                          refId="Package\Sequence Container\DimCustomer\Eltiam.Outputs[OLE DB Source Output].ExternalColumns[CustomerStatus]"
                           dataType="wstr"
                           length="7"
                           name="CustomerStatus" />
                         <externalMetadataColumn
-                          refId="Package\Sequence Container\DimCustomer\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[CreatedDateKey]"
+                          refId="Package\Sequence Container\DimCustomer\Eltiam.Outputs[OLE DB Source Output].ExternalColumns[CreatedDateKey]"
                           dataType="i4"
                           name="CreatedDateKey" />
                         <externalMetadataColumn
-                          refId="Package\Sequence Container\DimCustomer\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Latitude]"
+                          refId="Package\Sequence Container\DimCustomer\Eltiam.Outputs[OLE DB Source Output].ExternalColumns[Latitude]"
                           dataType="r8"
                           name="Latitude" />
                         <externalMetadataColumn
-                          refId="Package\Sequence Container\DimCustomer\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Longitude]"
+                          refId="Package\Sequence Container\DimCustomer\Eltiam.Outputs[OLE DB Source Output].ExternalColumns[Longitude]"
                           dataType="r8"
                           name="Longitude" />
                         <externalMetadataColumn
-                          refId="Package\Sequence Container\DimCustomer\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[HaveGLN]"
-                          dataType="bool"
-                          name="HaveGLN" />
-                        <externalMetadataColumn
-                          refId="Package\Sequence Container\DimCustomer\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[GLN]"
+                          refId="Package\Sequence Container\DimCustomer\Eltiam.Outputs[OLE DB Source Output].ExternalColumns[GLN]"
                           dataType="wstr"
                           length="50"
                           name="GLN" />
                         <externalMetadataColumn
-                          refId="Package\Sequence Container\DimCustomer\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[HIX]"
-                          dataType="wstr"
-                          length="50"
-                          name="HIX" />
-                        <externalMetadataColumn
-                          refId="Package\Sequence Container\DimCustomer\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[company]"
+                          refId="Package\Sequence Container\DimCustomer\Eltiam.Outputs[OLE DB Source Output].ExternalColumns[company]"
                           dataType="i4"
                           name="company" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\DimCustomer\Eltiam.Outputs[OLE DB Source Output].ExternalColumns[accountid]"
+                          dataType="i4"
+                          name="accountid" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\DimCustomer\Eltiam.Outputs[OLE DB Source Output].ExternalColumns[IsDeactivated]"
+                          dataType="bool"
+                          name="IsDeactivated" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\DimCustomer\Eltiam.Outputs[OLE DB Source Output].ExternalColumns[CityKey]"
+                          dataType="i4"
+                          name="CityKey" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\DimCustomer\Eltiam.Outputs[OLE DB Source Output].ExternalColumns[RegulatoryAgencyKey]"
+                          dataType="i4"
+                          name="RegulatoryAgencyKey" />
                       </externalMetadataColumns>
                     </output>
                     <output
-                      refId="Package\Sequence Container\DimCustomer\OLE DB Source.Outputs[OLE DB Source Error Output]"
+                      refId="Package\Sequence Container\DimCustomer\Eltiam.Outputs[OLE DB Source Error Output]"
                       isErrorOut="true"
                       name="OLE DB Source Error Output">
                       <outputColumns>
                         <outputColumn
-                          refId="Package\Sequence Container\DimCustomer\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[CustomerKey]"
+                          refId="Package\Sequence Container\DimCustomer\Eltiam.Outputs[OLE DB Source Error Output].Columns[CustomerKey]"
                           dataType="i4"
-                          lineageId="Package\Sequence Container\DimCustomer\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[CustomerKey]"
+                          lineageId="Package\Sequence Container\DimCustomer\Eltiam.Outputs[OLE DB Source Error Output].Columns[CustomerKey]"
                           name="CustomerKey" />
                         <outputColumn
-                          refId="Package\Sequence Container\DimCustomer\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[CustomerCode]"
+                          refId="Package\Sequence Container\DimCustomer\Eltiam.Outputs[OLE DB Source Error Output].Columns[CustomerCode]"
                           dataType="i4"
-                          lineageId="Package\Sequence Container\DimCustomer\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[CustomerCode]"
+                          lineageId="Package\Sequence Container\DimCustomer\Eltiam.Outputs[OLE DB Source Error Output].Columns[CustomerCode]"
                           name="CustomerCode" />
                         <outputColumn
-                          refId="Package\Sequence Container\DimCustomer\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[IsDeactivated]"
-                          dataType="bool"
-                          lineageId="Package\Sequence Container\DimCustomer\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[IsDeactivated]"
-                          name="IsDeactivated" />
+                          refId="Package\Sequence Container\DimCustomer\Eltiam.Outputs[OLE DB Source Error Output].Columns[accountid]"
+                          dataType="i4"
+                          lineageId="Package\Sequence Container\DimCustomer\Eltiam.Outputs[OLE DB Source Error Output].Columns[accountid]"
+                          name="accountid" />
                         <outputColumn
-                          refId="Package\Sequence Container\DimCustomer\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[status]"
+                          refId="Package\Sequence Container\DimCustomer\Eltiam.Outputs[OLE DB Source Error Output].Columns[status]"
                           dataType="bool"
-                          lineageId="Package\Sequence Container\DimCustomer\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[status]"
+                          lineageId="Package\Sequence Container\DimCustomer\Eltiam.Outputs[OLE DB Source Error Output].Columns[status]"
                           name="status" />
                         <outputColumn
-                          refId="Package\Sequence Container\DimCustomer\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Customer]"
+                          refId="Package\Sequence Container\DimCustomer\Eltiam.Outputs[OLE DB Source Error Output].Columns[Customer]"
                           dataType="wstr"
                           length="255"
-                          lineageId="Package\Sequence Container\DimCustomer\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Customer]"
+                          lineageId="Package\Sequence Container\DimCustomer\Eltiam.Outputs[OLE DB Source Error Output].Columns[Customer]"
                           name="Customer" />
                         <outputColumn
-                          refId="Package\Sequence Container\DimCustomer\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[CenterKeyNow]"
+                          refId="Package\Sequence Container\DimCustomer\Eltiam.Outputs[OLE DB Source Error Output].Columns[IsDeactivated]"
+                          dataType="bool"
+                          lineageId="Package\Sequence Container\DimCustomer\Eltiam.Outputs[OLE DB Source Error Output].Columns[IsDeactivated]"
+                          name="IsDeactivated" />
+                        <outputColumn
+                          refId="Package\Sequence Container\DimCustomer\Eltiam.Outputs[OLE DB Source Error Output].Columns[CenterKeyNow]"
                           dataType="i4"
-                          lineageId="Package\Sequence Container\DimCustomer\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[CenterKeyNow]"
+                          lineageId="Package\Sequence Container\DimCustomer\Eltiam.Outputs[OLE DB Source Error Output].Columns[CenterKeyNow]"
                           name="CenterKeyNow" />
                         <outputColumn
-                          refId="Package\Sequence Container\DimCustomer\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[CenterNow]"
+                          refId="Package\Sequence Container\DimCustomer\Eltiam.Outputs[OLE DB Source Error Output].Columns[CenterNow]"
                           dataType="wstr"
                           length="50"
-                          lineageId="Package\Sequence Container\DimCustomer\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[CenterNow]"
+                          lineageId="Package\Sequence Container\DimCustomer\Eltiam.Outputs[OLE DB Source Error Output].Columns[CenterNow]"
                           name="CenterNow" />
                         <outputColumn
-                          refId="Package\Sequence Container\DimCustomer\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[CityKey]"
+                          refId="Package\Sequence Container\DimCustomer\Eltiam.Outputs[OLE DB Source Error Output].Columns[CityKey]"
                           dataType="i4"
-                          lineageId="Package\Sequence Container\DimCustomer\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[CityKey]"
+                          lineageId="Package\Sequence Container\DimCustomer\Eltiam.Outputs[OLE DB Source Error Output].Columns[CityKey]"
                           name="CityKey" />
                         <outputColumn
-                          refId="Package\Sequence Container\DimCustomer\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[CustomerTypeKey]"
+                          refId="Package\Sequence Container\DimCustomer\Eltiam.Outputs[OLE DB Source Error Output].Columns[CustomerTypeKey]"
                           dataType="i4"
-                          lineageId="Package\Sequence Container\DimCustomer\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[CustomerTypeKey]"
+                          lineageId="Package\Sequence Container\DimCustomer\Eltiam.Outputs[OLE DB Source Error Output].Columns[CustomerTypeKey]"
                           name="CustomerTypeKey" />
                         <outputColumn
-                          refId="Package\Sequence Container\DimCustomer\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[CustomerType]"
+                          refId="Package\Sequence Container\DimCustomer\Eltiam.Outputs[OLE DB Source Error Output].Columns[CustomerType]"
                           dataType="wstr"
                           length="50"
-                          lineageId="Package\Sequence Container\DimCustomer\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[CustomerType]"
+                          lineageId="Package\Sequence Container\DimCustomer\Eltiam.Outputs[OLE DB Source Error Output].Columns[CustomerType]"
                           name="CustomerType" />
                         <outputColumn
-                          refId="Package\Sequence Container\DimCustomer\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[PharmacyType]"
+                          refId="Package\Sequence Container\DimCustomer\Eltiam.Outputs[OLE DB Source Error Output].Columns[PharmacyType]"
                           dataType="wstr"
                           length="50"
-                          lineageId="Package\Sequence Container\DimCustomer\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[PharmacyType]"
+                          lineageId="Package\Sequence Container\DimCustomer\Eltiam.Outputs[OLE DB Source Error Output].Columns[PharmacyType]"
                           name="PharmacyType" />
                         <outputColumn
-                          refId="Package\Sequence Container\DimCustomer\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[OwnershipTypeKey]"
-                          dataType="ui1"
-                          lineageId="Package\Sequence Container\DimCustomer\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[OwnershipTypeKey]"
+                          refId="Package\Sequence Container\DimCustomer\Eltiam.Outputs[OLE DB Source Error Output].Columns[OwnershipTypeKey]"
+                          dataType="i4"
+                          lineageId="Package\Sequence Container\DimCustomer\Eltiam.Outputs[OLE DB Source Error Output].Columns[OwnershipTypeKey]"
                           name="OwnershipTypeKey" />
                         <outputColumn
-                          refId="Package\Sequence Container\DimCustomer\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[OwnershipType]"
+                          refId="Package\Sequence Container\DimCustomer\Eltiam.Outputs[OLE DB Source Error Output].Columns[OwnershipType]"
                           dataType="wstr"
                           length="5"
-                          lineageId="Package\Sequence Container\DimCustomer\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[OwnershipType]"
+                          lineageId="Package\Sequence Container\DimCustomer\Eltiam.Outputs[OLE DB Source Error Output].Columns[OwnershipType]"
                           name="OwnershipType" />
                         <outputColumn
-                          refId="Package\Sequence Container\DimCustomer\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[PaymentBehaviorKey]"
-                          dataType="ui1"
-                          lineageId="Package\Sequence Container\DimCustomer\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[PaymentBehaviorKey]"
+                          refId="Package\Sequence Container\DimCustomer\Eltiam.Outputs[OLE DB Source Error Output].Columns[PaymentBehaviorKey]"
+                          dataType="bool"
+                          lineageId="Package\Sequence Container\DimCustomer\Eltiam.Outputs[OLE DB Source Error Output].Columns[PaymentBehaviorKey]"
                           name="PaymentBehaviorKey" />
                         <outputColumn
-                          refId="Package\Sequence Container\DimCustomer\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[PaymentBehavior]"
+                          refId="Package\Sequence Container\DimCustomer\Eltiam.Outputs[OLE DB Source Error Output].Columns[PaymentBehavior]"
                           dataType="wstr"
                           length="5"
-                          lineageId="Package\Sequence Container\DimCustomer\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[PaymentBehavior]"
+                          lineageId="Package\Sequence Container\DimCustomer\Eltiam.Outputs[OLE DB Source Error Output].Columns[PaymentBehavior]"
                           name="PaymentBehavior" />
                         <outputColumn
-                          refId="Package\Sequence Container\DimCustomer\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[RegulatoryAgencyKey]"
+                          refId="Package\Sequence Container\DimCustomer\Eltiam.Outputs[OLE DB Source Error Output].Columns[RegulatoryAgencyKey]"
                           dataType="i4"
-                          lineageId="Package\Sequence Container\DimCustomer\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[RegulatoryAgencyKey]"
+                          lineageId="Package\Sequence Container\DimCustomer\Eltiam.Outputs[OLE DB Source Error Output].Columns[RegulatoryAgencyKey]"
                           name="RegulatoryAgencyKey" />
                         <outputColumn
-                          refId="Package\Sequence Container\DimCustomer\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[kind]"
+                          refId="Package\Sequence Container\DimCustomer\Eltiam.Outputs[OLE DB Source Error Output].Columns[kind]"
                           dataType="wstr"
                           length="9"
-                          lineageId="Package\Sequence Container\DimCustomer\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[kind]"
+                          lineageId="Package\Sequence Container\DimCustomer\Eltiam.Outputs[OLE DB Source Error Output].Columns[kind]"
                           name="kind" />
                         <outputColumn
-                          refId="Package\Sequence Container\DimCustomer\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[RegulatoryAgency]"
+                          refId="Package\Sequence Container\DimCustomer\Eltiam.Outputs[OLE DB Source Error Output].Columns[RegulatoryAgency]"
                           dataType="wstr"
                           length="50"
-                          lineageId="Package\Sequence Container\DimCustomer\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[RegulatoryAgency]"
+                          lineageId="Package\Sequence Container\DimCustomer\Eltiam.Outputs[OLE DB Source Error Output].Columns[RegulatoryAgency]"
                           name="RegulatoryAgency" />
                         <outputColumn
-                          refId="Package\Sequence Container\DimCustomer\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[CustomerAddressNow]"
+                          refId="Package\Sequence Container\DimCustomer\Eltiam.Outputs[OLE DB Source Error Output].Columns[CustomerAddressNow]"
                           dataType="wstr"
                           length="1024"
-                          lineageId="Package\Sequence Container\DimCustomer\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[CustomerAddressNow]"
+                          lineageId="Package\Sequence Container\DimCustomer\Eltiam.Outputs[OLE DB Source Error Output].Columns[CustomerAddressNow]"
                           name="CustomerAddressNow" />
                         <outputColumn
-                          refId="Package\Sequence Container\DimCustomer\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[DefaultSalesmanKey]"
+                          refId="Package\Sequence Container\DimCustomer\Eltiam.Outputs[OLE DB Source Error Output].Columns[DefaultSalesmanKey]"
                           dataType="i4"
-                          lineageId="Package\Sequence Container\DimCustomer\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[DefaultSalesmanKey]"
+                          lineageId="Package\Sequence Container\DimCustomer\Eltiam.Outputs[OLE DB Source Error Output].Columns[DefaultSalesmanKey]"
                           name="DefaultSalesmanKey" />
                         <outputColumn
-                          refId="Package\Sequence Container\DimCustomer\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[DefaultSalesman]"
+                          refId="Package\Sequence Container\DimCustomer\Eltiam.Outputs[OLE DB Source Error Output].Columns[DefaultSalesman]"
                           dataType="wstr"
                           length="255"
-                          lineageId="Package\Sequence Container\DimCustomer\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[DefaultSalesman]"
+                          lineageId="Package\Sequence Container\DimCustomer\Eltiam.Outputs[OLE DB Source Error Output].Columns[DefaultSalesman]"
                           name="DefaultSalesman" />
                         <outputColumn
-                          refId="Package\Sequence Container\DimCustomer\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[SalesRouteKeyNow]"
+                          refId="Package\Sequence Container\DimCustomer\Eltiam.Outputs[OLE DB Source Error Output].Columns[SalesRouteKeyNow]"
                           dataType="i4"
-                          lineageId="Package\Sequence Container\DimCustomer\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[SalesRouteKeyNow]"
+                          lineageId="Package\Sequence Container\DimCustomer\Eltiam.Outputs[OLE DB Source Error Output].Columns[SalesRouteKeyNow]"
                           name="SalesRouteKeyNow" />
                         <outputColumn
-                          refId="Package\Sequence Container\DimCustomer\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[SalesRouteNow]"
+                          refId="Package\Sequence Container\DimCustomer\Eltiam.Outputs[OLE DB Source Error Output].Columns[SalesRouteNow]"
                           dataType="wstr"
                           length="255"
-                          lineageId="Package\Sequence Container\DimCustomer\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[SalesRouteNow]"
+                          lineageId="Package\Sequence Container\DimCustomer\Eltiam.Outputs[OLE DB Source Error Output].Columns[SalesRouteNow]"
                           name="SalesRouteNow" />
                         <outputColumn
-                          refId="Package\Sequence Container\DimCustomer\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[CustomerStatus]"
+                          refId="Package\Sequence Container\DimCustomer\Eltiam.Outputs[OLE DB Source Error Output].Columns[CustomerStatus]"
                           dataType="wstr"
                           length="7"
-                          lineageId="Package\Sequence Container\DimCustomer\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[CustomerStatus]"
+                          lineageId="Package\Sequence Container\DimCustomer\Eltiam.Outputs[OLE DB Source Error Output].Columns[CustomerStatus]"
                           name="CustomerStatus" />
                         <outputColumn
-                          refId="Package\Sequence Container\DimCustomer\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[CreatedDateKey]"
+                          refId="Package\Sequence Container\DimCustomer\Eltiam.Outputs[OLE DB Source Error Output].Columns[CreatedDateKey]"
                           dataType="i4"
-                          lineageId="Package\Sequence Container\DimCustomer\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[CreatedDateKey]"
+                          lineageId="Package\Sequence Container\DimCustomer\Eltiam.Outputs[OLE DB Source Error Output].Columns[CreatedDateKey]"
                           name="CreatedDateKey" />
                         <outputColumn
-                          refId="Package\Sequence Container\DimCustomer\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Latitude]"
+                          refId="Package\Sequence Container\DimCustomer\Eltiam.Outputs[OLE DB Source Error Output].Columns[Latitude]"
                           dataType="r8"
-                          lineageId="Package\Sequence Container\DimCustomer\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Latitude]"
+                          lineageId="Package\Sequence Container\DimCustomer\Eltiam.Outputs[OLE DB Source Error Output].Columns[Latitude]"
                           name="Latitude" />
                         <outputColumn
-                          refId="Package\Sequence Container\DimCustomer\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Longitude]"
+                          refId="Package\Sequence Container\DimCustomer\Eltiam.Outputs[OLE DB Source Error Output].Columns[Longitude]"
                           dataType="r8"
-                          lineageId="Package\Sequence Container\DimCustomer\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Longitude]"
+                          lineageId="Package\Sequence Container\DimCustomer\Eltiam.Outputs[OLE DB Source Error Output].Columns[Longitude]"
                           name="Longitude" />
                         <outputColumn
-                          refId="Package\Sequence Container\DimCustomer\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[HaveGLN]"
-                          dataType="bool"
-                          lineageId="Package\Sequence Container\DimCustomer\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[HaveGLN]"
-                          name="HaveGLN" />
-                        <outputColumn
-                          refId="Package\Sequence Container\DimCustomer\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[GLN]"
+                          refId="Package\Sequence Container\DimCustomer\Eltiam.Outputs[OLE DB Source Error Output].Columns[GLN]"
                           dataType="wstr"
                           length="50"
-                          lineageId="Package\Sequence Container\DimCustomer\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[GLN]"
+                          lineageId="Package\Sequence Container\DimCustomer\Eltiam.Outputs[OLE DB Source Error Output].Columns[GLN]"
                           name="GLN" />
                         <outputColumn
-                          refId="Package\Sequence Container\DimCustomer\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[HIX]"
-                          dataType="wstr"
-                          length="50"
-                          lineageId="Package\Sequence Container\DimCustomer\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[HIX]"
-                          name="HIX" />
-                        <outputColumn
-                          refId="Package\Sequence Container\DimCustomer\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[company]"
+                          refId="Package\Sequence Container\DimCustomer\Eltiam.Outputs[OLE DB Source Error Output].Columns[company]"
                           dataType="i4"
-                          lineageId="Package\Sequence Container\DimCustomer\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[company]"
+                          lineageId="Package\Sequence Container\DimCustomer\Eltiam.Outputs[OLE DB Source Error Output].Columns[company]"
                           name="company" />
                         <outputColumn
-                          refId="Package\Sequence Container\DimCustomer\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                          refId="Package\Sequence Container\DimCustomer\Eltiam.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
                           dataType="i4"
-                          lineageId="Package\Sequence Container\DimCustomer\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                          lineageId="Package\Sequence Container\DimCustomer\Eltiam.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
                           name="ErrorCode"
                           specialFlags="1" />
                         <outputColumn
-                          refId="Package\Sequence Container\DimCustomer\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                          refId="Package\Sequence Container\DimCustomer\Eltiam.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
                           dataType="i4"
-                          lineageId="Package\Sequence Container\DimCustomer\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                          lineageId="Package\Sequence Container\DimCustomer\Eltiam.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Sequence Container\DimCustomer\OLE DB Destination"
+                  componentClassID="Microsoft.OLEDBDestination"
+                  contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+                  description="OLE DB Destination"
+                  name="OLE DB Destination"
+                  usesDispositions="true"
+                  version="4">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of the database object used to open a rowset."
+                      name="OpenRowset">[dbo].[dimcustomer]</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable that contains the name of the database object used to open a rowset."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Forces the use of the DefaultCodePage property value when describing character data."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the mode used to access the database."
+                      name="AccessMode"
+                      typeConverter="AccessMode">3</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepIdentity">false</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepNulls">false</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                      name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                      name="FastLoadMaxInsertCommitSize">2147483647</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Sequence Container\DimCustomer\OLE DB Destination.Connections[OleDbConnection]"
+                      connectionManagerID="Package.ConnectionManagers[192.168.10.10.DW]"
+                      connectionManagerRefId="Package.ConnectionManagers[192.168.10.10.DW]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <inputs>
+                    <input
+                      refId="Package\Sequence Container\DimCustomer\OLE DB Destination.Inputs[OLE DB Destination Input]"
+                      errorOrTruncationOperation="Insert"
+                      errorRowDisposition="FailComponent"
+                      hasSideEffects="true"
+                      name="OLE DB Destination Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\Sequence Container\DimCustomer\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[CustomerKey]"
+                          cachedDataType="i4"
+                          cachedName="CustomerKey"
+                          externalMetadataColumnId="Package\Sequence Container\DimCustomer\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[CustomerKey]"
+                          lineageId="Package\Sequence Container\DimCustomer\Eltiam.Outputs[OLE DB Source Output].Columns[CustomerKey]" />
+                        <inputColumn
+                          refId="Package\Sequence Container\DimCustomer\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[CustomerCode]"
+                          cachedDataType="i4"
+                          cachedName="CustomerCode"
+                          externalMetadataColumnId="Package\Sequence Container\DimCustomer\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[CustomerCode]"
+                          lineageId="Package\Sequence Container\DimCustomer\Eltiam.Outputs[OLE DB Source Output].Columns[CustomerCode]" />
+                        <inputColumn
+                          refId="Package\Sequence Container\DimCustomer\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[status]"
+                          cachedDataType="bool"
+                          cachedName="status"
+                          externalMetadataColumnId="Package\Sequence Container\DimCustomer\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[status]"
+                          lineageId="Package\Sequence Container\DimCustomer\Eltiam.Outputs[OLE DB Source Output].Columns[status]" />
+                        <inputColumn
+                          refId="Package\Sequence Container\DimCustomer\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Customer]"
+                          cachedDataType="wstr"
+                          cachedLength="255"
+                          cachedName="Customer"
+                          externalMetadataColumnId="Package\Sequence Container\DimCustomer\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Customer]"
+                          lineageId="Package\Sequence Container\DimCustomer\Eltiam.Outputs[OLE DB Source Output].Columns[Customer]" />
+                        <inputColumn
+                          refId="Package\Sequence Container\DimCustomer\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[CenterKeyNow]"
+                          cachedDataType="i4"
+                          cachedName="CenterKeyNow"
+                          externalMetadataColumnId="Package\Sequence Container\DimCustomer\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[CenterKeyNow]"
+                          lineageId="Package\Sequence Container\DimCustomer\Eltiam.Outputs[OLE DB Source Output].Columns[CenterKeyNow]" />
+                        <inputColumn
+                          refId="Package\Sequence Container\DimCustomer\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[CenterNow]"
+                          cachedDataType="wstr"
+                          cachedLength="50"
+                          cachedName="CenterNow"
+                          externalMetadataColumnId="Package\Sequence Container\DimCustomer\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[CenterNow]"
+                          lineageId="Package\Sequence Container\DimCustomer\Eltiam.Outputs[OLE DB Source Output].Columns[CenterNow]" />
+                        <inputColumn
+                          refId="Package\Sequence Container\DimCustomer\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[CustomerTypeKey]"
+                          cachedDataType="i4"
+                          cachedName="CustomerTypeKey"
+                          externalMetadataColumnId="Package\Sequence Container\DimCustomer\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[CustomerTypeKey]"
+                          lineageId="Package\Sequence Container\DimCustomer\Eltiam.Outputs[OLE DB Source Output].Columns[CustomerTypeKey]" />
+                        <inputColumn
+                          refId="Package\Sequence Container\DimCustomer\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[CustomerType]"
+                          cachedDataType="wstr"
+                          cachedLength="50"
+                          cachedName="CustomerType"
+                          externalMetadataColumnId="Package\Sequence Container\DimCustomer\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[CustomerType]"
+                          lineageId="Package\Sequence Container\DimCustomer\Eltiam.Outputs[OLE DB Source Output].Columns[CustomerType]" />
+                        <inputColumn
+                          refId="Package\Sequence Container\DimCustomer\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[PharmacyType]"
+                          cachedDataType="wstr"
+                          cachedLength="50"
+                          cachedName="PharmacyType"
+                          externalMetadataColumnId="Package\Sequence Container\DimCustomer\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[PharmacyType]"
+                          lineageId="Package\Sequence Container\DimCustomer\Eltiam.Outputs[OLE DB Source Output].Columns[PharmacyType]" />
+                        <inputColumn
+                          refId="Package\Sequence Container\DimCustomer\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[OwnershipTypeKey]"
+                          cachedDataType="ui1"
+                          cachedName="OwnershipTypeKey"
+                          externalMetadataColumnId="Package\Sequence Container\DimCustomer\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[OwnershipTypeKey]"
+                          lineageId="Package\Sequence Container\DimCustomer\Eltiam.Outputs[OLE DB Source Output].Columns[OwnershipTypeKey]" />
+                        <inputColumn
+                          refId="Package\Sequence Container\DimCustomer\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[OwnershipType]"
+                          cachedDataType="wstr"
+                          cachedLength="5"
+                          cachedName="OwnershipType"
+                          externalMetadataColumnId="Package\Sequence Container\DimCustomer\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[OwnershipType]"
+                          lineageId="Package\Sequence Container\DimCustomer\Eltiam.Outputs[OLE DB Source Output].Columns[OwnershipType]" />
+                        <inputColumn
+                          refId="Package\Sequence Container\DimCustomer\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[PaymentBehaviorKey]"
+                          cachedDataType="ui1"
+                          cachedName="PaymentBehaviorKey"
+                          externalMetadataColumnId="Package\Sequence Container\DimCustomer\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[PaymentBehaviorKey]"
+                          lineageId="Package\Sequence Container\DimCustomer\Eltiam.Outputs[OLE DB Source Output].Columns[PaymentBehaviorKey]" />
+                        <inputColumn
+                          refId="Package\Sequence Container\DimCustomer\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[PaymentBehavior]"
+                          cachedDataType="wstr"
+                          cachedLength="5"
+                          cachedName="PaymentBehavior"
+                          externalMetadataColumnId="Package\Sequence Container\DimCustomer\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[PaymentBehavior]"
+                          lineageId="Package\Sequence Container\DimCustomer\Eltiam.Outputs[OLE DB Source Output].Columns[PaymentBehavior]" />
+                        <inputColumn
+                          refId="Package\Sequence Container\DimCustomer\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[RegulatoryAgency]"
+                          cachedDataType="wstr"
+                          cachedLength="50"
+                          cachedName="RegulatoryAgency"
+                          externalMetadataColumnId="Package\Sequence Container\DimCustomer\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[RegulatoryAgency]"
+                          lineageId="Package\Sequence Container\DimCustomer\Eltiam.Outputs[OLE DB Source Output].Columns[RegulatoryAgency]" />
+                        <inputColumn
+                          refId="Package\Sequence Container\DimCustomer\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[CustomerAddressNow]"
+                          cachedDataType="wstr"
+                          cachedLength="1024"
+                          cachedName="CustomerAddressNow"
+                          externalMetadataColumnId="Package\Sequence Container\DimCustomer\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[CustomerAddressNow]"
+                          lineageId="Package\Sequence Container\DimCustomer\Eltiam.Outputs[OLE DB Source Output].Columns[CustomerAddressNow]" />
+                        <inputColumn
+                          refId="Package\Sequence Container\DimCustomer\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[DefaultSalesmanKey]"
+                          cachedDataType="i4"
+                          cachedName="DefaultSalesmanKey"
+                          externalMetadataColumnId="Package\Sequence Container\DimCustomer\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[DefaultSalesmanKey]"
+                          lineageId="Package\Sequence Container\DimCustomer\Eltiam.Outputs[OLE DB Source Output].Columns[DefaultSalesmanKey]" />
+                        <inputColumn
+                          refId="Package\Sequence Container\DimCustomer\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[DefaultSalesman]"
+                          cachedDataType="wstr"
+                          cachedLength="255"
+                          cachedName="DefaultSalesman"
+                          externalMetadataColumnId="Package\Sequence Container\DimCustomer\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[DefaultSalesman]"
+                          lineageId="Package\Sequence Container\DimCustomer\Eltiam.Outputs[OLE DB Source Output].Columns[DefaultSalesman]" />
+                        <inputColumn
+                          refId="Package\Sequence Container\DimCustomer\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[SalesRouteKeyNow]"
+                          cachedDataType="i4"
+                          cachedName="SalesRouteKeyNow"
+                          externalMetadataColumnId="Package\Sequence Container\DimCustomer\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[SalesRouteKeyNow]"
+                          lineageId="Package\Sequence Container\DimCustomer\Eltiam.Outputs[OLE DB Source Output].Columns[SalesRouteKeyNow]" />
+                        <inputColumn
+                          refId="Package\Sequence Container\DimCustomer\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[SalesRouteNow]"
+                          cachedDataType="wstr"
+                          cachedLength="255"
+                          cachedName="SalesRouteNow"
+                          externalMetadataColumnId="Package\Sequence Container\DimCustomer\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[SalesRouteNow]"
+                          lineageId="Package\Sequence Container\DimCustomer\Eltiam.Outputs[OLE DB Source Output].Columns[SalesRouteNow]" />
+                        <inputColumn
+                          refId="Package\Sequence Container\DimCustomer\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[CreatedDateKey]"
+                          cachedDataType="i4"
+                          cachedName="CreatedDateKey"
+                          externalMetadataColumnId="Package\Sequence Container\DimCustomer\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[CreatedDateKey]"
+                          lineageId="Package\Sequence Container\DimCustomer\Eltiam.Outputs[OLE DB Source Output].Columns[CreatedDateKey]" />
+                        <inputColumn
+                          refId="Package\Sequence Container\DimCustomer\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Latitude]"
+                          cachedDataType="r8"
+                          cachedName="Latitude"
+                          externalMetadataColumnId="Package\Sequence Container\DimCustomer\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Latitude]"
+                          lineageId="Package\Sequence Container\DimCustomer\Eltiam.Outputs[OLE DB Source Output].Columns[Latitude]" />
+                        <inputColumn
+                          refId="Package\Sequence Container\DimCustomer\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Longitude]"
+                          cachedDataType="r8"
+                          cachedName="Longitude"
+                          externalMetadataColumnId="Package\Sequence Container\DimCustomer\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Longitude]"
+                          lineageId="Package\Sequence Container\DimCustomer\Eltiam.Outputs[OLE DB Source Output].Columns[Longitude]" />
+                        <inputColumn
+                          refId="Package\Sequence Container\DimCustomer\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[company]"
+                          cachedDataType="i4"
+                          cachedName="company"
+                          externalMetadataColumnId="Package\Sequence Container\DimCustomer\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[company]"
+                          lineageId="Package\Sequence Container\DimCustomer\Eltiam.Outputs[OLE DB Source Output].Columns[company]" />
+                        <inputColumn
+                          refId="Package\Sequence Container\DimCustomer\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[GLN]"
+                          cachedDataType="wstr"
+                          cachedLength="50"
+                          cachedName="GLN"
+                          externalMetadataColumnId="Package\Sequence Container\DimCustomer\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[GLN]"
+                          lineageId="Package\Sequence Container\DimCustomer\Eltiam.Outputs[OLE DB Source Output].Columns[GLN]" />
+                        <inputColumn
+                          refId="Package\Sequence Container\DimCustomer\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[CustomerStatus]"
+                          cachedDataType="wstr"
+                          cachedLength="7"
+                          cachedName="CustomerStatus"
+                          externalMetadataColumnId="Package\Sequence Container\DimCustomer\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[CustomerStatus]"
+                          lineageId="Package\Sequence Container\DimCustomer\Eltiam.Outputs[OLE DB Source Output].Columns[CustomerStatus]" />
+                        <inputColumn
+                          refId="Package\Sequence Container\DimCustomer\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[kind]"
+                          cachedDataType="wstr"
+                          cachedLength="9"
+                          cachedName="kind"
+                          externalMetadataColumnId="Package\Sequence Container\DimCustomer\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[kind]"
+                          lineageId="Package\Sequence Container\DimCustomer\Eltiam.Outputs[OLE DB Source Output].Columns[kind]" />
+                        <inputColumn
+                          refId="Package\Sequence Container\DimCustomer\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[accountid]"
+                          cachedDataType="i4"
+                          cachedName="accountid"
+                          externalMetadataColumnId="Package\Sequence Container\DimCustomer\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[accountid]"
+                          lineageId="Package\Sequence Container\DimCustomer\Eltiam.Outputs[OLE DB Source Output].Columns[accountid]" />
+                        <inputColumn
+                          refId="Package\Sequence Container\DimCustomer\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[IsDeactivated]"
+                          cachedDataType="bool"
+                          cachedName="IsDeactivated"
+                          externalMetadataColumnId="Package\Sequence Container\DimCustomer\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[IsDeactivated]"
+                          lineageId="Package\Sequence Container\DimCustomer\Eltiam.Outputs[OLE DB Source Output].Columns[IsDeactivated]" />
+                        <inputColumn
+                          refId="Package\Sequence Container\DimCustomer\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[CityKey]"
+                          cachedDataType="i4"
+                          cachedName="CityKey"
+                          externalMetadataColumnId="Package\Sequence Container\DimCustomer\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[CityKey]"
+                          lineageId="Package\Sequence Container\DimCustomer\Eltiam.Outputs[OLE DB Source Output].Columns[CityKey]" />
+                        <inputColumn
+                          refId="Package\Sequence Container\DimCustomer\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[RegulatoryAgencyKey]"
+                          cachedDataType="i4"
+                          cachedName="RegulatoryAgencyKey"
+                          externalMetadataColumnId="Package\Sequence Container\DimCustomer\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[RegulatoryAgencyKey]"
+                          lineageId="Package\Sequence Container\DimCustomer\Eltiam.Outputs[OLE DB Source Output].Columns[RegulatoryAgencyKey]" />
+                      </inputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\DimCustomer\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[CustomerKey]"
+                          dataType="i4"
+                          name="CustomerKey" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\DimCustomer\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[CustomerCode]"
+                          dataType="i4"
+                          name="CustomerCode" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\DimCustomer\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[status]"
+                          dataType="bool"
+                          name="status" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\DimCustomer\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Customer]"
+                          dataType="wstr"
+                          length="255"
+                          name="Customer" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\DimCustomer\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[CenterKeyNow]"
+                          dataType="i4"
+                          name="CenterKeyNow" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\DimCustomer\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[CenterNow]"
+                          dataType="wstr"
+                          length="50"
+                          name="CenterNow" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\DimCustomer\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[CustomerTypeKey]"
+                          dataType="i4"
+                          name="CustomerTypeKey" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\DimCustomer\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[CustomerType]"
+                          dataType="wstr"
+                          length="50"
+                          name="CustomerType" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\DimCustomer\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[PharmacyType]"
+                          dataType="wstr"
+                          length="50"
+                          name="PharmacyType" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\DimCustomer\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[OwnershipTypeKey]"
+                          dataType="i4"
+                          name="OwnershipTypeKey" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\DimCustomer\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[OwnershipType]"
+                          dataType="wstr"
+                          length="5"
+                          name="OwnershipType" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\DimCustomer\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[PaymentBehaviorKey]"
+                          dataType="bool"
+                          name="PaymentBehaviorKey" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\DimCustomer\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[PaymentBehavior]"
+                          dataType="wstr"
+                          length="5"
+                          name="PaymentBehavior" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\DimCustomer\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[RegulatoryAgency]"
+                          dataType="wstr"
+                          length="50"
+                          name="RegulatoryAgency" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\DimCustomer\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[CustomerAddressNow]"
+                          dataType="wstr"
+                          length="1024"
+                          name="CustomerAddressNow" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\DimCustomer\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[DefaultSalesmanKey]"
+                          dataType="i4"
+                          name="DefaultSalesmanKey" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\DimCustomer\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[DefaultSalesman]"
+                          dataType="wstr"
+                          length="255"
+                          name="DefaultSalesman" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\DimCustomer\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[SalesRouteKeyNow]"
+                          dataType="i4"
+                          name="SalesRouteKeyNow" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\DimCustomer\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[SalesRouteNow]"
+                          dataType="wstr"
+                          length="255"
+                          name="SalesRouteNow" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\DimCustomer\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[CustomerStatus]"
+                          dataType="wstr"
+                          length="7"
+                          name="CustomerStatus" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\DimCustomer\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[CreatedDateKey]"
+                          dataType="i4"
+                          name="CreatedDateKey" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\DimCustomer\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Latitude]"
+                          dataType="r8"
+                          name="Latitude" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\DimCustomer\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Longitude]"
+                          dataType="r8"
+                          name="Longitude" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\DimCustomer\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[company]"
+                          dataType="i4"
+                          name="company" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\DimCustomer\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[GLN]"
+                          dataType="wstr"
+                          length="50"
+                          name="GLN" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\DimCustomer\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[kind]"
+                          dataType="wstr"
+                          length="9"
+                          name="kind" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\DimCustomer\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[accountid]"
+                          dataType="i4"
+                          name="accountid" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\DimCustomer\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[id]"
+                          dataType="i8"
+                          name="id" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\DimCustomer\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[IsDeactivated]"
+                          dataType="bool"
+                          name="IsDeactivated" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\DimCustomer\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[CityKey]"
+                          dataType="i4"
+                          name="CityKey" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\DimCustomer\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[RegulatoryAgencyKey]"
+                          dataType="i4"
+                          name="RegulatoryAgencyKey" />
+                      </externalMetadataColumns>
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Sequence Container\DimCustomer\OLE DB Destination.Outputs[OLE DB Destination Error Output]"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="OLE DB Destination Error Output"
+                      synchronousInputId="Package\Sequence Container\DimCustomer\OLE DB Destination.Inputs[OLE DB Destination Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Sequence Container\DimCustomer\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Sequence Container\DimCustomer\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Sequence Container\DimCustomer\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Sequence Container\DimCustomer\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
                           name="ErrorColumn"
                           specialFlags="2" />
                       </outputColumns>
@@ -8695,7 +8685,7 @@ LEFT JOIN (select DateKey,date from dimdate) D
                   refId="Package\Sequence Container\DimCustomer.Paths[OLE DB Source Output]"
                   endId="Package\Sequence Container\DimCustomer\OLE DB Destination.Inputs[OLE DB Destination Input]"
                   name="OLE DB Source Output"
-                  startId="Package\Sequence Container\DimCustomer\OLE DB Source.Outputs[OLE DB Source Output]" />
+                  startId="Package\Sequence Container\DimCustomer\Eltiam.Outputs[OLE DB Source Output]" />
               </paths>
             </pipeline>
           </DTS:ObjectData>
@@ -8709,7 +8699,7 @@ LEFT JOIN (select DateKey,date from dimdate) D
           DTS:LocaleID="-1"
           DTS:ObjectName="DimDemand"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="0">
+          DTS:ThreadHint="2">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
@@ -10404,7 +10394,7 @@ LEFT JOIN eltiam.[HCMEmployees] H ON H.Id=S.EmployeeKey</property>
           DTS:LocaleID="-1"
           DTS:ObjectName="Lat&amp;Lon"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="0">
+          DTS:ThreadHint="1">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
@@ -10433,7 +10423,7 @@ LEFT JOIN eltiam.[HCMEmployees] H ON H.Id=S.EmployeeKey</property>
           DTS:refId="Package\Sequence Container\Truncate_DimCustomer"
           DTS:CreationName="Microsoft.ExecuteSQLTask"
           DTS:Description="Execute SQL Task"
-          DTS:DTSID="{2666A30D-CE53-4D99-984E-2CBBE7B29159}"
+          DTS:DTSID="{29b71c7f-80cb-40a6-a350-e8c30524f864}"
           DTS:ExecutableType="Microsoft.ExecuteSQLTask"
           DTS:LocaleID="-1"
           DTS:ObjectName="Truncate_DimCustomer"
@@ -10489,7 +10479,7 @@ LEFT JOIN eltiam.[HCMEmployees] H ON H.Id=S.EmployeeKey</property>
           DTS:LocaleID="-1"
           DTS:ObjectName="Truncate_DimVisitor"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="0">
+          DTS:ThreadHint="2">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
@@ -10501,12 +10491,12 @@ LEFT JOIN eltiam.[HCMEmployees] H ON H.Id=S.EmployeeKey</property>
           DTS:refId="Package\Sequence Container\update long- lat"
           DTS:CreationName="Microsoft.ExecuteSQLTask"
           DTS:Description="Execute SQL Task"
-          DTS:DTSID="{45CC2C40-1CF1-4C65-B6B2-C2F9B99417ED}"
+          DTS:DTSID="{a83079b4-56e3-4f4a-916e-1ef4894f7c71}"
           DTS:ExecutableType="Microsoft.ExecuteSQLTask"
           DTS:LocaleID="-1"
           DTS:ObjectName="update long- lat"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="2">
+          DTS:ThreadHint="0">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
@@ -10519,7 +10509,7 @@ LEFT JOIN eltiam.[HCMEmployees] H ON H.Id=S.EmployeeKey</property>
         <DTS:PrecedenceConstraint
           DTS:refId="Package\Sequence Container.PrecedenceConstraints[Constraint]"
           DTS:CreationName=""
-          DTS:DTSID="{C27D5B21-A5F7-4C9C-BBA7-718FA96EF1DA}"
+          DTS:DTSID="{CC97DEAF-D5C8-4003-A55D-D22A36ACFD9D}"
           DTS:From="Package\Sequence Container\Truncate_DimCustomer"
           DTS:LogicalAnd="True"
           DTS:ObjectName="Constraint"
@@ -10548,14 +10538,6 @@ LEFT JOIN eltiam.[HCMEmployees] H ON H.Id=S.EmployeeKey</property>
           DTS:LogicalAnd="True"
           DTS:ObjectName="Constraint 11"
           DTS:To="Package\Sequence Container\Edit Titaccustomera" />
-        <DTS:PrecedenceConstraint
-          DTS:refId="Package\Sequence Container.PrecedenceConstraints[Constraint 12]"
-          DTS:CreationName=""
-          DTS:DTSID="{C7A19DD9-285B-43E9-8117-E4DB117E1695}"
-          DTS:From="Package\Sequence Container\DimCustomer"
-          DTS:LogicalAnd="True"
-          DTS:ObjectName="Constraint 12"
-          DTS:To="Package\Sequence Container\update long- lat" />
         <DTS:PrecedenceConstraint
           DTS:refId="Package\Sequence Container.PrecedenceConstraints[Constraint 13]"
           DTS:CreationName=""
@@ -10591,11 +10573,11 @@ LEFT JOIN eltiam.[HCMEmployees] H ON H.Id=S.EmployeeKey</property>
         <DTS:PrecedenceConstraint
           DTS:refId="Package\Sequence Container.PrecedenceConstraints[Constraint 4]"
           DTS:CreationName=""
-          DTS:DTSID="{6788321E-BC34-4E46-BF32-4A9EBE7CF932}"
+          DTS:DTSID="{64AEC634-1505-4351-A432-260BA641006B}"
           DTS:From="Package\Sequence Container\DimCustomer"
           DTS:LogicalAnd="True"
           DTS:ObjectName="Constraint 4"
-          DTS:To="Package\Sequence Container\Dimcenter" />
+          DTS:To="Package\Sequence Container\update long- lat" />
         <DTS:PrecedenceConstraint
           DTS:refId="Package\Sequence Container.PrecedenceConstraints[Constraint 5]"
           DTS:CreationName=""
@@ -10807,7 +10789,7 @@ LEFT JOIN eltiam.[HCMEmployees] H ON H.Id=S.EmployeeKey</property>
           PanelSize="299,395"
           Size="299,438"
           Id="Package\FactSales"
-          TopLeft="1516,80" />
+          TopLeft="1058,134" />
         <NodeLayout
           Size="151,42"
           Id="Package\FactSalesBatch\Data Flow Task"
@@ -10946,7 +10928,7 @@ LEFT JOIN eltiam.[HCMEmployees] H ON H.Id=S.EmployeeKey</property>
           PanelSize="299,395"
           Size="299,438"
           Id="Package\FactSalesBatch"
-          TopLeft="1934,77" />
+          TopLeft="1727,262" />
         <NodeLayout
           Size="151,42"
           Id="Package\Sequence Container\Data Flow Task"
@@ -10959,10 +10941,6 @@ LEFT JOIN eltiam.[HCMEmployees] H ON H.Id=S.EmployeeKey</property>
           Size="115,42"
           Id="Package\Sequence Container\DimCity"
           TopLeft="313.5,250.5" />
-        <NodeLayout
-          Size="143,42"
-          Id="Package\Sequence Container\DimCustomer"
-          TopLeft="23.5,73.5" />
         <NodeLayout
           Size="137,42"
           Id="Package\Sequence Container\DimDemand"
@@ -10992,10 +10970,6 @@ LEFT JOIN eltiam.[HCMEmployees] H ON H.Id=S.EmployeeKey</property>
           Id="Package\Sequence Container\Truncate_DimCity"
           TopLeft="295.5,182.5" />
         <NodeLayout
-          Size="190,42"
-          Id="Package\Sequence Container\Truncate_DimCustomer"
-          TopLeft="5.5,5.5" />
-        <NodeLayout
           Size="181,42"
           Id="Package\Sequence Container\Truncate_DimProduct"
           TopLeft="286.5,46.5" />
@@ -11007,32 +10981,6 @@ LEFT JOIN eltiam.[HCMEmployees] H ON H.Id=S.EmployeeKey</property>
           Size="174,42"
           Id="Package\Sequence Container\Truncate_DimVisitor"
           TopLeft="14.5,374.5" />
-        <NodeLayout
-          Size="154,42"
-          Id="Package\Sequence Container\update long- lat"
-          TopLeft="87,132" />
-        <EdgeLayout
-          Id="Package\Sequence Container.PrecedenceConstraints[Constraint]"
-          TopLeft="97.75,47.5">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,26"
-              Start="0,0"
-              End="0,18.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,18.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
         <EdgeLayout
           Id="Package\Sequence Container.PrecedenceConstraints[Constraint 1]"
           TopLeft="374,88.5">
@@ -11109,34 +11057,6 @@ LEFT JOIN eltiam.[HCMEmployees] H ON H.Id=S.EmployeeKey</property>
                     Point3="-34,4" />
                   <mssgle:LineSegment
                     End="-34,30.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\Sequence Container.PrecedenceConstraints[Constraint 12]"
-          TopLeft="166.5,94.5">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="-2.5,37.5"
-              Start="0,0"
-              End="-2.5,30">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="1.5,0" />
-                  <mssgle:CubicBezierSegment
-                    Point1="1.5,0"
-                    Point2="-2.5,0"
-                    Point3="-2.5,4" />
-                  <mssgle:LineSegment
-                    End="-2.5,30" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -11237,40 +11157,6 @@ LEFT JOIN eltiam.[HCMEmployees] H ON H.Id=S.EmployeeKey</property>
                     Point3="158,17.25" />
                   <mssgle:LineSegment
                     End="158,19" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\Sequence Container.PrecedenceConstraints[Constraint 4]"
-          TopLeft="95,115.5">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="-9,72.5"
-              Start="0,0"
-              End="-9,65">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,32.25" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,32.25"
-                    Point2="0,36.25"
-                    Point3="-4,36.25" />
-                  <mssgle:LineSegment
-                    End="-5,36.25" />
-                  <mssgle:CubicBezierSegment
-                    Point1="-5,36.25"
-                    Point2="-9,36.25"
-                    Point3="-9,40.25" />
-                  <mssgle:LineSegment
-                    End="-9,65" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -11425,39 +11311,101 @@ LEFT JOIN eltiam.[HCMEmployees] H ON H.Id=S.EmployeeKey</property>
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <ContainerLayout
-          HeaderHeight="43"
-          IsExpanded="True"
-          PanelSize="966,724"
-          Size="966,767"
-          Id="Package\Sequence Container"
-          TopLeft="79,68" />
+        <NodeLayout
+          Size="190,42"
+          Id="Package\Sequence Container\Truncate_DimCustomer"
+          TopLeft="38,1.5" />
+        <NodeLayout
+          Size="143,42"
+          Id="Package\Sequence Container\DimCustomer"
+          TopLeft="48,58.5" />
+        <NodeLayout
+          Size="154,42"
+          Id="Package\Sequence Container\update long- lat"
+          TopLeft="45.5,124" />
         <EdgeLayout
-          Id="Package.PrecedenceConstraints[Constraint]"
-          TopLeft="1045,451.5">
+          Id="Package\Sequence Container.PrecedenceConstraints[Constraint]"
+          TopLeft="133,43.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="471,-152.5"
+              EndConnector="58,36"
               Start="0,0"
-              End="463.5,-152.5">
+              End="50.5,36">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="231.5,0" />
+                    End="0,32" />
                   <mssgle:CubicBezierSegment
-                    Point1="231.5,0"
-                    Point2="235.5,0"
-                    Point3="235.5,-4" />
+                    Point1="0,32"
+                    Point2="0,36"
+                    Point3="4,36" />
                   <mssgle:LineSegment
-                    End="235.5,-148.5" />
+                    End="50.5,36" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Sequence Container.PrecedenceConstraints[Constraint 4]"
+          TopLeft="121,100.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,23.5"
+              Start="0,0"
+              End="0,16">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,16" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="729,724"
+          Size="729,767"
+          Id="Package\Sequence Container"
+          TopLeft="79,67" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="808,450.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="250,-97.5"
+              Start="0,0"
+              End="242.5,-97.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="121,0" />
                   <mssgle:CubicBezierSegment
-                    Point1="235.5,-148.5"
-                    Point2="235.5,-152.5"
-                    Point3="239.5,-152.5" />
+                    Point1="121,0"
+                    Point2="125,0"
+                    Point3="125,-4" />
                   <mssgle:LineSegment
-                    End="463.5,-152.5" />
+                    End="125,-93.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="125,-93.5"
+                    Point2="125,-97.5"
+                    Point3="129,-97.5" />
+                  <mssgle:LineSegment
+                    End="242.5,-97.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -11468,18 +11416,30 @@ LEFT JOIN eltiam.[HCMEmployees] H ON H.Id=S.EmployeeKey</property>
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 4]"
-          TopLeft="1815,297.5">
+          TopLeft="1357,353">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="119,0"
+              EndConnector="370,128"
               Start="0,0"
-              End="111.5,0">
+              End="362.5,128">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="111.5,0" />
+                    End="181,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="181,0"
+                    Point2="185,0"
+                    Point3="185,4" />
+                  <mssgle:LineSegment
+                    End="185,124" />
+                  <mssgle:CubicBezierSegment
+                    Point1="185,124"
+                    Point2="185,128"
+                    Point3="189,128" />
+                  <mssgle:LineSegment
+                    End="362.5,128" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -11767,7 +11727,7 @@ LEFT JOIN eltiam.[HCMEmployees] H ON H.Id=S.EmployeeKey</property>
     design-time-name="Package\Sequence Container\Data Flow Task">
     <LayoutInfo>
       <GraphLayout
-        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
           Size="171,42"
           Id="Package\Sequence Container\Data Flow Task\OLE DB Destination"
@@ -11807,7 +11767,9 @@ LEFT JOIN eltiam.[HCMEmployees] H ON H.Id=S.EmployeeKey</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
@@ -11838,7 +11800,7 @@ LEFT JOIN eltiam.[HCMEmployees] H ON H.Id=S.EmployeeKey</property>
     design-time-name="Package\Sequence Container\DimCity">
     <LayoutInfo>
       <GraphLayout
-        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
           Size="150,42"
           Id="Package\Sequence Container\DimCity\OLE DB Source"
@@ -11878,7 +11840,9 @@ LEFT JOIN eltiam.[HCMEmployees] H ON H.Id=S.EmployeeKey</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
@@ -11899,77 +11863,6 @@ LEFT JOIN eltiam.[HCMEmployees] H ON H.Id=S.EmployeeKey</property>
   </PipelineComponentMetadata>
   <PipelineComponentMetadata
     design-time-name="Package\Sequence Container\DimCity\OLE DB Source">
-    <Properties>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <TaskHost
-    design-time-name="Package\Sequence Container\DimCustomer">
-    <LayoutInfo>
-      <GraphLayout
-        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
-        <NodeLayout
-          Size="150,42"
-          Id="Package\Sequence Container\DimCustomer\OLE DB Source"
-          TopLeft="86,36" />
-        <NodeLayout
-          Size="171,42"
-          Id="Package\Sequence Container\DimCustomer\OLE DB Destination"
-          TopLeft="86,139" />
-        <EdgeLayout
-          Id="Package\Sequence Container\DimCustomer.Paths[OLE DB Source Output]"
-          TopLeft="161,78">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="10.5,61"
-              Start="0,0"
-              End="10.5,53.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,26.5" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,26.5"
-                    Point2="0,30.5"
-                    Point3="4,30.5" />
-                  <mssgle:LineSegment
-                    End="6.5,30.5" />
-                  <mssgle:CubicBezierSegment
-                    Point1="6.5,30.5"
-                    Point2="10.5,30.5"
-                    Point3="10.5,34.5" />
-                  <mssgle:LineSegment
-                    End="10.5,53.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-      </GraphLayout>
-    </LayoutInfo>
-  </TaskHost>
-  <PipelineComponentMetadata
-    design-time-name="Package\Sequence Container\DimCustomer\OLE DB Destination">
-    <Properties>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-      <Property>
-        <Name>TableInfoObjectType</Name>
-        <Value
-          type="q2:string">Table</Value>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <PipelineComponentMetadata
-    design-time-name="Package\Sequence Container\DimCustomer\OLE DB Source">
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>
@@ -12119,6 +12012,79 @@ LEFT JOIN eltiam.[HCMEmployees] H ON H.Id=S.EmployeeKey</property>
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <TaskHost
+    design-time-name="Package\Sequence Container\DimCustomer">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="108,42"
+          Id="Package\Sequence Container\DimCustomer\Eltiam"
+          TopLeft="86,36" />
+        <NodeLayout
+          Size="171,42"
+          Id="Package\Sequence Container\DimCustomer\OLE DB Destination"
+          TopLeft="77,133" />
+        <EdgeLayout
+          Id="Package\Sequence Container\DimCustomer.Paths[OLE DB Source Output]"
+          TopLeft="140,78">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="22.5,55"
+              Start="0,0"
+              End="22.5,47.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,23.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,23.5"
+                    Point2="0,27.5"
+                    Point3="4,27.5" />
+                  <mssgle:LineSegment
+                    End="18.5,27.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="18.5,27.5"
+                    Point2="22.5,27.5"
+                    Point3="22.5,31.5" />
+                  <mssgle:LineSegment
+                    End="22.5,47.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-16.5751171875,32.5,55.650234375,11.228515625"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Sequence Container\DimCustomer\Eltiam">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Sequence Container\DimCustomer\OLE DB Destination">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
       </Property>
     </Properties>
   </PipelineComponentMetadata>

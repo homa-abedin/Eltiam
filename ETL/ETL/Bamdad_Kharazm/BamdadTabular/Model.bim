@@ -209,7 +209,7 @@
           },
           {
             "name": "PaymentBehaviorKey",
-            "dataType": "int64",
+            "dataType": "boolean",
             "sourceColumn": "PaymentBehaviorKey"
           },
           {
@@ -273,11 +273,6 @@
             "sourceColumn": "Longitude"
           },
           {
-            "name": "HaveGLN",
-            "dataType": "boolean",
-            "sourceColumn": "HaveGLN"
-          },
-          {
             "name": "company",
             "dataType": "int64",
             "sourceColumn": "company"
@@ -288,14 +283,19 @@
             "sourceColumn": "GLN"
           },
           {
-            "name": "HIX",
-            "dataType": "string",
-            "sourceColumn": "HIX"
-          },
-          {
             "name": "kind",
             "dataType": "string",
             "sourceColumn": "kind"
+          },
+          {
+            "name": "accountid",
+            "dataType": "int64",
+            "sourceColumn": "accountid"
+          },
+          {
+            "name": "id",
+            "dataType": "int64",
+            "sourceColumn": "id"
           }
         ],
         "partitions": [
@@ -777,11 +777,11 @@
               {
                 "name": "QueryEditorSerialization",
                 "value": [
-                  "<?xml version=\"1.0\" encoding=\"UTF-16\"?><Gemini xmlns=\"QueryEditorSerialization\"><AnnotationContent><![CDATA[<RSQueryCommandText>let",
-                  "   ",
-                  "\t Source = Sql.Database(\"192.168.10.10\", \"DW\", [Query=\"SELECT * FROM dbo.FactSales  \"])",
-                  "",
-                  "in",
+                  "<?xml version=\"1.0\" encoding=\"UTF-16\"?><Gemini xmlns=\"QueryEditorSerialization\"><AnnotationContent><![CDATA[<RSQueryCommandText>let\r",
+                  "   \r",
+                  "\t Source = Sql.Database(\"192.168.10.10\", \"DW\", [Query=\"SELECT * FROM dbo.FactSales  \"])\r",
+                  "\r",
+                  "in\r",
                   "    Source</RSQueryCommandText><RSQueryCommandType>Text</RSQueryCommandType><RSQueryDesignState></RSQueryDesignState>]]></AnnotationContent></Gemini>"
                 ]
               }
@@ -1607,7 +1607,7 @@
         "measures": [
           {
             "name": "TargetAmountMeasure",
-            "expression": " sum(DimTarget[TargetAmount])",
+            "expression": "sum(DimTarget[TargetAmount])",
             "formatString": "#,0"
           },
           {
