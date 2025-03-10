@@ -18,6 +18,8 @@
         },
         "credential": {
           "AuthenticationKind": "Windows",
+          "kind": "SQL",
+          "path": "192.168.10.10;DW",
           "Username": "el\\abedinzadehh",
           "EncryptConnection": false
         }
@@ -156,137 +158,6 @@
                 "    kharazmi_dimproduct = Source{[Schema=\"kharazmi\",Item=\"dimproduct\"]}[Data]",
                 "in",
                 "    kharazmi_dimproduct"
-              ]
-            }
-          }
-        ]
-      },
-      {
-        "name": "dimproductgroup",
-        "columns": [
-          {
-            "name": "idSath1",
-            "dataType": "int64",
-            "sourceColumn": "idSath1"
-          },
-          {
-            "name": "NameSath1",
-            "dataType": "string",
-            "sourceColumn": "NameSath1"
-          },
-          {
-            "name": "idSath2",
-            "dataType": "int64",
-            "sourceColumn": "idSath2"
-          },
-          {
-            "name": "NameSath2",
-            "dataType": "string",
-            "sourceColumn": "NameSath2"
-          },
-          {
-            "name": "idSath3",
-            "dataType": "int64",
-            "sourceColumn": "idSath3"
-          },
-          {
-            "name": "NameSath3",
-            "dataType": "string",
-            "sourceColumn": "NameSath3"
-          },
-          {
-            "name": "idSath4",
-            "dataType": "int64",
-            "sourceColumn": "idSath4"
-          },
-          {
-            "name": "NameSath4",
-            "dataType": "string",
-            "sourceColumn": "NameSath4"
-          },
-          {
-            "name": "EntityName",
-            "dataType": "string",
-            "sourceColumn": "EntityName"
-          },
-          {
-            "name": "id",
-            "dataType": "int64",
-            "sourceColumn": "id"
-          },
-          {
-            "name": "ProductID",
-            "dataType": "int64",
-            "sourceColumn": "ProductID"
-          },
-          {
-            "name": "Name",
-            "dataType": "string",
-            "sourceColumn": "Name"
-          },
-          {
-            "name": "Number",
-            "dataType": "string",
-            "sourceColumn": "Number"
-          },
-          {
-            "name": "State",
-            "dataType": "int64",
-            "sourceColumn": "State"
-          },
-          {
-            "name": "statename",
-            "dataType": "string",
-            "sourceColumn": "statename"
-          },
-          {
-            "name": "PartRef",
-            "dataType": "int64",
-            "sourceColumn": "PartRef"
-          },
-          {
-            "name": "Bigname",
-            "dataType": "string",
-            "sourceColumn": "Bigname"
-          },
-          {
-            "name": "Bigsize",
-            "dataType": "double",
-            "sourceColumn": "Bigsize"
-          },
-          {
-            "name": "smallname",
-            "dataType": "string",
-            "sourceColumn": "smallname"
-          },
-          {
-            "name": "SmallSize",
-            "dataType": "double",
-            "sourceColumn": "SmallSize"
-          },
-          {
-            "name": "majorname",
-            "dataType": "string",
-            "sourceColumn": "majorname"
-          },
-          {
-            "name": "MajorSize",
-            "dataType": "double",
-            "sourceColumn": "MajorSize"
-          }
-        ],
-        "partitions": [
-          {
-            "name": "Partition",
-            "dataView": "full",
-            "source": {
-              "type": "m",
-              "expression": [
-                "let",
-                "    Source = #\"SQL/192 168 10 10;DW\",",
-                "    kharazmi_dimproductgroup = Source{[Schema=\"kharazmi\",Item=\"dimproductgroup\"]}[Data]",
-                "in",
-                "    kharazmi_dimproductgroup"
               ]
             }
           }
@@ -550,7 +421,7 @@
           {
             "name": "RatioTargetVSSalesYear",
             "expression": [
-              "DIVIDE([NetPriceCurrentYear],  DimTarget[TargetAmountCurrentYear])",
+              "DIVIDE([NetPriceCurrentYear],  DimTarget[TargetAmount])",
               ""
             ]
           },
@@ -565,11 +436,53 @@
           },
           {
             "name": "RemainTargetYear",
-            "expression": " DimTarget[TargetAmountCurrentYear]-[NetPriceCurrentYear] "
+            "expression": " DimTarget[TargetAmount]-[NetPriceCurrentYear] "
           },
           {
             "name": "RemainTargetMonth",
             "expression": "  DimTarget[TargetAmountCurrentMonth]-[NetPriceCurrentMonth]"
+          },
+          {
+            "name": "Pareto Count",
+            "expression": [
+              "",
+              "VAR staterev = [NetPrice]",
+              "VAR allsales = CALCULATE([NetPrice], ALLSELECTED(Factsales))",
+              "VAR ParetoTable =",
+              "    ADDCOLUMNS(",
+              "        SUMMARIZE(ALLSELECTED(Factsales), dimproduct[name], \"TotalSales\", [NetPrice]),",
+              "        \"CumulativeSales\", ",
+              "            VAR CurrentProductSales = [TotalSales]",
+              "            RETURN DIVIDE(",
+              "                SUMX(",
+              "                    FILTER(",
+              "                        SUMMARIZE(ALLSELECTED(Factsales), dimproduct[name], \"TotalSales\", [NetPrice]),",
+              "                        [TotalSales] >= CurrentProductSales",
+              "                    ),",
+              "                    [TotalSales]",
+              "                ),",
+              "                allsales, 0",
+              "            )",
+              "    )",
+              "RETURN ",
+              "    COUNTROWS(FILTER(ParetoTable, [CumulativeSales] < 0.8))"
+            ]
+          },
+          {
+            "name": "TakhfifAmount",
+            "expression": [
+              " sum (Factsales[ReductionAmount])",
+              ""
+            ],
+            "formatString": "#,0"
+          },
+          {
+            "name": "TargetVSSales",
+            "expression": [
+              " DIVIDE([NetPrice],DimTarget[TargetAmount])",
+              ""
+            ],
+            "formatString": "0 %;-0 %;0 %"
           }
         ]
       },
@@ -831,16 +744,254 @@
             }
           }
         ]
+      },
+      {
+        "name": "DimTarget",
+        "columns": [
+          {
+            "name": "amount",
+            "dataType": "double",
+            "sourceColumn": "amount"
+          },
+          {
+            "name": "cnt",
+            "dataType": "double",
+            "sourceColumn": "cnt"
+          },
+          {
+            "name": "product",
+            "dataType": "string",
+            "sourceColumn": "product"
+          },
+          {
+            "name": "productcode",
+            "dataType": "string",
+            "sourceColumn": "productcode"
+          },
+          {
+            "name": "month",
+            "dataType": "int64",
+            "sourceColumn": "month"
+          },
+          {
+            "name": "pakhshcode",
+            "dataType": "double",
+            "sourceColumn": "pakhshcode"
+          },
+          {
+            "name": "pakhshname",
+            "dataType": "string",
+            "sourceColumn": "pakhshname"
+          },
+          {
+            "name": "cityid",
+            "dataType": "decimal",
+            "sourceColumn": "cityid"
+          },
+          {
+            "name": "province",
+            "dataType": "string",
+            "sourceColumn": "province"
+          },
+          {
+            "name": "center",
+            "dataType": "string",
+            "sourceColumn": "center"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "Partition",
+            "dataView": "full",
+            "source": {
+              "type": "m",
+              "expression": [
+                "let",
+                "    Source = #\"SQL/192 168 10 10;DW\",",
+                "    kharazmi_Target = Source{[Schema=\"kharazmi\",Item=\"Target\"]}[Data]",
+                "in",
+                "    kharazmi_Target"
+              ]
+            }
+          }
+        ],
+        "measures": [
+          {
+            "name": "TargetAmount",
+            "expression": " sum(DimTarget[amount])",
+            "formatString": "#,0"
+          },
+          {
+            "name": "TargetCount",
+            "expression": " sum(DimTarget[cnt])",
+            "formatString": "#,0"
+          },
+          {
+            "name": "TargetAmountCurrentMonth",
+            "expression": " CALCULATE(DimTarget[TargetAmount],FILTER(All(DimDate),DimDate[Curren_Month]=1))",
+            "formatString": "#,0"
+          },
+          {
+            "name": "TargetAmountCurrentYear",
+            "expression": " CALCULATE(DimTarget[TargetAmount], FILTER(ALL(DimDate),DimDate[Current_Year]=1))",
+            "formatString": "#,0"
+          }
+        ]
+      },
+      {
+        "name": "dimproductgroup",
+        "columns": [
+          {
+            "name": "idSath1",
+            "dataType": "int64",
+            "sourceColumn": "idSath1"
+          },
+          {
+            "name": "NameSath1",
+            "dataType": "string",
+            "sourceColumn": "NameSath1"
+          },
+          {
+            "name": "idSath2",
+            "dataType": "int64",
+            "sourceColumn": "idSath2"
+          },
+          {
+            "name": "NameSath2",
+            "dataType": "string",
+            "sourceColumn": "NameSath2"
+          },
+          {
+            "name": "idSath3",
+            "dataType": "int64",
+            "sourceColumn": "idSath3"
+          },
+          {
+            "name": "NameSath3",
+            "dataType": "string",
+            "sourceColumn": "NameSath3"
+          },
+          {
+            "name": "idSath4",
+            "dataType": "int64",
+            "sourceColumn": "idSath4"
+          },
+          {
+            "name": "NameSath4",
+            "dataType": "string",
+            "sourceColumn": "NameSath4"
+          },
+          {
+            "name": "EntityName",
+            "dataType": "string",
+            "sourceColumn": "EntityName"
+          },
+          {
+            "name": "EntityGroupingID",
+            "dataType": "int64",
+            "sourceColumn": "EntityGroupingID"
+          },
+          {
+            "name": "id",
+            "dataType": "int64",
+            "sourceColumn": "id"
+          },
+          {
+            "name": "ProductID",
+            "dataType": "int64",
+            "sourceColumn": "ProductID"
+          },
+          {
+            "name": "Name",
+            "dataType": "string",
+            "sourceColumn": "Name"
+          },
+          {
+            "name": "State",
+            "dataType": "int64",
+            "sourceColumn": "State"
+          },
+          {
+            "name": "statename",
+            "dataType": "string",
+            "sourceColumn": "statename"
+          },
+          {
+            "name": "PartID",
+            "dataType": "int64",
+            "sourceColumn": "PartID"
+          },
+          {
+            "name": "Code",
+            "dataType": "string",
+            "sourceColumn": "Code"
+          },
+          {
+            "name": "PropertiesComment",
+            "dataType": "string",
+            "sourceColumn": "PropertiesComment"
+          },
+          {
+            "name": "SecondCode",
+            "dataType": "string",
+            "sourceColumn": "SecondCode"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "Partition",
+            "dataView": "full",
+            "source": {
+              "type": "m",
+              "expression": [
+                "let",
+                "    Source = #\"SQL/192 168 10 10;DW\",",
+                "    kharazmi_dimproductgroup = Source{[Schema=\"kharazmi\",Item=\"dimproductgroup\"]}[Data]",
+                "in",
+                "    kharazmi_dimproductgroup"
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "name": "dimArea",
+        "columns": [
+          {
+            "name": "SalesAreaID",
+            "dataType": "int64",
+            "sourceColumn": "SalesAreaID"
+          },
+          {
+            "name": "Name",
+            "dataType": "string",
+            "sourceColumn": "name"
+          },
+          {
+            "name": "chanel",
+            "dataType": "string",
+            "sourceColumn": "chanel"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "Partition",
+            "dataView": "full",
+            "source": {
+              "type": "m",
+              "expression": [
+                "let",
+                "    Source = #\"SQL/192 168 10 10;DW\",",
+                "    kharazmi_dimArea = Source{[Schema=\"kharazmi\",Item=\"dimArea\"]}[Data]",
+                "in",
+                "    kharazmi_dimArea"
+              ]
+            }
+          }
+        ]
       }
     ],
     "relationships": [
-      {
-        "name": "20455fa0-803e-4c50-a10d-a0457a3d681e",
-        "fromTable": "Factsales",
-        "fromColumn": "ProductRef",
-        "toTable": "dimproduct",
-        "toColumn": "ProductID"
-      },
       {
         "name": "644e5797-d63d-4c39-92a9-34fa4ad10807",
         "fromTable": "Factsales",
@@ -856,12 +1007,41 @@
         "toColumn": "datekey"
       },
       {
-        "name": "a8ca1cbc-32ab-48e5-8512-eecc307c32d3",
+        "name": "69a9ab6b-78b0-4a2a-85a0-a044aa2ca4ff",
+        "fromTable": "DimTarget",
+        "fromColumn": "pakhshcode",
+        "toTable": "dimcustomer",
+        "toColumn": "Number"
+      },
+      {
+        "name": "4e7e833e-43e8-4b2d-8a3e-6d81e532871f",
+        "fromTable": "DimTarget",
+        "fromColumn": "month",
+        "toTable": "DimDate",
+        "toColumn": "datekey"
+      },
+      {
+        "name": "67f125b7-b70e-4f04-824a-d1a05f8f69dc",
         "fromTable": "dimproductgroup",
         "fromColumn": "ProductID",
         "toTable": "dimproduct",
         "toColumn": "ProductID",
         "crossFilteringBehavior": "bothDirections"
+      },
+      {
+        "name": "3ef89ae9-1d76-46ae-b1e4-11abc81b8a97",
+        "fromTable": "Factsales",
+        "fromColumn": "ProductRef",
+        "toTable": "dimproduct",
+        "toColumn": "ProductID",
+        "crossFilteringBehavior": "bothDirections"
+      },
+      {
+        "name": "c2767e10-6583-4569-a3bd-82635917382c",
+        "fromTable": "Factsales",
+        "fromColumn": "SalesAreaRef",
+        "toTable": "dimArea",
+        "toColumn": "SalesAreaID"
       }
     ],
     "annotations": [

@@ -11,8 +11,8 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="DW_Kharazmi"
   DTS:PackageType="5"
-  DTS:VersionBuild="21"
-  DTS:VersionGUID="{870A8F9E-CA50-4C48-8982-AF4A56CF1FFA}">
+  DTS:VersionBuild="28"
+  DTS:VersionGUID="{55CCC4B6-19BB-4B19-8EA9-FD3ABEB48953}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -29,18 +29,6 @@
       </DTS:ObjectData>
     </DTS:ConnectionManager>
     <DTS:ConnectionManager
-      DTS:refId="Package.ConnectionManagers[192.168.10.10.DW_kharazmi]"
-      DTS:CreationName="OLEDB"
-      DTS:DTSID="{93F6326D-3DB2-4A3C-863D-6BA2630B4265}"
-      DTS:ObjectName="192.168.10.10.DW_kharazmi">
-      <DTS:ObjectData>
-        <DTS:ConnectionManager
-          DTS:ConnectRetryCount="1"
-          DTS:ConnectRetryInterval="5"
-          DTS:ConnectionString="Data Source=192.168.10.10;Initial Catalog=DW_kharazmi;Provider=SQLNCLI11.1;Integrated Security=SSPI;Application Name=SSIS-DW_Kharazmi-{93F6326D-3DB2-4A3C-863D-6BA2630B4265}192.168.10.10.DW_kharazmi;Auto Translate=False;" />
-      </DTS:ObjectData>
-    </DTS:ConnectionManager>
-    <DTS:ConnectionManager
       DTS:refId="Package.ConnectionManagers[192.168.10.10.Stage]"
       DTS:CreationName="OLEDB"
       DTS:DTSID="{B497DD00-C1C2-4B58-A27A-FCFA87D02C4B}"
@@ -49,7 +37,7 @@
         <DTS:ConnectionManager
           DTS:ConnectRetryCount="1"
           DTS:ConnectRetryInterval="5"
-          DTS:ConnectionString="Data Source=192.168.10.10;Initial Catalog=Stage;Provider=MSOLEDBSQL.1;Integrated Security=SSPI;Application Name=SSIS-DW_Kharazmi-{B497DD00-C1C2-4B58-A27A-FCFA87D02C4B}192.168.10.10.Stage;Auto Translate=False;" />
+          DTS:ConnectionString="Data Source=192.168.10.10;Initial Catalog=Stage;Provider=MSOLEDBSQL.1;Integrated Security=SSPI;Auto Translate=False;Application Name=SSIS-DW_Kharazmi-{B497DD00-C1C2-4B58-A27A-FCFA87D02C4B}192.168.10.10.Stage;" />
       </DTS:ObjectData>
     </DTS:ConnectionManager>
   </DTS:ConnectionManagers>
@@ -103,7 +91,7 @@
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
           SQLTask:Connection="{B497DD00-C1C2-4B58-A27A-FCFA87D02C4B}"
-          SQLTask:SqlStatementSource="--use [DW_kharazmi]&#xA;drop table if exists  [DW].kharazmi.dimproductgroup &#xA;--use [DW_kharazmi] &#xA;select a.*,p.*, case when p.State= 1 then N'فعال' when p.state=2 then N'غیرفعال' else N'معلق' end as statename &#xA;,BiggestUnit.PartRef,BiggestUnit.Name Bigname &#xA;,isnull(BiggestUnit.Weight,0) Bigsize,SmallestUnit.Name smallname,isnull(SmallestUnit.Weight,0) SmallSize&#xA;,Major.Name majorname, isnull(Major.Weight,0) MajorSize  &#xA;into [DW].kharazmi.dimproductgroup &#xA;from &#xA;&#xA;--select count(*) from &#xA;(&#xA;SELECT &#xA;&#x9;eg1.EntityGroupingID as idSath1&#xA;&#x9;,eg1.Name as NameSath1&#xA;&#x9;,eg2.EntityGroupID idSath2&#xA;&#x9;,eg2.Name NameSath2&#xA;&#x9;,eg3.EntityGroupID idSath3&#xA;&#x9;,eg3.Name NameSath3&#xA;&#x9;&#x9;,eg4.EntityGroupID idSath4&#xA;&#x9;,eg4.Name NameSath4&#xA;&#xA;&#xA;&#xA;&#x9;,eg1.EntityName&#xA;&#x9;,case &#xA;&#x9;&#x9;&#x9;--when eg7.EntityGroupID is not null then eg7.EntityGroupID &#xA;&#x9;&#x9; -- when eg6.EntityGroupID is not null then eg6.EntityGroupID &#xA;&#x9;&#x9; -- when eg5.EntityGroupID is not null then eg5.EntityGroupID &#xA;&#x9;&#x9;  when eg4.EntityGroupID is not null then eg4.EntityGroupID &#xA;&#x9;&#x9;  when eg3.EntityGroupID is not null then eg3.EntityGroupID &#xA;&#x9;&#xA;&#x9;else&#xA;&#x9;&#xA;&#x9;eg2.EntityGroupID end as id&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;  &#xA;FROM kharazmi.EntityGrouping eg1 &#xA;left join ( select * from kharazmi.EntityGroup where ParentRef is null)eg2 on eg2.EntityGroupingRef=eg1.EntityGroupingID&#xA;left join ( select * from kharazmi.EntityGroup where ParentRef is not null)eg3 on eg3.ParentRef=eg2.EntityGroupID&#xA;left join ( select * from kharazmi.EntityGroup where ParentRef is not null)eg4 on eg4.ParentRef=eg3.EntityGroupID&#xA;--left join ( select * from kharazmi.EntityGroup where ParentRef is not null)eg5 on eg5.ParentRef=eg4.EntityGroupID&#xA;--left join ( select * from kharazmi.EntityGroup where ParentRef is not null)eg6 on eg6.ParentRef=eg5.EntityGroupID&#xA;--left join ( select * from kharazmi.EntityGroup where ParentRef is not null)eg7 on eg7.ParentRef=eg6.EntityGroupID&#xA; &#xA;&#xA; )a&#xA; left join (select * from kharazmi.ProductGroupMember  )pm on pm.GroupRef=a.id and a.idSath1 = pm.GroupingRef &#xA;left join (select ProductID, Name,Number,State from kharazmi.product ) p on p.ProductID=pm.MemberID&#xA;left join (&#xA;&#x9;&#x9;&#x9;&#x9;select PU.Weight,PartRef,ProductID,pu.Name&#xA;&#x9;&#x9;&#x9;&#x9;from  kharazmi.Product PR WITH(NOLOCK) &#xA;&#x9;&#x9;&#x9;&#x9;left JOIN kharazmi.UNIT U WITH(NOLOCK) ON U.UnitID=pr.UnitRef&#xA;&#x9;&#x9;&#x9;&#x9;LEFT JOIN kharazmi.PartUnit PU WITH(NOLOCK) ON PU.PartUnitID=PR.BiggestUnitPartEntityUnitRef &#xA;&#x9;&#x9;&#x9;&#x9;)BiggestUnit on BiggestUnit.ProductID=P.ProductID&#xA;left join (&#xA;&#x9;&#x9;&#x9;&#x9;select PU.Weight,PartRef,ProductID,pu.Name&#xA;&#x9;&#x9;&#x9;&#x9;from  kharazmi.Product PR WITH(NOLOCK) &#xA;&#x9;&#x9;&#x9;&#x9;left JOIN kharazmi.UNIT U WITH(NOLOCK) ON U.UnitID=pr.UnitRef&#xA;&#x9;&#x9;&#x9;&#x9;LEFT JOIN kharazmi.PartUnit PU WITH(NOLOCK) ON PU.PartUnitID=PR.SmallestUnitPartEntityUnitRef &#xA;&#x9;&#x9;&#x9;&#x9;)SmallestUnit on SmallestUnit.ProductID=P.ProductID&#xA;left join (&#xA;&#x9;&#x9;&#x9;&#x9;select PU.Weight,PartRef,ProductID,pu.Name&#xA;&#x9;&#x9;&#x9;&#x9;from  kharazmi.Product PR WITH(NOLOCK) &#xA;&#x9;&#x9;&#x9;&#x9;left JOIN kharazmi.UNIT U WITH(NOLOCK) ON U.UnitID=pr.UnitRef&#xA;&#x9;&#x9;&#x9;&#x9;LEFT JOIN kharazmi.PartUnit PU WITH(NOLOCK) ON PU.PartUnitID=PR.PartMajorEntityUnitRef &#xA;&#x9;&#x9;&#x9;&#x9;)Major on Major.ProductID=P.ProductID&#xA;&#xA; where EntityName like '%Product%'&#xA;-- and idSath1=184&#xA;--where BiggestUnit.PartRef=1756&#xA;--and idSath1=63&#xA;--order by idSath2, idSath3&#xA;&#xA;--select  * from kharazmi.product where state=2" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          SQLTask:SqlStatementSource="--use [DW_kharazmi]&#xA;drop table if exists  [DW].kharazmi.dimproductgroup &#xA;--use [DW_kharazmi] &#xA;select a.*,p.*, pr.ProductID,pr.SecondCode, case when p.State= 1 then N'فعال' when p.state=2 then N'غیرفعال' else N'معلق' end as statename &#xA;--,BiggestUnit.PartRef,BiggestUnit.Name Bigname &#xA;--,isnull(BiggestUnit.Weight,0) Bigsize,SmallestUnit.Name smallname,isnull(SmallestUnit.Weight,0) SmallSize&#xA;--,Major.Name majorname, isnull(Major.Weight,0) MajorSize  &#xA;into [DW].kharazmi.dimproductgroup &#xA;from &#xA;&#xA;(&#xA;SELECT &#xA;&#x9;eg1.EntityGroupingID as idSath1&#xA;&#x9;,eg1.Name as NameSath1&#xA;&#x9;,eg2.EntityGroupID idSath2&#xA;&#x9;,eg2.Name NameSath2&#xA;&#x9;,eg3.EntityGroupID idSath3&#xA;&#x9;,eg3.Name NameSath3&#xA;&#x9;&#x9;,eg4.EntityGroupID idSath4&#xA;&#x9;,eg4.Name NameSath4&#xA;&#xA;&#xA;&#xA;&#x9;,eg1.EntityName&#xA;&#x9;, eg1.EntityGroupingID&#xA;&#x9;,case &#xA;&#x9;&#x9;&#x9;--when eg7.EntityGroupID is not null then eg7.EntityGroupID &#xA;&#x9;&#x9; -- when eg6.EntityGroupID is not null then eg6.EntityGroupID &#xA;&#x9;&#x9; -- when eg5.EntityGroupID is not null then eg5.EntityGroupID &#xA;&#x9;&#x9;  when eg4.EntityGroupID is not null then eg4.EntityGroupID &#xA;&#x9;&#x9;  when eg3.EntityGroupID is not null then eg3.EntityGroupID &#xA;&#x9;&#xA;&#x9;else&#xA;&#x9;&#xA;&#x9;eg2.EntityGroupID end as id&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;&#xA;FROM kharazmi.EntityGrouping eg1 &#xA;left join ( select * from kharazmi.EntityGroup where ParentRef is null)eg2 on eg2.EntityGroupingRef=eg1.EntityGroupingID&#xA;left join ( select * from kharazmi.EntityGroup where ParentRef is not null)eg3 on eg3.ParentRef=eg2.EntityGroupID&#xA;left join ( select * from kharazmi.EntityGroup where ParentRef is not null)eg4 on eg4.ParentRef=eg3.EntityGroupID&#xA;--left join ( select * from kharazmi.EntityGroup where ParentRef is not null)eg5 on eg5.ParentRef=eg4.EntityGroupID&#xA;--left join ( select * from kharazmi.EntityGroup where ParentRef is not null)eg6 on eg6.ParentRef=eg5.EntityGroupID&#xA;--left join ( select * from kharazmi.EntityGroup where ParentRef is not null)eg7 on eg7.ParentRef=eg6.EntityGroupID&#xA;where eg1.EntityGroupingID=590&#xA; )a&#xA;&#xA; &#xA; left join (select * from kharazmi.partGroupMember  )pm on pm.GroupRef=a.id and a.idSath1 = pm.GroupingRef &#xA;left join (select PartID,Code, Name,State, PropertiesComment from kharazmi.part ) p on p.PartID=pm.MemberID&#xA;--left join (&#xA;--&#x9;&#x9;&#x9;&#x9;select PU.Weight,PartID,pu.Name&#xA;--&#x9;&#x9;&#x9;&#x9;from  kharazmi.part PR WITH(NOLOCK) &#xA;--&#x9;&#x9;&#x9;&#x9;left JOIN kharazmi.UNIT U WITH(NOLOCK) ON U.UnitID=pr.UnitRef&#xA;--&#x9;&#x9;&#x9;&#x9;LEFT JOIN kharazmi.PartUnit PU WITH(NOLOCK) ON PU.PartUnitID=PR.BiggestUnitPartEntityUnitRef &#xA;--&#x9;&#x9;&#x9;&#x9;)BiggestUnit on BiggestUnit.ProductID=P.ProductID&#xA;--left join (&#xA;--&#x9;&#x9;&#x9;&#x9;select PU.Weight,PartRef,ProductID,pu.Name&#xA;--&#x9;&#x9;&#x9;&#x9;from  kharazmi.Product PR WITH(NOLOCK) &#xA;--&#x9;&#x9;&#x9;&#x9;left JOIN kharazmi.UNIT U WITH(NOLOCK) ON U.UnitID=pr.UnitRef&#xA;--&#x9;&#x9;&#x9;&#x9;LEFT JOIN kharazmi.PartUnit PU WITH(NOLOCK) ON PU.PartUnitID=PR.SmallestUnitPartEntityUnitRef &#xA;--&#x9;&#x9;&#x9;&#x9;)SmallestUnit on SmallestUnit.ProductID=P.ProductID&#xA;--left join (&#xA;--&#x9;&#x9;&#x9;&#x9;select PU.Weight,PartRef,ProductID,pu.Name&#xA;--&#x9;&#x9;&#x9;&#x9;from  kharazmi.Product PR WITH(NOLOCK) &#xA;--&#x9;&#x9;&#x9;&#x9;left JOIN kharazmi.UNIT U WITH(NOLOCK) ON U.UnitID=pr.UnitRef&#xA;--&#x9;&#x9;&#x9;&#x9;LEFT JOIN kharazmi.PartUnit PU WITH(NOLOCK) ON PU.PartUnitID=PR.PartMajorEntityUnitRef &#xA;--&#x9;&#x9;&#x9;&#x9;)Major on Major.ProductID=P.ProductID&#xA;left join (select * from kharazmi.product)pr on pr.PartRef=p.PartID&#xA;&#xA; where entitygroupingid= 590&#xA;-- and idSath1=184&#xA;--where BiggestUnit.PartRef=1756&#xA;--and idSath1=63&#xA;--order by idSath2, idSath3&#xA;&#xA;--select  * from kharazmi.product where state=2" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
       </DTS:ObjectData>
     </DTS:Executable>
     <DTS:Executable
@@ -120,7 +108,7 @@
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
           SQLTask:Connection="{B497DD00-C1C2-4B58-A27A-FCFA87D02C4B}"
-          SQLTask:SqlStatementSource="drop table if exists dw.kharazmi.[Target]&#xA;&#xA;select  *&#xA; into dw.kharazmi.[Target]&#xA; from (&#xA; select  amount*ratio*isnull(budget,0)amount, [count]*ratio*isnull(budget,0)cnt, product,productcode, month,bd.code pakhshcode, bd.name pakhshname,bc.cityid,bc.province, bc.center   from [Stage].[kharazmi].[budgetproduct]bp &#xA;join (select * from [Stage].[kharazmi].[budgetpakhsh]) bd on bd.date= left (bp.month,4)&#xA;join (SELECT *  FROM [Stage].[kharazmi].[budgetcenter]) bc on bc.date=bd.date and bc.customerkey=bd.code&#xA;where bc.center is not null)a" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          SQLTask:SqlStatementSource="drop table if exists dw.kharazmi.[Target]&#xA;&#xA;SELECT &#xA;    amount*ratio*isnull(budget,0)amount, [count]*ratio*isnull(budget,0)cnt, product,productcode&#xA;&#x9;, month,bd.code pakhshcode, bd.name pakhshname,bc.cityid,bc.province, bc.center &#xA;&#x9;into dw.kharazmi.[Target]&#xA;FROM [Stage].[kharazmi].[budgetcenter] bc&#xA;JOIN [Stage].[kharazmi].[budgetpakhsh] bd &#xA;    ON bc.date = bd.date &#xA;    AND bc.customerkey = bd.code&#xA;JOIN stage..vmonth vm &#xA;    ON 1=1&#xA;&#x9;JOIN [Stage].[kharazmi].[budgetproduct] bp &#xA;    ON CONCAT(CAST(bc.date AS VARCHAR(4)), vm.mm, '01') = bp.Month&#xA;    AND CONCAT(CAST(bd.date AS VARCHAR(4)), vm.mm, '01') = bp.Month&#xA;&#xA;WHERE budget IS NOT NULL" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
       </DTS:ObjectData>
     </DTS:Executable>
     <DTS:Executable
@@ -2410,6 +2398,10 @@ o.OrderID
           Id="Package\DimProductGroup"
           TopLeft="77,87" />
         <NodeLayout
+          Size="128,42"
+          Id="Package\DimTarget"
+          TopLeft="102,289" />
+        <NodeLayout
           Size="151,42"
           Id="Package\FactSales\Data Flow Task"
           TopLeft="39,226" />
@@ -2571,54 +2563,6 @@ o.OrderID
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
-          Id="Package.PrecedenceConstraints[Constraint 2]"
-          TopLeft="158.25,56">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,31"
-              Start="0,0"
-              End="0,23.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,23.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <NodeLayout
-          Size="128,42"
-          Id="Package\DimTarget"
-          TopLeft="102,289" />
-        <EdgeLayout
-          Id="Package.PrecedenceConstraints[Constraint 3]"
-          TopLeft="163.25,228">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,61"
-              Start="0,0"
-              End="0,53.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,53.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 1]"
           TopLeft="230,310">
           <EdgeLayout.Curve>
@@ -2644,6 +2588,50 @@ o.OrderID
                     Point3="61,-47" />
                   <mssgle:LineSegment
                     End="106.5,-47" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 2]"
+          TopLeft="158.25,56">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,31"
+              Start="0,0"
+              End="0,23.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,23.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 3]"
+          TopLeft="163.25,228">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,61"
+              Start="0,0"
+              End="0,53.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,53.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -2720,7 +2708,7 @@ o.OrderID
     design-time-name="Package\FactSales\Insert">
     <LayoutInfo>
       <GraphLayout
-        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
           Size="171,42"
           Id="Package\FactSales\Insert\OLE DB Destination"
@@ -2760,9 +2748,7 @@ o.OrderID
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
