@@ -1,0 +1,697 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://p-momtaz.com/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" targetNamespace="http://p-momtaz.com/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://p-momtaz.com/">
+      <s:element name="invProductDetails_ExpiresSoon">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Password" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="TDate" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ErrorOut" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="invProductDetails_ExpiresSoonResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="invProductDetails_ExpiresSoonResult" type="tns:ArrayOfMomtaz_rptSP_invProductDetails_ExpiresSoonResult" />
+            <s:element minOccurs="0" maxOccurs="1" name="ErrorOut" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfMomtaz_rptSP_invProductDetails_ExpiresSoonResult">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Momtaz_rptSP_invProductDetails_ExpiresSoonResult" nillable="true" type="tns:Momtaz_rptSP_invProductDetails_ExpiresSoonResult" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Momtaz_rptSP_invProductDetails_ExpiresSoonResult">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="totMergedPersonID_Inventory" type="s:long" />
+          <s:element minOccurs="1" maxOccurs="1" name="invProductID" type="s:long" />
+          <s:element minOccurs="1" maxOccurs="1" name="invProductDetailID" type="s:long" />
+          <s:element minOccurs="1" maxOccurs="1" name="invProductDetailTypeID" nillable="true" type="s:short" />
+          <s:element minOccurs="1" maxOccurs="1" name="totCostCenterID" type="s:long" />
+          <s:element minOccurs="1" maxOccurs="1" name="StockQty" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="StockMstQty" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="StockDtlQty" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="StockAmnt" nillable="true" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="price" nillable="true" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="Cost" nillable="true" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="ShamsiExpireDate" nillable="true" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="GregorianExpireDate" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="DiffDate" nillable="true" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="totMergedPersonName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="totMergedPersonCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="SerialNo" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="ExpireDate" nillable="true" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="invProductName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="invProductCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="totCostCenterCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="totCostCenterName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="splySupplierCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="splySupplierName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="invProductDetailTypeCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="invProductDetailTypeName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="invInventoryTypeName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ExpireDesc" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="Sale00902_WithPrize">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Password" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="Year" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="ErrorOut" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Sale00902_WithPrizeResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Sale00902_WithPrizeResult" type="tns:ArrayOfRptSale00902_WithPrize" />
+            <s:element minOccurs="0" maxOccurs="1" name="ErrorOut" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfRptSale00902_WithPrize">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="rptSale00902_WithPrize" nillable="true" type="tns:rptSale00902_WithPrize" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="rptSale00902_WithPrize">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Value" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="NAME" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="SeasonCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="SeasonName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="invProductID" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Month" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ReceiveQty" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ProductRequestQty" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Qty" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="FinalAmount" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="SaleQty" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="invProductCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="invProductName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="SplySplliesID" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="SplySppliesCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="SplySppliesName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="DarRahQty" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="saleProduct_Customer_WithPrize">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Password" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="FDate" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="TDate" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ErrorOut" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="saleProduct_Customer_WithPrizeResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="saleProduct_Customer_WithPrizeResult" type="tns:ArrayOfMomtaz_rptSP_Sale00201_WithPrize_GlobalWebservice_DepResult" />
+            <s:element minOccurs="0" maxOccurs="1" name="ErrorOut" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfMomtaz_rptSP_Sale00201_WithPrize_GlobalWebservice_DepResult">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Momtaz_rptSP_Sale00201_WithPrize_GlobalWebservice_DepResult" nillable="true" type="tns:Momtaz_rptSP_Sale00201_WithPrize_GlobalWebservice_DepResult" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Momtaz_rptSP_Sale00201_WithPrize_GlobalWebservice_DepResult">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="scuCmpyDurID" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="totCostCenterID" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="totCostCenterCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="totCostCenterName" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="ExecDate" type="s:long" />
+          <s:element minOccurs="1" maxOccurs="1" name="saleCustomerID" nillable="true" type="s:long" />
+          <s:element minOccurs="0" maxOccurs="1" name="EconomicCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="NationalCode" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="saleCustomerKindID" nillable="true" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="totMergedPersonID" nillable="true" type="s:long" />
+          <s:element minOccurs="0" maxOccurs="1" name="totMergedPersonCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="totMergedPersonName" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="totMergedPersonTypeID" type="s:long" />
+          <s:element minOccurs="1" maxOccurs="1" name="invProductID" type="s:long" />
+          <s:element minOccurs="0" maxOccurs="1" name="invProductCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="invProductName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="PackInformation" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="invOperationCode" nillable="true" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="totBusinessPartitionID" nillable="true" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="QtyOfBaseInDefultMaster" nillable="true" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="Qty" nillable="true" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="ReturnQty" nillable="true" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="MasterQtyConfirmed" nillable="true" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="ReturnMasterQtyConfirmed" nillable="true" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="BaseQtyConfirmed" nillable="true" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="ReturnBaseQtyConfirmed" nillable="true" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="AmountPrice" nillable="true" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="ReturnAmountPrice" nillable="true" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="FeePrice" nillable="true" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="AmountDiscount" nillable="true" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="ReturnAmountDiscount" nillable="true" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="FinalAmount" nillable="true" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="ReturnFinalAmount" nillable="true" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="AmountAdditional" nillable="true" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="ReturnAmountAdditional" nillable="true" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="TaxANDToll" nillable="true" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="ReturnTaxANDToll" nillable="true" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="Tax" nillable="true" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="ReturnTax" nillable="true" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="Imposition" nillable="true" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="ReturnImposition" nillable="true" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="FinalAmountPrice" nillable="true" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="ReturnFinalAmountPrice" nillable="true" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="saleCustomerTypeID" nillable="true" type="s:long" />
+          <s:element minOccurs="1" maxOccurs="1" name="saleCustomerActivityID" nillable="true" type="s:long" />
+          <s:element minOccurs="1" maxOccurs="1" name="QtyConfirmed" nillable="true" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="ReturnQtyConfirmed" nillable="true" type="s:decimal" />
+          <s:element minOccurs="0" maxOccurs="1" name="Addresses" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Tel" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CityName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ProvinceName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="GLN" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="hixCode" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="saleDocument_sply_prd_CostCenter_WithPrize">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Password" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Fdate" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Tdate" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ErrorOut" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="saleDocument_sply_prd_CostCenter_WithPrizeResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="saleDocument_sply_prd_CostCenter_WithPrizeResult" type="tns:ArrayOfRptsaleDocument_sply_prd_CostCenter_WithPrize" />
+            <s:element minOccurs="0" maxOccurs="1" name="ErrorOut" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfRptsaleDocument_sply_prd_CostCenter_WithPrize">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="rptsaleDocument_sply_prd_CostCenter_WithPrize" nillable="true" type="tns:rptsaleDocument_sply_prd_CostCenter_WithPrize" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="rptsaleDocument_sply_prd_CostCenter_WithPrize">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="totCostCenterID" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="totCostCenterCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="totCostCenterName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="invProductID" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="invProductCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="invProductName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="splySupplierID" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="splySupplierCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="splySupplierName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Cost" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Price" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="UserPrice" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="StockQty" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="StockAmnt" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="QtyConfirmed" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="AmountPrice" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="NetAmountPrice" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="QtyConfirmed_Invoice" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="AmountPrice_Return" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="QtyConfirmed_Return" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="DarRahQty" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="DarRahAmountCost" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="PurchaseQty" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="RespiteDays" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="saleProduct_Customer_WithPrizeBySerial">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Password" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="FDate" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="TDate" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ErrorOut" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="saleProduct_Customer_WithPrizeBySerialResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="saleProduct_Customer_WithPrizeBySerialResult" type="tns:ArrayOfMomtaz_WebSerivce_Sale_BySerialNumberResult" />
+            <s:element minOccurs="0" maxOccurs="1" name="ErrorOut" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfMomtaz_WebSerivce_Sale_BySerialNumberResult">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Momtaz_WebSerivce_Sale_BySerialNumberResult" nillable="true" type="tns:Momtaz_WebSerivce_Sale_BySerialNumberResult" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Momtaz_WebSerivce_Sale_BySerialNumberResult">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="CenterCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CenterName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CustomerCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CustomerName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Addresses" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Tel" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CityName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ProvinceName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Type" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Serial" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="ExecDate" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="PrdCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="PrdName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="BatchNumber" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="ExpireDate" nillable="true" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="QtyConfirmed" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="AmountPrice" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="TaxAndTool" nillable="true" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="Discount" nillable="true" type="s:decimal" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="saleProduct_Customer_WithPrize_Serial">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Password" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="FDate" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="TDate" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ErrorOut" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="saleProduct_Customer_WithPrize_SerialResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="saleProduct_Customer_WithPrize_SerialResult" type="tns:ArrayOfMomtaz_rptSP_Sale00201_WithPrize_GlobalWebservice_Dep_SerialResult" />
+            <s:element minOccurs="0" maxOccurs="1" name="ErrorOut" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfMomtaz_rptSP_Sale00201_WithPrize_GlobalWebservice_Dep_SerialResult">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Momtaz_rptSP_Sale00201_WithPrize_GlobalWebservice_Dep_SerialResult" nillable="true" type="tns:Momtaz_rptSP_Sale00201_WithPrize_GlobalWebservice_Dep_SerialResult" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Momtaz_rptSP_Sale00201_WithPrize_GlobalWebservice_Dep_SerialResult">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="scuCmpyDurID" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="totCostCenterID" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="totCostCenterCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="totCostCenterName" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="ExecDate" type="s:long" />
+          <s:element minOccurs="1" maxOccurs="1" name="saleCustomerID" nillable="true" type="s:long" />
+          <s:element minOccurs="0" maxOccurs="1" name="EconomicCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="NationalCode" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="saleCustomerKindID" nillable="true" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="totMergedPersonID" nillable="true" type="s:long" />
+          <s:element minOccurs="0" maxOccurs="1" name="totMergedPersonCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="totMergedPersonName" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="totMergedPersonTypeID" type="s:long" />
+          <s:element minOccurs="1" maxOccurs="1" name="invProductID" type="s:long" />
+          <s:element minOccurs="0" maxOccurs="1" name="invProductCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="invProductName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="PackInformation" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="invOperationCode" nillable="true" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="totBusinessPartitionID" nillable="true" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="QtyOfBaseInDefultMaster" nillable="true" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="Qty" nillable="true" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="ReturnQty" nillable="true" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="MasterQtyConfirmed" nillable="true" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="ReturnMasterQtyConfirmed" nillable="true" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="BaseQtyConfirmed" nillable="true" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="ReturnBaseQtyConfirmed" nillable="true" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="AmountPrice" nillable="true" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="ReturnAmountPrice" nillable="true" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="FeePrice" nillable="true" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="AmountDiscount" nillable="true" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="ReturnAmountDiscount" nillable="true" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="FinalAmount" nillable="true" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="ReturnFinalAmount" nillable="true" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="AmountAdditional" nillable="true" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="ReturnAmountAdditional" nillable="true" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="TaxANDToll" nillable="true" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="ReturnTaxANDToll" nillable="true" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="Tax" nillable="true" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="ReturnTax" nillable="true" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="Imposition" nillable="true" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="ReturnImposition" nillable="true" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="FinalAmountPrice" nillable="true" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="ReturnFinalAmountPrice" nillable="true" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="saleCustomerTypeID" nillable="true" type="s:long" />
+          <s:element minOccurs="1" maxOccurs="1" name="saleCustomerActivityID" nillable="true" type="s:long" />
+          <s:element minOccurs="1" maxOccurs="1" name="QtyConfirmed" nillable="true" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="ReturnQtyConfirmed" nillable="true" type="s:decimal" />
+          <s:element minOccurs="0" maxOccurs="1" name="Addresses" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Tel" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CityName" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="ProvinceCode" nillable="true" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="ProvinceName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="GLN" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="hixCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Serials" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="MomtazSP_StockInventory">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Password" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="FDate" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ErrorOut" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="MomtazSP_StockInventoryResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="MomtazSP_StockInventoryResult" type="tns:ArrayOfMomtazSP_StockInventoryResult" />
+            <s:element minOccurs="0" maxOccurs="1" name="ErrorOut" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfMomtazSP_StockInventoryResult">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="MomtazSP_StockInventoryResult" nillable="true" type="tns:MomtazSP_StockInventoryResult" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="MomtazSP_StockInventoryResult">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="CenterCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="inventoryCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="inventoryName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="SupplyName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ProductCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ProductName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="IRCCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="SerialNo" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="ExpireDate" nillable="true" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="StockQty" nillable="true" type="s:decimal" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="MomtazSP_outputInvforSale">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Password" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="FDate" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="TDate" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ErrorOut" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="MomtazSP_outputInvforSaleResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="MomtazSP_outputInvforSaleResult" type="tns:ArrayOfMomtazSP_outputInvforSaleResult" />
+            <s:element minOccurs="0" maxOccurs="1" name="ErrorOut" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfMomtazSP_outputInvforSaleResult">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="MomtazSP_outputInvforSaleResult" nillable="true" type="tns:MomtazSP_outputInvforSaleResult" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="MomtazSP_outputInvforSaleResult">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="SaleType" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CenterName" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Serial" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="ExecDate" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="CustomerCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CustomerName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="GLN" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ProductCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ProductName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="IRCCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="SupplyName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="SerialNo" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="ExpireDate" nillable="true" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Qty" nillable="true" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="AmountPrice" nillable="true" type="s:decimal" />
+        </s:sequence>
+      </s:complexType>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="invProductDetails_ExpiresSoonSoapIn">
+    <wsdl:part name="parameters" element="tns:invProductDetails_ExpiresSoon" />
+  </wsdl:message>
+  <wsdl:message name="invProductDetails_ExpiresSoonSoapOut">
+    <wsdl:part name="parameters" element="tns:invProductDetails_ExpiresSoonResponse" />
+  </wsdl:message>
+  <wsdl:message name="Sale00902_WithPrizeSoapIn">
+    <wsdl:part name="parameters" element="tns:Sale00902_WithPrize" />
+  </wsdl:message>
+  <wsdl:message name="Sale00902_WithPrizeSoapOut">
+    <wsdl:part name="parameters" element="tns:Sale00902_WithPrizeResponse" />
+  </wsdl:message>
+  <wsdl:message name="saleProduct_Customer_WithPrizeSoapIn">
+    <wsdl:part name="parameters" element="tns:saleProduct_Customer_WithPrize" />
+  </wsdl:message>
+  <wsdl:message name="saleProduct_Customer_WithPrizeSoapOut">
+    <wsdl:part name="parameters" element="tns:saleProduct_Customer_WithPrizeResponse" />
+  </wsdl:message>
+  <wsdl:message name="saleDocument_sply_prd_CostCenter_WithPrizeSoapIn">
+    <wsdl:part name="parameters" element="tns:saleDocument_sply_prd_CostCenter_WithPrize" />
+  </wsdl:message>
+  <wsdl:message name="saleDocument_sply_prd_CostCenter_WithPrizeSoapOut">
+    <wsdl:part name="parameters" element="tns:saleDocument_sply_prd_CostCenter_WithPrizeResponse" />
+  </wsdl:message>
+  <wsdl:message name="saleProduct_Customer_WithPrizeBySerialSoapIn">
+    <wsdl:part name="parameters" element="tns:saleProduct_Customer_WithPrizeBySerial" />
+  </wsdl:message>
+  <wsdl:message name="saleProduct_Customer_WithPrizeBySerialSoapOut">
+    <wsdl:part name="parameters" element="tns:saleProduct_Customer_WithPrizeBySerialResponse" />
+  </wsdl:message>
+  <wsdl:message name="saleProduct_Customer_WithPrize_SerialSoapIn">
+    <wsdl:part name="parameters" element="tns:saleProduct_Customer_WithPrize_Serial" />
+  </wsdl:message>
+  <wsdl:message name="saleProduct_Customer_WithPrize_SerialSoapOut">
+    <wsdl:part name="parameters" element="tns:saleProduct_Customer_WithPrize_SerialResponse" />
+  </wsdl:message>
+  <wsdl:message name="MomtazSP_StockInventorySoapIn">
+    <wsdl:part name="parameters" element="tns:MomtazSP_StockInventory" />
+  </wsdl:message>
+  <wsdl:message name="MomtazSP_StockInventorySoapOut">
+    <wsdl:part name="parameters" element="tns:MomtazSP_StockInventoryResponse" />
+  </wsdl:message>
+  <wsdl:message name="MomtazSP_outputInvforSaleSoapIn">
+    <wsdl:part name="parameters" element="tns:MomtazSP_outputInvforSale" />
+  </wsdl:message>
+  <wsdl:message name="MomtazSP_outputInvforSaleSoapOut">
+    <wsdl:part name="parameters" element="tns:MomtazSP_outputInvforSaleResponse" />
+  </wsdl:message>
+  <wsdl:portType name="SupplierFileSoap">
+    <wsdl:operation name="invProductDetails_ExpiresSoon">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">گزارش کالاهاي تاريخ نزديک</wsdl:documentation>
+      <wsdl:input message="tns:invProductDetails_ExpiresSoonSoapIn" />
+      <wsdl:output message="tns:invProductDetails_ExpiresSoonSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Sale00902_WithPrize">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">آمار فروش خالص و موجودي به تفکيک اقلام با احتساب جايزه</wsdl:documentation>
+      <wsdl:input message="tns:Sale00902_WithPrizeSoapIn" />
+      <wsdl:output message="tns:Sale00902_WithPrizeSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="saleProduct_Customer_WithPrize">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">گزارش آمار فروش کالا به تفکیک مشتریان با احتساب جایزه</wsdl:documentation>
+      <wsdl:input message="tns:saleProduct_Customer_WithPrizeSoapIn" />
+      <wsdl:output message="tns:saleProduct_Customer_WithPrizeSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="saleDocument_sply_prd_CostCenter_WithPrize">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">گزارش فروش و موجودي شعب به تفکيک کالاي شرکتهاي طرف قرارداد با احتساب جايزه</wsdl:documentation>
+      <wsdl:input message="tns:saleDocument_sply_prd_CostCenter_WithPrizeSoapIn" />
+      <wsdl:output message="tns:saleDocument_sply_prd_CostCenter_WithPrizeSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="saleProduct_Customer_WithPrizeBySerial">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"> گزارش آمار فروش کالا به تفکیک مشتریان با احتساب جایزه سری ساخت</wsdl:documentation>
+      <wsdl:input message="tns:saleProduct_Customer_WithPrizeBySerialSoapIn" />
+      <wsdl:output message="tns:saleProduct_Customer_WithPrizeBySerialSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="saleProduct_Customer_WithPrize_Serial">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">گزارش آمار فروش کالا به تفکیک مشتریان با احتساب جایزه همراه شماره فاکتور</wsdl:documentation>
+      <wsdl:input message="tns:saleProduct_Customer_WithPrize_SerialSoapIn" />
+      <wsdl:output message="tns:saleProduct_Customer_WithPrize_SerialSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="MomtazSP_StockInventory">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">گزارش موجودی انبارها</wsdl:documentation>
+      <wsdl:input message="tns:MomtazSP_StockInventorySoapIn" />
+      <wsdl:output message="tns:MomtazSP_StockInventorySoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="MomtazSP_outputInvforSale">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">گزارش فاکتورها</wsdl:documentation>
+      <wsdl:input message="tns:MomtazSP_outputInvforSaleSoapIn" />
+      <wsdl:output message="tns:MomtazSP_outputInvforSaleSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="SupplierFileSoap" type="tns:SupplierFileSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="invProductDetails_ExpiresSoon">
+      <soap:operation soapAction="http://p-momtaz.com/invProductDetails_ExpiresSoon" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Sale00902_WithPrize">
+      <soap:operation soapAction="http://p-momtaz.com/Sale00902_WithPrize" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="saleProduct_Customer_WithPrize">
+      <soap:operation soapAction="http://p-momtaz.com/saleProduct_Customer_WithPrize" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="saleDocument_sply_prd_CostCenter_WithPrize">
+      <soap:operation soapAction="http://p-momtaz.com/saleDocument_sply_prd_CostCenter_WithPrize" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="saleProduct_Customer_WithPrizeBySerial">
+      <soap:operation soapAction="http://p-momtaz.com/saleProduct_Customer_WithPrizeBySerial" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="saleProduct_Customer_WithPrize_Serial">
+      <soap:operation soapAction="http://p-momtaz.com/saleProduct_Customer_WithPrize_Serial" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="MomtazSP_StockInventory">
+      <soap:operation soapAction="http://p-momtaz.com/MomtazSP_StockInventory" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="MomtazSP_outputInvforSale">
+      <soap:operation soapAction="http://p-momtaz.com/MomtazSP_outputInvforSale" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="SupplierFileSoap12" type="tns:SupplierFileSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="invProductDetails_ExpiresSoon">
+      <soap12:operation soapAction="http://p-momtaz.com/invProductDetails_ExpiresSoon" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Sale00902_WithPrize">
+      <soap12:operation soapAction="http://p-momtaz.com/Sale00902_WithPrize" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="saleProduct_Customer_WithPrize">
+      <soap12:operation soapAction="http://p-momtaz.com/saleProduct_Customer_WithPrize" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="saleDocument_sply_prd_CostCenter_WithPrize">
+      <soap12:operation soapAction="http://p-momtaz.com/saleDocument_sply_prd_CostCenter_WithPrize" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="saleProduct_Customer_WithPrizeBySerial">
+      <soap12:operation soapAction="http://p-momtaz.com/saleProduct_Customer_WithPrizeBySerial" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="saleProduct_Customer_WithPrize_Serial">
+      <soap12:operation soapAction="http://p-momtaz.com/saleProduct_Customer_WithPrize_Serial" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="MomtazSP_StockInventory">
+      <soap12:operation soapAction="http://p-momtaz.com/MomtazSP_StockInventory" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="MomtazSP_outputInvforSale">
+      <soap12:operation soapAction="http://p-momtaz.com/MomtazSP_outputInvforSale" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="SupplierFile">
+    <wsdl:port name="SupplierFileSoap" binding="tns:SupplierFileSoap">
+      <soap:address location="http://188.75.73.78/SupplierService/SupplierFile.asmx" />
+    </wsdl:port>
+    <wsdl:port name="SupplierFileSoap12" binding="tns:SupplierFileSoap12">
+      <soap12:address location="http://188.75.73.78/SupplierService/SupplierFile.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

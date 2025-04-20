@@ -315,21 +315,6 @@
               ]
             }
           }
-        ],
-        "measures": [
-          {
-            "name": "CountCustomer",
-            "expression": [
-              "",
-              "CALCULATE(",
-              "    COUNT(Dimcustomer[CustomerKey]),",
-              "    ALL(Dimcustomer[CreatedDateKey]),",
-              "    ALL(FactSales[DateKey]),",
-              "    All(DimDate_Big),",
-              "    Dimcustomer[status] = TRUE()",
-              ")"
-            ]
-          }
         ]
       },
       {
@@ -779,11 +764,11 @@
               {
                 "name": "QueryEditorSerialization",
                 "value": [
-                  "<?xml version=\"1.0\" encoding=\"UTF-16\"?><Gemini xmlns=\"QueryEditorSerialization\"><AnnotationContent><![CDATA[<RSQueryCommandText>let",
-                  "   ",
-                  "\t Source = Sql.Database(\"192.168.10.10\", \"DW\", [Query=\"SELECT * FROM dbo.FactSales  \"])",
-                  "",
-                  "in",
+                  "<?xml version=\"1.0\" encoding=\"UTF-16\"?><Gemini xmlns=\"QueryEditorSerialization\"><AnnotationContent><![CDATA[<RSQueryCommandText>let\r",
+                  "   \r",
+                  "\t Source = Sql.Database(\"192.168.10.10\", \"DW\", [Query=\"SELECT * FROM dbo.FactSales  \"])\r",
+                  "\r",
+                  "in\r",
                   "    Source</RSQueryCommandText><RSQueryCommandType>Text</RSQueryCommandType><RSQueryDesignState></RSQueryDesignState>]]></AnnotationContent></Gemini>"
                 ]
               }
@@ -803,14 +788,14 @@
             "expression": [
               "",
               "",
-              "",
-              "sumx(FactSales,FactSales[Quantity]*FactSales[Price])"
+              "DIVIDE(",
+              "sumx(FactSales,FactSales[Quantity]*FactSales[Price]), 1000000)"
             ],
             "formatString": "#,0"
           },
           {
             "name": "costPerItem",
-            "expression": "sumx(FactSales,FactSales[Quantity]*FactSales[Cost])",
+            "expression": "DIVIDE(sumx(FactSales,FactSales[Quantity]*FactSales[Cost]), 1000000)",
             "formatString": "#,0"
           },
           {
@@ -1198,13 +1183,11 @@
               "",
               "return  DIVIDE([NetPrice],CountCustomer)",
               "*/",
-              "",
               "SUMX(",
               "    VALUES(DimCenter[CenterKey]), ",
-              "    VAR CountCustomer = ",
+              "    VAR CountCustomer =",
               "        CALCULATE(",
-              "            DISTINCTCOUNT(Dimcustomer[CustomerKey]), ",
-              "            Dimcustomer[status] = TRUE()",
+              "            DISTINCTCOUNT(FactSales[CustomerKey])",
               "        ) ",
               "    RETURN DIVIDE([NetPrice], CountCustomer)",
               ")",
@@ -1261,6 +1244,10 @@
           {
             "name": "Trancparency",
             "expression": " \"#FFFFFF00\""
+          },
+          {
+            "name": "NetPriceLastYear*1.5",
+            "expression": " [NetPriceLastYear]*1.5"
           }
         ]
       },
@@ -1609,7 +1596,7 @@
         "measures": [
           {
             "name": "TargetAmountMeasure",
-            "expression": "sum(DimTarget[TargetAmount])",
+            "expression": "DIVIDE(sum(DimTarget[TargetAmount]), 1000000)",
             "formatString": "#,0"
           },
           {
@@ -1890,6 +1877,10 @@
               "  FORMAT([CovarageCustomer], \"##,##%\") & ",
               "\"|\" & FORMAT([CoverageSales], \"##,##%\")"
             ]
+          },
+          {
+            "name": "countcustomer",
+            "expression": " CALCULATE(DISTINCTCOUNT(titaccustomer[customerkey]) , titaccustomer[mycustomer]=1)"
           }
         ]
       },

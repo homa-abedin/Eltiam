@@ -11,8 +11,8 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="DW"
   DTS:PackageType="5"
-  DTS:VersionBuild="175"
-  DTS:VersionGUID="{3682DB64-A0C5-4F4D-94D5-DB9720D93F96}">
+  DTS:VersionBuild="177"
+  DTS:VersionGUID="{C49D714E-8BA7-48E3-852C-71D152EF88B4}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -37,19 +37,7 @@
         <DTS:ConnectionManager
           DTS:ConnectRetryCount="1"
           DTS:ConnectRetryInterval="5"
-          DTS:ConnectionString="Data Source=192.168.10.10;Initial Catalog=Stage;Provider=MSOLEDBSQL.1;Integrated Security=SSPI;Application Name=SSIS-DW-{3810A15B-64DA-40D3-9826-B8CC9CADDE42}192.168.10.10.Stage;Auto Translate=False;" />
-      </DTS:ObjectData>
-    </DTS:ConnectionManager>
-    <DTS:ConnectionManager
-      DTS:refId="Package.ConnectionManagers[Excel Connection Manager]"
-      DTS:CreationName="EXCEL"
-      DTS:DTSID="{DBFF3BF4-19FC-4699-BA56-D495B3B2195E}"
-      DTS:ObjectName="Excel Connection Manager">
-      <DTS:ObjectData>
-        <DTS:ConnectionManager
-          DTS:ConnectRetryCount="0"
-          DTS:ConnectRetryInterval="0"
-          DTS:ConnectionString="Provider=Microsoft.ACE.OLEDB.16.0;Data Source=E:\AmarName\1402\StatisticReport02_07_PerMonth.xls;Extended Properties=&quot;EXCEL 12.0 XML;HDR=YES&quot;;" />
+          DTS:ConnectionString="Data Source=192.168.10.10;Initial Catalog=Stage;Provider=MSOLEDBSQL.1;Integrated Security=SSPI;Auto Translate=False;Application Name=SSIS-DW-{3810A15B-64DA-40D3-9826-B8CC9CADDE42}192.168.10.10.Stage;" />
       </DTS:ObjectData>
     </DTS:ConnectionManager>
     <DTS:ConnectionManager
@@ -7023,7 +7011,7 @@ where
           DTS:LocaleID="-1"
           DTS:ObjectName="Dimcenter"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="1">
+          DTS:ThreadHint="0">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
@@ -9926,7 +9914,7 @@ INNER JOIN eltiam.PUBProducts P
           DTS:LocaleID="-1"
           DTS:ObjectName="DimTitacCustomer"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="2">
+          DTS:ThreadHint="0">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
@@ -10376,7 +10364,7 @@ LEFT JOIN eltiam.[HCMEmployees] H ON H.Id=S.EmployeeKey</property>
           DTS:LocaleID="-1"
           DTS:ObjectName="Edit Titaccustomera"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="2">
+          DTS:ThreadHint="0">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
@@ -10394,7 +10382,7 @@ LEFT JOIN eltiam.[HCMEmployees] H ON H.Id=S.EmployeeKey</property>
           DTS:LocaleID="-1"
           DTS:ObjectName="Lat&amp;Lon"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="1">
+          DTS:ThreadHint="0">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
@@ -10411,7 +10399,7 @@ LEFT JOIN eltiam.[HCMEmployees] H ON H.Id=S.EmployeeKey</property>
           DTS:LocaleID="-1"
           DTS:ObjectName="Truncate_DimCity"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="2">
+          DTS:ThreadHint="0">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
@@ -10428,7 +10416,7 @@ LEFT JOIN eltiam.[HCMEmployees] H ON H.Id=S.EmployeeKey</property>
           DTS:LocaleID="-1"
           DTS:ObjectName="Truncate_DimCustomer"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="0">
+          DTS:ThreadHint="2">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
@@ -10445,7 +10433,7 @@ LEFT JOIN eltiam.[HCMEmployees] H ON H.Id=S.EmployeeKey</property>
           DTS:LocaleID="-1"
           DTS:ObjectName="Truncate_DimProduct"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="2">
+          DTS:ThreadHint="0">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
@@ -10462,7 +10450,7 @@ LEFT JOIN eltiam.[HCMEmployees] H ON H.Id=S.EmployeeKey</property>
           DTS:LocaleID="-1"
           DTS:ObjectName="Truncate_DimTarget"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="2">
+          DTS:ThreadHint="0">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
@@ -10496,7 +10484,7 @@ LEFT JOIN eltiam.[HCMEmployees] H ON H.Id=S.EmployeeKey</property>
           DTS:LocaleID="-1"
           DTS:ObjectName="update long- lat"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="0">
+          DTS:ThreadHint="2">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
@@ -10942,6 +10930,10 @@ LEFT JOIN eltiam.[HCMEmployees] H ON H.Id=S.EmployeeKey</property>
           Id="Package\Sequence Container\DimCity"
           TopLeft="313.5,250.5" />
         <NodeLayout
+          Size="143,42"
+          Id="Package\Sequence Container\DimCustomer"
+          TopLeft="48,58.5" />
+        <NodeLayout
           Size="137,42"
           Id="Package\Sequence Container\DimDemand"
           TopLeft="33,549.5" />
@@ -10970,6 +10962,10 @@ LEFT JOIN eltiam.[HCMEmployees] H ON H.Id=S.EmployeeKey</property>
           Id="Package\Sequence Container\Truncate_DimCity"
           TopLeft="295.5,182.5" />
         <NodeLayout
+          Size="190,42"
+          Id="Package\Sequence Container\Truncate_DimCustomer"
+          TopLeft="38,1.5" />
+        <NodeLayout
           Size="181,42"
           Id="Package\Sequence Container\Truncate_DimProduct"
           TopLeft="286.5,46.5" />
@@ -10981,6 +10977,38 @@ LEFT JOIN eltiam.[HCMEmployees] H ON H.Id=S.EmployeeKey</property>
           Size="174,42"
           Id="Package\Sequence Container\Truncate_DimVisitor"
           TopLeft="14.5,374.5" />
+        <NodeLayout
+          Size="154,42"
+          Id="Package\Sequence Container\update long- lat"
+          TopLeft="45.5,124" />
+        <EdgeLayout
+          Id="Package\Sequence Container.PrecedenceConstraints[Constraint]"
+          TopLeft="133,43.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="58,36"
+              Start="0,0"
+              End="50.5,36">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,32" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,32"
+                    Point2="0,36"
+                    Point3="4,36" />
+                  <mssgle:LineSegment
+                    End="50.5,36" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
         <EdgeLayout
           Id="Package\Sequence Container.PrecedenceConstraints[Constraint 1]"
           TopLeft="374,88.5">
@@ -11166,6 +11194,28 @@ LEFT JOIN eltiam.[HCMEmployees] H ON H.Id=S.EmployeeKey</property>
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
+          Id="Package\Sequence Container.PrecedenceConstraints[Constraint 4]"
+          TopLeft="121,100.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,23.5"
+              Start="0,0"
+              End="0,16">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,16" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
           Id="Package\Sequence Container.PrecedenceConstraints[Constraint 5]"
           TopLeft="86,230">
           <EdgeLayout.Curve>
@@ -11303,68 +11353,6 @@ LEFT JOIN eltiam.[HCMEmployees] H ON H.Id=S.EmployeeKey</property>
                   Capacity="5">
                   <mssgle:LineSegment
                     End="0,30.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <NodeLayout
-          Size="190,42"
-          Id="Package\Sequence Container\Truncate_DimCustomer"
-          TopLeft="38,1.5" />
-        <NodeLayout
-          Size="143,42"
-          Id="Package\Sequence Container\DimCustomer"
-          TopLeft="48,58.5" />
-        <NodeLayout
-          Size="154,42"
-          Id="Package\Sequence Container\update long- lat"
-          TopLeft="45.5,124" />
-        <EdgeLayout
-          Id="Package\Sequence Container.PrecedenceConstraints[Constraint]"
-          TopLeft="133,43.5">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="58,36"
-              Start="0,0"
-              End="50.5,36">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,32" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,32"
-                    Point2="0,36"
-                    Point3="4,36" />
-                  <mssgle:LineSegment
-                    End="50.5,36" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\Sequence Container.PrecedenceConstraints[Constraint 4]"
-          TopLeft="121,100.5">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,23.5"
-              Start="0,0"
-              End="0,16">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,16" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -11870,6 +11858,79 @@ LEFT JOIN eltiam.[HCMEmployees] H ON H.Id=S.EmployeeKey</property>
     </Properties>
   </PipelineComponentMetadata>
   <TaskHost
+    design-time-name="Package\Sequence Container\DimCustomer">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="108,42"
+          Id="Package\Sequence Container\DimCustomer\Eltiam"
+          TopLeft="86,36" />
+        <NodeLayout
+          Size="171,42"
+          Id="Package\Sequence Container\DimCustomer\OLE DB Destination"
+          TopLeft="77,133" />
+        <EdgeLayout
+          Id="Package\Sequence Container\DimCustomer.Paths[OLE DB Source Output]"
+          TopLeft="140,78">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="22.5,55"
+              Start="0,0"
+              End="22.5,47.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,23.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,23.5"
+                    Point2="0,27.5"
+                    Point3="4,27.5" />
+                  <mssgle:LineSegment
+                    End="18.5,27.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="18.5,27.5"
+                    Point2="22.5,27.5"
+                    Point3="22.5,31.5" />
+                  <mssgle:LineSegment
+                    End="22.5,47.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-16.5751171875,32.5,55.650234375,11.228515625"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Sequence Container\DimCustomer\Eltiam">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Sequence Container\DimCustomer\OLE DB Destination">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <TaskHost
     design-time-name="Package\Sequence Container\DimProduct">
     <LayoutInfo>
       <GraphLayout
@@ -12012,79 +12073,6 @@ LEFT JOIN eltiam.[HCMEmployees] H ON H.Id=S.EmployeeKey</property>
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <TaskHost
-    design-time-name="Package\Sequence Container\DimCustomer">
-    <LayoutInfo>
-      <GraphLayout
-        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
-        <NodeLayout
-          Size="108,42"
-          Id="Package\Sequence Container\DimCustomer\Eltiam"
-          TopLeft="86,36" />
-        <NodeLayout
-          Size="171,42"
-          Id="Package\Sequence Container\DimCustomer\OLE DB Destination"
-          TopLeft="77,133" />
-        <EdgeLayout
-          Id="Package\Sequence Container\DimCustomer.Paths[OLE DB Source Output]"
-          TopLeft="140,78">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="22.5,55"
-              Start="0,0"
-              End="22.5,47.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,23.5" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,23.5"
-                    Point2="0,27.5"
-                    Point3="4,27.5" />
-                  <mssgle:LineSegment
-                    End="18.5,27.5" />
-                  <mssgle:CubicBezierSegment
-                    Point1="18.5,27.5"
-                    Point2="22.5,27.5"
-                    Point3="22.5,31.5" />
-                  <mssgle:LineSegment
-                    End="22.5,47.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="-16.5751171875,32.5,55.650234375,11.228515625"
-              RelativePosition="Any" />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-      </GraphLayout>
-    </LayoutInfo>
-  </TaskHost>
-  <PipelineComponentMetadata
-    design-time-name="Package\Sequence Container\DimCustomer\Eltiam">
-    <Properties>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <PipelineComponentMetadata
-    design-time-name="Package\Sequence Container\DimCustomer\OLE DB Destination">
-    <Properties>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-      <Property>
-        <Name>TableInfoObjectType</Name>
-        <Value
-          type="q2:string">Table</Value>
       </Property>
     </Properties>
   </PipelineComponentMetadata>
