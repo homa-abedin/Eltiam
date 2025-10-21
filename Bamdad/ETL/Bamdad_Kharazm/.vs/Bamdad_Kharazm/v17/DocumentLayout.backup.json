@@ -1,0 +1,72 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "E:\\ETL\\Bamdad_Kharazm\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{C2C84CD4-B6D9-4ABF-A190-D91D1AE2FE86}|KharazmiTabular\\KharazmiTabular.smproj|E:\\ETL\\Bamdad_Kharazm\\KharazmiTabular\\Model.bim||{9EE154FA-5389-414A-9FA1-1D9F0221267D}",
+      "RelativeMoniker": "D:0:0:{C2C84CD4-B6D9-4ABF-A190-D91D1AE2FE86}|KharazmiTabular\\KharazmiTabular.smproj|solutionrelative:KharazmiTabular\\Model.bim||{9EE154FA-5389-414A-9FA1-1D9F0221267D}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FE116A25-72DF-4C8E-8551-2EFDCFDA5316}|Bamdad_Kharazm\\Bamdad_Kharazm.dtproj|E:\\ETL\\Bamdad_Kharazm\\Bamdad_Kharazm\\DW_Kharazmi.dtsx||{CC84AFBD-DA02-46F4-8623-9F07E5569EDB}|Design",
+      "RelativeMoniker": "D:0:0:{FE116A25-72DF-4C8E-8551-2EFDCFDA5316}|Bamdad_Kharazm\\Bamdad_Kharazm.dtproj|solutionrelative:Bamdad_Kharazm\\DW_Kharazmi.dtsx||{CC84AFBD-DA02-46F4-8623-9F07E5569EDB}|Design"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FE116A25-72DF-4C8E-8551-2EFDCFDA5316}|Bamdad_Kharazm\\Bamdad_Kharazm.dtproj|E:\\ETL\\Bamdad_Kharazm\\Bamdad_Kharazm\\KharazmiStage.dtsx||{CC84AFBD-DA02-46F4-8623-9F07E5569EDB}|Design",
+      "RelativeMoniker": "D:0:0:{FE116A25-72DF-4C8E-8551-2EFDCFDA5316}|Bamdad_Kharazm\\Bamdad_Kharazm.dtproj|solutionrelative:Bamdad_Kharazm\\KharazmiStage.dtsx||{CC84AFBD-DA02-46F4-8623-9F07E5569EDB}|Design"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 3,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{fb9be9ec-5f71-4a43-9ae6-ae02b00f044b}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "DW_Kharazmi.dtsx [Design]",
+              "DocumentMoniker": "E:\\ETL\\Bamdad_Kharazm\\Bamdad_Kharazm\\DW_Kharazmi.dtsx",
+              "RelativeDocumentMoniker": "Bamdad_Kharazm\\DW_Kharazmi.dtsx",
+              "ToolTip": "E:\\ETL\\Bamdad_Kharazm\\Bamdad_Kharazm\\DW_Kharazmi.dtsx [Design]",
+              "RelativeToolTip": "Bamdad_Kharazm\\DW_Kharazmi.dtsx [Design]",
+              "Icon": "00000000-0000-0000-0000-000000000000.000000|iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAFTSURBVDhPY2QAgqUbD/8H0bjAu49fGG7fvZ8\u002BqTFrFlQIAv7/h\u002BgDGfDv71\u002BcePKi7f9NPZP/59VPSwNrQAJMUJogaK0pZDh\u002B6uxMdEOINqC6pR9MgwwBM6CABUqDQcWCa1AWA0NHghac//k9G0NcZAiYvWj5GjANAxgu\u002BC2rAcYwAGJz6NkxZEe7QUVQAYYBrI9vgDEMwPhffkEFsAFCsfDp\u002B9//D98jYgOqDQwIBiLI5vc/GBjefP/PwMLGARVFABQDQIEGwyCArPnNdwaGf1iSG85ARNb8\u002BhsDwweQAb\u002BBAmgAZyAia371lYHh7MnrDI9/yzA4hhQwlM29/J/BeCbYPSjpABT3MJvf//jP8BZoK4j95TfE7SD5hy\u002B\u002BMFy5846hCyyCZMDUpbugLFxABq75zPU3UDGoAaDchp7C0AHI6TDNyAaAszNRAOpnFHA2nREAjMTvHMVXB8cAAAAASUVORK5CYII=",
+              "WhenOpened": "2025-10-06T05:40:42.054Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "KharazmiStage.dtsx [Design]",
+              "DocumentMoniker": "E:\\ETL\\Bamdad_Kharazm\\Bamdad_Kharazm\\KharazmiStage.dtsx",
+              "RelativeDocumentMoniker": "Bamdad_Kharazm\\KharazmiStage.dtsx",
+              "ToolTip": "E:\\ETL\\Bamdad_Kharazm\\Bamdad_Kharazm\\KharazmiStage.dtsx [Design]",
+              "RelativeToolTip": "Bamdad_Kharazm\\KharazmiStage.dtsx [Design]",
+              "Icon": "00000000-0000-0000-0000-000000000000.000000|iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAFTSURBVDhPY2QAgqUbD/8H0bjAu49fGG7fvZ8\u002BqTFrFlQIAv7/h\u002BgDGfDv71\u002BcePKi7f9NPZP/59VPSwNrQAJMUJogaK0pZDh\u002B6uxMdEOINqC6pR9MgwwBM6CABUqDQcWCa1AWA0NHghac//k9G0NcZAiYvWj5GjANAxgu\u002BC2rAcYwAGJz6NkxZEe7QUVQAYYBrI9vgDEMwPhffkEFsAFCsfDp\u002B9//D98jYgOqDQwIBiLI5vc/GBjefP/PwMLGARVFABQDQIEGwyCArPnNdwaGf1iSG85ARNb8\u002BhsDwweQAb\u002BBAmgAZyAia371lYHh7MnrDI9/yzA4hhQwlM29/J/BeCbYPSjpABT3MJvf//jP8BZoK4j95TfE7SD5hy\u002B\u002BMFy5846hCyyCZMDUpbugLFxABq75zPU3UDGoAaDchp7C0AHI6TDNyAaAszNRAOpnFHA2nREAjMTvHMVXB8cAAAAASUVORK5CYII=",
+              "WhenOpened": "2025-10-06T05:39:12.023Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Model.bim",
+              "DocumentMoniker": "E:\\ETL\\Bamdad_Kharazm\\KharazmiTabular\\Model.bim",
+              "RelativeDocumentMoniker": "KharazmiTabular\\Model.bim",
+              "ToolTip": "E:\\ETL\\Bamdad_Kharazm\\KharazmiTabular\\Model.bim*",
+              "RelativeToolTip": "KharazmiTabular\\Model.bim*",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2025-10-04T09:42:32.96Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

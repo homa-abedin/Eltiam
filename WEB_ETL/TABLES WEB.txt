@@ -1,0 +1,624 @@
+DROP TABLE IF EXISTS [Web].[ferdows_CustomerSales];
+DROP TABLE IF EXISTS [Web].[ferdows_Inventory];
+
+DROP TABLE IF EXISTS [Web].[Momtaz_CustomerSales];
+DROP TABLE IF EXISTS [Web].[Momtaz_Inventory];
+
+DROP TABLE IF EXISTS [Web].[Hejrat_CustomerSales];
+DROP TABLE IF EXISTS [Web].[Hejrat_Inventory];
+
+DROP TABLE IF EXISTS [Web].[Alborz_CustomerSales];
+DROP TABLE IF EXISTS [Web].[Alborz_Inventory];
+
+DROP TABLE IF EXISTS [Web].[Barij_CustomerSales];
+DROP TABLE IF EXISTS [Web].[Barij_Inventory];
+
+DROP TABLE IF EXISTS [Web].[Mahya_CustomerSales];
+DROP TABLE IF EXISTS [Web].[Mahya_Inventory];
+DROP TABLE IF EXISTS [Web].[Mahya_ProductSales];
+
+DROP TABLE IF EXISTS [Web].[Qhasem_CustomerSales];
+DROP TABLE IF EXISTS [Web].[Qhasem_Inventory];
+
+DROP TABLE IF EXISTS [Web].[Eltiam_CustomerSales];
+DROP TABLE IF EXISTS [Web].[Eltiam_Inventory];
+
+
+DROP TABLE IF EXISTS FactSales;
+DROP TABLE IF EXISTS dimproduct;
+DROP TABLE IF EXISTS dimcustomer;
+
+DROP TABLE IF EXISTS ProductCodesPakhsh;
+DROP TABLE IF EXISTS CenterCodesPakhsh;
+
+DROP TABLE IF EXISTS FactSales_Web_Aggregate;
+
+GO
+
+
+DROP SCHEMA IF EXISTS Web;
+GO
+
+CREATE SCHEMA Web;
+GO
+
+
+
+CREATE TABLE [Web].[ferdows_Inventory] (
+    Id                 INT IDENTITY(1,1),
+    Distributor        NVARCHAR(256),
+    DistributorCode    INT,
+    Center             NVARCHAR(100),
+    CenterCode         INT,
+    Product            NVARCHAR(256),
+    ProductCode        NVARCHAR(256),
+    IRC                NVARCHAR(256),
+    GTIN               NVARCHAR(256),
+    Batch              NVARCHAR(256),
+    InventoryCount     INT,
+    InventoryAmount    DECIMAL(18, 0),
+    InventoryAway      INT,
+    Date               NVARCHAR(100),
+	IsInsert		   bit,
+	ExpirationDate		DATE
+);
+GO
+
+
+
+
+
+CREATE TABLE [Web].[ferdows_CustomerSales] (
+    Id                 INT IDENTITY(1,1),
+	Distributor        NVARCHAR(256),
+    DistributorCode    INT,
+    Center             NVARCHAR(100),
+    CenterCode         INT,
+    Product            NVARCHAR(256),
+    ProductCode        INT,
+    IRC                NVARCHAR(256),
+    GTIN               NVARCHAR(256),
+    CustomerCode       NVARCHAR(100),
+    Customer           NVARCHAR(256),
+    GLN                NVARCHAR(256),
+    Address            NVARCHAR(2000),
+    ShomarehFaktor     NVARCHAR(100),
+    Quantity           INT,
+    Price              DECIMAL(18, 0),
+    NetPrice           DECIMAL(18, 0),
+    Bonus              INT,
+    ReturnQuantity     INT,
+    ReturnPrice        DECIMAL(18, 0),
+    ReturnBonus        INT,
+    NoeBarge           NVARCHAR(100),
+	Date			   NVARCHAR(100),
+	IsInsert		   bit
+);
+GO
+
+
+
+
+
+
+CREATE TABLE [Web].[Momtaz_Inventory] (
+    Id                 INT IDENTITY(1,1),
+    Distributor        NVARCHAR(256),
+    DistributorCode    INT,
+    Center             NVARCHAR(100),
+    CenterCode         INT,
+    Product            NVARCHAR(256),
+    ProductCode        NVARCHAR(256),
+    IRC                NVARCHAR(256),
+    GTIN               NVARCHAR(256),
+    Batch              NVARCHAR(256),
+    InventoryCount     INT,
+    InventoryAmount    DECIMAL(18, 0),
+    InventoryAway      INT,
+    Date               NVARCHAR(100),
+	IsInsert		   bit,
+	ExpirationDate		DATE
+);
+GO
+
+
+
+
+
+CREATE TABLE [Web].[Momtaz_CustomerSales] (
+    Id                 INT IDENTITY(1,1),
+	Distributor        NVARCHAR(256),
+    DistributorCode    INT,
+    Center             NVARCHAR(100),
+    CenterCode         INT,
+    Product            NVARCHAR(256),
+    ProductCode        INT,
+    IRC                NVARCHAR(256),
+    GTIN               NVARCHAR(256),
+    CustomerCode       NVARCHAR(100),
+    Customer           NVARCHAR(256),
+    GLN                NVARCHAR(256),
+    Address            NVARCHAR(2000),
+    ShomarehFaktor     NVARCHAR(100),
+    Quantity           INT,
+    Price              DECIMAL(18, 0),
+    NetPrice           DECIMAL(18, 0),
+    Bonus              INT,
+    ReturnQuantity     INT,
+    ReturnPrice        DECIMAL(18, 0),
+    ReturnBonus        INT,
+    NoeBarge           NVARCHAR(100),
+	Date			   NVARCHAR(100),
+	IsInsert		   bit
+);
+GO
+
+
+
+
+CREATE TABLE [Web].[Alborz_Inventory] (
+    Id                 INT IDENTITY(1,1),
+    Distributor        NVARCHAR(256),
+    DistributorCode    INT,
+    Center             NVARCHAR(100),
+    CenterCode         INT,
+    Product            NVARCHAR(256),
+    ProductCode        NVARCHAR(256),
+    IRC                NVARCHAR(256),
+    GTIN               NVARCHAR(256),
+    Batch              NVARCHAR(256),
+    InventoryCount     INT,
+    InventoryAmount    DECIMAL(18, 0),
+    InventoryAway      INT,
+    Date               NVARCHAR(100),
+	IsInsert		   bit,
+	ExpirationDate		DATE
+);
+GO
+
+
+
+
+
+CREATE TABLE [Web].[Alborz_CustomerSales] (
+    Id                 INT IDENTITY(1,1),
+	Distributor        NVARCHAR(256),
+    DistributorCode    INT,
+    Center             NVARCHAR(100),
+    CenterCode         INT,
+    Product            NVARCHAR(256),
+    ProductCode        INT,
+    IRC                NVARCHAR(256),
+    GTIN               NVARCHAR(256),
+    CustomerCode       NVARCHAR(100),
+    Customer           NVARCHAR(256),
+    GLN                NVARCHAR(256),
+    Address            NVARCHAR(2000),
+    ShomarehFaktor     NVARCHAR(100),
+    Quantity           INT,
+    Price              DECIMAL(18, 0),
+    NetPrice           DECIMAL(18, 0),
+    Bonus              INT,
+    ReturnQuantity     INT,
+    ReturnPrice        DECIMAL(18, 0),
+    ReturnBonus        INT,
+    NoeBarge           NVARCHAR(100),
+	Date			   NVARCHAR(100),
+	IsInsert		   bit
+);
+GO
+
+
+
+
+CREATE TABLE [Web].[Hejrat_Inventory] (
+    Id                 INT IDENTITY(1,1),
+    Distributor        NVARCHAR(256),
+    DistributorCode    INT,
+    Center             NVARCHAR(100),
+    CenterCode         INT,
+    Product            NVARCHAR(256),
+    ProductCode        INT,
+    IRC                NVARCHAR(256),
+    GTIN               NVARCHAR(256),
+    Batch              NVARCHAR(256),
+    InventoryCount     INT,
+    InventoryAmount    INT,
+    InventoryAway      INT,
+    Date               NVARCHAR(100),
+	IsInsert		   bit,
+	ExpirationDate		DATE
+);
+GO
+
+
+
+CREATE TABLE [Web].[Hejrat_CustomerSales] (
+    Id                 INT IDENTITY(1,1),
+    Distributor        NVARCHAR(256),
+    DistributorCode    INT,
+    Center             NVARCHAR(100),
+    CenterCode         INT,
+    Product            NVARCHAR(256),
+    ProductCode        INT,
+    IRC                NVARCHAR(256),
+    GTIN               NVARCHAR(256),
+    CustomerCode       NVARCHAR(100),
+    Customer           NVARCHAR(256),
+    GLN                NVARCHAR(256),
+    Address            NVARCHAR(2000),
+    ShomarehFaktor     NVARCHAR(100),
+    Quantity           INT,
+    Price              INT,
+    NetPrice           INT,
+    Bonus              INT,
+    ReturnQuantity     INT,
+    ReturnPrice        INT,
+    ReturnBonus        INT,
+    NoeBarge           NVARCHAR(100),
+    Date               NVARCHAR(100),
+	IsInsert		   bit
+);
+GO
+
+
+
+CREATE TABLE [Web].[Barij_Inventory] (
+    Id                 INT IDENTITY(1,1),
+    Distributor        NVARCHAR(256),
+    DistributorCode    INT,
+    Center             NVARCHAR(100),
+    CenterCode         INT,
+    Product            NVARCHAR(256),
+    ProductCode        NVARCHAR(256),
+    IRC                NVARCHAR(256),
+    GTIN               NVARCHAR(256),
+    Batch              NVARCHAR(256),
+    InventoryCount     INT,
+    InventoryAmount    DECIMAL(18, 0),
+    InventoryAway      INT,
+    DateKey            INT,
+	IsInsert		   bit,
+	ExpirationDate		DATE
+);
+GO
+
+
+
+
+
+CREATE TABLE [Web].[Barij_CustomerSales] (
+    Id                 INT IDENTITY(1,1),
+	Distributor        NVARCHAR(256),
+    DistributorCode    INT,
+    Center             NVARCHAR(100),
+    CenterCode         INT,
+    Product            NVARCHAR(256),
+    ProductCode        INT,
+    IRC                NVARCHAR(256),
+    GTIN               NVARCHAR(256),
+    CustomerCode       NVARCHAR(100),
+    Customer           NVARCHAR(256),
+    GLN                NVARCHAR(256),
+    Address            NVARCHAR(2000),
+    ShomarehFaktor     NVARCHAR(100),
+    Quantity           INT,
+    Price              DECIMAL(18, 0),
+    NetPrice           DECIMAL(18, 0),
+    Bonus              INT,
+    ReturnQuantity     INT,
+    ReturnPrice        DECIMAL(18, 0),
+    ReturnBonus        INT,
+    NoeBarge           NVARCHAR(100),
+	Date			   NVARCHAR(100),
+	IsInsert		   bit
+);
+GO
+
+
+
+
+CREATE TABLE [Web].[Mahya_Inventory] (
+    Id                 INT IDENTITY(1,1),
+    Distributor        NVARCHAR(256),
+    DistributorCode    INT,
+    Center             NVARCHAR(100),
+    CenterCode         INT,
+    Product            NVARCHAR(256),
+    ProductCode        NVARCHAR(256),
+    IRC                NVARCHAR(256),
+    GTIN               NVARCHAR(256),
+    Batch              NVARCHAR(256),
+    InventoryCount     INT,
+    InventoryAmount    DECIMAL(18, 0),
+    InventoryAway      INT,
+    DateKey            INT,
+	IsInsert		   bit,
+	ExpirationDate		DATE
+);
+GO
+
+
+
+
+
+CREATE TABLE [Web].[Mahya_CustomerSales] (
+    Id                 INT IDENTITY(1,1),
+	Distributor        NVARCHAR(256),
+    DistributorCode    INT,
+    Center             NVARCHAR(100),
+    CenterCode         INT,
+    Product            NVARCHAR(256),
+    ProductCode        INT,
+    IRC                NVARCHAR(256),
+    GTIN               NVARCHAR(256),
+    CustomerCode       NVARCHAR(100),
+    Customer           NVARCHAR(256),
+    GLN                NVARCHAR(256),
+    Address            NVARCHAR(2000),
+    ShomarehFaktor     NVARCHAR(100),
+    Quantity           INT,
+    Price              DECIMAL(18, 0),
+    NetPrice           DECIMAL(18, 0),
+    Bonus              INT,
+    ReturnQuantity     INT,
+    ReturnPrice        DECIMAL(18, 0),
+    ReturnBonus        INT,
+    NoeBarge           NVARCHAR(100),
+	Date			   NVARCHAR(100),
+	IsInsert		   bit
+);
+GO
+
+
+CREATE TABLE [Web].[Mahya_ProductSales] (
+    Id                 INT IDENTITY(1,1),
+    Distributor        NVARCHAR(256),
+    DistributorCode    INT,
+    Center             NVARCHAR(100),
+    CenterCode         INT,
+    Product            NVARCHAR(256),
+    ProductCode        INT,
+    IRC                NVARCHAR(256),
+    GTIN               NVARCHAR(256),
+    Batch              NVARCHAR(256),
+    Quantity           INT,
+    Price              DECIMAL(18, 0),
+    NetPrice           int,
+    Bonus              INT,
+	Date			   NVARCHAR(100),
+	IsInsert		   bit
+
+);
+GO
+
+
+
+
+
+CREATE TABLE [Web].[Qhasem_Inventory] (
+    Id                 INT IDENTITY(1,1),
+    Distributor        NVARCHAR(256),
+    DistributorCode    INT,
+    Center             NVARCHAR(100),
+    CenterCode         INT,
+    Product            NVARCHAR(256),
+    ProductCode        INT,
+    IRC                NVARCHAR(256),
+    GTIN               NVARCHAR(256),
+    Batch              NVARCHAR(256),
+    InventoryCount     INT,
+    InventoryAmount    DECIMAL(18, 0),
+    InventoryAway      INT,
+    DateKey            INT,
+	IsInsert		   bit,
+	ExpirationDate		DATE
+);
+GO
+
+CREATE TABLE [Web].[Qhasem_CustomerSales] (
+    Id                 INT IDENTITY(1,1),
+    Distributor        NVARCHAR(256),
+    DistributorCode    INT,
+    Center             NVARCHAR(100),
+    CenterCode         INT,
+    Product            NVARCHAR(256),
+    ProductCode        INT,
+    IRC                NVARCHAR(256),
+    GTIN               NVARCHAR(256),
+    CustomerCode       NVARCHAR(100),
+    Customer           NVARCHAR(256),
+    GLN                NVARCHAR(256),
+    Address            NVARCHAR(2000),
+    ShomarehFaktor     NVARCHAR(100),
+    Quantity           INT,
+    Price              DECIMAL(18, 0),
+    NetPrice           DECIMAL(18, 0),
+    Bonus              INT,
+    ReturnQuantity     INT,
+    ReturnPrice        DECIMAL(18, 0),
+    ReturnBonus        INT,
+    NoeBarge           NVARCHAR(100),
+    DateKey            INT,
+	IsInsert		   bit
+);
+GO
+
+
+
+
+CREATE TABLE [Web].[Eltiam_Inventory] (
+    Id                 INT IDENTITY(1,1),
+    Distributor        NVARCHAR(256),
+    DistributorCode    INT,
+    Center             NVARCHAR(100),
+    CenterCode         INT,
+    Product            NVARCHAR(256),
+    ProductCode        INT,
+    IRC                NVARCHAR(256),
+    GTIN               NVARCHAR(256),
+    Batch              NVARCHAR(256),
+    InventoryCount     INT,
+    InventoryAmount    DECIMAL(18, 0),
+    InventoryAway      INT,
+    DateKey            INT,
+	IsInsert		   bit,
+	ExpirationDate		DATE
+);
+GO
+
+CREATE TABLE [Web].[Eltiam_CustomerSales] (
+    Id                 INT IDENTITY(1,1),
+    Distributor        NVARCHAR(256),
+    DistributorCode    INT,
+    Center             NVARCHAR(100),
+    CenterCode         INT,
+    Product            NVARCHAR(256),
+    ProductCode        INT,
+    IRC                NVARCHAR(256),
+    GTIN               NVARCHAR(256),
+    CustomerCode       NVARCHAR(100),
+    Customer           NVARCHAR(256),
+    GLN                NVARCHAR(256),
+    Address            NVARCHAR(2000),
+    ShomarehFaktor     NVARCHAR(100),
+    Quantity           INT,
+    Price              DECIMAL(18, 0),
+    NetPrice           DECIMAL(18, 0),
+    Bonus              INT,
+    ReturnQuantity     INT,
+    ReturnPrice        DECIMAL(18, 0),
+    ReturnBonus        INT,
+    NoeBarge           NVARCHAR(100),
+    DateKey            INT,
+	IsInsert		   bit
+);
+GO
+
+
+
+CREATE TABLE FactSales (
+    Id  INT IDENTITY(1,1),
+    ProductKey INT,
+    DateKey INT,
+    centerID INT,
+    CustomerKey INT,
+    InvoiceNumber INT,
+    Quantity INT,
+    DiscountQuantity INT,
+    DiscountAmount DECIMAL(18,2),
+    NIQuantity INT,
+    Price DECIMAL(18,2),
+    returnQuantity INT,
+    InvoiceNetAmount DECIMAL(18,2),
+    returnDiscountQuantity INT,
+    returnDiscountAmount DECIMAL(18,2),
+    returnCost DECIMAL(18,2),
+    returnPrice DECIMAL(18,2),
+    returnConsumerPrice DECIMAL(18,2),
+	DetailId INT,
+);
+GO
+
+
+
+CREATE TABLE dimproduct (
+    Id   INT IDENTITY(1,1),
+    ProductKey BIGINT ,
+    ProductCode INT,
+    Product NVARCHAR(256),
+    GTIN NVARCHAR(256),
+    IRC NVARCHAR(256),
+    SupplierKey INT
+);
+
+GO
+
+
+
+
+CREATE TABLE dimcustomer (
+    id BIGINT,            
+    CustomerKey INT,                   
+    CustomerCode INT,          
+    Customer NVARCHAR(256),         
+    GLN NVARCHAR(256),              
+    CenterNow NVARCHAR(100),           
+    CenterKeyNow INT                   
+);
+
+GO
+
+
+
+
+CREATE TABLE dbo.ProductCodesPakhsh (
+    Id  INT IDENTITY(1,1),
+    KharazmiCode NVARCHAR(100),                 -- ?? ???????
+    ProductName NVARCHAR(500),                  -- ??? ????
+    SamenCode NVARCHAR(100),                    -- ?? ????
+    HastiCode NVARCHAR(100),                    -- ?? ????
+    DayaCode NVARCHAR(100),                     -- ?? ????
+    RaziCode NVARCHAR(100),                     -- ?? ????
+    HejratCode NVARCHAR(100),                   -- ?? ????
+    MomtazCode NVARCHAR(100),                   -- ?? ?????
+    AlborzCode NVARCHAR(100),                   -- ?? ?????
+    EltiamCode NVARCHAR(100),                   -- ?? ??????
+    BehestanCode NVARCHAR(100),                 -- ?? ??????
+    GhasemCode NVARCHAR(100),                   -- ?? ????
+    FerdosCode NVARCHAR(100),                   -- ?? ?????
+    MahyaCode NVARCHAR(100),                    -- ?? ????
+    ToobaCode NVARCHAR(100),                    -- ?? ????
+    NokhbeganCode NVARCHAR(100),                -- ?? ??????
+    ShayaCode NVARCHAR(100),                    -- ?? ????
+    BarijCode NVARCHAR(100)                     -- ?? ?????
+);
+ 
+GO
+
+
+
+
+CREATE TABLE dbo.CenterCodesPakhsh (
+    Id  INT IDENTITY(1,1),
+    Province NVARCHAR(100),           
+    CenterName NVARCHAR(256),         
+    SamenCode NVARCHAR(100),           
+    HastiCode NVARCHAR(100),         
+    DayaCode NVARCHAR(100),                   
+    RaziCode NVARCHAR(100),                 
+    HejratCode NVARCHAR(100),               
+    MomtazCode NVARCHAR(100),                
+    AlborzCode NVARCHAR(100),          
+    EltiamCode NVARCHAR(100),              
+    BehestanCode NVARCHAR(100),               
+    GhasemCode NVARCHAR(100),             
+    FerdosCode NVARCHAR(100),            
+    MahyaCode NVARCHAR(100),              
+    ToobaCode NVARCHAR(100),              
+    NokhbeganCode NVARCHAR(100),         
+    ShayaCode NVARCHAR(100),              
+    BarijCode NVARCHAR(100)              
+);
+ 
+GO
+
+
+
+CREATE TABLE FactSales_Web_Aggregate (
+    Id                  INT IDENTITY(1,1),
+    ShomarehFaktor      NVARCHAR(100),
+    Quantity            INT,
+    Price               DECIMAL(18, 0),
+    Bonus               INT,
+    DateKey             INT,
+    ReturnBonus         INT,
+    ReturnPrice         DECIMAL(18, 0),
+    ReturnQuantity      INT,
+    CenterID            INT,
+    ProductID           INT,
+    customerID          INT,
+    DistributorCode     INT,
+    Amount              DECIMAL(18, 0),
+	IsInsert		   bit
+);

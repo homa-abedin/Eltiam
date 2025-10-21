@@ -1,0 +1,29 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.12.35527.113
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{C9674DCB-5085-4A16-B785-4C70DD1589BD}") = "Bamdad_Kharazm", "Bamdad_Kharazm\Bamdad_Kharazm.dtproj", "{FE116A25-72DF-4C8E-8551-2EFDCFDA5316}"
+EndProject
+Project("{6870E480-7721-4708-BFB8-9AE898AA21B3}") = "BamdadTabular", "BamdadTabular\BamdadTabular.smproj", "{8CE414BB-95B2-4C99-9E03-51BA72086E22}"
+EndProject
+Project("{6870E480-7721-4708-BFB8-9AE898AA21B3}") = "KharazmiTabular", "KharazmiTabular\KharazmiTabular.smproj", "{C2C84CD4-B6D9-4ABF-A190-D91D1AE2FE86}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Development|x86 = Development|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{FE116A25-72DF-4C8E-8551-2EFDCFDA5316}.Development|x86.ActiveCfg = Development
+		{FE116A25-72DF-4C8E-8551-2EFDCFDA5316}.Development|x86.Build.0 = Development
+		{8CE414BB-95B2-4C99-9E03-51BA72086E22}.Development|x86.ActiveCfg = Development|x86
+		{8CE414BB-95B2-4C99-9E03-51BA72086E22}.Development|x86.Build.0 = Development|x86
+		{8CE414BB-95B2-4C99-9E03-51BA72086E22}.Development|x86.Deploy.0 = Development|x86
+		{C2C84CD4-B6D9-4ABF-A190-D91D1AE2FE86}.Development|x86.ActiveCfg = Development|x86
+		{C2C84CD4-B6D9-4ABF-A190-D91D1AE2FE86}.Development|x86.Build.0 = Development|x86
+		{C2C84CD4-B6D9-4ABF-A190-D91D1AE2FE86}.Development|x86.Deploy.0 = Development|x86
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

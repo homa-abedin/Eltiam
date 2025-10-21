@@ -1,0 +1,2625 @@
+{
+  "name": "BamdadTabular",
+  "compatibilityLevel": 1600,
+  "model": {
+    "culture": "en-US",
+    "dataAccessOptions": {
+      "fastCombine": false
+    },
+    "dataSources": [
+      {
+        "type": "structured",
+        "name": "SQL/192 168 10 10;DW",
+        "connectionDetails": {
+          "protocol": "tds",
+          "address": {
+            "server": "192.168.10.10",
+            "database": "DW"
+          },
+          "authentication": null,
+          "query": null
+        },
+        "credential": {
+          "AuthenticationKind": "Windows",
+          "kind": "SQL",
+          "path": "192.168.10.10;DW",
+          "Username": "el\\abedinzadehh",
+          "EncryptConnection": false
+        }
+      }
+    ],
+    "tables": [
+      {
+        "name": "dimcenter",
+        "columns": [
+          {
+            "name": "CenterKey",
+            "dataType": "int64",
+            "sourceColumn": "centerkey"
+          },
+          {
+            "name": "CenterName",
+            "dataType": "string",
+            "sourceColumn": "CenterName"
+          },
+          {
+            "name": "idprovince",
+            "dataType": "int64",
+            "sourceColumn": "idprovince"
+          },
+          {
+            "name": "provincename",
+            "dataType": "string",
+            "sourceColumn": "provincename"
+          },
+          {
+            "name": "id",
+            "dataType": "int64",
+            "sourceColumn": "id"
+          },
+          {
+            "name": "mycenter",
+            "dataType": "int64",
+            "sourceColumn": "mycenter"
+          },
+          {
+            "name": "color",
+            "dataType": "string",
+            "sourceColumn": "color"
+          },
+          {
+            "name": "Manager",
+            "dataType": "string",
+            "sourceColumn": "Manager"
+          },
+          {
+            "name": "ManagerEmail",
+            "dataType": "string",
+            "sourceColumn": "ManagerEmail"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "Partition",
+            "dataView": "full",
+            "source": {
+              "type": "m",
+              "expression": [
+                "let",
+                "    Source = #\"SQL/192 168 10 10;DW\",",
+                "    dbo_dimcenter = Source{[Schema=\"dbo\",Item=\"dimcenter\"]}[Data]",
+                "in",
+                "    dbo_dimcenter"
+              ]
+            }
+          }
+        ],
+        "measures": [
+          {
+            "name": "test",
+            "expression": "USERNAME()"
+          }
+        ]
+      },
+      {
+        "name": "DimCity",
+        "columns": [
+          {
+            "name": "ProvinceKey",
+            "dataType": "int64",
+            "sourceColumn": "ProvinceKey"
+          },
+          {
+            "name": "Province",
+            "dataType": "string",
+            "sourceColumn": "Province"
+          },
+          {
+            "name": "CountyKey",
+            "dataType": "int64",
+            "sourceColumn": "CountyKey"
+          },
+          {
+            "name": "County",
+            "dataType": "string",
+            "sourceColumn": "County"
+          },
+          {
+            "name": "CityKey",
+            "dataType": "int64",
+            "sourceColumn": "CityKey"
+          },
+          {
+            "name": "City",
+            "dataType": "string",
+            "sourceColumn": "City"
+          },
+          {
+            "name": "company",
+            "dataType": "int64",
+            "sourceColumn": "company"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "Partition",
+            "dataView": "full",
+            "source": {
+              "type": "m",
+              "expression": [
+                "let",
+                "    Source = #\"SQL/192 168 10 10;DW\",",
+                "    dbo_DimCity = Source{[Schema=\"dbo\",Item=\"DimCity\"]}[Data]",
+                "in",
+                "    dbo_DimCity"
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "name": "Dimcustomer",
+        "columns": [
+          {
+            "name": "CustomerKey",
+            "dataType": "int64",
+            "sourceColumn": "CustomerKey"
+          },
+          {
+            "name": "CustomerCode",
+            "dataType": "int64",
+            "sourceColumn": "CustomerCode"
+          },
+          {
+            "name": "IsDeactivated",
+            "dataType": "boolean",
+            "sourceColumn": "IsDeactivated"
+          },
+          {
+            "name": "status",
+            "dataType": "boolean",
+            "sourceColumn": "status"
+          },
+          {
+            "name": "Customer",
+            "dataType": "string",
+            "sourceColumn": "Customer"
+          },
+          {
+            "name": "CenterKeyNow",
+            "dataType": "int64",
+            "sourceColumn": "CenterKeyNow"
+          },
+          {
+            "name": "CenterNow",
+            "dataType": "string",
+            "sourceColumn": "CenterNow"
+          },
+          {
+            "name": "CityKey",
+            "dataType": "int64",
+            "sourceColumn": "CityKey"
+          },
+          {
+            "name": "CustomerTypeKey",
+            "dataType": "int64",
+            "sourceColumn": "CustomerTypeKey"
+          },
+          {
+            "name": "CustomerType",
+            "dataType": "string",
+            "sourceColumn": "CustomerType"
+          },
+          {
+            "name": "PharmacyType",
+            "dataType": "string",
+            "sourceColumn": "PharmacyType"
+          },
+          {
+            "name": "OwnershipTypeKey",
+            "dataType": "int64",
+            "sourceColumn": "OwnershipTypeKey"
+          },
+          {
+            "name": "OwnershipType",
+            "dataType": "string",
+            "sourceColumn": "OwnershipType"
+          },
+          {
+            "name": "PaymentBehaviorKey",
+            "dataType": "boolean",
+            "sourceColumn": "PaymentBehaviorKey"
+          },
+          {
+            "name": "PaymentBehavior",
+            "dataType": "string",
+            "sourceColumn": "PaymentBehavior"
+          },
+          {
+            "name": "RegulatoryAgencyKey",
+            "dataType": "int64",
+            "sourceColumn": "RegulatoryAgencyKey"
+          },
+          {
+            "name": "RegulatoryAgency",
+            "dataType": "string",
+            "sourceColumn": "RegulatoryAgency"
+          },
+          {
+            "name": "CustomerAddressNow",
+            "dataType": "string",
+            "sourceColumn": "CustomerAddressNow"
+          },
+          {
+            "name": "DefaultSalesmanKey",
+            "dataType": "int64",
+            "sourceColumn": "DefaultSalesmanKey"
+          },
+          {
+            "name": "DefaultSalesman",
+            "dataType": "string",
+            "sourceColumn": "DefaultSalesman"
+          },
+          {
+            "name": "SalesRouteKeyNow",
+            "dataType": "int64",
+            "sourceColumn": "SalesRouteKeyNow"
+          },
+          {
+            "name": "SalesRouteNow",
+            "dataType": "string",
+            "sourceColumn": "SalesRouteNow"
+          },
+          {
+            "name": "CustomerStatus",
+            "dataType": "string",
+            "sourceColumn": "CustomerStatus"
+          },
+          {
+            "name": "CreatedDateKey",
+            "dataType": "int64",
+            "sourceColumn": "CreatedDateKey"
+          },
+          {
+            "name": "Latitude",
+            "dataType": "double",
+            "sourceColumn": "Latitude"
+          },
+          {
+            "name": "Longitude",
+            "dataType": "double",
+            "sourceColumn": "Longitude"
+          },
+          {
+            "name": "company",
+            "dataType": "int64",
+            "sourceColumn": "company"
+          },
+          {
+            "name": "GLN",
+            "dataType": "string",
+            "sourceColumn": "GLN"
+          },
+          {
+            "name": "kind",
+            "dataType": "string",
+            "sourceColumn": "kind"
+          },
+          {
+            "name": "accountid",
+            "dataType": "int64",
+            "sourceColumn": "accountid"
+          },
+          {
+            "name": "id",
+            "dataType": "int64",
+            "sourceColumn": "id"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "Partition",
+            "dataView": "full",
+            "source": {
+              "type": "m",
+              "expression": [
+                "let",
+                "    Source = #\"SQL/192 168 10 10;DW\",",
+                "    dbo_dimcustomer = Source{[Schema=\"dbo\",Item=\"dimcustomer\"]}[Data]",
+                "in",
+                "    dbo_dimcustomer"
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "name": "dimproduct",
+        "columns": [
+          {
+            "name": "ProductKey",
+            "dataType": "int64",
+            "sourceColumn": "ProductKey",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "ProductCode",
+            "dataType": "int64",
+            "sourceColumn": "ProductCode"
+          },
+          {
+            "name": "Product",
+            "dataType": "string",
+            "sourceColumn": "Product"
+          },
+          {
+            "name": "SupplierKey",
+            "dataType": "int64",
+            "sourceColumn": "SupplierKey"
+          },
+          {
+            "name": "SupplierCode",
+            "dataType": "string",
+            "sourceColumn": "SupplierCode"
+          },
+          {
+            "name": "Supplier",
+            "dataType": "string",
+            "sourceColumn": "Supplier"
+          },
+          {
+            "name": "drugid",
+            "dataType": "int64",
+            "sourceColumn": "drugid"
+          },
+          {
+            "name": "JointKey",
+            "dataType": "int64",
+            "sourceColumn": "JointKey"
+          },
+          {
+            "name": "EnglishProductName",
+            "dataType": "string",
+            "sourceColumn": "EnglishProductName"
+          },
+          {
+            "name": "DrugShape",
+            "dataType": "string",
+            "sourceColumn": "DrugShape"
+          },
+          {
+            "name": "ProductSupplyType",
+            "dataType": "string",
+            "sourceColumn": "ProductSupplyType"
+          },
+          {
+            "name": "typeid",
+            "dataType": "int64",
+            "sourceColumn": "typeid"
+          },
+          {
+            "name": "PRoductCategory",
+            "dataType": "string",
+            "sourceColumn": "PRoductCategory"
+          },
+          {
+            "name": "shapeid",
+            "dataType": "int64",
+            "sourceColumn": "shapeid"
+          },
+          {
+            "name": "PersianShapeName",
+            "dataType": "string",
+            "sourceColumn": "PersianShapeName"
+          },
+          {
+            "name": "EnglishShapeName",
+            "dataType": "string",
+            "sourceColumn": "EnglishShapeName"
+          },
+          {
+            "name": "PurchaseType",
+            "dataType": "string",
+            "sourceColumn": "PurchaseType"
+          },
+          {
+            "name": "PurchaseTypeCode",
+            "dataType": "boolean",
+            "sourceColumn": "PurchaseTypeCode"
+          },
+          {
+            "name": "ProductStatus",
+            "dataType": "boolean",
+            "sourceColumn": "ProductStatus"
+          },
+          {
+            "name": "SimilarKey",
+            "dataType": "int64",
+            "sourceColumn": "SimilarKey"
+          },
+          {
+            "name": "Similar",
+            "dataType": "string",
+            "sourceColumn": "Similar"
+          },
+          {
+            "name": "PackQuantity",
+            "dataType": "int64",
+            "sourceColumn": "PackQuantity"
+          },
+          {
+            "name": "CartonQuantity",
+            "dataType": "int64",
+            "sourceColumn": "CartonQuantity"
+          },
+          {
+            "name": "StoringConditionCode",
+            "dataType": "int64",
+            "sourceColumn": "StoringConditionCode"
+          },
+          {
+            "name": "StoringCondition",
+            "dataType": "string",
+            "sourceColumn": "StoringCondition"
+          },
+          {
+            "name": "BlockedStatus",
+            "dataType": "string",
+            "sourceColumn": "BlockedStatus"
+          },
+          {
+            "name": "IsHospitalMedicine",
+            "dataType": "boolean",
+            "sourceColumn": "IsHospitalMedicine"
+          },
+          {
+            "type": "calculated",
+            "name": "ISNewProduct",
+            "dataType": "double",
+            "expression": [
+              "IF(DATEDIFF(dimproduct[DateCreate],date(YEAR(NOW()),MONTH(now()),day(now())), DAY)<=1095 ,DIVIDE(DATEDIFF(dimproduct[DateCreate],date(YEAR(NOW()),MONTH(now()),day(now())), DAY),365) ,0)",
+              "",
+              " ",
+              ""
+            ],
+            "formatString": "0.00",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "DateCreate",
+            "dataType": "dateTime",
+            "sourceColumn": "DateCreate"
+          },
+          {
+            "name": "IRC",
+            "dataType": "string",
+            "sourceColumn": "IRC"
+          },
+          {
+            "name": "GTIN",
+            "dataType": "string",
+            "sourceColumn": "GTIN"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "Partition",
+            "dataView": "full",
+            "source": {
+              "type": "m",
+              "expression": [
+                "let",
+                "    Source = #\"SQL/192 168 10 10;DW\",",
+                "    dbo_dimproduct = Source{[Schema=\"dbo\",Item=\"dimproduct\"]}[Data]",
+                "in",
+                "    dbo_dimproduct"
+              ]
+            }
+          }
+        ],
+        "measures": [
+          {
+            "name": "CNTNewMeasure",
+            "expression": " CALCULATE(DISTINCTCOUNT(dimproduct[ProductKey]), FILTER(dimproduct,dimproduct[ISNewProduct]=1))"
+          }
+        ]
+      },
+      {
+        "name": "DimVisitor",
+        "columns": [
+          {
+            "name": "SalesmanKey",
+            "dataType": "int64",
+            "sourceColumn": "SalesmanKey"
+          },
+          {
+            "name": "SalesmanCode",
+            "dataType": "int64",
+            "sourceColumn": "SalesmanCode"
+          },
+          {
+            "name": "Salesman",
+            "dataType": "string",
+            "sourceColumn": "Salesman"
+          },
+          {
+            "name": "CenterKey",
+            "dataType": "int64",
+            "sourceColumn": "CenterKey"
+          },
+          {
+            "name": "Center",
+            "dataType": "string",
+            "sourceColumn": "Center"
+          },
+          {
+            "name": "PersonalCode",
+            "dataType": "int64",
+            "sourceColumn": "PersonalCode"
+          },
+          {
+            "name": "company",
+            "dataType": "int64",
+            "sourceColumn": "company"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "Partition",
+            "dataView": "full",
+            "source": {
+              "type": "m",
+              "expression": [
+                "let",
+                "    Source = #\"SQL/192 168 10 10;DW\",",
+                "    dbo_DimVisitor = Source{[Schema=\"dbo\",Item=\"DimVisitor\"]}[Data]",
+                "in",
+                "    dbo_DimVisitor"
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "name": "FactSales",
+        "columns": [
+          {
+            "name": "DetailId",
+            "dataType": "int64",
+            "sourceColumn": "DetailId"
+          },
+          {
+            "name": "HeaderId",
+            "dataType": "int64",
+            "sourceColumn": "HeaderId"
+          },
+          {
+            "name": "ProductKey",
+            "dataType": "int64",
+            "sourceColumn": "ProductKey",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "DateKey",
+            "dataType": "int64",
+            "sourceColumn": "DateKey"
+          },
+          {
+            "name": "CustomerKey",
+            "dataType": "int64",
+            "sourceColumn": "CustomerKey"
+          },
+          {
+            "name": "SalesmanKey",
+            "dataType": "int64",
+            "sourceColumn": "SalesmanKey"
+          },
+          {
+            "name": "InvoiceNumber",
+            "dataType": "int64",
+            "sourceColumn": "InvoiceNumber"
+          },
+          {
+            "name": "OrderNumber",
+            "dataType": "int64",
+            "sourceColumn": "OrderNumber"
+          },
+          {
+            "name": "Quantity",
+            "dataType": "int64",
+            "sourceColumn": "Quantity"
+          },
+          {
+            "name": "DiscountQuantity",
+            "dataType": "int64",
+            "sourceColumn": "DiscountQuantity"
+          },
+          {
+            "name": "DiscountAmount",
+            "dataType": "double",
+            "sourceColumn": "DiscountAmount"
+          },
+          {
+            "name": "LostSalesQuantity",
+            "dataType": "int64",
+            "sourceColumn": "LostSalesQuantity"
+          },
+          {
+            "name": "NIQuantity",
+            "dataType": "int64",
+            "sourceColumn": "NIQuantity"
+          },
+          {
+            "name": "NIDiscountQuantity",
+            "dataType": "int64",
+            "sourceColumn": "NIDiscountQuantity"
+          },
+          {
+            "name": "DueDateDuration",
+            "dataType": "int64",
+            "sourceColumn": "DueDateDuration"
+          },
+          {
+            "name": "Cost",
+            "dataType": "double",
+            "sourceColumn": "Cost"
+          },
+          {
+            "name": "Price",
+            "dataType": "double",
+            "sourceColumn": "Price"
+          },
+          {
+            "name": "ConsumerPrice",
+            "dataType": "double",
+            "sourceColumn": "ConsumerPrice"
+          },
+          {
+            "name": "VAT",
+            "dataType": "double",
+            "sourceColumn": "VAT"
+          },
+          {
+            "name": "DiscountQuantityVAT",
+            "dataType": "double",
+            "sourceColumn": "DiscountQuantityVAT"
+          },
+          {
+            "name": "ShipDateKey",
+            "dataType": "int64",
+            "sourceColumn": "ShipDateKey"
+          },
+          {
+            "name": "DueDateKey",
+            "dataType": "int64",
+            "sourceColumn": "DueDateKey"
+          },
+          {
+            "name": "InvoiceNetAmount",
+            "dataType": "double",
+            "sourceColumn": "InvoiceNetAmount"
+          },
+          {
+            "name": "VATPerc",
+            "dataType": "double",
+            "sourceColumn": "VATPerc"
+          },
+          {
+            "name": "InvoiceSpecialDDDIncrease",
+            "dataType": "int64",
+            "sourceColumn": "InvoiceSpecialDDDIncrease"
+          },
+          {
+            "name": "company",
+            "dataType": "int64",
+            "sourceColumn": "company"
+          },
+          {
+            "name": "returnquantity",
+            "dataType": "int64",
+            "sourceColumn": "returnQuantity"
+          },
+          {
+            "name": "returnDiscountQuantity",
+            "dataType": "int64",
+            "sourceColumn": "returnDiscountQuantity"
+          },
+          {
+            "name": "returnDiscountAmount",
+            "dataType": "double",
+            "sourceColumn": "returnDiscountAmount"
+          },
+          {
+            "name": "returnCost",
+            "dataType": "double",
+            "sourceColumn": "returnCost"
+          },
+          {
+            "name": "returnPrice",
+            "dataType": "double",
+            "sourceColumn": "returnPrice"
+          },
+          {
+            "name": "returnConsumerPrice",
+            "dataType": "double",
+            "sourceColumn": "returnConsumerPrice"
+          },
+          {
+            "name": "ReasonLookup",
+            "dataType": "int64",
+            "sourceColumn": "reasonlookup"
+          },
+          {
+            "name": "centerID",
+            "dataType": "int64",
+            "sourceColumn": "centerID"
+          },
+          {
+            "type": "calculated",
+            "name": "Yearmonth",
+            "dataType": "string",
+            "isDataTypeInferred": true,
+            "expression": " LEFT(FactSales[DateKey],6)"
+          },
+          {
+            "name": "MainDueDateDuration",
+            "dataType": "int64",
+            "sourceColumn": "MainDueDateDuration"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "Partition",
+            "source": {
+              "type": "m",
+              "expression": [
+                "let",
+                "   ",
+                "\t Source = Sql.Database(\"192.168.10.10\", \"DW\", [Query=\"SELECT * FROM dbo.FactSales  \"])",
+                "",
+                "in",
+                "    Source"
+              ]
+            },
+            "annotations": [
+              {
+                "name": "QueryEditorSerialization",
+                "value": [
+                  "<?xml version=\"1.0\" encoding=\"UTF-16\"?><Gemini xmlns=\"QueryEditorSerialization\"><AnnotationContent><![CDATA[<RSQueryCommandText>let\r",
+                  "   \r",
+                  "\t Source = Sql.Database(\"192.168.10.10\", \"DW\", [Query=\"SELECT * FROM dbo.FactSales  \"])\r",
+                  "\r",
+                  "in\r",
+                  "    Source</RSQueryCommandText><RSQueryCommandType>Text</RSQueryCommandType><RSQueryDesignState></RSQueryDesignState>]]></AnnotationContent></Gemini>"
+                ]
+              }
+            ]
+          }
+        ],
+        "measures": [
+          {
+            "name": "TotalQuantity",
+            "expression": [
+              " sum(FactSales[Quantity])",
+              ""
+            ]
+          },
+          {
+            "name": "PricePerItem",
+            "expression": [
+              "",
+              "",
+              "DIVIDE(",
+              "sumx(FactSales,FactSales[Quantity]*FactSales[Price]), 1000000)"
+            ],
+            "formatString": "#,0"
+          },
+          {
+            "name": "costPerItem",
+            "expression": "DIVIDE(sumx(FactSales,FactSales[Quantity]*FactSales[Cost]), 1000000)",
+            "formatString": "#,0"
+          },
+          {
+            "name": "ConsumerPerItem",
+            "expression": "sumx(FactSales,FactSales[Quantity]*FactSales[ConsumerPrice])"
+          },
+          {
+            "name": "TotalDiscountQuantity",
+            "expression": [
+              " sum(FactSales[DiscountQuantity])",
+              ""
+            ]
+          },
+          {
+            "name": "SalesQuantityNewProduct",
+            "expression": [
+              "CALCULATE([TotalQuantity],FILTER(dimproduct,dimproduct[ISNewProduct]=1 && dimproduct[ProductStatus]=TRUE()))",
+              ""
+            ]
+          },
+          {
+            "name": "SalesAmountNewProduct",
+            "expression": [
+              "CALCULATE([costPerItem],FILTER(dimproduct,dimproduct[ISNewProduct]=1 && dimproduct[ProductStatus]))",
+              ""
+            ]
+          },
+          {
+            "name": "Cumulative Sales",
+            "expression": [
+              " ",
+              "",
+              "SUMX(",
+              "    FILTER(",
+              "        ALLSELECTED(FactSales),FactSales[ProductKey]",
+              "        <=MAX(FactSales[ProductKey])),[costPerItem])"
+            ]
+          },
+          {
+            "name": "Cumulative Sales %",
+            "expression": [
+              " ",
+              "",
+              "",
+              "Var A=[Cumulative sales]",
+              "",
+              "var B=CALCULATE([costPerItem],All(FactSales))",
+              "",
+              "return DIVIDE(A,B)",
+              " --SUMX(FactSales,[costPerItem])/[TotalAll]"
+            ],
+            "formatString": "0.00 %;-0.00 %;0.00 %"
+          },
+          {
+            "name": "TotalAll",
+            "expression": " SUMX(ALLSELECTED(FactSales),[costPerItem])"
+          },
+          {
+            "name": "ReturnQuantityMeasure",
+            "expression": " sum(FactSales[returnquantity])",
+            "formatString": "#,0"
+          },
+          {
+            "name": "PriceReturnMeasure",
+            "expression": [
+              "sumx(FactSales, FactSales[returnquantity]*FactSales[returnPrice])/1000000",
+              ""
+            ],
+            "formatString": "#,0"
+          },
+          {
+            "name": "CostReturnMeasure",
+            "expression": [
+              "sumx(FactSales, FactSales[returnquantity]*FactSales[returnCost])/1000000",
+              ""
+            ],
+            "formatString": "#,0"
+          },
+          {
+            "name": "NetPrice",
+            "expression": [
+              " [PricePerItem]-[PriceReturnMeasure]",
+              "",
+              "",
+              "--[PricePerItem] + sumx(FactSales,FactSales[Quantity]*FactSales[Price]*FactSales[VATPerc])+ sumx(FactSales,FactSales[DiscountQuantity]*FactSales[Price]*FactSales[DiscountQuantityVAT])  -[PriceReturnMeasure]"
+            ],
+            "formatString": "#,0"
+          },
+          {
+            "name": "NetCost",
+            "expression": "[costPerItem]-[CostReturnMeasure]",
+            "formatString": "#,0"
+          },
+          {
+            "name": "NetQuantity",
+            "expression": "[TotalQuantity]- [ReturnQuantityMeasure]",
+            "formatString": "#,0"
+          },
+          {
+            "name": "NetPriceCurrentYear",
+            "expression": " CALCULATE([NetPrice],  FILTER(All(DimDate_Big),DimDate_Big[Current_Year]=1))",
+            "formatString": "#,0"
+          },
+          {
+            "name": "NetPriceLastYear",
+            "expression": " CALCULATE([NetPrice], FILTER(All(DimDate_Big),DimDate_Big[Last_Year]=1))",
+            "formatString": "#,0"
+          },
+          {
+            "name": "NetPriceLastMonth",
+            "expression": [
+              " ",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "CALCULATE([NetPrice],FILTER(All(DimDate_Big), DimDate_Big[Last_Month]=1) )"
+            ],
+            "formatString": "#,0"
+          },
+          {
+            "name": "NetPriceCurrentMonth",
+            "expression": [
+              " ",
+              "CALCULATE([NetPrice],FILTER(All(DimDate_Big),DimDate_Big[Curren_Month]=1))"
+            ],
+            "formatString": "#,0"
+          },
+          {
+            "name": "RatioNetPriceCurrent/Lastmonth",
+            "expression": " [NetPriceCurrentMonth]/[NetPriceLastMonth]",
+            "formatString": "0.00 %;-0.00 %;0.00 %"
+          },
+          {
+            "name": "RatioNetPriceCurrent/LastYear",
+            "expression": " [NetPriceCurrentYear]/[NetPriceLastYear]",
+            "formatString": "0.00 %;-0.00 %;0.00 %"
+          },
+          {
+            "name": "SubtracTargetVSSales",
+            "expression": " ( DimTarget[TargetAmountMeasure]-[NetPrice])",
+            "formatString": "#,0"
+          },
+          {
+            "name": "NetQuantityCurrentYear",
+            "expression": " CALCULATE([NetQuantity],FILTER(All(DimDate_Big), DimDate_Big[Current_Year]=1))",
+            "formatString": "#,0"
+          },
+          {
+            "name": "NetQuantityCurrentMonth",
+            "expression": " CALCULATE([NetQuantity],FILTER(All(DimDate_Big), DimDate_Big[Curren_Month]=1))",
+            "formatString": "#,0"
+          },
+          {
+            "name": "NetQuantityLastYear",
+            "expression": " CALCULATE([NetQuantity],FILTER(All(DimDate_Big), DimDate_Big[Last_Year]=1))",
+            "formatString": "#,0"
+          },
+          {
+            "name": "NetQuantityLastMonth",
+            "expression": " CALCULATE([NetQuantity],FILTER(All(DimDate_Big),DimDate_Big[Last_Month]=1))",
+            "formatString": "#,0"
+          },
+          {
+            "name": "RatioQuantityLast/CurrentYear",
+            "expression": " divide([NetQuantityCurrentYear], [NetQuantityLastYear])",
+            "formatString": "0.00 %;-0.00 %;0.00 %"
+          },
+          {
+            "name": "RatioQuantityLast/CurrentMonth",
+            "expression": " divide( [NetQuantityCurrentMonth],[NetQuantityLastMonth])",
+            "formatString": "0.00 %;-0.00 %;0.00 %"
+          },
+          {
+            "name": "NetPriceLastMonth*2",
+            "expression": " [NetPriceLastMonth]*1.5"
+          },
+          {
+            "name": "RatioAmountVSQuantity",
+            "expression": " DIVIDE([NetQuantityCurrentYear],[NetPriceCurrentYear])"
+          },
+          {
+            "name": "RatioTargetVSSalesYear",
+            "expression": "DIVIDE([NetPriceCurrentYear],  DimTarget[TargetAmountCurrentYear])",
+            "formatString": "0.00 %;-0.00 %;0.00 %"
+          },
+          {
+            "name": "RatioTargetVSSalesMonth",
+            "expression": "DIVIDE([NetPriceCurrentMonth],  DimTarget[TargetAmountCurrentMonth])",
+            "formatString": "0.00 %;-0.00 %;0.00 %"
+          },
+          {
+            "name": "paretoProduct",
+            "expression": [
+              "DIVIDE([NetPrice], [NetPriceAllProduct] )",
+              ""
+            ],
+            "formatString": "0.00 %;-0.00 %;0.00 %"
+          },
+          {
+            "name": "NetPriceAllProduct",
+            "expression": [
+              " CALCULATE([NetPrice], ALL(dimproduct))",
+              ""
+            ],
+            "formatString": "#,0"
+          },
+          {
+            "name": "NetPriceALLCustomer",
+            "expression": " CALCULATE([NetPrice], ALL(Dimcustomer))"
+          },
+          {
+            "name": "CountOfFactorAllCustomer",
+            "expression": "CALCULATE( DISTINCTCOUNT(FactSales[HeaderId]), All(Dimcustomer))"
+          },
+          {
+            "name": "AveragePurchaseValue",
+            "expression": " DIVIDE([NetPriceALLCustomer],[CountOfFactorAllCustomer])"
+          },
+          {
+            "name": "PurchaseFrequency",
+            "expression": "DIVIDE([CountCustomerHasBuy], [CountOfFactorAllCustomer])"
+          },
+          {
+            "name": "CountCustomerHasBuy",
+            "expression": [
+              "",
+              "        CALCULATE(  ",
+              "                  DISTINCTCOUNT(FactSales[CustomerKey]) ",
+              "                )"
+            ]
+          },
+          {
+            "name": "LifeTimeCustomer",
+            "expression": [
+              "",
+              "VAR minDateKey = CALCULATE(MIN(FactSales[DateKey]), ALLEXCEPT(FactSales,FactSales[centerID]))",
+              "VAR maxDateKey = CALCULATE(MAX(FactSales[DateKey]), ALLEXCEPT(FactSales,FactSales[centerID]))",
+              "",
+              "VAR mi = LOOKUPVALUE(DimDate_Big[Gregorian], DimDate_Big[datekey], minDateKey )",
+              "VAR ma = LOOKUPVALUE(DimDate_Big[Gregorian], DimDate_Big[datekey],  maxDateKey)",
+              "RETURN DATEDIFF( mi,ma, YEAR)",
+              "",
+              ""
+            ]
+          },
+          {
+            "name": "CLV",
+            "expression": [
+              " [LifeTimeCustomer]*[AveragePurchaseValue]*[PurchaseFrequency]",
+              ""
+            ],
+            "formatString": "#,0"
+          },
+          {
+            "name": "MaxPercent",
+            "expression": " 2"
+          },
+          {
+            "name": "MinPercent",
+            "expression": "0",
+            "formatString": "0.00 %;-0.00 %;0.00 %"
+          },
+          {
+            "name": "RatioTargetVSSalesYear_1",
+            "expression": "1-[RatioTargetVSSalesYear]",
+            "formatString": "0.00 %;-0.00 %;0.00 %"
+          },
+          {
+            "name": "RemainTargetMonth",
+            "expression": "  DimTarget[TargetAmountCurrentMonth]-[NetPriceCurrentMonth]"
+          },
+          {
+            "name": "RemainTargetYear",
+            "expression": " DimTarget[TargetAmountCurrentYear]-[NetPriceCurrentYear] "
+          },
+          {
+            "name": "RatioTargetVSSalesMonth_1",
+            "expression": "1 -[RatioTargetVSSalesMonth]",
+            "formatString": "0.00 %;-0.00 %;0.00 %"
+          },
+          {
+            "name": "lastfactor",
+            "expression": [
+              " ",
+              "",
+              "var selectd=  max(DimDate_Big[Gregorian])",
+              "",
+              "var maxd= LOOKUPVALUE(DimDate_Big[Gregorian], DimDate_Big[datekey], max(FactSales[DateKey]))",
+              "",
+              "return  calculate (",
+              " DATEDIFF( maxd,selectd, DAY), ALL(DimDate_Big), ALL(factsales), all(titaccustomer)",
+              ",filter(FactSales,FactSales[DateKey]<=max(DimDate_Big[datekey]) && FactSales[DateKey]>= min(DimDate_Big[datekey])",
+              "",
+              "",
+              "))",
+              ""
+            ]
+          },
+          {
+            "name": "CoverageSales",
+            "expression": "DIVIDE( [CountCustomer],[CountCustomerHasBuy])",
+            "formatString": "0 %;-0 %;0 %"
+          },
+          {
+            "name": "CLV Customer",
+            "expression": [
+              "",
+              "var cntGhalamFactor= count(FactSales[DetailId])",
+              "",
+              "var AvgPurchaceValueCustomer =  DIVIDE ([NetPrice],cntGhalamFactor)",
+              "var Purchase_Frequancy= DISTINCTCOUNT(FactSales[HeaderId])",
+              "",
+              "var FDate=CALCULATE( min(FactSales[DateKey]), all(DimDate_Big[datekey]))",
+              "var lfdate= LOOKUPVALUE(DimDate_Big[Gregorian],DimDate_Big[datekey], FDate)",
+              "var Sdate= max(DimDate_Big[Gregorian])",
+              "var diff= DATEDIFF(lfdate,Sdate,year)",
+              "",
+              "return   ",
+              "\tdiff*Purchase_Frequancy*AvgPurchaceValueCustomer"
+            ],
+            "formatString": "#,0"
+          },
+          {
+            "name": "AVGAmountFactor",
+            "expression": "DIVIDE( [NetPrice], [CountOfFactor])"
+          },
+          {
+            "name": "CountOfFactor",
+            "expression": "CALCULATE( DISTINCTCOUNT(FactSales[HeaderId]))"
+          },
+          {
+            "name": "CNTMonth Of Buy",
+            "expression": [
+              " ",
+              "",
+              "    DISTINCTCOUNT(FactSales[Yearmonth])",
+              "    ",
+              "    ",
+              ""
+            ]
+          },
+          {
+            "name": "FrequncyBuy",
+            "expression": [
+              "",
+              "/*var CountCustomer=",
+              "CALCULATE(",
+              "    DISTINCTCOUNT(FactSales[CustomerKey])",
+              "    ",
+              ")",
+              "return",
+              "DIVIDE([CountOfFactor],[CountCustomer])",
+              "*/",
+              "",
+              "SUMX(",
+              "    VALUES(DimCenter[CenterKey]), ",
+              "    VAR CountCustomer =",
+              "        CALCULATE(",
+              "            DISTINCTCOUNT(FactSales[CustomerKey])",
+              "        ) ",
+              "    RETURN DIVIDE([CountOfFactor], CountCustomer)",
+              ")",
+              ""
+            ],
+            "formatString": "#,0"
+          },
+          {
+            "name": "ColorCLV",
+            "expression": [
+              "",
+              "var cntcenter= CALCULATE(",
+              "    DISTINCTCOUNT(dimcenter[CenterKey]),",
+              "    ALL(dimcenter)",
+              ")",
+              "var _avgDisc=DIVIDE( CALCULATE([Frequncynetprice],ALL(dimcenter)),cntcenter)",
+              "var _avgMargin = DIVIDE(CALCULATE([FrequncyBuy],ALL(dimcenter)) ,cntcenter)",
+              "return switch(TRUE(),",
+              "    [Frequncynetprice]>=_avgDisc && [FrequncyBuy] >=_avgMargin , \"Green\",",
+              "    [Frequncynetprice]>_avgDisc && [FrequncyBuy]  <_avgMargin , \"Blue\",",
+              "    [Frequncynetprice]<_avgDisc && [FrequncyBuy]  >=_avgMargin , \"#CCB100\",",
+              "    [Frequncynetprice]<_avgDisc && [FrequncyBuy]  <_avgMargin , \"Red\", \"Black\")"
+            ]
+          },
+          {
+            "name": "Frequncynetprice",
+            "expression": [
+              "",
+              "",
+              "/*var CountCustomer=",
+              "CALCULATE(",
+              "    DISTINCTCOUNT(Dimcustomer[CustomerKey]), Dimcustomer[status]= TRUE()",
+              "    ",
+              ")",
+              "",
+              "return  DIVIDE([NetPrice],CountCustomer)",
+              "*/",
+              "SUMX(",
+              "    VALUES(DimCenter[CenterKey]), ",
+              "    VAR CountCustomer =",
+              "        CALCULATE(",
+              "            DISTINCTCOUNT(FactSales[CustomerKey])",
+              "        ) ",
+              "    RETURN DIVIDE([NetPrice], CountCustomer)",
+              ")",
+              ""
+            ],
+            "formatString": "#,0"
+          },
+          {
+            "name": "Level clv",
+            "expression": [
+              " ",
+              "var levelclv = SWITCH (TRUE, ISINSCOPE(Dimcustomer[Customer]), \"customer\", ISINSCOPE(dimcenter[CenterName]), \"center\", \"unknown\")",
+              "return ",
+              "     IF (levelclv = \"customer\", [ColorCLV2], IF(levelclv = \"center\",  [ColorCLV] , BLANK()))"
+            ]
+          },
+          {
+            "name": "ColorCLV2",
+            "expression": [
+              "",
+              "var cntcustomer= CALCULATE(",
+              "    DISTINCTCOUNT(FactSales[CustomerKey]),",
+              "    ALL(Dimcustomer)",
+              ")",
+              "",
+              "",
+              "",
+              "var _avgDisc= CALCULATE([Frequncynetprice],ALL(dimcustomer))",
+              "var _avgMargin = CALCULATE([FrequncyBuy],ALL(dimcustomer)) ",
+              "return switch(TRUE(),",
+              "    [Frequncynetprice]>=_avgDisc && [FrequncyBuy] >=_avgMargin , \"Green\",",
+              "    [Frequncynetprice]>_avgDisc && [FrequncyBuy]  <_avgMargin , \"Blue\",",
+              "    [Frequncynetprice]<_avgDisc && [FrequncyBuy]  >=_avgMargin , \"#CCB100\",",
+              "    [Frequncynetprice]<_avgDisc && [FrequncyBuy]  <_avgMargin , \"Red\", \"Black\")"
+            ]
+          },
+          {
+            "name": "Tooltips CLV",
+            "expression": [
+              " IF(",
+              "    ISFILTERED(dimcenter[CenterName]) && NOT(ISFILTERED(Dimcustomer[Customer])),",
+              "    \" تعداد مشتری: \" &[CountCustomer],",
+              "    IF(",
+              "        ",
+              "        ISFILTERED(dimcenter[CenterName]) && ISFILTERED(Dimcustomer[Customer]), ",
+              "         \"GLN: \" & SELECTEDVALUE(Dimcustomer[GLN]) ,",
+              "         \"GLN: \" & SELECTEDVALUE(Dimcustomer[GLN])",
+              "    )",
+              ")",
+              "",
+              ""
+            ]
+          },
+          {
+            "name": "Trancparency",
+            "expression": " \"#FFFFFF00\""
+          },
+          {
+            "name": "NetPriceLastYear*1.5",
+            "expression": " [NetPriceLastYear]*1.5"
+          },
+          {
+            "name": "NetPriceLastMonth Point2Point",
+            "expression": [
+              " ",
+              "",
+              "",
+              "",
+              "var d = LOOKUPVALUE(DimDate_Big[Jalali_Day], DimDate_Big[Date], TODAY())",
+              "return ",
+              "",
+              "",
+              "CALCULATE([NetPrice],FILTER(All(DimDate_Big), DimDate_Big[Last_Month]=1), DimDate_Big[Jalali_Day]<=d )"
+            ]
+          },
+          {
+            "name": "NetPriceLastYear Point2Point",
+            "expression": [
+              " ",
+              "var y= LOOKUPVALUE(DimDate_Big[Jalali_DayOfYear],DimDate_Big[Date], today())",
+              " return ",
+              "CALCULATE([NetPrice], FILTER(All(DimDate_Big),DimDate_Big[Last_Year]=1), DimDate_Big[Jalali_DayOfYear]<= y)"
+            ]
+          },
+          {
+            "name": "Ratio Product To All Sales",
+            "expression": "if([NetPrice]<>0, DIVIDE([NetPrice], CALCULATE([NetPrice], all(dimproduct[Product]))),0)",
+            "formatString": "0.00 %;-0.00 %;0.00 %"
+          },
+          {
+            "name": "Sales per Product",
+            "expression": [
+              " ",
+              "CALCULATE(",
+              "    [NetPrice],",
+              "    ALLEXCEPT(dimproduct, dimproduct[ProductKey])",
+              ")"
+            ]
+          },
+          {
+            "name": "AVGMainDueDateDuration",
+            "expression": "AVERAGE(FactSales[MainDueDateDuration])"
+          },
+          {
+            "name": "Pareto Chart",
+            "expression": [
+              " ",
+              "",
+              "var staterev= [NetPrice]",
+              "var allsales= CALCULATE([NetPrice],ALLSELECTED(Factsales))",
+              "return ",
+              "DIVIDE(",
+              "    sumx(",
+              "        FILTER(",
+              "            SUMMARIZE(ALLSELECTED(Factsales), dimproduct[Product],",
+              "               \"TotalSales\", [NetPrice]),",
+              "                    [TotalSales]>=staterev), [TotalSales]),",
+              "allsales, 0)",
+              ""
+            ],
+            "formatString": "0 %;-0 %;0 %"
+          },
+          {
+            "name": "Pareto Count",
+            "expression": [
+              "",
+              "VAR staterev = [NetPrice]",
+              "VAR allsales = CALCULATE([NetPrice], ALLSELECTED(Factsales))",
+              "VAR ParetoTable =",
+              "    ADDCOLUMNS(",
+              "        SUMMARIZE(ALLSELECTED(Factsales), dimproduct[Product], \"TotalSales\", [NetPrice]),",
+              "        \"CumulativeSaless\", ",
+              "            VAR CurrentProductSales = [TotalSales]",
+              "            RETURN DIVIDE(",
+              "                SUMX(",
+              "                    FILTER(",
+              "                        SUMMARIZE(ALLSELECTED(Factsales), dimproduct[Product], \"TotalSales\", [NetPrice]),",
+              "                        [TotalSales] >= CurrentProductSales",
+              "                    ),",
+              "                    [TotalSales]",
+              "                ),",
+              "                allsales, 0",
+              "            )",
+              "    )",
+              "RETURN ",
+              "    COUNTROWS(FILTER(ParetoTable, [CumulativeSaless]< 0.5))"
+            ]
+          },
+          {
+            "name": "CNTproduct",
+            "expression": "  DISTINCTCOUNT(FactSales[ProductKey])"
+          },
+          {
+            "name": "ColorProductPareto",
+            "expression": " IF(CALCULATE([Pareto Chart], ALL(dimcenter))<=0.5, \"#62997A\",\"#7F898A\")"
+          }
+        ]
+      },
+      {
+        "name": "DimDate_Big",
+        "columns": [
+          {
+            "name": "Date",
+            "dataType": "dateTime",
+            "sourceColumn": "Date"
+          },
+          {
+            "name": "Gregorian",
+            "dataType": "string",
+            "sourceColumn": "Gregorian"
+          },
+          {
+            "name": "Gregorian_Year",
+            "dataType": "int64",
+            "sourceColumn": "Gregorian_Year"
+          },
+          {
+            "name": "Gregorian_Month",
+            "dataType": "int64",
+            "sourceColumn": "Gregorian_Month"
+          },
+          {
+            "name": "Gregorian_MonthStr",
+            "dataType": "string",
+            "sourceColumn": "Gregorian_MonthStr"
+          },
+          {
+            "name": "Gregorian_MonthString",
+            "dataType": "string",
+            "sourceColumn": "Gregorian_MonthString"
+          },
+          {
+            "name": "Gregorian_Day",
+            "dataType": "int64",
+            "sourceColumn": "Gregorian_Day"
+          },
+          {
+            "name": "Gregorian_DayOfWeekId",
+            "dataType": "int64",
+            "sourceColumn": "Gregorian_DayOfWeekId"
+          },
+          {
+            "name": "Gregorian_DayOfWeek",
+            "dataType": "string",
+            "sourceColumn": "Gregorian_DayOfWeek"
+          },
+          {
+            "name": "Gregorian_DayOfWeekStr",
+            "dataType": "string",
+            "sourceColumn": "Gregorian_DayOfWeekStr"
+          },
+          {
+            "name": "Gregorian_DayOfYear",
+            "dataType": "int64",
+            "sourceColumn": "Gregorian_DayOfYear"
+          },
+          {
+            "name": "Gregorian_ToLongDateString",
+            "dataType": "string",
+            "sourceColumn": "Gregorian_ToLongDateString"
+          },
+          {
+            "name": "Gregorian_YearMonth",
+            "dataType": "string",
+            "sourceColumn": "Gregorian_YearMonth"
+          },
+          {
+            "name": "Gregorian_MonthDay",
+            "dataType": "string",
+            "sourceColumn": "Gregorian_MonthDay"
+          },
+          {
+            "name": "SeasonEn",
+            "dataType": "string",
+            "sourceColumn": "SeasonEn"
+          },
+          {
+            "name": "Gregorian_Format1",
+            "dataType": "string",
+            "sourceColumn": "Gregorian_Format1"
+          },
+          {
+            "name": "Gregorian_Format2",
+            "dataType": "string",
+            "sourceColumn": "Gregorian_Format2"
+          },
+          {
+            "name": "Gregorian_Format3",
+            "dataType": "string",
+            "sourceColumn": "Gregorian_Format3"
+          },
+          {
+            "name": "Gregorian_Format4",
+            "dataType": "string",
+            "sourceColumn": "Gregorian_Format4"
+          },
+          {
+            "name": "Gregorian_Format5",
+            "dataType": "string",
+            "sourceColumn": "Gregorian_Format5"
+          },
+          {
+            "name": "Gregorian_Format6",
+            "dataType": "string",
+            "sourceColumn": "Gregorian_Format6"
+          },
+          {
+            "name": "Jalali",
+            "dataType": "string",
+            "sourceColumn": "Jalali"
+          },
+          {
+            "name": "Jalali_Year",
+            "dataType": "int64",
+            "sourceColumn": "Jalali_Year",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Jalali_Month",
+            "dataType": "int64",
+            "sourceColumn": "Jalali_Month",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Jalali_MonthString",
+            "dataType": "string",
+            "sourceColumn": "Jalali_MonthString",
+            "sortByColumn": "Jalali_Month"
+          },
+          {
+            "name": "Jalali_Day",
+            "dataType": "int64",
+            "sourceColumn": "Jalali_Day"
+          },
+          {
+            "name": "Jalali_DayOfWeekId",
+            "dataType": "int64",
+            "sourceColumn": "Jalali_DayOfWeekId"
+          },
+          {
+            "name": "Jalali_DayOfWeek",
+            "dataType": "string",
+            "sourceColumn": "Jalali_DayOfWeek"
+          },
+          {
+            "name": "Jalali_DayOfYear",
+            "dataType": "int64",
+            "sourceColumn": "Jalali_DayOfYear"
+          },
+          {
+            "name": "Jalali_ToLongDateString",
+            "dataType": "string",
+            "sourceColumn": "Jalali_ToLongDateString"
+          },
+          {
+            "name": "Jalali_YearMonth",
+            "dataType": "string",
+            "sourceColumn": "Jalali_YearMonth"
+          },
+          {
+            "name": "Jalali_MonthDay",
+            "dataType": "string",
+            "sourceColumn": "Jalali_MonthDay"
+          },
+          {
+            "name": "SeasonFa",
+            "dataType": "string",
+            "sourceColumn": "SeasonFa"
+          },
+          {
+            "name": "Jalali_Format1",
+            "dataType": "string",
+            "sourceColumn": "Jalali_Format1"
+          },
+          {
+            "name": "Jalali_Format2",
+            "dataType": "string",
+            "sourceColumn": "Jalali_Format2"
+          },
+          {
+            "name": "Jalali_Format3",
+            "dataType": "string",
+            "sourceColumn": "Jalali_Format3"
+          },
+          {
+            "name": "Jalali_Format4",
+            "dataType": "string",
+            "sourceColumn": "Jalali_Format4"
+          },
+          {
+            "name": "Jalali_Format5",
+            "dataType": "string",
+            "sourceColumn": "Jalali_Format5"
+          },
+          {
+            "name": "Jalali_Format6",
+            "dataType": "string",
+            "sourceColumn": "Jalali_Format6"
+          },
+          {
+            "name": "datekey",
+            "dataType": "int64",
+            "sourceColumn": "datekey"
+          },
+          {
+            "name": "isworkingday",
+            "dataType": "int64",
+            "sourceColumn": "isworkingday"
+          },
+          {
+            "name": "Curren_Month",
+            "dataType": "int64",
+            "sourceColumn": "Curren_Month"
+          },
+          {
+            "name": "Current_Year",
+            "dataType": "int64",
+            "sourceColumn": "Current_Year"
+          },
+          {
+            "name": "Last_Month",
+            "dataType": "int64",
+            "sourceColumn": "Last_Month"
+          },
+          {
+            "name": "Last_Year",
+            "dataType": "int64",
+            "sourceColumn": "Last_Year"
+          },
+          {
+            "name": "Semester",
+            "dataType": "int64",
+            "sourceColumn": "Semester",
+            "summarizeBy": "none"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "Partition",
+            "dataView": "full",
+            "source": {
+              "type": "m",
+              "expression": [
+                "let",
+                "    Source = #\"SQL/192 168 10 10;DW\",",
+                "    dbo_vw_DimDate_Big = Source{[Schema=\"dbo\",Item=\"vw_DimDate_Big\"]}[Data],",
+                "    #\"Changed Type\" = Table.TransformColumnTypes(dbo_vw_DimDate_Big,{{\"Curren_Month\", Int64.Type}, {\"Current_Year\", Int64.Type}, {\"Last_Month\", Int64.Type}, {\"Last_Year\", Int64.Type}})",
+                "in",
+                "    #\"Changed Type\""
+              ]
+            }
+          }
+        ],
+        "measures": [
+          {
+            "name": "CountWorkDay",
+            "expression": [
+              " COUNTX(FILTER(DimDate_Big,DimDate_Big[isworkingday]=0),DimDate_Big[datekey])",
+              "",
+              "",
+              "",
+              ""
+            ]
+          },
+          {
+            "name": "WorkDayinCurrentMonth",
+            "expression": " CALCULATE(DimDate_Big[CountWorkDay],FILTER(ALL(DimDate_Big),DimDate_Big[Curren_Month]=1))"
+          },
+          {
+            "name": "WorkDayUntillNow",
+            "expression": [
+              "[WorkDayinCurrentMonth]-LOOKUPVALUE(DimDate_Big[Jalali_Day],DimDate_Big[Date],today())",
+              "",
+              ""
+            ]
+          }
+        ],
+        "hierarchies": [
+          {
+            "name": "Year_month",
+            "levels": [
+              {
+                "name": "Jalali_Year",
+                "ordinal": 0,
+                "column": "Jalali_Year"
+              },
+              {
+                "name": "Jalali_MonthString",
+                "ordinal": 1,
+                "column": "Jalali_MonthString"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "DimTarget",
+        "columns": [
+          {
+            "name": "TargetAmount",
+            "dataType": "double",
+            "sourceColumn": "TargetAmount"
+          },
+          {
+            "name": "SalesmanKey",
+            "dataType": "int64",
+            "sourceColumn": "SalesmanKey"
+          },
+          {
+            "name": "StartDateKey",
+            "dataType": "int64",
+            "sourceColumn": "StartDateKey"
+          },
+          {
+            "name": "company",
+            "dataType": "int64",
+            "sourceColumn": "company"
+          },
+          {
+            "name": "centerid",
+            "dataType": "int64",
+            "sourceColumn": "centerid"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "Partition",
+            "dataView": "full",
+            "source": {
+              "type": "m",
+              "expression": [
+                "let",
+                "    Source = #\"SQL/192 168 10 10;DW\",",
+                "    dbo_DimTarget = Source{[Schema=\"dbo\",Item=\"DimTarget\"]}[Data]",
+                "in",
+                "    dbo_DimTarget"
+              ]
+            }
+          }
+        ],
+        "measures": [
+          {
+            "name": "TargetAmountMeasure",
+            "expression": "DIVIDE(sum(DimTarget[TargetAmount]), 1000000)",
+            "formatString": "#,0"
+          },
+          {
+            "name": "RatioTargetVSSales",
+            "expression": [
+              " DIVIDE([NetPrice],DimTarget[TargetAmountMeasure]) ",
+              "",
+              " ",
+              ""
+            ],
+            "formatString": "0.00 %;-0.00 %;0.00 %"
+          },
+          {
+            "name": "TargetAmountCurrentYear",
+            "expression": " CALCULATE(DimTarget[TargetAmountMeasure], FILTER(ALL(DimDate_Big),DimDate_Big[Current_Year]=1))"
+          },
+          {
+            "name": "TargetAmountCurrentMonth",
+            "expression": " CALCULATE(DimTarget[TargetAmountMeasure],FILTER(All(DimDate_Big),DimDate_Big[Curren_Month]=1))"
+          },
+          {
+            "name": "ColourRatioTargetVSSales",
+            "expression": [
+              "IF( DIVIDE([NetPrice],DimTarget[TargetAmountMeasure]) >0 ,",
+              "\"#00FF00\", if (DIVIDE([NetPrice],DimTarget[TargetAmountMeasure]) <0.5 ,\"#FF0000\",",
+              "\"#FFEE00\" ))",
+              "",
+              " "
+            ]
+          },
+          {
+            "name": "RemainTarget",
+            "expression": [
+              " [TargetAmountMeasure]- [NetPrice]",
+              ""
+            ]
+          }
+        ]
+      },
+      {
+        "name": "MyManualTable",
+        "columns": [
+          {
+            "type": "calculatedTableColumn",
+            "name": "ID",
+            "dataType": "int64",
+            "isNameInferred": true,
+            "isDataTypeInferred": true,
+            "sourceColumn": "[ID]"
+          },
+          {
+            "type": "calculatedTableColumn",
+            "name": "Title",
+            "dataType": "string",
+            "isNameInferred": true,
+            "isDataTypeInferred": true,
+            "sourceColumn": "[title]"
+          },
+          {
+            "type": "calculatedTableColumn",
+            "name": "code",
+            "dataType": "int64",
+            "isNameInferred": true,
+            "isDataTypeInferred": true,
+            "sourceColumn": "[code]"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "CalculatedTable 1",
+            "source": {
+              "type": "calculated",
+              "expression": [
+                " DATATABLE(",
+                "    \"ID\", INTEGER,",
+                "    \"Title\", STRING,",
+                "    \"code\", INTEGER,",
+                "     ",
+                "    ",
+                "    {   ",
+                "        {2, \"چک\" ,332},",
+                "        {3, \"فاکتور\",331 }",
+                "        ",
+                "    }",
+                ")",
+                "",
+                "",
+                "",
+                ""
+              ]
+            }
+          }
+        ],
+        "measures": [
+          {
+            "name": "DynamicMeasure",
+            "expression": [
+              " SWITCH( ",
+              "                SELECTEDVALUE(MyManualTable[title]",
+              "                , [ColorMyCustomer])",
+              "                , \"ارزش خرید\",IF(ISBLANK( [CLV]), 0,  [CLV])",
+              "",
+              "                , \"چک\", IF(ISBLANK( [LegalCheque]), 0,  [LegalCheque]) ",
+              "                , \"فاکتور\",IF(ISBLANK( [DelayedInvoice] ), 0, [DelayedInvoice] ) ",
+              "                 , \"میانگین مبلغ فاکتور\",IF(ISBLANK( [AVGAmountFactor] ), 0,  [AVGAmountFactor] ) ",
+              "                ,IF(ISBLANK([DelayedInvoice]+[LegalCheque]), 0,  [DelayedInvoice]+[LegalCheque]) ",
+              "",
+              "                )",
+              "",
+              ""
+            ],
+            "formatString": "#,0"
+          },
+          {
+            "name": "DynamicLableMeasureParent",
+            "expression": [
+              "",
+              "VAR selectedTitle = SELECTEDVALUE(MyManualTable[title])",
+              "RETURN ",
+              "    IF(",
+              "        ISBLANK(selectedTitle),",
+              "        \"کل مطالبات\",  -- مقدار خالی برای نمایش ندادن چیزی",
+              "        selectedTitle",
+              "    )"
+            ]
+          },
+          {
+            "name": "DynamicLableMeasureChild",
+            "expression": [
+              "",
+              "VAR selectedTitle = SELECTEDVALUE(Demand[typechild])",
+              "RETURN ",
+              "    IF(",
+              "        ISBLANK(selectedTitle),",
+              "        \" \",  -- مقدار خالی برای نمایش ندادن چیزی",
+              "        selectedTitle",
+              "    )"
+            ]
+          },
+          {
+            "name": "DynamicMeasure %",
+            "expression": [
+              " SWITCH( ",
+              "                SELECTEDVALUE(MyManualTable[title]",
+              "                , [ColorMyCustomer])",
+              "                , \"چک\", IF(ISBLANK( [LegalCheque]), 0, DIVIDE( [LegalCheque],[NetPrice]) )",
+              "                , \"فاکتور\",IF(ISBLANK( [DelayedInvoice] ), 0, DIVIDE(  [DelayedInvoice] ,[NetPrice]) )",
+              "                ,IF(ISBLANK([DelayedInvoice]+[LegalCheque]), 0, DIVIDE( [DelayedInvoice]+[LegalCheque],[NetPrice]) ) ",
+              "",
+              "                )",
+              "",
+              ""
+            ],
+            "formatString": "0.0 %;-0.0 %;0.0 %"
+          }
+        ]
+      },
+      {
+        "name": "titaccustomer",
+        "columns": [
+          {
+            "name": "idtitac",
+            "dataType": "int64",
+            "sourceColumn": "idtitac"
+          },
+          {
+            "name": "gln",
+            "dataType": "string",
+            "sourceColumn": "gln"
+          },
+          {
+            "name": "OwnerName",
+            "dataType": "string",
+            "sourceColumn": "OwnerName"
+          },
+          {
+            "name": "Provice",
+            "dataType": "string",
+            "sourceColumn": "Provice"
+          },
+          {
+            "name": "Latitude",
+            "dataType": "double",
+            "sourceColumn": "Latitude"
+          },
+          {
+            "name": "Longitude",
+            "dataType": "double",
+            "sourceColumn": "Longitude"
+          },
+          {
+            "name": "customerkey",
+            "dataType": "int64",
+            "sourceColumn": "customerkey"
+          },
+          {
+            "name": "customername",
+            "dataType": "string",
+            "sourceColumn": "customername"
+          },
+          {
+            "name": "centerid",
+            "dataType": "int64",
+            "sourceColumn": "centerid"
+          },
+          {
+            "name": "newcenter",
+            "dataType": "int64",
+            "sourceColumn": "newcenter"
+          },
+          {
+            "name": "mycustomer",
+            "dataType": "int64",
+            "sourceColumn": "mycustomer"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "Partition",
+            "dataView": "full",
+            "source": {
+              "type": "m",
+              "expression": [
+                "let",
+                "    Source = #\"SQL/192 168 10 10;DW\",",
+                "    dbo_titaccustomer = Source{[Schema=\"dbo\",Item=\"titaccustomer\"]}[Data]",
+                "in",
+                "    dbo_titaccustomer"
+              ]
+            }
+          }
+        ],
+        "measures": [
+          {
+            "name": "ColorMyCustomer",
+            "expression": [
+              " ",
+              "",
+              "VAR SelectedDate = SELECTEDVALUE(DimDate_Big[Gregorian])",
+              "VAR LastInvoiceDate =  LOOKUPVALUE(DimDate_Big[Gregorian], DimDate_Big[datekey], MAX( FactSales[DateKey] ))",
+              "VAR TodayDate = TODAY()",
+              "var diff=",
+              "    IF(",
+              "        ISBLANK( SelectedDate ),",
+              "        DATEDIFF( LastInvoiceDate,TodayDate,DAY),",
+              "        DATEDIFF(LastInvoiceDate,SelectedDate, DAY)",
+              "    )",
+              "",
+              "RETURN",
+              "IF(",
+              "    [NetPrice] > 0 && diff< 90   , \"#5B913B\",  -- Active (سبز)",
+              "    IF(",
+              "        [NetPrice] > 0 && diff>= 90 , \"#FFDE4D\",  -- Deactive (زرد)",
+              "        IF(",
+              "            COUNTROWS(FILTER(titaccustomer, titaccustomer[mycustomer] = 1)) > 0, ",
+              "            \"#B771E5\",  -- Register (بنفش)",
+              "            \"#B82132\"   -- Unregister (قرمز)",
+              "        )))"
+            ]
+          },
+          {
+            "name": "CountAllCustomer",
+            "expression": "CALCULATE( DISTINCTCOUNT(titaccustomer[gln]),ALL(DimDate_Big))"
+          },
+          {
+            "name": "Level map",
+            "expression": " SWITCH (TRUE, ISINSCOPE(titaccustomer[gln]), \"LongLat\", ISINSCOPE(dimcenter[CenterName]), \"ID\", \"unknown\")"
+          },
+          {
+            "name": "Long",
+            "expression": " IF ([Level map] = \"LongLat\", AVERAGE(titaccustomer[Longitude]), BLANK())"
+          },
+          {
+            "name": "Lat",
+            "expression": " IF ([Level map] = \"LongLat\", AVERAGE(titaccustomer[Latitude]), BLANK())"
+          },
+          {
+            "name": "colorfinal",
+            "expression": " IF ([Level map] = \"LongLat\", [ColorMyCustomer], IF([Level map] = \"ID\", min(dimcenter[color]), BLANK()))"
+          },
+          {
+            "name": "CovarageCustomer",
+            "expression": " DIVIDE([CountCustomerHasBuy], [CountAllCustomer])",
+            "formatString": "0 %;-0 %;0 %"
+          },
+          {
+            "name": "ALLCoverage",
+            "expression": [
+              "  FORMAT([CovarageCustomer], \"##,##%\") & ",
+              "\"|\" & FORMAT([CoverageSales], \"##,##%\")"
+            ]
+          },
+          {
+            "name": "countcustomer",
+            "expression": " CALCULATE(DISTINCTCOUNT(titaccustomer[customerkey]) , titaccustomer[mycustomer]=1)"
+          }
+        ]
+      },
+      {
+        "name": "Demand",
+        "columns": [
+          {
+            "name": "Id",
+            "dataType": "int64",
+            "sourceColumn": "Id"
+          },
+          {
+            "name": "typeId",
+            "dataType": "int64",
+            "sourceColumn": "typeId"
+          },
+          {
+            "name": "Number",
+            "dataType": "string",
+            "sourceColumn": "Number"
+          },
+          {
+            "name": "CustomerKey",
+            "dataType": "int64",
+            "sourceColumn": "CustomerKey"
+          },
+          {
+            "name": "dateKey",
+            "dataType": "int64",
+            "sourceColumn": "dateKey"
+          },
+          {
+            "name": "remain",
+            "dataType": "double",
+            "sourceColumn": "remain"
+          },
+          {
+            "name": "centerid",
+            "dataType": "int64",
+            "sourceColumn": "centerid"
+          },
+          {
+            "name": "typechild",
+            "dataType": "string",
+            "sourceColumn": "typechild"
+          },
+          {
+            "name": "typeparent",
+            "dataType": "string",
+            "sourceColumn": "typeparent"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "Partition",
+            "dataView": "full",
+            "source": {
+              "type": "m",
+              "expression": [
+                "let",
+                "    Source = #\"SQL/192 168 10 10;DW\",",
+                "    dbo_Demand = Source{[Schema=\"dbo\",Item=\"Demand\"]}[Data]",
+                "in",
+                "    dbo_Demand"
+              ]
+            }
+          }
+        ],
+        "measures": [
+          {
+            "name": "DelayedInvoice",
+            "expression": "DIVIDE(CALCULATE( sum(Demand[remain]), Demand[typeId]=331),1000000)"
+          },
+          {
+            "name": "LegalCheque",
+            "expression": "DIVIDE(CALCULATE( sum(Demand[remain]), Demand[typeId]=332),1000000)"
+          },
+          {
+            "name": "TotalDemand",
+            "expression": [
+              "DIVIDE( CALCULATE(sum(Demand[remain]), all(Demand[typeId])),1000000)",
+              ""
+            ]
+          },
+          {
+            "name": "RatioAll ToTotalDemand",
+            "expression": [
+              "",
+              "VAR TotalAmount = CALCULATE(SUM(Demand[remain]), ALL(MyManualTable[Title])",
+              "        ,ALL(Demand[typechild]),ALL(Dimcustomer[OwnershipType]), ALL(Dimcustomer[kind]))",
+              "",
+              "VAR TypeAmount = SUM(Demand[remain])",
+              "VAR selectedTitle1 = SELECTEDVALUE(Demand[typechild])",
+              "VAR selectedTitle2 =IF( ",
+              "    OR(SELECTEDVALUE(MyManualTable[ID]) = 2, SELECTEDVALUE(MyManualTable[ID]) = 3),",
+              "    SELECTEDVALUE(MyManualTable[Title]),",
+              "    BLANK()",
+              ")",
+              "VAR selectedTitle3 = SELECTEDVALUE(Dimcustomer[OwnershipType])",
+              "VAR selectedTitle4 = SELECTEDVALUE(Dimcustomer[kind])",
+              "RETURN ",
+              "    IF(",
+              "        ISBLANK(selectedTitle1) && ISBLANK(selectedTitle2) && ISBLANK(selectedTitle3) && ISBLANK(selectedTitle4)  ,",
+              "        \" \",  -- مقدار خالی برای نمایش ندادن چیزی",
+              "      IF(ISBLANK(DIVIDE(TypeAmount, TotalAmount, 0)), 0, DIVIDE(TypeAmount, TotalAmount, 0))   ",
+              "    )",
+              "",
+              "     ",
+              "",
+              "",
+              ""
+            ],
+            "formatString": "0.00 %;-0.00 %;0.00 %"
+          },
+          {
+            "name": "RatioAll ToTotalDemandFrom100%",
+            "expression": [
+              "",
+              "var Dem= DIVIDE( SUM(Demand[remain]),1000000)",
+              "VAR TotalAmountTitle = CALCULATE(",
+              "    Dem,",
+              "    REMOVEFILTERS(Demand[typechild]),",
+              "    ALLSELECTED(MyManualTable[Title]) ,",
+              "   REMOVEFILTERS(Dimcustomer[OwnershipType],Dimcustomer[kind]) ",
+              ")",
+              "VAR TotalAmounttypechild = CALCULATE(",
+              "    Dem,",
+              "    REMOVEFILTERS(MyManualTable[Title]),",
+              "    ALLSELECTED(Demand[typechild]) ,",
+              "   REMOVEFILTERS(Dimcustomer[OwnershipType],Dimcustomer[kind]) ",
+              ")",
+              "VAR TotalAmountOwnership = CALCULATE(",
+              "    Dem,",
+              "    REMOVEFILTERS(MyManualTable[Title]),",
+              "    REMOVEFILTERS(Demand[typechild]),",
+              "    ALLSELECTED(Dimcustomer[OwnershipType]) ,",
+              "   REMOVEFILTERS(Dimcustomer[kind]) ",
+              ")",
+              "",
+              "",
+              "VAR TotalAmountkind = CALCULATE(",
+              "    Dem,",
+              "    REMOVEFILTERS(MyManualTable[Title]),",
+              "    REMOVEFILTERS(Demand[typechild]),",
+              "    ALLSELECTED(Dimcustomer[kind]) ,",
+              "   REMOVEFILTERS(Dimcustomer[OwnershipType]) ",
+              ")",
+              "",
+              "",
+              "VAR TotalAmountTitleandkind = CALCULATE(",
+              "   Dem,",
+              "    ALLSELECTED(MyManualTable[Title]) ,",
+              "    ALLSELECTED(Demand[typechild]) ,",
+              "   REMOVEFILTERS(Dimcustomer[OwnershipType],Dimcustomer[kind]) ",
+              ")",
+              "",
+              "",
+              "VAR TypeAmount =DIVIDE( SUM(Demand[remain]),1000000)",
+              "VAR test =",
+              "  ",
+              "        IF(",
+              "            SELECTEDVALUE(MyManualTable[Title]) <> BLANK(),",
+              "            TotalAmountTitle, ",
+              "            IF(",
+              "                SELECTEDVALUE(Demand[typechild]) <> BLANK(),",
+              "                TotalAmounttypechild, ",
+              "                IF(",
+              "                    SELECTEDVALUE(Dimcustomer[OwnershipType]) <> BLANK(),",
+              "                    TotalAmountOwnership, ",
+              "                    IF(",
+              "                        SELECTEDVALUE(Dimcustomer[kind]) <> BLANK(),",
+              "                        TotalAmountkind,",
+              "                     IF(",
+              "                            SELECTEDVALUE(MyManualTable[Title]) <> BLANK() && SELECTEDVALUE(Demand[typechild]) <> BLANK(),",
+              "                            TotalAmountTitleandkind,",
+              "                        BLANK()  ",
+              "                    )",
+              "                )",
+              "            )",
+              "        )",
+              "    )",
+              "",
+              "/* SWITCH(",
+              "    TRUE(),",
+              "    SELECTEDVALUE(MyManualTable[Title]) <> BLANK(), TotalAmountTitle,",
+              "    SELECTEDVALUE(Demand[typechild]) <> BLANK(), TotalAmounttypechild,",
+              "    SELECTEDVALUE(Demand[typechild]) <> BLANK()&& SELECTEDVALUE(MyManualTable[Title]) <> BLANK(),TotalAmountTitleandkind,",
+              "    SELECTEDVALUE(Dimcustomer[OwnershipType]) <> BLANK(), TotalAmountOwnership,",
+              "    SELECTEDVALUE(Dimcustomer[kind]) <> BLANK(), TotalAmountkind,",
+              "    BLANK()  -- در صورتی که هیچ‌کدام از فیلترها انتخاب نشده باشد، مقدار BLANK باز می‌گردد.",
+              ")*/",
+              "RETURN ",
+              "IF(ISBLANK(DIVIDE(TypeAmount, test, 0)), 0, DIVIDE(TypeAmount, test, 0))",
+              "",
+              "",
+              "    ",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              ""
+            ],
+            "formatString": "0.00 %;-0.00 %;0.00 %"
+          }
+        ]
+      },
+      {
+        "name": "dimbill",
+        "columns": [
+          {
+            "name": "id",
+            "dataType": "int64",
+            "sourceColumn": "id"
+          },
+          {
+            "name": "CustomerKey",
+            "dataType": "int64",
+            "sourceColumn": "CustomerKey"
+          },
+          {
+            "name": "PaymentMethodLookup",
+            "dataType": "int64",
+            "sourceColumn": "PaymentMethodLookup"
+          },
+          {
+            "name": "DateKey",
+            "dataType": "int64",
+            "sourceColumn": "DateKey"
+          },
+          {
+            "name": "ChequeDateKey",
+            "dataType": "int64",
+            "sourceColumn": "ChequeDateKey"
+          },
+          {
+            "name": "Amount",
+            "dataType": "double",
+            "sourceColumn": "Amount"
+          },
+          {
+            "name": "number",
+            "dataType": "string",
+            "sourceColumn": "number"
+          },
+          {
+            "name": "AppliedAmount",
+            "dataType": "double",
+            "sourceColumn": "AppliedAmount"
+          },
+          {
+            "name": "BouncedReceivableKey",
+            "dataType": "int64",
+            "sourceColumn": "BouncedReceivableKey"
+          },
+          {
+            "name": "kind",
+            "dataType": "string",
+            "sourceColumn": "kind"
+          },
+          {
+            "name": "cntsalesorderkey",
+            "dataType": "int64",
+            "sourceColumn": "cntsalesorderkey"
+          },
+          {
+            "name": "forjeasli",
+            "dataType": "int64",
+            "sourceColumn": "forjeasli"
+          },
+          {
+            "name": "takhir_tajil",
+            "dataType": "int64",
+            "sourceColumn": "takhir_tajil"
+          },
+          {
+            "name": "season",
+            "dataType": "int64",
+            "sourceColumn": "season"
+          },
+          {
+            "name": "InvoiceNetAmount",
+            "dataType": "double",
+            "sourceColumn": "InvoiceNetAmount"
+          },
+          {
+            "name": "DiscountAmount",
+            "dataType": "double",
+            "sourceColumn": "DiscountAmount"
+          },
+          {
+            "name": "AmountAllocated",
+            "dataType": "double",
+            "sourceColumn": "AmountAllocated"
+          },
+          {
+            "type": "calculated",
+            "name": "SeasonText",
+            "dataType": "string",
+            "isDataTypeInferred": true,
+            "expression": " if(dimbill[season]=1,\"شرکت\", \"مشتری\")"
+          },
+          {
+            "name": "centerid",
+            "dataType": "int64",
+            "sourceColumn": "centerid"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "Partition",
+            "dataView": "full",
+            "source": {
+              "type": "m",
+              "expression": [
+                "let",
+                "    Source = #\"SQL/192 168 10 10;DW\",",
+                "    dbo_dimbill = Source{[Schema=\"dbo\",Item=\"dimbill\"]}[Data]",
+                "in",
+                "    dbo_dimbill"
+              ]
+            }
+          }
+        ],
+        "measures": [
+          {
+            "name": "takhir/tajil",
+            "expression": "AVERAGE(dimbill[takhir_tajil])",
+            "formatString": "#,0"
+          },
+          {
+            "name": "AmountAllocate",
+            "expression": "divide (sum(dimbill[AmountAllocated]), 1000000)"
+          },
+          {
+            "name": "ForjeVaghei",
+            "expression": " AVERAGE(dimbill[forjeasli])",
+            "formatString": "#,0"
+          },
+          {
+            "name": "CNTSanad",
+            "expression": " COUNT(dimbill[id])"
+          },
+          {
+            "name": "RatioAmountAllocatedByProvinceSeason",
+            "expression": [
+              "",
+              "DIVIDE([AmountAllocate], CALCULATE([AmountAllocate], all(dimbill[SeasonText])))"
+            ],
+            "formatString": "0.00 %;-0.00 %;0.00 %"
+          },
+          {
+            "name": "CustomerColorVosol&Motalebat",
+            "expression": [
+              " ",
+              "   SWITCH(",
+              "        TRUE(), ",
+              "[ForjeVaghei]<=30 , \"#79BD9A\"",
+              ",[ForjeVaghei]>30 && [ForjeVaghei]<=60, \"#CFF09E\"",
+              ",[ForjeVaghei]>60 && [ForjeVaghei]<=90, \"#F9D423\"",
+              ",[ForjeVaghei]>90 && [ForjeVaghei]<=120, \"#FC913A\"",
+              ",[ForjeVaghei]>120 && [ForjeVaghei]<=150, \"#FF4E50\"",
+              ", \"#990100\"",
+              ")",
+              "",
+              "",
+              ""
+            ]
+          },
+          {
+            "name": "TextKind",
+            "expression": " if([takhir/tajil]<0, \"تعجیل\", \"تاخیر\")"
+          },
+          {
+            "name": "NetAmoutBill",
+            "expression": "DIVIDE(sum(dimbill[InvoiceNetAmount]),1000000)"
+          },
+          {
+            "name": "CNTFactor",
+            "expression": " sum(dimbill[cntsalesorderkey])"
+          }
+        ]
+      },
+      {
+        "name": "useraccess",
+        "columns": [
+          {
+            "name": "centerid",
+            "dataType": "int64",
+            "sourceColumn": "centerid"
+          },
+          {
+            "name": "username",
+            "dataType": "string",
+            "sourceColumn": "username"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "Partition",
+            "dataView": "full",
+            "source": {
+              "type": "m",
+              "expression": [
+                "let",
+                "    Source = #\"SQL/192 168 10 10;DW\",",
+                "    dbo_useraccess = Source{[Schema=\"dbo\",Item=\"useraccess\"]}[Data]",
+                "in",
+                "    dbo_useraccess"
+              ]
+            }
+          }
+        ],
+        "measures": [
+          {
+            "name": "UserHasAccess",
+            "expression": [
+              " ",
+              "VAR currentUser = USERNAME()",
+              "RETURN",
+              "IF(",
+              "    CONTAINS(",
+              "        UserAccess,",
+              "        UserAccess[UserName],",
+              "        currentUser",
+              "    ),",
+              "    0,",
+              "    1",
+              ")"
+            ]
+          },
+          {
+            "name": "ButtonBackgroundColor",
+            "expression": [
+              "",
+              "IF(",
+              "    [UserHasAccess] = 1,",
+              "    \"#FFFFFF\",    // رنگ مثلاً نارنجی",
+              "    \"#FFFFFF00\"   // کاملاً بی‌رنگ (transparent)",
+              ")"
+            ]
+          },
+          {
+            "name": "ButtonURL",
+            "expression": [
+              " IF(",
+              "    [UserHasAccess] = 1,",
+              "    \"http://bamdad.el.com/bi/powerbi/MarketShare\",",
+              "    \"\"",
+              ")"
+            ]
+          },
+          {
+            "name": "ButtonTextColor",
+            "expression": [
+              "",
+              "IF(",
+              "    [UserHasAccess] = 1,",
+              "    \"#000000\",    // رنگ مثلاً نارنجی",
+              "    \"#FFFFFF00\"   // کاملاً بی‌رنگ (transparent)",
+              ")"
+            ]
+          }
+        ]
+      }
+    ],
+    "relationships": [
+      {
+        "name": "0f196ccf-3dc0-43c8-82ae-7a1420e17983",
+        "fromTable": "FactSales",
+        "fromColumn": "ProductKey",
+        "toTable": "dimproduct",
+        "toColumn": "ProductKey"
+      },
+      {
+        "name": "9e913306-7de3-4336-9d58-e57981c05b3e",
+        "fromTable": "FactSales",
+        "fromColumn": "SalesmanKey",
+        "toTable": "DimVisitor",
+        "toColumn": "SalesmanKey"
+      },
+      {
+        "name": "9976f66e-2a53-4a77-9c50-4487c7894307",
+        "fromTable": "FactSales",
+        "fromColumn": "DateKey",
+        "toTable": "DimDate_Big",
+        "toColumn": "datekey"
+      },
+      {
+        "name": "1b5a0ee8-3f73-4880-b1b9-16272fa49dc0",
+        "fromTable": "DimTarget",
+        "fromColumn": "StartDateKey",
+        "toTable": "DimDate_Big",
+        "toColumn": "datekey"
+      },
+      {
+        "name": "3775e0bf-3388-4d1d-953d-6055480aa529",
+        "fromTable": "DimTarget",
+        "fromColumn": "SalesmanKey",
+        "toTable": "DimVisitor",
+        "toColumn": "SalesmanKey"
+      },
+      {
+        "name": "f527d520-95c9-43b8-bd0b-1cb48357c647",
+        "fromTable": "FactSales",
+        "fromColumn": "centerID",
+        "toTable": "dimcenter",
+        "toColumn": "id"
+      },
+      {
+        "name": "40813161-efbe-443a-9029-93836a8423c5",
+        "fromTable": "FactSales",
+        "fromColumn": "CustomerKey",
+        "toTable": "Dimcustomer",
+        "toColumn": "CustomerKey"
+      },
+      {
+        "name": "0c53ac5f-b88d-4798-bf6d-6bd0dbc3ead6",
+        "fromTable": "titaccustomer",
+        "fromColumn": "customerkey",
+        "toTable": "Dimcustomer",
+        "toColumn": "CustomerKey",
+        "crossFilteringBehavior": "bothDirections"
+      },
+      {
+        "name": "65e0cad4-698c-46dc-a918-4a8bcbc4ab72",
+        "fromTable": "titaccustomer",
+        "fromColumn": "newcenter",
+        "toTable": "dimcenter",
+        "toColumn": "id"
+      },
+      {
+        "name": "7aa7e474-ee50-46f4-9974-d60267a7d4aa",
+        "fromTable": "DimTarget",
+        "fromColumn": "centerid",
+        "toTable": "dimcenter",
+        "toColumn": "id"
+      },
+      {
+        "name": "ce9024af-7096-47f9-9153-178fc15291ab",
+        "fromTable": "Demand",
+        "fromColumn": "centerid",
+        "toTable": "dimcenter",
+        "toColumn": "id"
+      },
+      {
+        "name": "37ef4d9c-7148-4fab-8b57-278c2ce942da",
+        "fromTable": "Demand",
+        "fromColumn": "dateKey",
+        "toTable": "DimDate_Big",
+        "toColumn": "datekey"
+      },
+      {
+        "name": "729dff2a-4f80-4e1f-95b6-5ff1eec1d4c4",
+        "fromTable": "Demand",
+        "fromColumn": "CustomerKey",
+        "toTable": "Dimcustomer",
+        "toColumn": "CustomerKey"
+      },
+      {
+        "name": "ec0ea6f2-95b3-4ab1-b117-8a117fe39ec4",
+        "fromTable": "Demand",
+        "fromColumn": "typeId",
+        "toTable": "MyManualTable",
+        "toColumn": "code"
+      },
+      {
+        "name": "85fef886-1245-418c-bd72-8b6645a1f0cd",
+        "fromTable": "dimbill",
+        "fromColumn": "DateKey",
+        "toTable": "DimDate_Big",
+        "toColumn": "datekey"
+      },
+      {
+        "name": "656f8573-0043-4d83-87eb-dc4014834df3",
+        "fromTable": "dimbill",
+        "fromColumn": "CustomerKey",
+        "toTable": "Dimcustomer",
+        "toColumn": "CustomerKey"
+      },
+      {
+        "name": "36195a76-f618-4b0e-aec9-0009019b3029",
+        "fromTable": "dimcenter",
+        "fromColumn": "id",
+        "toTable": "useraccess",
+        "toColumn": "centerid"
+      },
+      {
+        "name": "d78f0212-3895-4546-9deb-493c0fb0781b",
+        "fromTable": "dimbill",
+        "fromColumn": "centerid",
+        "toTable": "dimcenter",
+        "toColumn": "id"
+      }
+    ],
+    "annotations": [
+      {
+        "name": "ClientCompatibilityLevel",
+        "value": "700"
+      }
+    ]
+  }
+}

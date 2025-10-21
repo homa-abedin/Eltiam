@@ -1,0 +1,8 @@
+E:\ETL\Bamdad_Kharazm\KharazmiTabular\bin\Model.asdatabase
+E:\ETL\Bamdad_Kharazm\KharazmiTabular\bin\Model.deploymenttargets
+E:\ETL\Bamdad_Kharazm\KharazmiTabular\bin\Model.deploymentoptions
+E:\ETL\Bamdad_Kharazm\KharazmiTabular\obj\Development\KharazmiTabular.smproj.AssemblyReference.cache
+E:\ETL\Bamdad_Kharazm\KharazmiTabular\obj\Development\KharazmiTabular.smproj.CoreCompileInputs.cache
+E:\ETL\Bamdad_Kharazm\KharazmiTabular\obj\Development\Model.asdatabase
+E:\ETL\Bamdad_Kharazm\KharazmiTabular\obj\Development\Model.deploymentoptions
+E:\ETL\Bamdad_Kharazm\KharazmiTabular\obj\Development\Model.deploymenttargets

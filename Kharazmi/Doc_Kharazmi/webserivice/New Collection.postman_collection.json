@@ -1,0 +1,1623 @@
+{
+	"info": {
+		"_postman_id": "87f94bed-7c8f-42c6-a0d1-51e1a8f6a21a",
+		"name": "New Collection",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "19278718",
+		"_collection_link": "https://a99999-6699.postman.co/workspace/a-Workspace~4d900439-aedf-4b01-8c77-8041afd067ac/collection/19278718-87f94bed-7c8f-42c6-a0d1-51e1a8f6a21a?action=share&source=collection_link&creator=19278718"
+	},
+	"item": [
+		{
+			"name": "hejrat",
+			"item": [
+				{
+					"name": "http://old.hejratco.com/KharazmiWebService.asmx",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "text/xml",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<soap:Envelope xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">\r\n  <soap:Body>\r\n    <RetrieveSaleByCustomer xmlns=\"http://tempuri.org/\">\r\n      <FromDate>1404/01/01</FromDate>\r\n      <ToDate>1404/01/31</ToDate>\r\n      <PassWord>%985SDzxnyt658744!</PassWord>\r\n    </RetrieveSaleByCustomer>\r\n  </soap:Body>\r\n</soap:Envelope>\r\n\r\n",
+							"options": {
+								"raw": {
+									"language": "xml"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://old.hejratco.com/KharazmiWebService.asmx?op=RetrieveSaleByCustomer",
+							"protocol": "http",
+							"host": [
+								"old",
+								"hejratco",
+								"com"
+							],
+							"path": [
+								"KharazmiWebService.asmx"
+							],
+							"query": [
+								{
+									"key": "op",
+									"value": "RetrieveSaleByCustomer"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "http://old.hejratco.com/KharazmiWebService.asmx?op=RetrieveSaleByProduct",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "text/xml; charset=utf-8",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<soap:Envelope xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">\r\n  <soap:Body>\r\n    <RetrieveSaleByProduct xmlns=\"http://tempuri.org/\">\r\n      <FromDate>1404/01/01</FromDate>\r\n      <ToDate>1404/03/31</ToDate>\r\n      <PassWord>%985SDzxnyt658744!</PassWord>\r\n    </RetrieveSaleByProduct>\r\n  </soap:Body>\r\n</soap:Envelope>",
+							"options": {
+								"raw": {
+									"language": "xml"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://old.hejratco.com/KharazmiWebService.asmx?op=RetrieveSaleByProduct",
+							"protocol": "http",
+							"host": [
+								"old",
+								"hejratco",
+								"com"
+							],
+							"path": [
+								"KharazmiWebService.asmx"
+							],
+							"query": [
+								{
+									"key": "op",
+									"value": "RetrieveSaleByProduct"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "mahya",
+			"item": [
+				{
+					"name": "https://api.mahyadc.com/GetForoshMoshtarianByKalaBatch/?Username=kharazmi&Password=kh12345&FirstDate=14040101&EndDate=14040131",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://api.mahyadc.com/GetForoshMoshtarianByKalaBatch/?Username=kharazmi&Password=kh12345&FirstDate=14040101&EndDate=14040131",
+							"protocol": "https",
+							"host": [
+								"api",
+								"mahyadc",
+								"com"
+							],
+							"path": [
+								"GetForoshMoshtarianByKalaBatch",
+								""
+							],
+							"query": [
+								{
+									"key": "Username",
+									"value": "kharazmi"
+								},
+								{
+									"key": "Password",
+									"value": "kh12345"
+								},
+								{
+									"key": "FirstDate",
+									"value": "14040101"
+								},
+								{
+									"key": "EndDate",
+									"value": "14040131"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "https://api.mahyadc.com/GetForoshMojodiKoliByKalaJson/?Username=kharazmi&Password=kh12345&FirstDate=14010401&EndDate=14010431",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://api.mahyadc.com/GetForoshMojodiKoliByKalaJson/?Username=kharazmi&Password=kh12345&FirstDate=14010401&EndDate=14010431",
+							"protocol": "https",
+							"host": [
+								"api",
+								"mahyadc",
+								"com"
+							],
+							"path": [
+								"GetForoshMojodiKoliByKalaJson",
+								""
+							],
+							"query": [
+								{
+									"key": "Username",
+									"value": "kharazmi"
+								},
+								{
+									"key": "Password",
+									"value": "kh12345"
+								},
+								{
+									"key": "FirstDate",
+									"value": "14010401"
+								},
+								{
+									"key": "EndDate",
+									"value": "14010431"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "ferdous",
+			"item": [
+				{
+					"name": "https://www.ferdowsdco.com/services/api/Authentication/GetToken",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\"userName\": \"daroosazi.kharazmi\",\r\n\"password\": \"d1398\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "https://www.ferdowsdco.com/services/api/Authentication/GetToken"
+					},
+					"response": []
+				},
+				{
+					"name": "https://www.ferdowsdco.com/services/api/Supplier/GetInvoiceDetail?fromdate=1404/01/01&todate=1404/01/31",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJhbGciOiJBMTI4S1ciLCJlbmMiOiJBMTI4Q0JDLUhTMjU2IiwidHlwIjoiSldUIiwiY3R5IjoiSldUIn0.zWPO7UX19pRORvjehoXC1SNlVp2q6_cZ8RlQ5sH9cI-KHpHWr--0zQ.UVJbt4jL6gvgYN8eaQ6Hig.fa7Kx8ig4ZsM89BM4qIJm7QNQ6YTCZG7U0-RY01b1WA7Jm7AzcUX6JHzJTjtGOGashFoflq-ei2EMa5BtfjdpzeQT9U-DySZTK3wf7B9iFvBAgqyURyZeqPcJOubuMrG94mkMN5FPKmnpzGG_bgoRx3pTd3Si8P3v16BTEqJDn0XrxSRhXnR3l_vZK-h7s0hakm9PrJt26yMlsNz7l7OPZiFG61ijIT14KWd2DaEWRzDzq6K8H1QS2FKYYbr47ceq5yYmimz7G_1Di0JogWrYNn7n4Bt-QU4D-h30eSpwsWVGYIZitOc7w8RWi0fVlH3HAeWiS0uVYehQRchFVgDOc8gCxQThAGReUtWLYzzkFtcvSsPZhffqZTUZrxT41hR4QpUIwNIGyQwt9H7e8NfsC3umr2d75ZbgZwwow2XxOgILU5JvMH2mSo3bW0h5w9eHCRvk1578kmkacYMuLRSCrzCtKUEi4etywpGiWJTPb8X6liKRAGdtvA-A9cG2ifILo83hhiKvZ8Xtjii2H-G0SBDG4eVEkDSqgtbBqZZPDDjwmQc3KUgioGgAdcbaIl-zgpBPaGWJZI6DGxS99Bg6R3LgkhJk7RH2-y--YPrjiaHrtl8Zl9NUGljZCMgmrLaYndnxLNjoQRtxeRleIRcoRZMKWLucwyBbr1UJiBX11E.z7Z_KRZLMlYPNsO7DOAR9A"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://www.ferdowsdco.com/services/api/Supplier/GetInvoiceDetail?fromdate=1404/01/01&todate=1404/01/31",
+							"protocol": "https",
+							"host": [
+								"www",
+								"ferdowsdco",
+								"com"
+							],
+							"path": [
+								"services",
+								"api",
+								"Supplier",
+								"GetInvoiceDetail"
+							],
+							"query": [
+								{
+									"key": "fromdate",
+									"value": "1404/01/01"
+								},
+								{
+									"key": "todate",
+									"value": "1404/01/31"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "https://www.ferdowsdco.com/services/api/Supplier/GetInventory?actiondate=1404/02/22",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJhbGciOiJBMTI4S1ciLCJlbmMiOiJBMTI4Q0JDLUhTMjU2IiwidHlwIjoiSldUIiwiY3R5IjoiSldUIn0.gWxSvIii-ouqaEmcjPT3msMgcWNpT4aK-IDxRBjoo3lEuY3BcVm2rw.GdyknnAb1A96AiRMAqMZvA.8NDDQ6v7nUwKfC7DUD_qrZts8TI6WLYZLLnPGzfkYUD7W3PhbXqOApNl0aBqCjMhTtlKyCMdRjmRPR1WXrVlBNxQ4nj5SrK2MUqUzfOMFaAWtcP4Au4pJfA9SJmxfSXVj7ZXYQabho4nBTosUahDl9nNR2z-LHAh0HnNlAA2oDl0y1g57AFqun8H9JXWjgTbX4SeJWBSABCPLFg-Tp_sYWCU4ZRUjEU2P74x0gznVgmz9kcSVy18GFklJKj6brylj1khA7h4K9iD1L8FYLSlHRwep5xM2Im9EmswQitI21EhuyKhzKWmlCiN6w24hsXf2k-E-GEGvkVZykSvJb8VEK003ytXbgMbf9uR85ygHc-GSv41Mm3w_vGwC_n1b8y-sBg0GYng-4_F0hOYcCGNX7yqnn2MBA4SNxF1uaTN1NsiUi_Odl-ojZTz-gScTbkAb-Qq7uIozfhS-ZKYSlimqWtDEi7prJjKsppxKjm_pKuEiMUZiwzmjlcVWoXbSmxWsvIipc6CpbuS6eKfXLQ2f3ZtarYSsKoc3z8iGsz64G1I_4MbX1TMBQeSV2Tn-VqOyhyB-I62c0BRasTFKnKnBfSvPTGuOoz_Iprc2lD7LHeYd0PZ6twgJKBIqCOMPR4RSxJKOGdhIAL4lB1t2-bxpSn1Tehw_aNe7lYmQXR1vhc.jDnt3X5dugGCsEuWhbu78Q"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://www.ferdowsdco.com/services/api/Supplier/GetInventory?actiondate=1404/02/22",
+							"protocol": "https",
+							"host": [
+								"www",
+								"ferdowsdco",
+								"com"
+							],
+							"path": [
+								"services",
+								"api",
+								"Supplier",
+								"GetInventory"
+							],
+							"query": [
+								{
+									"key": "actiondate",
+									"value": "1404/02/22"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "behestan",
+			"item": [
+				{
+					"name": "https://soft.behestanpakhsh.com/providers/Applications/Providers/NewForms/ashx/RoleList.ashx?action=Select&routineno=4&ParamVal_UserID=24757&ParamVal_ItemId=-1&ParamVal_d1=14040207&ParamVal_d2=14040222&ParamVal_ProviderId=1025917&ParamVal_Srt=ItemTitle&Pa",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "User-Agent",
+								"value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:138.0) Gecko/20100101 Firefox/138.0"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json, text/javascript, */*; q=0.01"
+							},
+							{
+								"key": "Accept-Language",
+								"value": "en-US,en;q=0.5"
+							},
+							{
+								"key": "Accept-Encoding",
+								"value": "gzip, deflate, br, zstd"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded; charset=UTF-8"
+							},
+							{
+								"key": "X-Requested-With",
+								"value": "XMLHttpRequest"
+							},
+							{
+								"key": "Origin",
+								"value": "https://soft.behestanpakhsh.com"
+							},
+							{
+								"key": "Connection",
+								"value": "keep-alive"
+							},
+							{
+								"key": "Referer",
+								"value": "https://soft.behestanpakhsh.com/providers/Applications/Providers/NewForms/MainPage.aspx"
+							},
+							{
+								"key": "Cookie",
+								"value": "ASP.NET_SessionId=wndxr1bj32g1rdagur2gldif; qazxsw123=MCpQ/7Us+++JFNta0OGRsA==; wertyxs22123=gVe9MNr3m2enCoGTMo74jg=="
+							},
+							{
+								"key": "Sec-Fetch-Dest",
+								"value": "empty"
+							},
+							{
+								"key": "Sec-Fetch-Mode",
+								"value": "cors"
+							},
+							{
+								"key": "Sec-Fetch-Site",
+								"value": "same-origin"
+							},
+							{
+								"key": "Priority",
+								"value": "u=0"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "page=1&rows=100",
+							"options": {
+								"raw": {
+									"language": "text"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://soft.behestanpakhsh.com/providers/Applications/Providers/NewForms/ashx/RoleList.ashx?action=Select&routineno=4&ParamVal_UserID=24757&ParamVal_ItemId=-1&ParamVal_d1=14040207&ParamVal_d2=14040222&ParamVal_ProviderId=1025917&ParamVal_Srt=ItemTitle&ParamVal_Bal=0&ParamVal_ByBranch=0&ParamVal_IsWaste=1",
+							"protocol": "https",
+							"host": [
+								"soft",
+								"behestanpakhsh",
+								"com"
+							],
+							"path": [
+								"providers",
+								"Applications",
+								"Providers",
+								"NewForms",
+								"ashx",
+								"RoleList.ashx"
+							],
+							"query": [
+								{
+									"key": "action",
+									"value": "Select"
+								},
+								{
+									"key": "routineno",
+									"value": "4"
+								},
+								{
+									"key": "ParamVal_UserID",
+									"value": "24757"
+								},
+								{
+									"key": "ParamVal_ItemId",
+									"value": "-1"
+								},
+								{
+									"key": "ParamVal_d1",
+									"value": "14040207"
+								},
+								{
+									"key": "ParamVal_d2",
+									"value": "14040222"
+								},
+								{
+									"key": "ParamVal_ProviderId",
+									"value": "1025917"
+								},
+								{
+									"key": "ParamVal_Srt",
+									"value": "ItemTitle"
+								},
+								{
+									"key": "ParamVal_Bal",
+									"value": "0"
+								},
+								{
+									"key": "ParamVal_ByBranch",
+									"value": "0"
+								},
+								{
+									"key": "ParamVal_IsWaste",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "https://soft.behestanpakhsh.com/providers/Applications/Providers/NewForms/ashx/RoleList.ashx?action=Select&routineno=2&ParamVal_UserID=24757&ParamVal_ItemId=-1&ParamVal_ProviderId=1025917",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "User-Agent",
+								"value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:138.0) Gecko/20100101 Firefox/138.0"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json, text/javascript, */*; q=0.01"
+							},
+							{
+								"key": "Accept-Language",
+								"value": "en-US,en;q=0.5"
+							},
+							{
+								"key": "Accept-Encoding",
+								"value": "gzip, deflate, br, zstd"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded; charset=UTF-8"
+							},
+							{
+								"key": "X-Requested-With",
+								"value": "XMLHttpRequest"
+							},
+							{
+								"key": "Origin",
+								"value": "https://soft.behestanpakhsh.com"
+							},
+							{
+								"key": "Connection",
+								"value": "keep-alive"
+							},
+							{
+								"key": "Referer",
+								"value": "https://soft.behestanpakhsh.com/providers/Applications/Providers/NewForms/MainPage.aspx"
+							},
+							{
+								"key": "Cookie",
+								"value": "ASP.NET_SessionId=wndxr1bj32g1rdagur2gldif; qazxsw123=MCpQ/7Us+++JFNta0OGRsA==; wertyxs22123=gVe9MNr3m2enCoGTMo74jg=="
+							},
+							{
+								"key": "Sec-Fetch-Dest",
+								"value": "empty"
+							},
+							{
+								"key": "Sec-Fetch-Mode",
+								"value": "cors"
+							},
+							{
+								"key": "Sec-Fetch-Site",
+								"value": "same-origin"
+							},
+							{
+								"key": "Priority",
+								"value": "u=0"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "page=1&rows=100",
+							"options": {
+								"raw": {
+									"language": "text"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://soft.behestanpakhsh.com/providers/Applications/Providers/NewForms/ashx/RoleList.ashx?action=Select&routineno=2&ParamVal_UserID=24757&ParamVal_ItemId=-1&ParamVal_ProviderId=1025917",
+							"protocol": "https",
+							"host": [
+								"soft",
+								"behestanpakhsh",
+								"com"
+							],
+							"path": [
+								"providers",
+								"Applications",
+								"Providers",
+								"NewForms",
+								"ashx",
+								"RoleList.ashx"
+							],
+							"query": [
+								{
+									"key": "action",
+									"value": "Select"
+								},
+								{
+									"key": "routineno",
+									"value": "2"
+								},
+								{
+									"key": "ParamVal_UserID",
+									"value": "24757"
+								},
+								{
+									"key": "ParamVal_ItemId",
+									"value": "-1"
+								},
+								{
+									"key": "ParamVal_ProviderId",
+									"value": "1025917"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "https://soft.behestanpakhsh.com/providers/Applications/Providers/NewForms/ashx/RoleList.ashx?action=Select&routineno=16&ParamVal_UserID=24757&ParamVal_ItemId=-1&ParamVal_d1=14040208&ParamVal_d2=14040215&ParamVal_ProviderId=1025917&ParamVal_BranchId=&Param",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "User-Agent",
+								"value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:138.0) Gecko/20100101 Firefox/138.0"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json, text/javascript, */*; q=0.01"
+							},
+							{
+								"key": "Accept-Language",
+								"value": "en-US,en;q=0.5"
+							},
+							{
+								"key": "Accept-Encoding",
+								"value": "gzip, deflate, br, zstd"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded; charset=UTF-8"
+							},
+							{
+								"key": "X-Requested-With",
+								"value": "XMLHttpRequest"
+							},
+							{
+								"key": "Origin",
+								"value": "https://soft.behestanpakhsh.com"
+							},
+							{
+								"key": "Connection",
+								"value": "keep-alive"
+							},
+							{
+								"key": "Referer",
+								"value": "https://soft.behestanpakhsh.com/providers/Applications/Providers/NewForms/MainPage.aspx"
+							},
+							{
+								"key": "Cookie",
+								"value": "ASP.NET_SessionId=wndxr1bj32g1rdagur2gldif; qazxsw123=MCpQ/7Us+++JFNta0OGRsA==; wertyxs22123=gVe9MNr3m2enCoGTMo74jg=="
+							},
+							{
+								"key": "Sec-Fetch-Dest",
+								"value": "empty"
+							},
+							{
+								"key": "Sec-Fetch-Mode",
+								"value": "cors"
+							},
+							{
+								"key": "Sec-Fetch-Site",
+								"value": "same-origin"
+							},
+							{
+								"key": "Priority",
+								"value": "u=0"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "page=1&rows=100",
+							"options": {
+								"raw": {
+									"language": "text"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://soft.behestanpakhsh.com/providers/Applications/Providers/NewForms/ashx/RoleList.ashx?action=Select&routineno=16&ParamVal_UserID=24757&ParamVal_ItemId=-1&ParamVal_d1=14040208&ParamVal_d2=14040215&ParamVal_ProviderId=1025917&ParamVal_BranchId=&ParamVal_Srt=ItemTitle&ParamVal_Bal=0&ParamVal_ByBranch=1",
+							"protocol": "https",
+							"host": [
+								"soft",
+								"behestanpakhsh",
+								"com"
+							],
+							"path": [
+								"providers",
+								"Applications",
+								"Providers",
+								"NewForms",
+								"ashx",
+								"RoleList.ashx"
+							],
+							"query": [
+								{
+									"key": "action",
+									"value": "Select"
+								},
+								{
+									"key": "routineno",
+									"value": "16"
+								},
+								{
+									"key": "ParamVal_UserID",
+									"value": "24757"
+								},
+								{
+									"key": "ParamVal_ItemId",
+									"value": "-1"
+								},
+								{
+									"key": "ParamVal_d1",
+									"value": "14040208"
+								},
+								{
+									"key": "ParamVal_d2",
+									"value": "14040215"
+								},
+								{
+									"key": "ParamVal_ProviderId",
+									"value": "1025917"
+								},
+								{
+									"key": "ParamVal_BranchId",
+									"value": ""
+								},
+								{
+									"key": "ParamVal_Srt",
+									"value": "ItemTitle"
+								},
+								{
+									"key": "ParamVal_Bal",
+									"value": "0"
+								},
+								{
+									"key": "ParamVal_ByBranch",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Alborz",
+			"item": [
+				{
+					"name": "http://5.160.85.244:84/Supplier/Report/GetSaleOfCustomer?apiKey=6d46a2720de142a4a4dc2ce2331a7313&sDate=1404/02/01",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://5.160.85.244:84/Supplier/Report/GetSaleOfCustomer?apiKey=6d46a2720de142a4a4dc2ce2331a7313&sDate=1404/02/01",
+							"protocol": "http",
+							"host": [
+								"5",
+								"160",
+								"85",
+								"244"
+							],
+							"port": "84",
+							"path": [
+								"Supplier",
+								"Report",
+								"GetSaleOfCustomer"
+							],
+							"query": [
+								{
+									"key": "apiKey",
+									"value": "6d46a2720de142a4a4dc2ce2331a7313"
+								},
+								{
+									"key": "sDate",
+									"value": "1404/02/01"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "http://5.160.85.244:84/Supplier/Report/GetSaleAndStock?apiKey=6d46a2720de142a4a4dc2ce2331a7313&sDate=1404/03/10",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://5.160.85.244:84/Supplier/Report/GetSaleAndStock?apiKey=6d46a2720de142a4a4dc2ce2331a7313&sDate=1404/03/10",
+							"protocol": "http",
+							"host": [
+								"5",
+								"160",
+								"85",
+								"244"
+							],
+							"port": "84",
+							"path": [
+								"Supplier",
+								"Report",
+								"GetSaleAndStock"
+							],
+							"query": [
+								{
+									"key": "apiKey",
+									"value": "6d46a2720de142a4a4dc2ce2331a7313"
+								},
+								{
+									"key": "sDate",
+									"value": "1404/03/10"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Daya",
+			"item": [
+				{
+					"name": "https://dpsup.dayadarou.com/exusersfinal/api/v1/Sell/GetSupplierSellInfo_Abstract",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{ \"authentication\": { \"userName\": \"Kharazmi\", \"password\": \"6A918F\" }, \"fromDate\": 14040201, \"toDate\": 14040231 }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "https://dpsup.dayadarou.com/exusersfinal/api/v1/Sell/GetSupplierSellInfo_Abstract"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Qhasem",
+			"item": [
+				{
+					"name": "https://ghasemservice.minoogroup.com/GhasemService.asmx?op=GetSalesReport",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "SOAPAction",
+								"value": "\"http://tempuri.org/GetSalesReport\"",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "text/xml; charset=utf-8",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<soap:Envelope xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">\r\n  <soap:Body>\r\n    <GetSalesReport xmlns=\"http://tempuri.org/\">\r\n      <UserName>kharazmipharm</UserName>\r\n      <Password>Km724257</Password>\r\n      <FromDate>14040201</FromDate>\r\n      <ToDate>14040231</ToDate>\r\n      <TimeStamp>string</TimeStamp>\r\n    </GetSalesReport>\r\n  </soap:Body>\r\n</soap:Envelope>",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://ghasemservice.minoogroup.com/GhasemService.asmx?op=GetSalesReport",
+							"protocol": "https",
+							"host": [
+								"ghasemservice",
+								"minoogroup",
+								"com"
+							],
+							"path": [
+								"GhasemService.asmx"
+							],
+							"query": [
+								{
+									"key": "op",
+									"value": "GetSalesReport"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "https://ghasemservice.minoogroup.com/GhasemService.asmx",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "SOAPAction",
+								"value": "\"http://tempuri.org/GetInventoryReport\"",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "text/xml; charset=utf-8",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<soap:Envelope xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">\r\n  <soap:Body>\r\n    <GetInventoryReport xmlns=\"http://tempuri.org/\">\r\n      <UserName>kharazmipharm</UserName>\r\n      <Password>Km724257</Password>\r\n\r\n      <ToDate>14040215</ToDate>\r\n\r\n    </GetInventoryReport>\r\n  </soap:Body>\r\n</soap:Envelope>",
+							"options": {
+								"raw": {
+									"language": "xml"
+								}
+							}
+						},
+						"url": "https://ghasemservice.minoogroup.com/GhasemService.asmx"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "hasti",
+			"item": [
+				{
+					"name": "http://5.160.151.74:25684/ReportService.svc/json/Get_sp_AllData",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"Token\": \"24852246\",\r\n  \"UserName\": \"KHA111\",\r\n  \"Password\": \"sph!@#1431\",\r\n  \"TypeID\": 14,\r\n  \"FromDate\": \"1403/03/04\",\r\n  \"ToDate\": \"1403/03/04\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://5.160.151.74:25684/ReportService.svc/json/Get_sp_AllData"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Daya",
+			"item": [
+				{
+					"name": "https://dpsup.dayadarou.com/exusersfinal/api/v1/Sell/GetSupplierSellInfo_Abstract",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": {
+								"password": "Ki3256",
+								"username": "kharazmi"
+							}
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"authentication\": { \"userName\": \"Kharazmi\", \"password\": \"6A918F\" }, \"fromDate\": 14040101, \"toDate\": 14040321 }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "https://dpsup.dayadarou.com/exusersfinal/api/v1/Sell/GetSupplierSellInfo_Abstract"
+					},
+					"response": []
+				},
+				{
+					"name": "https://dpsup.dayadarou.com/exusersfinal/api/v1/Stock/ProductStockOfBranches",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{ \"authentication\": { \"userName\": \"Kharazmi\", \"password\": \"6A918F\" }, \"toDate\": 14040110}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "https://dpsup.dayadarou.com/exusersfinal/api/v1/Stock/ProductStockOfBranches"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Toba",
+			"item": [
+				{
+					"name": "http://188.75.106.98:9095/api/token?username=kharazmi&password=kh2022d&grant_type=password",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "username",
+									"value": "kharazmi",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "kh2022d",
+									"type": "text"
+								},
+								{
+									"key": "grant_type",
+									"value": "password",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://188.75.106.98:9095/api/token?username=kharazmi&password=kh2022d&grant_type=password",
+							"protocol": "http",
+							"host": [
+								"188",
+								"75",
+								"106",
+								"98"
+							],
+							"port": "9095",
+							"path": [
+								"api",
+								"token"
+							],
+							"query": [
+								{
+									"key": "username",
+									"value": "kharazmi"
+								},
+								{
+									"key": "password",
+									"value": "kh2022d"
+								},
+								{
+									"key": "grant_type",
+									"value": "password"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "http://188.75.106.98:9095/api/exServices/daroox/drx/SupplierGetinvProductsStock?scuCompanyID=2&totCostCenterID=-1&Fdate=14030101&Tdate=14030231",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTI1NiIsInR5cCI6IkpXVCJ9.eyJTY3VVc2VySWQiOiI0NTYiLCJTY3VVc2VyTmFtZSI6ImtoYXJhem1pIiwiVG90UGFydGl0aW9uSWQiOiIyIiwiVG90Q29zdENlbnRlcklkIjoiNDQiLCJTY3VDbXB5RHVySWQiOiIxNCIsIlNjdUNvbXBhbnlJZCI6IjIiLCJTY3VDb21wYW55TmFtZSI6Iti02LHaqdiqINiq2LnYp9mI2YbbjCDYr9in2LHZiCDar9iz2KrYsSDYt9mI2KjbjCIsIkNvbXBhbnlVbmlxdWVDb2RlIjoiMjA3MCIsIlBvc3RzIjoiIiwiU2FsZUN1c3RvbWVyVHlwZUlkIjoiLTQiLCJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoia2hhcmF6bWkiLCJUb3RNZXJnZWRQZXJzb25JZEludmVudG9yeSI6IjQ5IiwiVG90TWVyZ2VkUGVyc29uSWQiOiIxODkzMjAiLCJOYW1lRHNjIjoi2LTYsdqp2Kog2K_Yp9ix2YjYs9in2LLbjCDYrtmI2KfYsdiy2YXbjCIsIkltYWdlUGF0aCI6Imh0dHA6Ly8xODguNzUuMTA2Ljk4OjkwOTUvaW1hZ2VzL3VzZXItZGVmdWFsdDEucG5nIiwiU2N1R1VQYXJlbnRJRCI6IjEzMjciLCJIcnNFbXBsb3llZUlkIjoiMCIsIklQQWRkcmVzcyI6IjE4OC43NS42NS4xNzgiLCJCcm93c2VyIjoiVW5rbm93biIsIk9TIjoiVW5rbm93biIsIkFwcE5hbWUiOiIiLCJTaG9ydENvZGUiOiIiLCJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3JvbGUiOiJ1c2VyIiwibmJmIjoxNzQ4ODUzNTQwLCJleHAiOjE3ODAzODk1NDAsImlzcyI6Imh0dHA6Ly9vYXV0aC5tYWJuYWVycHdlYmFwaS5pci8iLCJhdWQiOiJBbnkifQ.2x5U9TBimDHxZW38srrAq6xXx3UdciS3DOEPHsWwg1o"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": []
+						},
+						"url": {
+							"raw": "http://188.75.106.98:9095/api/exServices/daroox/drx/SupplierGetinvProductsStock?scuCompanyID=2&totCostCenterID=-1&Fdate=14030101&Tdate=14030231",
+							"protocol": "http",
+							"host": [
+								"188",
+								"75",
+								"106",
+								"98"
+							],
+							"port": "9095",
+							"path": [
+								"api",
+								"exServices",
+								"daroox",
+								"drx",
+								"SupplierGetinvProductsStock"
+							],
+							"query": [
+								{
+									"key": "scuCompanyID",
+									"value": "2"
+								},
+								{
+									"key": "totCostCenterID",
+									"value": "-1"
+								},
+								{
+									"key": "Fdate",
+									"value": "14030101"
+								},
+								{
+									"key": "Tdate",
+									"value": "14030231"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "http://188.75.106.98:9095/api/exServices/daroox/drx/SupplierGetsaleDocumentDetails?Fdate=14030920&Tdate=14030928",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTI1NiIsInR5cCI6IkpXVCJ9.eyJTY3VVc2VySWQiOiI0NTYiLCJTY3VVc2VyTmFtZSI6ImtoYXJhem1pIiwiVG90UGFydGl0aW9uSWQiOiIyIiwiVG90Q29zdENlbnRlcklkIjoiNDQiLCJTY3VDbXB5RHVySWQiOiIxNCIsIlNjdUNvbXBhbnlJZCI6IjIiLCJTY3VDb21wYW55TmFtZSI6Iti02LHaqdiqINiq2LnYp9mI2YbbjCDYr9in2LHZiCDar9iz2KrYsSDYt9mI2KjbjCIsIkNvbXBhbnlVbmlxdWVDb2RlIjoiMjA3MCIsIlBvc3RzIjoiIiwiU2FsZUN1c3RvbWVyVHlwZUlkIjoiLTQiLCJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoia2hhcmF6bWkiLCJUb3RNZXJnZWRQZXJzb25JZEludmVudG9yeSI6IjQ5IiwiVG90TWVyZ2VkUGVyc29uSWQiOiIxODkzMjAiLCJOYW1lRHNjIjoi2LTYsdqp2Kog2K_Yp9ix2YjYs9in2LLbjCDYrtmI2KfYsdiy2YXbjCIsIkltYWdlUGF0aCI6Imh0dHA6Ly8xODguNzUuMTA2Ljk4OjkwOTUvaW1hZ2VzL3VzZXItZGVmdWFsdDEucG5nIiwiU2N1R1VQYXJlbnRJRCI6IjEzMjciLCJIcnNFbXBsb3llZUlkIjoiMCIsIklQQWRkcmVzcyI6IjE4OC43NS42NS4xNzgiLCJCcm93c2VyIjoiVW5rbm93biIsIk9TIjoiVW5rbm93biIsIkFwcE5hbWUiOiIiLCJTaG9ydENvZGUiOiIiLCJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3JvbGUiOiJ1c2VyIiwibmJmIjoxNzQ4ODUzNTQwLCJleHAiOjE3ODAzODk1NDAsImlzcyI6Imh0dHA6Ly9vYXV0aC5tYWJuYWVycHdlYmFwaS5pci8iLCJhdWQiOiJBbnkifQ.2x5U9TBimDHxZW38srrAq6xXx3UdciS3DOEPHsWwg1o"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://188.75.106.98:9095/api/exServices/daroox/drx/SupplierGetsaleDocumentDetails?Fdate=14030920&Tdate=14030928",
+							"protocol": "http",
+							"host": [
+								"188",
+								"75",
+								"106",
+								"98"
+							],
+							"port": "9095",
+							"path": [
+								"api",
+								"exServices",
+								"daroox",
+								"drx",
+								"SupplierGetsaleDocumentDetails"
+							],
+							"query": [
+								{
+									"key": "Fdate",
+									"value": "14030920"
+								},
+								{
+									"key": "Tdate",
+									"value": "14030928"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Barij",
+			"item": [
+				{
+					"name": "http://91.92.186.30:7070/api/TaminKonandeh/GetForoshFaktorTaminKonandeh?AzTarikh=14040101&TaTarikh=14040330&MarkazId=0&UserName=kharazmi&Password=123456",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://91.92.186.30:7070/api/TaminKonandeh/GetForoshFaktorTaminKonandeh?AzTarikh=14040101&TaTarikh=14040330&MarkazId=0&UserName=kharazmi&Password=123456",
+							"protocol": "http",
+							"host": [
+								"91",
+								"92",
+								"186",
+								"30"
+							],
+							"port": "7070",
+							"path": [
+								"api",
+								"TaminKonandeh",
+								"GetForoshFaktorTaminKonandeh"
+							],
+							"query": [
+								{
+									"key": "AzTarikh",
+									"value": "14040101"
+								},
+								{
+									"key": "TaTarikh",
+									"value": "14040330"
+								},
+								{
+									"key": "MarkazId",
+									"value": "0"
+								},
+								{
+									"key": "UserName",
+									"value": "kharazmi"
+								},
+								{
+									"key": "Password",
+									"value": "123456"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "razi",
+			"item": [
+				{
+					"name": "http://46.209.199.137:46002/RazicoService/OnlineSales",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "username",
+									"value": "kharazmi",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "96822541",
+									"type": "text"
+								},
+								{
+									"key": "todate",
+									"value": "1404/03/31",
+									"type": "text"
+								},
+								{
+									"key": "fromdate",
+									"value": "1404/01/01",
+									"type": "text"
+								}
+							]
+						},
+						"url": "http://46.209.199.137:46002/RazicoService/OnlineSales"
+					},
+					"response": []
+				},
+				{
+					"name": "http://46.209.199.137:46002/RazicoService/OnlineInventory",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "username",
+									"value": "kharazmi",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "96822541",
+									"type": "text"
+								},
+								{
+									"key": "date",
+									"value": "1404/03/01",
+									"type": "text"
+								}
+							]
+						},
+						"url": "http://46.209.199.137:46002/RazicoService/OnlineInventory"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Momtaz",
+			"item": [
+				{
+					"name": "http://188.75.73.78/SupplierService/SupplierFile.asmx",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "text/xml",
+								"type": "text"
+							},
+							{
+								"key": "SOAPAction",
+								"value": "http://p-momtaz.com/saleProduct_Customer_WithPrize_Serial",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<soap:Envelope xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">\r\n  <soap:Body>\r\n    <saleProduct_Customer_WithPrize_Serial xmlns=\"http://p-momtaz.com/\">\r\n      <UserName>kharazmi</UserName>\r\n      <Password>Ki3256</Password>\r\n      <FDate>14030101</FDate>\r\n      <TDate>14030301</TDate>\r\n    </saleProduct_Customer_WithPrize_Serial>\r\n  </soap:Body>\r\n</soap:Envelope>",
+							"options": {
+								"raw": {
+									"language": "xml"
+								}
+							}
+						},
+						"url": "http://188.75.73.78/SupplierService/SupplierFile.asmx"
+					},
+					"response": []
+				},
+				{
+					"name": "http://188.75.73.78/SupplierService/SupplierFile.asmx",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "text/xml",
+								"type": "text"
+							},
+							{
+								"key": "SOAPAction",
+								"value": "http://p-momtaz.com/MomtazSP_StockInventory",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<soap:Envelope xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">\r\n  <soap:Body>\r\n    <MomtazSP_StockInventory xmlns=\"http://p-momtaz.com/\">\r\n      <UserName>kharazmi</UserName>\r\n      <Password>Ki3256</Password>\r\n      <FDate>14030101</FDate>\r\n    </MomtazSP_StockInventory>\r\n  </soap:Body>\r\n</soap:Envelope>",
+							"options": {
+								"raw": {
+									"language": "xml"
+								}
+							}
+						},
+						"url": "http://188.75.73.78/SupplierService/SupplierFile.asmx"
+					},
+					"response": []
+				},
+				{
+					"name": "http://188.75.73.78/SupplierService/SupplierFile.asmx?op=Sale00902_WithPrize",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "SOAPAction",
+								"value": "http://p-momtaz.com/Sale00902_WithPrize",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "text/xml",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<soap:Envelope xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">\r\n  <soap:Body>\r\n    <Sale00902_WithPrize xmlns=\"http://p-momtaz.com/\">\r\n      <UserName>kharazmi</UserName>\r\n      <Password>Ki3256</Password>\r\n      <Year>1403</Year>\r\n      <ErrorOut>string</ErrorOut>\r\n    </Sale00902_WithPrize>\r\n  </soap:Body>\r\n</soap:Envelope>",
+							"options": {
+								"raw": {
+									"language": "xml"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://188.75.73.78/SupplierService/SupplierFile.asmx?op=Sale00902_WithPrize",
+							"protocol": "http",
+							"host": [
+								"188",
+								"75",
+								"73",
+								"78"
+							],
+							"path": [
+								"SupplierService",
+								"SupplierFile.asmx"
+							],
+							"query": [
+								{
+									"key": "op",
+									"value": "Sale00902_WithPrize"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "http://188.75.73.78/SupplierService/SupplierFile.asmx",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "SOAPAction",
+								"value": "http://p-momtaz.com/saleDocument_sply_prd_CostCenter_WithPrize",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "text/xml",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<soap:Envelope xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">\r\n  <soap:Body>\r\n    <saleDocument_sply_prd_CostCenter_WithPrize xmlns=\"http://p-momtaz.com/\">\r\n      <UserName>kharazmi</UserName>\r\n      <Password>Ki3256</Password>\r\n      <Fdate>14030101</Fdate>\r\n      <Tdate>14030201</Tdate>\r\n    </saleDocument_sply_prd_CostCenter_WithPrize>\r\n  </soap:Body>\r\n</soap:Envelope>",
+							"options": {
+								"raw": {
+									"language": "xml"
+								}
+							}
+						},
+						"url": "http://188.75.73.78/SupplierService/SupplierFile.asmx"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "http://5.160.65.29:41210/EltiamApi/api/Auth",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "accept",
+						"value": "*/*"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json-patch+json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"Id\": 118,\r\n  \"Password\": \"K#81@03z\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://5.160.65.29:41210/EltiamApi/api/Auth",
+				"description": "Generated from cURL: curl -X 'POST' \\\r\n  'http://5.160.65.29:41210/EltiamApi/api/Auth' \\\r\n  -H 'accept: */*' \\\r\n  -H 'Content-Type: application/json-patch+json' \\\r\n  -d '{\r\n  \"Id\": 118,\r\n  \"Password\": \"K#81@03z\"\r\n}'"
+			},
+			"response": []
+		},
+		{
+			"name": "http://5.160.65.29:41210/EltiamApi/api/Centers/GetCenters",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "accept",
+						"value": "*/*"
+					}
+				],
+				"url": "http://5.160.65.29:41210/EltiamApi/api/Centers/GetCenters",
+				"description": "Generated from cURL: curl -X 'GET' \\\r\n  'http://5.160.65.29:41210/EltiamApi/api/Centers/GetCenters' \\\r\n  -H 'accept: */*'"
+			},
+			"response": []
+		},
+		{
+			"name": "New Request",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "https://ghasemtamin.minoogroup.com/ReportGroup/ForooshMojoodiShoab_Read",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "User-Agent",
+						"value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:137.0) Gecko/20100101 Firefox/137.0"
+					},
+					{
+						"key": "Accept",
+						"value": "*/*"
+					},
+					{
+						"key": "Accept-Language",
+						"value": "en-US,en;q=0.5"
+					},
+					{
+						"key": "Accept-Encoding",
+						"value": "gzip, deflate, br, zstd"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded; charset=UTF-8"
+					},
+					{
+						"key": "X-Requested-With",
+						"value": "XMLHttpRequest"
+					},
+					{
+						"key": "Origin",
+						"value": "https://ghasemtamin.minoogroup.com"
+					},
+					{
+						"key": "Connection",
+						"value": "keep-alive"
+					},
+					{
+						"key": "Referer",
+						"value": "https://ghasemtamin.minoogroup.com/ReportGroup/ForooshMojoodiShoab"
+					},
+					{
+						"key": "Cookie",
+						"value": "__RequestVerificationToken=EuoyCMGt4P29xupVBtZKnDj5eJeGMBlUDBG4y_0g1BUinjE2PEXO2r_4GnhP1uadkhbgLZF518LTBgrqs5ngAzgnXbTVldZxsafqcx1Rg8c1; MyProject=79F59116C1FBD06036F0466223056E9C9F10EB87B146C2628233ACBAFE09A1945A10614D9C00754F010D3A48B2D6F8E62FA873C66CD60309AAA1EF8724CEF0B962F51E0E8685CF2EE5B03BCCF6213BE3428A6FECE4349A9DE33E5AE160506A70E63054B4B8CF07159FBC18578DA3C70C935CE91A66E8CC6C81C2A013142E50127A297B9F892711A53686FDC22069A7FF"
+					},
+					{
+						"key": "Sec-Fetch-Dest",
+						"value": "empty"
+					},
+					{
+						"key": "Sec-Fetch-Mode",
+						"value": "cors"
+					},
+					{
+						"key": "Sec-Fetch-Site",
+						"value": "same-origin"
+					},
+					{
+						"key": "TE",
+						"value": "trailers"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "sort=&page=1&pageSize=30&group=&filter=&TaminKonandehSNs=null&forExcel=false",
+					"options": {
+						"raw": {
+							"language": "text"
+						}
+					}
+				},
+				"url": "https://ghasemtamin.minoogroup.com/ReportGroup/ForooshMojoodiShoab_Read",
+				"description": "Generated from cURL: curl \"https://ghasemtamin.minoogroup.com/ReportGroup/ForooshMojoodiShoab_Read\" -X POST -H \"User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:137.0) Gecko/20100101 Firefox/137.0\" -H \"Accept: */*\" -H \"Accept-Language: en-US,en;q=0.5\" -H \"Accept-Encoding: gzip, deflate, br, zstd\" -H \"Content-Type: application/x-www-form-urlencoded; charset=UTF-8\" -H \"X-Requested-With: XMLHttpRequest\" -H \"Origin: https://ghasemtamin.minoogroup.com\" -H \"Connection: keep-alive\" -H \"Referer: https://ghasemtamin.minoogroup.com/ReportGroup/ForooshMojoodiShoab\" -H \"Cookie: __RequestVerificationToken=EuoyCMGt4P29xupVBtZKnDj5eJeGMBlUDBG4y_0g1BUinjE2PEXO2r_4GnhP1uadkhbgLZF518LTBgrqs5ngAzgnXbTVldZxsafqcx1Rg8c1; MyProject=79F59116C1FBD06036F0466223056E9C9F10EB87B146C2628233ACBAFE09A1945A10614D9C00754F010D3A48B2D6F8E62FA873C66CD60309AAA1EF8724CEF0B962F51E0E8685CF2EE5B03BCCF6213BE3428A6FECE4349A9DE33E5AE160506A70E63054B4B8CF07159FBC18578DA3C70C935CE91A66E8CC6C81C2A013142E50127A297B9F892711A53686FDC22069A7FF\" -H \"Sec-Fetch-Dest: empty\" -H \"Sec-Fetch-Mode: cors\" -H \"Sec-Fetch-Site: same-origin\" -H \"TE: trailers\" --data-raw \"sort=&page=1&pageSize=30&group=&filter=&TaminKonandehSNs=null&forExcel=false\""
+			},
+			"response": []
+		},
+		{
+			"name": "https://www.ferdowsdco.com/services/api/Supplier/GetInvoiceDetail?FromDate=1404/01/01&ToDate=1404/01/31",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": "eyJhbGciOiJBMTI4S1ciLCJlbmMiOiJBMTI4Q0JDLUhTMjU2IiwidHlwIjoiSldUIiwiY3R5IjoiSldUIn0.rWPQtBYA8r8a5RIG1hMxwC_I0VgBhWpUZq4uzU-uPSh19X2jPE-hFQ.4oO5TghfPu5FkeSBfnmovQ.kl_mwAtdakXhB34llV_vOsjp0gXCU-BGlfuowwT852V6sQR3rZ9cKF6uxEfJak9_ro6hEPqVGqh6K0f3QGByHiZz70sx_1-uoKUFm2NtiWETorj7_RTOxWYslxPII_SbHym9xtpcDMIhPYPKeQA0Kl4uxcXXhVdNrs9v0yzQ1YGDeSvM_Xw_P8Ka0s_jdLsH8kQjsJzUI6JbCQ6-xK0-5DJ3Zt-vO3iBZ1vN_uHTI_tmT-6n3GZ9PnsATRsRof5zwDbtjNm2kZmd4rfm8Vge1ASAlPClAwMSYTGd7H75ZdAjwbNuht3Dh-KNhjIJVHLQ6R8ui8gTEWq-QFmngZBpHkdBG_lpWyqs_VEpOV07ZDZtOWieeedXKWxPy14_nJxY40q_UrYTmaGNqtLCihucJsead_zR10v2n_c14Qyoj4JKjQiIpfC3OLFJxeoOpPyKQvjubXDREhkCPiMk5eYEYyi9f2ANiEd-A0doCJA_0gVbBMIF0y8V_QlV7kYpvYN2CLnAPUf5nIH8hC1E36XDBmShR7lrA28JZy7GlWI2EC6SJQOa9MGDB7t82yTtWqkIxJAu-Zi6nb-O2PpyW8OH5bxX8DsgzqIai7Tq1g1HHpz6L1bFT-XDHuwnTAUf8RPSt4ynhNj0ayWUZHOvniCmaB3OwPNhxJC-zQft8LXhbx8.UVSbKvtSCrYvdcxSRVv5Fw"
+					}
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://www.ferdowsdco.com/services/api/Supplier/GetInvoiceDetail?FromDate=1404/01/01&ToDate=1404/01/31",
+					"protocol": "https",
+					"host": [
+						"www",
+						"ferdowsdco",
+						"com"
+					],
+					"path": [
+						"services",
+						"api",
+						"Supplier",
+						"GetInvoiceDetail"
+					],
+					"query": [
+						{
+							"key": "FromDate",
+							"value": "1404/01/01"
+						},
+						{
+							"key": "ToDate",
+							"value": "1404/01/31"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://ghasemservice.minoogroup.com/GhasemService.asmx",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "text/xml; charset=utf-8"
+					},
+					{
+						"key": "SOAPAction",
+						"value": "\"http://tempuri.org/GetSalesReport\""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "@request.xml",
+					"options": {
+						"raw": {
+							"language": "xml"
+						}
+					}
+				},
+				"url": "https://ghasemservice.minoogroup.com/GhasemService.asmx",
+				"description": "Generated from cURL: curl -X POST https://ghasemservice.minoogroup.com/GhasemService.asmx \\\r\n  -H \"Content-Type: text/xml; charset=utf-8\" \\\r\n  -H \"SOAPAction: \\\"http://tempuri.org/GetSalesReport\\\"\" \\\r\n  -d @request.xml"
+			},
+			"response": []
+		},
+		{
+			"name": "https://ghasemservice.minoogroup.com/GhasemService.asmx Copy",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "text/xml; charset=utf-8"
+					},
+					{
+						"key": "SOAPAction",
+						"value": "\"http://tempuri.org/GetSalesReport\""
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": []
+				},
+				"url": "https://ghasemservice.minoogroup.com/GhasemService.asmx",
+				"description": "Generated from cURL: curl -X POST https://ghasemservice.minoogroup.com/GhasemService.asmx \\\r\n  -H \"Content-Type: text/xml; charset=utf-8\" \\\r\n  -H \"SOAPAction: \\\"http://tempuri.org/GetSalesReport\\\"\" \\\r\n  -d @request.xml"
+			},
+			"response": []
+		}
+	]
+}

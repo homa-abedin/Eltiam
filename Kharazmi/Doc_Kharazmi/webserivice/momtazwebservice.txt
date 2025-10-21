@@ -1,0 +1,13 @@
+1403   188.75.73.74/mabnaerp
+	kharazmi	Kg18725  
+	188.75.73.76   http://188.75.73.78/SupplierService/SupplierFile.asmx
+	kharazmi	Ki3256
+
+
+1404	http://188.75.73.76/Suppliers
+	kharazmi	Kg18725
+	http://188.75.73.76/suppliers_api/swagger/index.html
+	kharazmi	Kg18725
+
+
+

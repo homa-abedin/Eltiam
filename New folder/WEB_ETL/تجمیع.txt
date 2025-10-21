@@ -1,0 +1,160 @@
+--1
+
+SELECT
+    Web.Mahya_CustomerSales.ShomarehFaktor,
+    Web.Mahya_CustomerSales.Quantity,
+    Web.Mahya_CustomerSales.Price,
+    Web.Mahya_CustomerSales.Bonus,
+    CAST(REPLACE(Web.Mahya_CustomerSales.Date, '-', '') AS INT) AS DateKey,
+    Web.Mahya_CustomerSales.ReturnBonus,
+    Web.Mahya_CustomerSales.ReturnPrice,
+    Web.Mahya_CustomerSales.ReturnQuantity,
+    dbo.CenterCodesPakhsh.Id AS CenterID,
+    dbo.ProductCodesPakhsh.Id AS ProductID,
+    dbo.dimcustomer.id AS customerID,
+    Web.Mahya_CustomerSales.DistributorCode,
+    Web.Mahya_CustomerSales.Quantity * Web.Mahya_CustomerSales.Price AS Amount,
+	Web.Mahya_CustomerSales.IsInsert
+FROM
+    Web.Mahya_CustomerSales
+    LEFT JOIN dbo.dimcustomer ON Web.Mahya_CustomerSales.GLN = dbo.dimcustomer.GLN
+    LEFT JOIN dbo.CenterCodesPakhsh ON Web.Mahya_CustomerSales.CenterCode = dbo.CenterCodesPakhsh.MahyaCode
+    LEFT JOIN dbo.ProductCodesPakhsh ON Web.Mahya_CustomerSales.ProductCode = dbo.ProductCodesPakhsh.MahyaCode
+where 	Web.Mahya_CustomerSales.IsInsert=1 AND Web.Mahya_CustomerSales.ShomarehFaktor is not null
+
+
+
+UNION ALL
+
+
+--2
+SELECT
+    Web.Qhasem_CustomerSales.ShomarehFaktor,
+    Web.Qhasem_CustomerSales.Quantity,
+    Web.Qhasem_CustomerSales.Price,
+    Web.Qhasem_CustomerSales.Bonus,
+    CAST(REPLACE(Web.Qhasem_CustomerSales.DateKey, '-', '') AS INT) AS DateKey,
+    Web.Qhasem_CustomerSales.ReturnBonus,
+    Web.Qhasem_CustomerSales.ReturnPrice,
+    Web.Qhasem_CustomerSales.ReturnQuantity,
+    dbo.CenterCodesPakhsh.Id AS CenterID,
+    dbo.ProductCodesPakhsh.Id AS ProductID,
+    dbo.dimcustomer.id AS customerID,
+    Web.Qhasem_CustomerSales.DistributorCode,
+    Web.Qhasem_CustomerSales.Quantity * Web.Qhasem_CustomerSales.Price AS Amount,
+	Web.Qhasem_CustomerSales.IsInsert
+FROM
+    Web.Qhasem_CustomerSales
+    LEFT JOIN dbo.dimcustomer ON Web.Qhasem_CustomerSales.GLN = dbo.dimcustomer.GLN
+    LEFT JOIN dbo.CenterCodesPakhsh ON Web.Qhasem_CustomerSales.CenterCode = dbo.CenterCodesPakhsh.GhasemCode
+    LEFT JOIN dbo.ProductCodesPakhsh ON Web.Qhasem_CustomerSales.ProductCode = dbo.ProductCodesPakhsh.GhasemCode
+where 	Web.Qhasem_CustomerSales.IsInsert=1 and Web.Qhasem_CustomerSales.ShomarehFaktor is not null
+
+
+UNION ALL
+
+
+--3
+SELECT
+    Web.Eltiam_CustomerSales.ShomarehFaktor,
+    Web.Eltiam_CustomerSales.Quantity,
+    Web.Eltiam_CustomerSales.Price,
+    Web.Eltiam_CustomerSales.Bonus,
+    CAST(REPLACE(Web.Eltiam_CustomerSales.DateKey, '-', '') AS INT) AS DateKey,
+    Web.Eltiam_CustomerSales.ReturnBonus,
+    Web.Eltiam_CustomerSales.ReturnPrice,
+    Web.Eltiam_CustomerSales.ReturnQuantity,
+    dbo.CenterCodesPakhsh.Id AS CenterID,
+    dbo.ProductCodesPakhsh.Id AS ProductID,
+    dbo.dimcustomer.id AS customerID,
+    Web.Eltiam_CustomerSales.DistributorCode,
+    Web.Eltiam_CustomerSales.Quantity * Web.Eltiam_CustomerSales.Price AS Amount,
+	Web.Eltiam_CustomerSales.IsInsert
+FROM
+    Web.Eltiam_CustomerSales
+    LEFT JOIN dbo.dimcustomer ON Web.Eltiam_CustomerSales.GLN = dbo.dimcustomer.GLN
+    LEFT JOIN dbo.CenterCodesPakhsh ON Web.Eltiam_CustomerSales.CenterCode = dbo.CenterCodesPakhsh.EltiamCode
+    LEFT JOIN dbo.ProductCodesPakhsh ON Web.Eltiam_CustomerSales.ProductCode = dbo.ProductCodesPakhsh.EltiamCode
+where 	Web.Eltiam_CustomerSales.IsInsert=1 AND Web.Eltiam_CustomerSales.ShomarehFaktor is not null
+
+
+
+UNION ALL
+
+
+--4
+SELECT
+    Web.Barij_CustomerSales.ShomarehFaktor,
+    Web.Barij_CustomerSales.Quantity,
+    Web.Barij_CustomerSales.Price,
+    Web.Barij_CustomerSales.Bonus,
+    CAST(REPLACE(Web.Barij_CustomerSales.Date, '-', '') AS INT) AS DateKey,
+    Web.Barij_CustomerSales.ReturnBonus,
+    Web.Barij_CustomerSales.ReturnPrice,
+    Web.Barij_CustomerSales.ReturnQuantity,
+    dbo.CenterCodesPakhsh.Id AS CenterID,
+    dbo.ProductCodesPakhsh.Id AS ProductID,
+    dbo.dimcustomer.id AS customerID,
+    Web.Barij_CustomerSales.DistributorCode,
+    Web.Barij_CustomerSales.Quantity * Web.Barij_CustomerSales.Price AS Amount,
+	Web.Barij_CustomerSales.IsInsert
+FROM
+    Web.Barij_CustomerSales
+    LEFT JOIN dbo.dimcustomer ON Web.Barij_CustomerSales.GLN = dbo.dimcustomer.GLN
+    LEFT JOIN dbo.CenterCodesPakhsh ON Web.Barij_CustomerSales.CenterCode = dbo.CenterCodesPakhsh.BarijCode
+    LEFT JOIN dbo.ProductCodesPakhsh ON Web.Barij_CustomerSales.ProductCode = dbo.ProductCodesPakhsh.BarijCode
+where 	Web.Barij_CustomerSales.IsInsert=1 AND Web.Barij_CustomerSales.ShomarehFaktor is not null
+
+
+UNION ALL
+
+
+
+--5
+SELECT
+    Web.Alborz_CustomerSales.ShomarehFaktor,
+    Web.Alborz_CustomerSales.Quantity,
+    Web.Alborz_CustomerSales.Price,
+    Web.Alborz_CustomerSales.Bonus,
+    CAST(REPLACE(Web.Alborz_CustomerSales.Date, '/', '') AS INT) AS DateKey,
+    Web.Alborz_CustomerSales.ReturnBonus,
+    Web.Alborz_CustomerSales.ReturnPrice,
+    Web.Alborz_CustomerSales.ReturnQuantity,
+    dbo.CenterCodesPakhsh.Id AS CenterID,
+    dbo.ProductCodesPakhsh.Id AS ProductID,
+    dbo.dimcustomer.id AS customerID,
+    Web.Alborz_CustomerSales.DistributorCode,
+    Web.Alborz_CustomerSales.Quantity * Web.Alborz_CustomerSales.Price AS Amount,
+	Web.Alborz_CustomerSales.IsInsert
+FROM
+    Web.Alborz_CustomerSales
+    LEFT JOIN dbo.dimcustomer ON Web.Alborz_CustomerSales.GLN = dbo.dimcustomer.GLN
+    LEFT JOIN dbo.CenterCodesPakhsh ON Web.Alborz_CustomerSales.CenterCode = dbo.CenterCodesPakhsh.AlborzCode
+    LEFT JOIN dbo.ProductCodesPakhsh ON Web.Alborz_CustomerSales.ProductCode = dbo.ProductCodesPakhsh.AlborzCode
+where 	Web.Alborz_CustomerSales.IsInsert=1 AND Web.Alborz_CustomerSales.ShomarehFaktor is not null
+
+--6
+
+UNION ALL
+
+SELECT
+    Web.Hejrat_CustomerSales.ShomarehFaktor,
+    Web.Hejrat_CustomerSales.Quantity,
+    Web.Hejrat_CustomerSales.Price,
+    Web.Hejrat_CustomerSales.Bonus,
+    CAST(REPLACE(Web.Hejrat_CustomerSales.Date, '/', '') AS INT) AS DateKey,
+    Web.Hejrat_CustomerSales.ReturnBonus,
+    Web.Hejrat_CustomerSales.ReturnPrice,
+    Web.Hejrat_CustomerSales.ReturnQuantity,
+    dbo.CenterCodesPakhsh.Id AS CenterID,
+    dbo.ProductCodesPakhsh.Id AS ProductID,
+    dbo.dimcustomer.id AS customerID,
+    Web.Hejrat_CustomerSales.DistributorCode,
+    Web.Hejrat_CustomerSales.Quantity * Web.Hejrat_CustomerSales.Price AS Amount,
+	Web.Hejrat_CustomerSales.IsInsert
+FROM
+    Web.Hejrat_CustomerSales
+    LEFT JOIN dbo.dimcustomer ON Web.Hejrat_CustomerSales.GLN = dbo.dimcustomer.GLN
+    LEFT JOIN dbo.CenterCodesPakhsh ON Web.Hejrat_CustomerSales.CenterCode = dbo.CenterCodesPakhsh.HejratCode
+    LEFT JOIN dbo.ProductCodesPakhsh ON Web.Hejrat_CustomerSales.ProductCode = dbo.ProductCodesPakhsh.HejratCode
+where 	Web.Hejrat_CustomerSales.IsInsert=1 AND Web.Hejrat_CustomerSales.ShomarehFaktor is not null

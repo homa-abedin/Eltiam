@@ -1,0 +1,1667 @@
+{
+  "name": "KharazmiTabular",
+  "compatibilityLevel": 1600,
+  "model": {
+    "culture": "en-US",
+    "dataSources": [
+      {
+        "type": "structured",
+        "name": "SQL/192 168 10 10;DW",
+        "connectionDetails": {
+          "protocol": "tds",
+          "address": {
+            "server": "192.168.10.10",
+            "database": "DW"
+          },
+          "authentication": null,
+          "query": null
+        },
+        "credential": {
+          "AuthenticationKind": "Windows",
+          "kind": "SQL",
+          "path": "192.168.10.10;DW",
+          "Username": "el\\abedinzadehh",
+          "EncryptConnection": false
+        }
+      }
+    ],
+    "tables": [
+      {
+        "name": "dimcustomer",
+        "columns": [
+          {
+            "name": "CustomerID",
+            "dataType": "int64",
+            "sourceColumn": "CustomerID"
+          },
+          {
+            "name": "Number",
+            "dataType": "string",
+            "sourceColumn": "Number"
+          },
+          {
+            "name": "DLID",
+            "dataType": "int64",
+            "sourceColumn": "DLID"
+          },
+          {
+            "name": "firstname",
+            "dataType": "string",
+            "sourceColumn": "firstname"
+          },
+          {
+            "name": "lastname",
+            "dataType": "string",
+            "sourceColumn": "lastname"
+          },
+          {
+            "name": "namecustomer",
+            "dataType": "string",
+            "sourceColumn": "namecustomer"
+          },
+          {
+            "name": "State",
+            "dataType": "int64",
+            "sourceColumn": "State"
+          },
+          {
+            "name": "partyid",
+            "dataType": "int64",
+            "sourceColumn": "partyid"
+          },
+          {
+            "name": "CreationDate",
+            "dataType": "dateTime",
+            "sourceColumn": "CreationDate"
+          },
+          {
+            "name": "Latitude",
+            "dataType": "string",
+            "sourceColumn": "Latitude"
+          },
+          {
+            "name": "Longitude",
+            "dataType": "string",
+            "sourceColumn": "Longitude"
+          },
+          {
+            "name": "RegionalDivisionRef",
+            "dataType": "int64",
+            "sourceColumn": "RegionalDivisionRef"
+          },
+          {
+            "name": "Details",
+            "dataType": "string",
+            "sourceColumn": "Details"
+          },
+          {
+            "name": "TitleDl",
+            "dataType": "string",
+            "sourceColumn": "TitleDl"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "Partition",
+            "dataView": "full",
+            "source": {
+              "type": "m",
+              "expression": [
+                "let",
+                "    Source = #\"SQL/192 168 10 10;DW\",",
+                "    kharazmi_dimcustomer = Source{[Schema=\"kharazmi\",Item=\"dimcustomer\"]}[Data]",
+                "in",
+                "    kharazmi_dimcustomer"
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "name": "dimproduct",
+        "columns": [
+          {
+            "name": "ProductID",
+            "dataType": "int64",
+            "sourceColumn": "ProductID"
+          },
+          {
+            "name": "Number",
+            "dataType": "string",
+            "sourceColumn": "Number"
+          },
+          {
+            "name": "name",
+            "dataType": "string",
+            "sourceColumn": "name"
+          },
+          {
+            "name": "state",
+            "dataType": "int64",
+            "sourceColumn": "state"
+          },
+          {
+            "name": "statename",
+            "dataType": "string",
+            "sourceColumn": "statename"
+          },
+          {
+            "name": "IRC",
+            "dataType": "string",
+            "sourceColumn": "IRC"
+          },
+          {
+            "name": "ParvaneDate",
+            "dataType": "dateTime",
+            "sourceColumn": "ParvaneDate"
+          },
+          {
+            "type": "calculated",
+            "name": "New Product",
+            "dataType": "int64",
+            "isDataTypeInferred": true,
+            "expression": " if(DATEDIFF(TODAY(),dimproduct[ParvaneDate],day)<=1095, 1,0)"
+          },
+          {
+            "type": "calculated",
+            "name": "FullName Product",
+            "dataType": "string",
+            "isDataTypeInferred": true,
+            "expression": "CONCATENATE( dimproduct[name], dimproduct[Number])"
+          },
+          {
+            "name": "sodorparvane",
+            "dataType": "dateTime",
+            "sourceColumn": "sodorparvane"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "Partition",
+            "dataView": "full",
+            "source": {
+              "type": "m",
+              "expression": [
+                "let",
+                "    Source = #\"SQL/192 168 10 10;DW\",",
+                "    kharazmi_dimproduct = Source{[Schema=\"kharazmi\",Item=\"dimproduct\"]}[Data]",
+                "in",
+                "    kharazmi_dimproduct"
+              ]
+            }
+          }
+        ],
+        "measures": [
+          {
+            "name": "NewProductColor",
+            "expression": [
+              "",
+              "if(ISBLANK([New Product 3 Years]) , \"#757575\"",
+              ",if ([New Product 3 Years]<=36 , \"#4FC3F7\" ,",
+              "    if (and([New Product 3 Years]>36 , [New Product 3 Years]<=60) ,\"#FFA726\", \"#D9D5D5\")))"
+            ]
+          },
+          {
+            "name": "New Product 3 Years",
+            "expression": [
+              " DATEDIFF(min(dimproduct[sodorparvane]) , TODAY(), MONTH)",
+              ""
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Factsales",
+        "columns": [
+          {
+            "name": "OrderID",
+            "dataType": "int64",
+            "sourceColumn": "OrderID"
+          },
+          {
+            "name": "OrderItemID",
+            "dataType": "int64",
+            "sourceColumn": "OrderItemID"
+          },
+          {
+            "name": "CustomerRef",
+            "dataType": "int64",
+            "sourceColumn": "CustomerRef"
+          },
+          {
+            "name": "BrokerRef",
+            "dataType": "int64",
+            "sourceColumn": "BrokerRef"
+          },
+          {
+            "name": "AgentRef",
+            "dataType": "int64",
+            "sourceColumn": "AgentRef"
+          },
+          {
+            "name": "OrderDate",
+            "dataType": "int64",
+            "sourceColumn": "OrderDate"
+          },
+          {
+            "name": "InvoiceDate",
+            "dataType": "int64",
+            "sourceColumn": "InvoiceDate"
+          },
+          {
+            "name": "InventoryRef",
+            "dataType": "int64",
+            "sourceColumn": "InventoryRef"
+          },
+          {
+            "name": "OrderNumber",
+            "dataType": "string",
+            "sourceColumn": "OrderNumber"
+          },
+          {
+            "name": "SalesAreaRef",
+            "dataType": "int64",
+            "sourceColumn": "SalesAreaRef"
+          },
+          {
+            "name": "State",
+            "dataType": "int64",
+            "sourceColumn": "State"
+          },
+          {
+            "name": "Type",
+            "dataType": "int64",
+            "sourceColumn": "Type"
+          },
+          {
+            "name": "ProductRef",
+            "dataType": "int64",
+            "sourceColumn": "ProductRef"
+          },
+          {
+            "name": "InvoiceID",
+            "dataType": "int64",
+            "sourceColumn": "InvoiceID"
+          },
+          {
+            "name": "InvoiceItemID",
+            "dataType": "int64",
+            "sourceColumn": "InvoiceItemID"
+          },
+          {
+            "name": "InvoiceNumber",
+            "dataType": "string",
+            "sourceColumn": "InvoiceNumber"
+          },
+          {
+            "name": "ReductionAmount",
+            "dataType": "double",
+            "sourceColumn": "ReductionAmount"
+          },
+          {
+            "name": "AdditionAmount",
+            "dataType": "double",
+            "sourceColumn": "AdditionAmount"
+          },
+          {
+            "name": "InvoiceNetPrice",
+            "dataType": "double",
+            "sourceColumn": "InvoiceNetPrice"
+          },
+          {
+            "name": "Quantity",
+            "dataType": "double",
+            "sourceColumn": "Quantity"
+          },
+          {
+            "name": "ReturnInvoiceItemID",
+            "dataType": "int64",
+            "sourceColumn": "ReturnInvoiceItemID"
+          },
+          {
+            "name": "ReturnInvoiceRef",
+            "dataType": "int64",
+            "sourceColumn": "ReturnInvoiceRef"
+          },
+          {
+            "name": "ReturnNetPrice",
+            "dataType": "double",
+            "sourceColumn": "ReturnNetPrice"
+          },
+          {
+            "name": "ReturnQuantity",
+            "dataType": "double",
+            "sourceColumn": "ReturnQuantity"
+          },
+          {
+            "name": "ReturnAdditionAmount",
+            "dataType": "double",
+            "sourceColumn": "ReturnAdditionAmount"
+          },
+          {
+            "name": "ReturnReductionAmount",
+            "dataType": "double",
+            "sourceColumn": "ReturnReductionAmount"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "Partition",
+            "dataView": "full",
+            "source": {
+              "type": "m",
+              "expression": [
+                "let",
+                "    Source = #\"SQL/192 168 10 10;DW\",",
+                "    kharazmi_Factsales = Source{[Schema=\"kharazmi\",Item=\"Factsales\"]}[Data]",
+                "in",
+                "    kharazmi_Factsales"
+              ]
+            }
+          }
+        ],
+        "measures": [
+          {
+            "name": "NetPrice",
+            "expression": [
+              "",
+              "DIVIDE( SUMX('Factsales', 'Factsales'[InvoiceNetPrice]-'Factsales'[ReturnNetPrice]),1000000)"
+            ],
+            "formatString": "#,0"
+          },
+          {
+            "name": "NetQuantity",
+            "expression": "SUMX('Factsales', 'Factsales'[Quantity]- 'Factsales'[ReturnQuantity])",
+            "formatString": "#,0"
+          },
+          {
+            "name": "ReductAmount",
+            "expression": "DIVIDE( sumx('Factsales','Factsales'[ReductionAmount]-'Factsales'[ReturnReductionAmount]),1000000)",
+            "formatString": "#,0"
+          },
+          {
+            "name": "Ratio Reduction To sales",
+            "expression": [
+              "if ([NetPrice]>0,  DIVIDE([ReductAmount], [NetPrice]), 0)",
+              ""
+            ],
+            "formatString": "0.00 %;-0.00 %;0.00 %"
+          },
+          {
+            "name": "NetPriceLastYear",
+            "expression": " CALCULATE([NetPrice], FILTER(All(DimDate),DimDate[Last_Year]=1))",
+            "formatString": "#,0"
+          },
+          {
+            "name": "NetPriceCurrentYear",
+            "expression": " CALCULATE([NetPrice],  FILTER(All(DimDate),DimDate[Current_Year]=1))",
+            "formatString": "#,0"
+          },
+          {
+            "name": "NetPriceLastMonth",
+            "expression": " CALCULATE([NetPrice],FILTER(All(DimDate), DimDate[Last_Month]=1))",
+            "formatString": "#,0"
+          },
+          {
+            "name": "NetPriceCurrentMonth",
+            "expression": " CALCULATE([NetPrice],FILTER(All(DimDate),DimDate[Curren_Month]=1))",
+            "formatString": "#,0"
+          },
+          {
+            "name": "RatioNetPriceCurrent/LastYear",
+            "expression": " [NetPriceCurrentYear]/[NetPriceLastYear]",
+            "formatString": "0 %;-0 %;0 %"
+          },
+          {
+            "name": "RatioNetPriceCurrent/Lastmonth",
+            "expression": " [NetPriceCurrentMonth]/[NetPriceLastMonth]",
+            "formatString": "0 %;-0 %;0 %"
+          },
+          {
+            "name": "NetPriceLastMonth*1.5",
+            "expression": " [NetPriceLastMonth]*1.5"
+          },
+          {
+            "name": "Cumulative Total No Dates",
+            "expression": [
+              " ",
+              "",
+              "var staterev= [NetPrice]",
+              "return ",
+              "sumx(",
+              "    FILTER(",
+              "        SUMMARIZE(ALLSELECTED(Factsales), dimproduct[name],",
+              "           \"TotalSales\", [NetPrice]),",
+              "                [TotalSales]>=staterev), [TotalSales])"
+            ],
+            "formatString": "#,0"
+          },
+          {
+            "name": "AllSales",
+            "expression": [
+              "DIVIDE( CALCULATE([NetPrice], ALLSELECTED(Factsales)),1000000)",
+              ""
+            ],
+            "formatString": "#,0"
+          },
+          {
+            "name": "Pareto Chart",
+            "expression": [
+              " ",
+              "",
+              "var staterev= [NetPrice]",
+              "var allsales= CALCULATE([NetPrice],ALLSELECTED(Factsales))",
+              "return ",
+              "DIVIDE(",
+              "    sumx(",
+              "        FILTER(",
+              "            SUMMARIZE(ALLSELECTED(Factsales), dimproduct[name],",
+              "               \"TotalSales\", [NetPrice]),",
+              "                    [TotalSales]>=staterev), [TotalSales]),",
+              "allsales, 0)",
+              "",
+              ""
+            ],
+            "formatString": "0.00 %;-0.00 %;0.00 %"
+          },
+          {
+            "name": "RatioTargetVSSalesYear_1",
+            "expression": [
+              "1-[RatioTargetVSSalesYear]",
+              ""
+            ],
+            "formatString": "0.00 %;-0.00 %;0.00 %"
+          },
+          {
+            "name": "RatioTargetVSSalesYear",
+            "expression": [
+              "DIVIDE([NetPriceCurrentYear],  DimTarget[TargetAmountCurrentYear])",
+              ""
+            ]
+          },
+          {
+            "name": "RatioTargetVSSalesMonth",
+            "expression": "DIVIDE([NetPriceCurrentMonth],  DimTarget[TargetAmountCurrentMonth])"
+          },
+          {
+            "name": "RatioTargetVSSalesMonth_1",
+            "expression": "1 -[RatioTargetVSSalesMonth]",
+            "formatString": "0.00 %;-0.00 %;0.00 %"
+          },
+          {
+            "name": "RemainTargetYear",
+            "expression": " DimTarget[TargetAmountCurrentYear]-[NetPriceCurrentYear] "
+          },
+          {
+            "name": "RemainTargetMonth",
+            "expression": "  DimTarget[TargetAmountCurrentMonth]-[NetPriceCurrentMonth]"
+          },
+          {
+            "name": "Pareto Count",
+            "expression": [
+              "",
+              "VAR staterev = [NetPrice]",
+              "VAR allsales = CALCULATE([NetPrice], ALLSELECTED(Factsales))",
+              "VAR ParetoTable =",
+              "    ADDCOLUMNS(",
+              "        SUMMARIZE(ALLSELECTED(Factsales), dimproduct[name], \"TotalSales\", [NetPrice]),",
+              "        \"CumulativeSales\", ",
+              "            VAR CurrentProductSales = [TotalSales]",
+              "            RETURN DIVIDE(",
+              "                SUMX(",
+              "                    FILTER(",
+              "                        SUMMARIZE(ALLSELECTED(Factsales), dimproduct[name], \"TotalSales\", [NetPrice]),",
+              "                        [TotalSales] >= CurrentProductSales",
+              "                    ),",
+              "                    [TotalSales]",
+              "                ),",
+              "                allsales, 0",
+              "            )",
+              "    )",
+              "RETURN ",
+              "    COUNTROWS(FILTER(ParetoTable, [CumulativeSales] < 0.8))"
+            ]
+          },
+          {
+            "name": "TakhfifAmount",
+            "expression": [
+              "DIVIDE( sum (Factsales[ReductionAmount]),1000000)",
+              "",
+              ""
+            ],
+            "formatString": "#,0"
+          },
+          {
+            "name": "TargetVSSales",
+            "expression": [
+              " DIVIDE([NetPrice],DimTarget[TargetAmount])",
+              ""
+            ],
+            "formatString": "0 %;-0 %;0 %"
+          },
+          {
+            "name": "PreviousMonth_Discount",
+            "expression": [
+              " ",
+              "CALCULATE( ",
+              "    SUM( Factsales[ReductionAmount] ), DimDate[Last_Month]=1)",
+              ""
+            ]
+          },
+          {
+            "name": "Discount_Change",
+            "expression": [
+              " ",
+              "",
+              "",
+              "    IF( NOT ISBLANK([PreviousMonth_Discount]), ",
+              "        DIVIDE( [reductionCurrentMonth] - [PreviousMonth_Discount], [PreviousMonth_Discount], 0 ), ",
+              "        BLANK()",
+              "    )"
+            ]
+          },
+          {
+            "name": "Sales_Change",
+            "expression": [
+              " ",
+              "",
+              " ",
+              "    IF( NOT ISBLANK([NetPriceLastMonth]), ",
+              "        DIVIDE( [NetPriceCurrentMonth] - [NetPriceLastMonth], [NetPriceLastMonth], 0 ), ",
+              "        BLANK()",
+              "    )",
+              ""
+            ]
+          },
+          {
+            "name": "Discount_Up_Sales_Down",
+            "expression": [
+              " ",
+              "IF( [Discount_Change] > 0 && [Sales_Change] <= 0, 1, 0 )",
+              ""
+            ]
+          },
+          {
+            "name": "reductionCurrentMonth",
+            "expression": " CALCULATE(sum(Factsales[ReductionAmount]), DimDate[Curren_Month]=1)"
+          },
+          {
+            "name": "Color Scatter",
+            "expression": [
+              " ",
+              "VAR taghsim = DIVIDE([TakhfifAmount],[NetPrice],  -1)  -- مقدار -1 برای بررسی خطای تقسیم بر صفر",
+              "var plan= DIVIDE(DimTarget[TargetAmount], [NetPrice],-1)",
+              "RETURN ",
+              "   SWITCH(",
+              "        TRUE(), ",
+              "        --[Ratio Reduction To sales] = -1|| [RatioTargetVSSales%]=-1, \"Gray\",   -- در صورتی که تقسیم بر صفر اتفاق افتاد",
+              "        [Ratio Reduction To sales] >= 0.5 && [RatioTargetVSSales%]>=0.5, \"#f9e138\", ",
+              "        [Ratio Reduction To sales] > 0.5 && [RatioTargetVSSales%] <= 0.5, \"#e97a10\", ",
+              "        [Ratio Reduction To sales] < 0.5 && [RatioTargetVSSales%] < 0.5, \"#bc2736\", ",
+              "        [Ratio Reduction To sales] < 0.5 && [RatioTargetVSSales%] > 0.5, \"#178708\", ",
+              "",
+              "        \"#27070b\"",
+              "    )"
+            ]
+          },
+          {
+            "name": "RatioTargetVSSales%",
+            "expression": "DIVIDE([NetPrice],  DimTarget[TargetAmount])",
+            "formatString": "0 %;-0 %;0 %"
+          },
+          {
+            "name": "TotalAmountPrevPersianYear",
+            "expression": [
+              "",
+              "VAR CurrentYear = SELECTEDVALUE(DimDate[Jalali_Year])",
+              "RETURN",
+              "CALCULATE(",
+              "    [NetPrice],",
+              "    FILTER(",
+              "        ALL(DimDate),",
+              "        DimDate[Jalali_Year] = CurrentYear - 1",
+              "    )",
+              ")",
+              ""
+            ]
+          },
+          {
+            "name": "SalesYTD_PrevPersian",
+            "expression": [
+              "",
+              "",
+              "VAR CurrentYear = LOOKUPVALUE(DimDate[Jalali_Year],DimDate[Date],today())",
+              "VAR CurrentDayOfYear = LOOKUPVALUE(DimDate[Jalali_DayOfYear],DimDate[Date],today())",
+              "RETURN",
+              " ",
+              "",
+              "CALCULATE(",
+              "    [NetPrice],",
+              "    FILTER(",
+              "        ALL(DimDate),",
+              "        DimDate[Jalali_Year] = CurrentYear - 1 &&",
+              "        DimDate[Jalali_DayOfYear] <= CurrentDayOfYear",
+              "    )",
+              ")"
+            ]
+          },
+          {
+            "name": "SalesYTD_Persian",
+            "expression": [
+              "",
+              "VAR TodayRow =",
+              "    CALCULATETABLE(",
+              "        VALUES(DimDate),",
+              "        DimDate[Date] = TODAY()",
+              "    )",
+              "VAR TodayMonth = MAXX(TodayRow, DimDate[Jalali_Month])",
+              "VAR TodayDay = MAXX(TodayRow, DimDate[Jalali_Day])",
+              "VAR SelectedYear = MAX(DimDate[Jalali_Year])",
+              "RETURN",
+              "CALCULATE(",
+              "    [NetPrice],",
+              "    FILTER(",
+              "        ALL(DimDate),",
+              "        DimDate[Jalali_Year] = SelectedYear &&",
+              "        (",
+              "            DimDate[Jalali_Month] < TodayMonth ||",
+              "            (DimDate[Jalali_Month] = TodayMonth && DimDate[Jalali_Day] <= TodayDay)",
+              "        )",
+              "    )",
+              ")"
+            ]
+          },
+          {
+            "name": "Ratio Product To All Sales",
+            "expression": "if([NetPrice]<>0, DIVIDE([NetPrice], CALCULATE([NetPrice], all(dimproduct[name]))),0)",
+            "formatString": "0.00 %;-0.00 %;0.00 %"
+          },
+          {
+            "name": "Ratio Customer To All Sales",
+            "expression": " DIVIDE([NetPrice], CALCULATE([NetPrice], all(dimcustomer[namecustomer])))",
+            "formatString": "0.0 %;-0.0 %;0.0 %"
+          },
+          {
+            "name": "CountProduct",
+            "expression": [
+              "DISTINCTCOUNT(Factsales[ProductRef])",
+              ""
+            ]
+          },
+          {
+            "name": "AVGCNTProduct",
+            "expression": " AVERAGEX(all(dimcustomer[namecustomer]), [CountProduct])"
+          },
+          {
+            "name": "color MarketShare Customer",
+            "expression": " IF([CountProduct]>[AVGCNTProduct], \"#8E9E82\", \"#AA444F\")"
+          },
+          {
+            "name": "AVGPercent Takhfif",
+            "expression": [
+              "",
+              "var y=CALCULATE(",
+              "    AVERAGEX(",
+              "        ALL(DimDate[Jalali_Year]),",
+              "        [Ratio Reduction To sales]",
+              "    ),",
+              "    ALL(DimCustomer[NameCustomer]),",
+              "    ALL(DimDate[SeasonFa]),",
+              "    All(DimDate[Jalali_MonthString])",
+              ")",
+              "",
+              "var s=",
+              "CALCULATE(",
+              "    AVERAGEX(",
+              "        values(DimDate[SeasonFa]),",
+              "        [Ratio Reduction To sales]",
+              "    ),",
+              "    FILTER(",
+              "        ALL(DimDate),",
+              "        DimDate[Jalali_Year] = MAX(DimDate[Jalali_Year])",
+              "    ),",
+              "    ALL(DimCustomer[NameCustomer]),",
+              "    ALL(DimDate[Jalali_MonthString])",
+              ")",
+              "",
+              "var m=CALCULATE(",
+              "    AVERAGEX(",
+              "        ALL(DimDate[Jalali_MonthString]),",
+              "        [Ratio Reduction To sales]",
+              "    ),",
+              " FILTER(",
+              "        ALL(DimDate),",
+              "        DimDate[Jalali_Year] = MAX(DimDate[Jalali_Year])",
+              "        && DimDate[SeasonFa]=max(DimDate[SeasonFa])",
+              "    ),",
+              "    ALL(DimCustomer[NameCustomer])",
+              "   -- ALL(DimDate[SeasonFa]),",
+              "   -- All(DimDate[Jalali_Year])",
+              ")",
+              "var c=",
+              "    AVERAGEX(",
+              "        ALL(DimCustomer[NameCustomer]),",
+              "        [Ratio Reduction To sales]",
+              "    )",
+              "--,",
+              "--    ALL(DimDate[Jalali_Year]),",
+              " --   ALL(DimDate[SeasonFa]),",
+              "--All(DimDate[Jalali_MonthString])",
+              "",
+              "",
+              "",
+              "return ",
+              "SWITCH(",
+              "    TRUE(),",
+              "    ISINSCOPE(DimCustomer[NameCustomer]), c,",
+              "    ISINSCOPE(DimDate[Jalali_MonthString]), m,",
+              "    ISINSCOPE(DimDate[SeasonFa]), s,",
+              "    ISINSCOPE(DimDate[Jalali_Year]), y,",
+              "    BLANK()",
+              ")",
+              "",
+              ""
+            ],
+            "formatString": "0 %;-0 %;0 %"
+          },
+          {
+            "name": "KPI Measure",
+            "expression": [
+              " ",
+              "var selectedMetric= SELECTEDVALUE(MeasureTable[measure])",
+              "return",
+              "SWITCH(TRUE()",
+              "    , selectedMetric= \"80-20\" && [Pareto Chart] <= 0.80, [Ratio Product To All Sales],",
+              "    selectedMetric= \"lowcustomer\" && [CountCustomerBuy]<=5,[Ratio Product To All Sales],",
+              "selectedMetric=\"discountproduct\", [Ratio Reduction To sales],",
+              "--selectedMetric= \"distribution\" && [CountCustomer not Buy]>0,[Ratio Product To All Sales] ,",
+              "selectedMetric=\"allproduct\", [Ratio Product To All Sales],",
+              "selectedMetric=\"newproduct\"&& [New Product 3 Years]<=36,[NewProductColor],",
+              "BLANK()",
+              ")"
+            ],
+            "formatString": "0 %;-0 %;0 %"
+          },
+          {
+            "name": "pareto color",
+            "expression": " if ([Pareto Chart]<=0.80 , \"#AB4D00\",\"#999999\" )"
+          },
+          {
+            "name": "CountCustomerBuy",
+            "expression": [
+              "",
+              "DISTINCTCOUNT(Factsales[CustomerRef])",
+              ""
+            ]
+          },
+          {
+            "name": "CountCustomer not Buy",
+            "expression": [
+              "",
+              "var x= CALCULATE( DISTINCTCOUNT(Factsales[CustomerRef]),  all(dimproduct))",
+              "return",
+              "x-[CountCustomerBuy]"
+            ]
+          },
+          {
+            "name": "ratio amount to quantity",
+            "description": "1",
+            "expression": " DIVIDE( SUMX('Factsales', 'Factsales'[InvoiceNetPrice]-'Factsales'[ReturnNetPrice]),[NetQuantity])/1000000",
+            "formatString": "0.0 %;-0.0 %;0.0 %"
+          },
+          {
+            "name": "Ratio Growth Sales",
+            "description": "2",
+            "expression": [
+              " ",
+              "DIVIDE([NetPrice]-[Sales Last Year] ,[Sales Last Year])"
+            ],
+            "formatString": "0.00 %;-0.00 %;0.00 %"
+          },
+          {
+            "name": "Sales Last Year",
+            "expression": [
+              " ",
+              "VAR currentYear = MAX(DimDate[Jalali_Year])",
+              "VAR currentSeason = MAX(DimDate[SeasonFa])",
+              "VAR currentMonth = MAX(DimDate[Jalali_MonthString])",
+              "VAR currentCustomer= SELECTEDVALUE(dimcustomer[namecustomer])",
+              "RETURN",
+              "SWITCH(",
+              "    TRUE(),",
+              "",
+              "    // فقط سال انتخاب شده → فیلتر فقط روی سال",
+              "    ISINSCOPE(DimDate[Jalali_Year]) && NOT ISINSCOPE(DimDate[SeasonFa]),",
+              "    CALCULATE(",
+              "        [NetPrice],",
+              "        REMOVEFILTERS(DimCustomer),",
+              "        FILTER(",
+              "            ALL(DimDate),",
+              "            DimDate[Jalali_Year] = currentYear - 1",
+              "        )",
+              "    ),",
+              " ISINSCOPE(DimDate[SeasonFa]) && NOT ISINSCOPE(DimDate[Jalali_MonthString]),",
+              "    CALCULATE(",
+              "        [NetPrice],",
+              "        REMOVEFILTERS(DimCustomer),",
+              "        FILTER(",
+              "            ALL(DimDate),",
+              "            DimDate[Jalali_Year] = currentYear - 1 &&",
+              "            DimDate[SeasonFa] = currentSeason",
+              "        )",
+              "    ),",
+              "    ISINSCOPE(DimDate[Jalali_MonthString]) && NOT ISINSCOPE(dimcustomer[namecustomer]),",
+              "    CALCULATE(",
+              "        [NetPrice],",
+              "        REMOVEFILTERS(DimCustomer),",
+              "        FILTER(",
+              "            ALL(DimDate),",
+              "            DimDate[Jalali_Year] = currentYear - 1 &&",
+              "            DimDate[SeasonFa] = currentSeason &&",
+              "            DimDate[Jalali_MonthString] = currentMonth",
+              "        )",
+              "    )",
+              "    ,ISINSCOPE(dimcustomer[namecustomer]),",
+              "    CALCULATE(",
+              "        [NetPrice],",
+              "        ",
+              "        FILTER(",
+              "            ALL(DimDate),",
+              "            DimDate[Jalali_Year] = currentYear - 1 &&",
+              "            DimDate[SeasonFa] = currentSeason &&",
+              "            DimDate[Jalali_MonthString] = currentMonth ",
+              "             ",
+              "        ) , FILTER( ALL(dimcustomer), dimcustomer[namecustomer]= currentCustomer)",
+              "    )",
+              "",
+              "",
+              "",
+              ")"
+            ]
+          },
+          {
+            "name": "Ratio shape to all",
+            "expression": "if([NetPrice]<>0, DIVIDE([NetPrice], CALCULATE([NetPrice], all(dimproductgroup[NameSath2]))),0)",
+            "formatString": "0.0 %;-0.0 %;0.0 %"
+          },
+          {
+            "name": "Sales Last period",
+            "expression": [
+              " ",
+              "VAR currentYear = MAX(DimDate[Jalali_Year])",
+              "VAR currentSeason = MAX(DimDate[seasonID])",
+              "VAR currentMonth = MAX(DimDate[Jalali_Month])",
+              "VAR currentCustomer= SELECTEDVALUE(dimcustomer[namecustomer])",
+              "RETURN ",
+              "SWITCH(",
+              "    TRUE(),",
+              "",
+              "    // فقط سال انتخاب شده → فیلتر فقط روی سال",
+              "    ISINSCOPE(DimDate[Jalali_Year]) && NOT ISINSCOPE(DimDate[SeasonFa]),",
+              "    CALCULATE(",
+              "        [NetPrice],",
+              "        REMOVEFILTERS(DimCustomer),",
+              "",
+              "        FILTER(",
+              "            ALL(DimDate),",
+              "            DimDate[Jalali_Year] = currentYear - 1",
+              "        )",
+              "    )",
+              ",ISINSCOPE(DimDate[SeasonFa]) && NOT ISINSCOPE(DimDate[Jalali_MonthString]),",
+              "    CALCULATE(",
+              "        [NetPrice],",
+              "        REMOVEFILTERS(DimCustomer),",
+              "        FILTER(",
+              "            ALL(DimDate),",
+              "            DimDate[Jalali_Year] =if(currentSeason=1, currentYear -1 ,currentYear) && ",
+              "            DimDate[seasonID] =if(currentSeason=1, 4, currentSeason-1)",
+              "        )",
+              "    )",
+              ",ISINSCOPE(DimDate[Jalali_MonthString]) && NOT ISINSCOPE(dimcustomer[namecustomer]),",
+              "    CALCULATE(",
+              "        [NetPrice],",
+              "        REMOVEFILTERS(DimCustomer),",
+              "        FILTER(",
+              "            ALL(DimDate),",
+              "            DimDate[Jalali_Year] = if (currentMonth=1,currentYear-1, currentYear) && ",
+              "            --DimDate[seasonID] = currentSeason &&",
+              "            DimDate[Jalali_Month] = if (currentMonth=1, currentMonth+11,currentMonth-1) ",
+              "        )",
+              "    )",
+              ",ISINSCOPE(dimcustomer[namecustomer]),",
+              "    CALCULATE(",
+              "        [NetPrice],",
+              "        ",
+              "        FILTER(",
+              "            ALL(DimDate),",
+              "            DimDate[Jalali_Year] = if (currentMonth=1,currentYear-1, currentYear)  &&",
+              "            DimDate[seasonID] = if (currentMonth in {4,7, 10},currentSeason-1,if (currentMonth=1,4, currentSeason))  &&",
+              "            DimDate[Jalali_Month] = if (currentMonth=1, currentMonth+11,currentMonth-1)",
+              "             ",
+              "        ) , FILTER( ALL(dimcustomer), dimcustomer[namecustomer]= currentCustomer)",
+              "",
+              ")",
+              ")"
+            ]
+          },
+          {
+            "name": "Ratio Growth Sales Last Period",
+            "expression": [
+              "",
+              "var x= if ([Sales Last period]=0 , [NetPrice], [Sales Last period]) ",
+              "return DIVIDE([NetPrice]-x ,x)"
+            ],
+            "formatString": "0.0 %;-0.0 %;0.0 %"
+          },
+          {
+            "name": "Color Name Customer",
+            "expression": [
+              " ",
+              "",
+              "VAR _value = CALCULATE(",
+              "    [TargetVSSales], ",
+              "    ALLEXCEPT(dimcustomer, dimcustomer[namecustomer]) ",
+              ")",
+              "RETURN",
+              "SWITCH(",
+              "    TRUE(),",
+              "    _value >= 0.9, \"#04A80D\",       // سبز",
+              "    _value >= 0.7, \"#F4CE0E\",       // زرد",
+              "    \"#D1061C\"                        // قرمز",
+              ")",
+              ""
+            ]
+          },
+          {
+            "name": "netprice Show",
+            "expression": " [NetPrice]",
+            "formatString": "#,0"
+          },
+          {
+            "name": "ProductsAbove90",
+            "expression": [
+              "",
+              "CALCULATE(",
+              "    COUNTROWS(dimproduct),",
+              "    FILTER(",
+              "        dimproduct,",
+              "        [TargetVSSales] >= 0.9",
+              "    )",
+              ")"
+            ]
+          },
+          {
+            "name": "ProductsAbove70-90",
+            "expression": [
+              "",
+              "CALCULATE(",
+              "    COUNTROWS(dimproduct),",
+              "    FILTER(",
+              "        dimproduct,",
+              "       and ( [TargetVSSales] < 0.9, [TargetVSSales]>=0.7)",
+              "    )",
+              ")"
+            ]
+          },
+          {
+            "name": "ProductsAbove70",
+            "expression": [
+              "",
+              "CALCULATE(",
+              "    COUNTROWS(dimproduct),",
+              "    FILTER(",
+              "        dimproduct,",
+              "       and ( [TargetVSSales] > 0, [TargetVSSales]<0.7)",
+              "    )",
+              ")"
+            ]
+          },
+          {
+            "name": "ActiveMonths",
+            "expression": [
+              "",
+              "",
+              "VAR __HasCustomer = HASONEVALUE(Factsales[CustomerRef])",
+              "RETURN",
+              "IF(",
+              "    __HasCustomer,",
+              "    CALCULATE(",
+              "        DISTINCTCOUNT(DimDate[Jalali_YearMonth]),",
+              "        TREATAS(",
+              "            VALUES(Factsales[InvoiceDate]),",
+              "            DimDate[datekey]",
+              "        )",
+              "    )",
+              ")",
+              ""
+            ]
+          },
+          {
+            "name": "CountOf Factor",
+            "expression": " DISTINCTCOUNT(Factsales[InvoiceID])"
+          }
+        ]
+      },
+      {
+        "name": "DimDate",
+        "columns": [
+          {
+            "name": "Date",
+            "dataType": "dateTime",
+            "sourceColumn": "Date"
+          },
+          {
+            "name": "Gregorian",
+            "dataType": "string",
+            "sourceColumn": "Gregorian"
+          },
+          {
+            "name": "Gregorian_Year",
+            "dataType": "int64",
+            "sourceColumn": "Gregorian_Year"
+          },
+          {
+            "name": "Gregorian_Month",
+            "dataType": "int64",
+            "sourceColumn": "Gregorian_Month"
+          },
+          {
+            "name": "Gregorian_MonthStr",
+            "dataType": "string",
+            "sourceColumn": "Gregorian_MonthStr"
+          },
+          {
+            "name": "Gregorian_MonthString",
+            "dataType": "string",
+            "sourceColumn": "Gregorian_MonthString"
+          },
+          {
+            "name": "Gregorian_Day",
+            "dataType": "int64",
+            "sourceColumn": "Gregorian_Day"
+          },
+          {
+            "name": "Gregorian_DayOfWeekId",
+            "dataType": "int64",
+            "sourceColumn": "Gregorian_DayOfWeekId"
+          },
+          {
+            "name": "Gregorian_DayOfWeek",
+            "dataType": "string",
+            "sourceColumn": "Gregorian_DayOfWeek"
+          },
+          {
+            "name": "Gregorian_DayOfWeekStr",
+            "dataType": "string",
+            "sourceColumn": "Gregorian_DayOfWeekStr"
+          },
+          {
+            "name": "Gregorian_DayOfYear",
+            "dataType": "int64",
+            "sourceColumn": "Gregorian_DayOfYear"
+          },
+          {
+            "name": "Gregorian_ToLongDateString",
+            "dataType": "string",
+            "sourceColumn": "Gregorian_ToLongDateString"
+          },
+          {
+            "name": "Gregorian_YearMonth",
+            "dataType": "string",
+            "sourceColumn": "Gregorian_YearMonth"
+          },
+          {
+            "name": "Gregorian_MonthDay",
+            "dataType": "string",
+            "sourceColumn": "Gregorian_MonthDay"
+          },
+          {
+            "name": "SeasonEn",
+            "dataType": "string",
+            "sourceColumn": "SeasonEn"
+          },
+          {
+            "name": "Gregorian_Format1",
+            "dataType": "string",
+            "sourceColumn": "Gregorian_Format1"
+          },
+          {
+            "name": "Gregorian_Format2",
+            "dataType": "string",
+            "sourceColumn": "Gregorian_Format2"
+          },
+          {
+            "name": "Gregorian_Format3",
+            "dataType": "string",
+            "sourceColumn": "Gregorian_Format3"
+          },
+          {
+            "name": "Gregorian_Format4",
+            "dataType": "string",
+            "sourceColumn": "Gregorian_Format4"
+          },
+          {
+            "name": "Gregorian_Format5",
+            "dataType": "string",
+            "sourceColumn": "Gregorian_Format5"
+          },
+          {
+            "name": "Gregorian_Format6",
+            "dataType": "string",
+            "sourceColumn": "Gregorian_Format6"
+          },
+          {
+            "name": "Jalali",
+            "dataType": "string",
+            "sourceColumn": "Jalali"
+          },
+          {
+            "name": "Jalali_Year",
+            "dataType": "int64",
+            "sourceColumn": "Jalali_Year",
+            "formatString": "0",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Jalali_Month",
+            "dataType": "int64",
+            "sourceColumn": "Jalali_Month"
+          },
+          {
+            "name": "Jalali_MonthString",
+            "dataType": "string",
+            "sourceColumn": "Jalali_MonthString",
+            "sortByColumn": "Jalali_Month"
+          },
+          {
+            "name": "Jalali_Day",
+            "dataType": "int64",
+            "sourceColumn": "Jalali_Day"
+          },
+          {
+            "name": "Jalali_DayOfWeekId",
+            "dataType": "int64",
+            "sourceColumn": "Jalali_DayOfWeekId"
+          },
+          {
+            "name": "Jalali_DayOfWeek",
+            "dataType": "string",
+            "sourceColumn": "Jalali_DayOfWeek"
+          },
+          {
+            "name": "Jalali_DayOfYear",
+            "dataType": "int64",
+            "sourceColumn": "Jalali_DayOfYear"
+          },
+          {
+            "name": "Jalali_ToLongDateString",
+            "dataType": "string",
+            "sourceColumn": "Jalali_ToLongDateString"
+          },
+          {
+            "name": "Jalali_YearMonth",
+            "dataType": "string",
+            "sourceColumn": "Jalali_YearMonth"
+          },
+          {
+            "name": "Jalali_MonthDay",
+            "dataType": "string",
+            "sourceColumn": "Jalali_MonthDay"
+          },
+          {
+            "name": "SeasonFa",
+            "dataType": "string",
+            "sourceColumn": "SeasonFa",
+            "sortByColumn": "seasonID"
+          },
+          {
+            "name": "Jalali_Format1",
+            "dataType": "string",
+            "sourceColumn": "Jalali_Format1"
+          },
+          {
+            "name": "Jalali_Format2",
+            "dataType": "string",
+            "sourceColumn": "Jalali_Format2"
+          },
+          {
+            "name": "Jalali_Format3",
+            "dataType": "string",
+            "sourceColumn": "Jalali_Format3"
+          },
+          {
+            "name": "Jalali_Format4",
+            "dataType": "string",
+            "sourceColumn": "Jalali_Format4"
+          },
+          {
+            "name": "Jalali_Format5",
+            "dataType": "string",
+            "sourceColumn": "Jalali_Format5"
+          },
+          {
+            "name": "Jalali_Format6",
+            "dataType": "string",
+            "sourceColumn": "Jalali_Format6"
+          },
+          {
+            "name": "datekey",
+            "dataType": "int64",
+            "sourceColumn": "datekey"
+          },
+          {
+            "name": "isworkingday",
+            "dataType": "int64",
+            "sourceColumn": "isworkingday"
+          },
+          {
+            "name": "seasonID",
+            "dataType": "int64",
+            "sourceColumn": "seasonID"
+          },
+          {
+            "name": "Curren_Month",
+            "dataType": "int64",
+            "sourceColumn": "Curren_Month"
+          },
+          {
+            "name": "Current_Year",
+            "dataType": "int64",
+            "sourceColumn": "Current_Year"
+          },
+          {
+            "name": "Last_Month",
+            "dataType": "int64",
+            "sourceColumn": "Last_Month"
+          },
+          {
+            "name": "Last_Year",
+            "dataType": "int64",
+            "sourceColumn": "Last_Year"
+          },
+          {
+            "name": "Semester",
+            "dataType": "int64",
+            "sourceColumn": "Semester"
+          },
+          {
+            "type": "calculated",
+            "name": "Before Year",
+            "dataType": "int64",
+            "isDataTypeInferred": true,
+            "expression": " DimDate[Jalali_Year]-1"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "Partition",
+            "dataView": "full",
+            "source": {
+              "type": "m",
+              "expression": [
+                "let",
+                "    Source = #\"SQL/192 168 10 10;DW\",",
+                "    dbo_vw_DimDate_Big = Source{[Schema=\"dbo\",Item=\"vw_DimDate_Big\"]}[Data]",
+                "in",
+                "    dbo_vw_DimDate_Big"
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "name": "dimproductgroup",
+        "columns": [
+          {
+            "name": "idSath1",
+            "dataType": "int64",
+            "sourceColumn": "idSath1"
+          },
+          {
+            "name": "NameSath1",
+            "dataType": "string",
+            "sourceColumn": "NameSath1"
+          },
+          {
+            "name": "idSath2",
+            "dataType": "int64",
+            "sourceColumn": "idSath2"
+          },
+          {
+            "name": "NameSath2",
+            "dataType": "string",
+            "sourceColumn": "NameSath2"
+          },
+          {
+            "name": "idSath3",
+            "dataType": "int64",
+            "sourceColumn": "idSath3"
+          },
+          {
+            "name": "NameSath3",
+            "dataType": "string",
+            "sourceColumn": "NameSath3"
+          },
+          {
+            "name": "idSath4",
+            "dataType": "int64",
+            "sourceColumn": "idSath4"
+          },
+          {
+            "name": "NameSath4",
+            "dataType": "string",
+            "sourceColumn": "NameSath4"
+          },
+          {
+            "name": "EntityName",
+            "dataType": "string",
+            "sourceColumn": "EntityName"
+          },
+          {
+            "name": "id",
+            "dataType": "int64",
+            "sourceColumn": "id"
+          },
+          {
+            "name": "ProductID",
+            "dataType": "int64",
+            "sourceColumn": "ProductID"
+          },
+          {
+            "name": "Name",
+            "dataType": "string",
+            "sourceColumn": "Name"
+          },
+          {
+            "name": "State",
+            "dataType": "int64",
+            "sourceColumn": "State"
+          },
+          {
+            "name": "statename",
+            "dataType": "string",
+            "sourceColumn": "statename"
+          },
+          {
+            "name": "EntityGroupingID",
+            "dataType": "int64",
+            "sourceColumn": "EntityGroupingID"
+          },
+          {
+            "name": "PartID",
+            "dataType": "int64",
+            "sourceColumn": "PartID"
+          },
+          {
+            "name": "Code",
+            "dataType": "string",
+            "sourceColumn": "Code"
+          },
+          {
+            "name": "PropertiesComment",
+            "dataType": "string",
+            "sourceColumn": "PropertiesComment"
+          },
+          {
+            "name": "SecondCode",
+            "dataType": "string",
+            "sourceColumn": "SecondCode"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "Partition",
+            "dataView": "full",
+            "source": {
+              "type": "m",
+              "expression": [
+                "let",
+                "    Source = #\"SQL/192 168 10 10;DW\",",
+                "    kharazmi_dimproductgroup = Source{[Schema=\"kharazmi\",Item=\"dimproductgroup\"]}[Data]",
+                "in",
+                "    kharazmi_dimproductgroup"
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "name": "DimTarget",
+        "columns": [
+          {
+            "name": "amount",
+            "dataType": "double",
+            "sourceColumn": "amount"
+          },
+          {
+            "name": "cnt",
+            "dataType": "double",
+            "sourceColumn": "cnt"
+          },
+          {
+            "name": "product",
+            "dataType": "string",
+            "sourceColumn": "product"
+          },
+          {
+            "name": "productcode",
+            "dataType": "string",
+            "sourceColumn": "productcode"
+          },
+          {
+            "name": "month",
+            "dataType": "int64",
+            "sourceColumn": "month"
+          },
+          {
+            "name": "pakhshcode",
+            "dataType": "double",
+            "sourceColumn": "pakhshcode"
+          },
+          {
+            "name": "pakhshname",
+            "dataType": "string",
+            "sourceColumn": "pakhshname"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "Partition",
+            "dataView": "full",
+            "source": {
+              "type": "m",
+              "expression": [
+                "let",
+                "    Source = #\"SQL/192 168 10 10;DW\",",
+                "    kharazmi_Target = Source{[Schema=\"kharazmi\",Item=\"Target\"]}[Data]",
+                "in",
+                "    kharazmi_Target"
+              ]
+            }
+          }
+        ],
+        "measures": [
+          {
+            "name": "TargetAmount",
+            "expression": [
+              "DIVIDE( sum(DimTarget[amount]),1000000)",
+              ""
+            ],
+            "formatString": "#,0"
+          },
+          {
+            "name": "TargetCount",
+            "expression": " sum(DimTarget[cnt])",
+            "formatString": "#,0"
+          },
+          {
+            "name": "TargetAmountCurrentMonth",
+            "expression": [
+              "",
+              " CALCULATE(DimTarget[TargetAmount],FILTER(All(DimDate),DimDate[Curren_Month]=1))",
+              ""
+            ],
+            "formatString": "#,0"
+          },
+          {
+            "name": "TargetAmountCurrentYear",
+            "expression": " CALCULATE(DimTarget[TargetAmount], FILTER(ALL(DimDate),DimDate[Current_Year]=1))",
+            "formatString": "#,0"
+          }
+        ]
+      },
+      {
+        "name": "dimArea",
+        "columns": [
+          {
+            "name": "SalesAreaID",
+            "dataType": "int64",
+            "sourceColumn": "SalesAreaID"
+          },
+          {
+            "name": "area",
+            "dataType": "string",
+            "sourceColumn": "area"
+          },
+          {
+            "name": "channel",
+            "dataType": "string",
+            "sourceColumn": "channel"
+          },
+          {
+            "name": "division",
+            "dataType": "string",
+            "sourceColumn": "division"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "Partition",
+            "dataView": "full",
+            "source": {
+              "type": "m",
+              "expression": [
+                "let",
+                "    Source = #\"SQL/192 168 10 10;DW\",",
+                "    kharazmi_dimArea = Source{[Schema=\"kharazmi\",Item=\"dimArea\"]}[Data]",
+                "in",
+                "    kharazmi_dimArea"
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "name": "MeasureTable",
+        "columns": [
+          {
+            "type": "calculatedTableColumn",
+            "name": "measure",
+            "dataType": "string",
+            "isNameInferred": true,
+            "isDataTypeInferred": true,
+            "sourceColumn": "[measure]"
+          },
+          {
+            "type": "calculatedTableColumn",
+            "name": "title",
+            "dataType": "string",
+            "isNameInferred": true,
+            "isDataTypeInferred": true,
+            "sourceColumn": "[title]"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "CalculatedTable 1",
+            "source": {
+              "type": "calculated",
+              "expression": [
+                "DATATABLE",
+                "(\"measure\",STRING,",
+                " \"title\", STRING ,",
+                " {",
+                "        { \"80-20\", \"80-20\" },",
+                "        --{ \"newproduct\", \"محصولات جدید\" },",
+                "        { \"discountproduct\", \"تخفیف محصولات\" },",
+                "       -- { \"distribution\", \"توزیع محصولات\" },",
+                "         { \"lowcustomer\", \"محصولات با مشتری کم\" },",
+                "         { \"allproduct\", \"همه محصولات\" }",
+                "",
+                "    }            ",
+                ")",
+                ""
+              ]
+            }
+          }
+        ]
+      }
+    ],
+    "relationships": [
+      {
+        "name": "644e5797-d63d-4c39-92a9-34fa4ad10807",
+        "fromTable": "Factsales",
+        "fromColumn": "CustomerRef",
+        "toTable": "dimcustomer",
+        "toColumn": "CustomerID"
+      },
+      {
+        "name": "891857e0-de76-40f3-bc7b-5452ef261116",
+        "fromTable": "Factsales",
+        "fromColumn": "InvoiceDate",
+        "toTable": "DimDate",
+        "toColumn": "datekey"
+      },
+      {
+        "name": "69a9ab6b-78b0-4a2a-85a0-a044aa2ca4ff",
+        "fromTable": "DimTarget",
+        "fromColumn": "pakhshcode",
+        "toTable": "dimcustomer",
+        "toColumn": "Number"
+      },
+      {
+        "name": "4e7e833e-43e8-4b2d-8a3e-6d81e532871f",
+        "fromTable": "DimTarget",
+        "fromColumn": "month",
+        "toTable": "DimDate",
+        "toColumn": "datekey"
+      },
+      {
+        "name": "67f125b7-b70e-4f04-824a-d1a05f8f69dc",
+        "fromTable": "dimproductgroup",
+        "fromColumn": "ProductID",
+        "toTable": "dimproduct",
+        "toColumn": "ProductID",
+        "crossFilteringBehavior": "bothDirections"
+      },
+      {
+        "name": "3ef89ae9-1d76-46ae-b1e4-11abc81b8a97",
+        "fromTable": "Factsales",
+        "fromColumn": "ProductRef",
+        "toTable": "dimproduct",
+        "toColumn": "ProductID",
+        "crossFilteringBehavior": "bothDirections"
+      },
+      {
+        "name": "c2767e10-6583-4569-a3bd-82635917382c",
+        "fromTable": "Factsales",
+        "fromColumn": "SalesAreaRef",
+        "toTable": "dimArea",
+        "toColumn": "SalesAreaID"
+      },
+      {
+        "name": "c91d63c1-9660-4f69-94f9-d5e49a60cb8c",
+        "fromTable": "DimTarget",
+        "fromColumn": "productcode",
+        "toTable": "dimproduct",
+        "toColumn": "Number"
+      }
+    ],
+    "annotations": [
+      {
+        "name": "ClientCompatibilityLevel",
+        "value": "700"
+      }
+    ]
+  }
+}
