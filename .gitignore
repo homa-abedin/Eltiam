@@ -1,0 +1,93 @@
+# ========================
+# General Visual Studio
+# ========================
+.vs/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+WEB_ETL/WEB_ETL/.vs/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# ========================
+# Build folders
+# ========================
+[Bb]in/
+[Oo]bj/
+[Oo]ut/
+[Ll]og/
+[Tt]emp/
+[Tt]empBuild/
+*.cache/
+*.dbmdl
+*.dbproj.schemaview
+*.pdb
+*.idb
+*.tlog
+*.ilk
+
+# ========================
+# SSIS Specific
+# ========================
+# Backup and autosave
+*.dtsx.backup
+*.dtproj.user
+*.dtsConfig.backup
+*.ispac
+
+# Deployment & build output
+bin/
+obj/
+*.DeploymentManifest
+*.SSISDeploymentManifest
+
+# BIDS / SSDT intermediate
+*.mdf
+*.ldf
+*.rdl.data
+*.rdl.cache
+*.rdl.refresh
+
+# ========================
+# Packages
+# ========================
+# Keep .dtsx and .dtproj files
+!*.dtsx
+!*.dtproj
+!*.sln
+!*.dtsConfig
+
+# ========================
+# Logs / Temp
+# ========================
+*.log
+*.tmp
+*.bak
+*.backup
+*.orig
+
+# ========================
+# Windows junk
+# ========================
+Thumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+ehthumbs.db
+
+# ========================
+# Git / IDE
+# ========================
+*.swp
+*.DS_Store
+*.ncb
+*.aps
+*.opendb
+*.VC.db
+
+# ========================
+# Optional: Ignore test result folders
+# ========================
+TestResults/
