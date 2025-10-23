@@ -1,0 +1,151 @@
+INSERT INTO [TESTETL].[dbo].[CustomerCodesPakhsh]  
+(
+    [GhasemCode], [MahyaCode], [EltiamCode], [AlborzCode], 
+    [BarijCode], [HejratCode], [CustomerName], [GLN]
+)
+
+SELECT 
+    CASE WHEN Qhasem.GLN IS NOT NULL THEN qasemcode END AS GhasemCode,
+    CASE 
+        WHEN Qhasem.GLN IS NULL AND Mahya.GLN IS NOT NULL THEN mahyacode 
+    END AS MahyaCode,
+    CASE 
+        WHEN Qhasem.GLN IS NULL AND Mahya.GLN IS NULL AND Eltiam.GLN IS NOT NULL THEN eltiamcode 
+    END AS EltiamCode,
+    CASE 
+        WHEN Qhasem.GLN IS NULL AND Mahya.GLN IS NULL AND Eltiam.GLN IS NULL AND Alborz.GLN IS NOT NULL THEN alborzcode 
+    END AS AlborzCode,
+    CASE 
+        WHEN Qhasem.GLN IS NULL AND Mahya.GLN IS NULL AND Eltiam.GLN IS NULL AND Alborz.GLN IS NULL AND Barij.GLN IS NOT NULL THEN barijcode 
+    END AS BarijCode,
+    CASE 
+        WHEN Qhasem.GLN IS NULL AND Mahya.GLN IS NULL AND Eltiam.GLN IS NULL AND Alborz.GLN IS NULL AND Barij.GLN IS NULL AND Hejrat.GLN IS NOT NULL THEN hejratcode 
+    END AS HejratCode,
+
+    -- CustomerName with priority
+    ISNULL(Qhasem.Customer,
+        ISNULL(Mahya.Customer,
+            ISNULL(Eltiam.Customer,
+                ISNULL(Alborz.Customer,
+                    ISNULL(Barij.Customer, Hejrat.Customer))))) AS CustomerName,
+
+    -- GLN with priority
+    ISNULL(Qhasem.GLN,
+        ISNULL(Mahya.GLN,
+            ISNULL(Eltiam.GLN,
+                ISNULL(Alborz.GLN,
+                    ISNULL(Barij.GLN, Hejrat.GLN))))) AS GLN
+
+FROM (
+    SELECT CustomerCode AS qasemcode, Customer, GLN 
+    FROM Web.Qhasem_CustomerSales 
+    WHERE CustomerCode IS NOT NULL
+    GROUP BY CustomerCode, Customer, GLN
+) AS Qhasem
+FULL OUTER JOIN (
+    SELECT CustomerCode AS mahyacode, 
+           CASE 
+               WHEN CHARINDEX('(', Customer) > 1 THEN 
+                   LTRIM(RTRIM(SUBSTRING(Customer, 1, CHARINDEX('(', Customer) - 1)))
+               ELSE Customer
+           END AS Customer, 
+           GLN 
+    FROM Web.Mahya_CustomerSales 
+    WHERE CustomerCode IS NOT NULL
+    GROUP BY CustomerCode, Customer, GLN
+) AS Mahya ON Qhasem.GLN = Mahya.GLN
+
+FULL OUTER JOIN (
+    SELECT CustomerCode AS eltiamcode, 
+           CASE 
+               WHEN CHARINDEX('(', Customer) > 1 THEN 
+                   LTRIM(RTRIM(SUBSTRING(Customer, 1, CHARINDEX('(', Customer) - 1)))
+               ELSE Customer
+           END AS Customer, 
+           GLN 
+    FROM Web.Eltiam_CustomerSales 
+    WHERE CustomerCode IS NOT NULL
+    GROUP BY CustomerCode, Customer, GLN
+) AS Eltiam ON ISNULL(Qhasem.GLN, Mahya.GLN) = Eltiam.GLN
+
+FULL OUTER JOIN (
+    SELECT CustomerCode AS alborzcode, 
+           CASE 
+               WHEN CHARINDEX('(', Customer) > 1 THEN 
+                   LTRIM(RTRIM(SUBSTRING(Customer, 1, CHARINDEX('(', Customer) - 1)))
+               ELSE Customer
+           END AS Customer, 
+           GLN 
+    FROM Web.Alborz_CustomerSales 
+    WHERE CustomerCode IS NOT NULL
+    GROUP BY CustomerCode, Customer, GLN
+) AS Alborz ON ISNULL(Qhasem.GLN, ISNULL(Mahya.GLN, Eltiam.GLN)) = Alborz.GLN
+
+FULL OUTER JOIN (
+    SELECT CustomerCode AS barijcode, 
+           CASE 
+               WHEN CHARINDEX('(', Customer) > 1 THEN 
+                   LTRIM(RTRIM(SUBSTRING(Customer, 1, CHARINDEX('(', Customer) - 1)))
+               ELSE Customer
+           END AS Customer, 
+           GLN 
+    FROM Web.Barij_CustomerSales 
+    WHERE CustomerCode IS NOT NULL
+    GROUP BY CustomerCode, Customer, GLN
+) AS Barij ON ISNULL(Qhasem.GLN, ISNULL(Mahya.GLN, ISNULL(Eltiam.GLN, Alborz.GLN))) = Barij.GLN
+
+FULL OUTER JOIN (
+    SELECT CustomerCode AS hejratcode, 
+           CASE 
+               WHEN CHARINDEX('(', Customer) > 1 THEN 
+                   LTRIM(RTRIM(SUBSTRING(Customer, 1, CHARINDEX('(', Customer) - 1)))
+               ELSE Customer
+           END AS Customer, 
+           GLN 
+    FROM Web.Hejrat_CustomerSales 
+    WHERE CustomerCode IS NOT NULL
+    GROUP BY CustomerCode, Customer, GLN
+) AS Hejrat ON ISNULL(Qhasem.GLN, ISNULL(Mahya.GLN, ISNULL(Eltiam.GLN, ISNULL(Alborz.GLN, Barij.GLN)))) = Hejrat.GLN;
+
+
+
+
+
+
+
+
+-- Ghasem
+UPDATE C
+SET GhasemCode = Q.Id
+FROM dbo.CustomerCodesPakhsh C
+JOIN Web.Qhasem_CustomerSales Q ON Q.GLN = C.GLN;
+
+-- Mahya
+UPDATE C
+SET MahyaCode = M.Id
+FROM dbo.CustomerCodesPakhsh C
+JOIN Web.Mahya_CustomerSales M ON M.GLN = C.GLN;
+
+-- Eltiam
+UPDATE C
+SET EltiamCode = E.Id
+FROM dbo.CustomerCodesPakhsh C
+JOIN Web.Eltiam_CustomerSales E ON E.GLN = C.GLN;
+
+-- Alborz
+UPDATE C
+SET AlborzCode = A.Id
+FROM dbo.CustomerCodesPakhsh C
+JOIN Web.Alborz_CustomerSales A ON A.GLN = C.GLN;
+
+-- Barij
+UPDATE C
+SET BarijCode = B.Id
+FROM dbo.CustomerCodesPakhsh C
+JOIN Web.Barij_CustomerSales B ON B.GLN = C.GLN;
+
+-- Hejrat
+UPDATE C
+SET HejratCode = H.Id
+FROM dbo.CustomerCodesPakhsh C
+JOIN Web.Hejrat_CustomerSales H ON H.GLN = C.GLN;

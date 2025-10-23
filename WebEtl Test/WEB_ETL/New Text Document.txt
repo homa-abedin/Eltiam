@@ -1,0 +1,594 @@
+#region Help:  Introduction to the Script Component
+/* The Script Component allows you to perform virtually any operation that can be accomplished in
+ * a .Net application within the context of an Integration Services data flow.
+ *
+ * Expand the other regions which have "Help" prefixes for examples of specific ways to use
+ * Integration Services features within this script component. */
+#endregion
+#region Namespaces
+using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Data.SqlClient;
+using System.Data.SqlTypes;
+using System.Diagnostics;
+using System.Globalization;
+using System.IO;
+using System.Net;
+using System.Net.Http;
+using System.Text;
+using System.Transactions;
+using System.Web.Script.Serialization;
+using System.Xml;
+using Microsoft.SqlServer.Dts.Pipeline.Wrapper;
+using Microsoft.SqlServer.Dts.Runtime.Wrapper;
+using SC_bfedbef221d8482bbaac0c9686612bb4;
+#endregion
+[Microsoft.SqlServer.Dts.Pipeline.SSISScriptComponentEntryPointAttribute]
+public class ScriptMain : UserComponent
+{
+    #region Help:  Using Integration Services variables and parameters
+    /* To use a variable in this script, first ensure that the variable has been added to
+     * either the list contained in the ReadOnlyVariables property or the list contained in
+     * the ReadWriteVariables property of this script component, according to whether or not your
+     * code needs to write into the variable.  To do so, save this script, close this instance of
+     * Visual Studio, and update the ReadOnlyVariables and ReadWriteVariables properties in the
+     * Script Transformation Editor window.
+     * To use a parameter in this script, follow the same steps. Parameters are always read-only.
+     *
+     * Example of reading from a variable or parameter:
+     *  DateTime startTime = Variables.MyStartTime;
+     *
+     * Example of writing to a variable:
+     *  Variables.myStringVariable = "new value";
+     */
+    #endregion
+    #region Help:  Using Integration Services Connnection Managers
+    /* Some types of connection managers can be used in this script component.  See the help topic
+     * "Working with Connection Managers Programatically" for details.
+     *
+     * To use a connection manager in this script, first ensure that the connection manager has
+     * been added to either the list of connection managers on the Connection Managers page of the
+     * script component editor.  To add the connection manager, save this script, close this instance of
+     * Visual Studio, and add the Connection Manager to the list.
+     *
+     * If the component needs to hold a connection open while processing rows, override the
+     * AcquireConnections and ReleaseConnections methods.
+     * 
+     * Example of using an ADO.Net connection manager to acquire a SqlConnection:
+     *  object rawConnection = Connections.SalesDB.AcquireConnection(transaction);
+     *  SqlConnection salesDBConn = (SqlConnection)rawConnection;
+     *
+     * Example of using a File connection manager to acquire a file path:
+     *  object rawConnection = Connections.Prices_zip.AcquireConnection(transaction);
+     *  string filePath = (string)rawConnection;
+     *
+     * Example of releasing a connection manager:
+     *  Connections.SalesDB.ReleaseConnection(rawConnection);
+     */
+    #endregion
+    #region Help:  Firing Integration Services Events
+    /* This script component can fire events.
+     *
+     * Example of firing an error event:
+     *  ComponentMetaData.FireError(10, "Process Values", "Bad value", "", 0, out cancel);
+     *
+     * Example of firing an information event:
+     *  ComponentMetaData.FireInformation(10, "Process Values", "Processing has started", "", 0, fireAgain);
+     *
+     * Example of firing a warning event:
+     *  ComponentMetaData.FireWarning(10, "Process Values", "No rows were received", "", 0);
+     */
+    #endregion
+    public override void PreExecute()
+    {
+        base.PreExecute();
+    }
+    public override void PostExecute()
+    {
+        base.PostExecute();
+    }
+    public override void CreateNewOutputRows()
+    {
+        try
+        {
+            string url = "http://old.hejratco.com/KharazmiWebService.asmx";
+            string soapAction = "http://tempuri.org/RetrieveSaleByCustomer";
+            string xml = @"<?xml version=""1.0"" encoding=""utf-8""?>
+<soap:Envelope xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance""
+               xmlns:xsd=""http://www.w3.org/2001/XMLSchema""
+               xmlns:soap=""http://schemas.xmlsoap.org/soap/envelope/"">
+  <soap:Body>
+    <RetrieveSaleByCustomer xmlns=""http://tempuri.org/"">
+      <FromDate>1404/02/01</FromDate>
+      <ToDate>1404/03/10</ToDate>
+      <PassWord>%985SDzxnyt658744!</PassWord>
+    </RetrieveSaleByCustomer>
+  </soap:Body>
+</soap:Envelope>";
+            using (var client = new HttpClient() { Timeout = TimeSpan.FromSeconds(120) })
+            {
+                var content = new StringContent(xml, Encoding.UTF8, "text/xml");
+                content.Headers.Add("SOAPAction", soapAction);
+                var response = client.PostAsync(url, content).GetAwaiter().GetResult();
+                string result = response.Content.ReadAsStringAsync().GetAwaiter().GetResult();
+                XmlDocument doc = new XmlDocument();
+                doc.LoadXml(result);
+                XmlNamespaceManager nsmgr = new XmlNamespaceManager(doc.NameTable);
+                nsmgr.AddNamespace("diffgr", "urn:schemas-microsoft-com:xml-diffgram-v1");
+                nsmgr.AddNamespace("msdata", "urn:schemas-microsoft-com:xml-msdata");
+                nsmgr.AddNamespace("soap", "http://schemas.xmlsoap.org/soap/envelope/");
+                nsmgr.AddNamespace("tem", "http://tempuri.org/");
+                XmlNodeList tableNodes = doc.SelectNodes("//diffgr:diffgram/NewDataSet/Table", nsmgr);
+                foreach (XmlNode table in tableNodes)
+                {
+                    int tempInt;
+                    Output0Buffer.AddRow();
+                    Output0Buffer.Distributor = "Hejrat";
+                    Output0Buffer.DistributorCode = 27000;
+                    Output0Buffer.ProductCode = int.TryParse(table["ProductCode"]?.InnerText, out tempInt) ? tempInt : 0;
+                    Output0Buffer.Center = table["StateDescription"]?.InnerText;
+                    Output0Buffer.CenterCode = int.TryParse(table["StateId"]?.InnerText, out tempInt) ? tempInt : 0;
+                    Output0Buffer.Product = table["PersianDescription"]?.InnerText;
+                    Output0Buffer.GLN = table["gln"]?.InnerText;
+                    Output0Buffer.Customer = table["DrugstoreName"]?.InnerText;
+                    Output0Buffer.CustomerCode = table["CustomerCode"]?.InnerText;
+                    Output0Buffer.Address = table["Address"]?.InnerText;
+                    Output0Buffer.ShomarehFaktor = table["FactorID"]?.InnerText;
+                    Output0Buffer.NoeBarge = table["DocumentDescription"]?.InnerText;
+                    Output0Buffer.Price = int.TryParse(table["Price"]?.InnerText, out tempInt) ? tempInt : 0;
+                    Output0Buffer.Quantity = int.TryParse(table["SaleQuantity"]?.InnerText, out tempInt) ? tempInt : 0;
+                    Output0Buffer.Netprice = int.TryParse(table["TotalSaleFee"]?.InnerText, out tempInt) ? tempInt : 0;
+                    Output0Buffer.Date = table["InvoiceDate"]?.InnerText;
+                    Output0Buffer.IsInsert = 1;
+                }
+            }
+        }
+        catch (Exception ex)
+        {
+            bool fireAgain = false;
+            ComponentMetaData.FireError(0, "خطا در دریافت اطلاعات فروش از مشتریان", ex.Message, "", 0, out fireAgain);
+        }
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#region Help:  Introduction to the Script Component
+/* The Script Component allows you to perform virtually any operation that can be accomplished in
+ * a .Net application within the context of an Integration Services data flow.
+ *
+ * Expand the other regions which have "Help" prefixes for examples of specific ways to use
+ * Integration Services features within this script component. */
+#endregion
+#region Namespaces
+using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Data.SqlClient;
+using System.Data.SqlTypes;
+using System.Diagnostics;
+using System.Globalization;
+using System.IO;
+using System.Net;
+using System.Net.Http;
+using System.Text;
+using System.Transactions;
+using System.Web.Script.Serialization;
+using System.Xml;
+using Microsoft.SqlServer.Dts.Pipeline.Wrapper;
+using Microsoft.SqlServer.Dts.Runtime.Wrapper;
+using SC_bfedbef221d8482bbaac0c9686612bb4;
+#endregion
+[Microsoft.SqlServer.Dts.Pipeline.SSISScriptComponentEntryPointAttribute]
+public class ScriptMain : UserComponent
+{
+    #region Help:  Using Integration Services variables and parameters
+    /* To use a variable in this script, first ensure that the variable has been added to
+     * either the list contained in the ReadOnlyVariables property or the list contained in
+     * the ReadWriteVariables property of this script component, according to whether or not your
+     * code needs to write into the variable.  To do so, save this script, close this instance of
+     * Visual Studio, and update the ReadOnlyVariables and ReadWriteVariables properties in the
+     * Script Transformation Editor window.
+     * To use a parameter in this script, follow the same steps. Parameters are always read-only.
+     *
+     * Example of reading from a variable or parameter:
+     *  DateTime startTime = Variables.MyStartTime;
+     *
+     * Example of writing to a variable:
+     *  Variables.myStringVariable = "new value";
+     */
+    #endregion
+    #region Help:  Using Integration Services Connnection Managers
+    /* Some types of connection managers can be used in this script component.  See the help topic
+     * "Working with Connection Managers Programatically" for details.
+     *
+     * To use a connection manager in this script, first ensure that the connection manager has
+     * been added to either the list of connection managers on the Connection Managers page of the
+     * script component editor.  To add the connection manager, save this script, close this instance of
+     * Visual Studio, and add the Connection Manager to the list.
+     *
+     * If the component needs to hold a connection open while processing rows, override the
+     * AcquireConnections and ReleaseConnections methods.
+     * 
+     * Example of using an ADO.Net connection manager to acquire a SqlConnection:
+     *  object rawConnection = Connections.SalesDB.AcquireConnection(transaction);
+     *  SqlConnection salesDBConn = (SqlConnection)rawConnection;
+     *
+     * Example of using a File connection manager to acquire a file path:
+     *  object rawConnection = Connections.Prices_zip.AcquireConnection(transaction);
+     *  string filePath = (string)rawConnection;
+     *
+     * Example of releasing a connection manager:
+     *  Connections.SalesDB.ReleaseConnection(rawConnection);
+     */
+    #endregion
+    #region Help:  Firing Integration Services Events
+    /* This script component can fire events.
+     *
+     * Example of firing an error event:
+     *  ComponentMetaData.FireError(10, "Process Values", "Bad value", "", 0, out cancel);
+     *
+     * Example of firing an information event:
+     *  ComponentMetaData.FireInformation(10, "Process Values", "Processing has started", "", 0, fireAgain);
+     *
+     * Example of firing a warning event:
+     *  ComponentMetaData.FireWarning(10, "Process Values", "No rows were received", "", 0);
+     */
+    #endregion
+    public override void PreExecute()
+    {
+        base.PreExecute();
+    }
+    public override void PostExecute()
+    {
+        base.PostExecute();
+    }
+    public override void CreateNewOutputRows()
+    {
+        try
+        {
+            string url = "http://old.hejratco.com/KharazmiWebService.asmx";
+            string soapAction = "http://tempuri.org/RetrieveSaleByCustomer";
+            string xml = @"<?xml version=""1.0"" encoding=""utf-8""?>
+<soap:Envelope xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance""
+               xmlns:xsd=""http://www.w3.org/2001/XMLSchema""
+               xmlns:soap=""http://schemas.xmlsoap.org/soap/envelope/"">
+  <soap:Body>
+    <RetrieveSaleByCustomer xmlns=""http://tempuri.org/"">
+      <FromDate>1404/02/01</FromDate>
+      <ToDate>1404/03/10</ToDate>
+      <PassWord>%985SDzxnyt658744!</PassWord>
+    </RetrieveSaleByCustomer>
+  </soap:Body>
+</soap:Envelope>";
+            using (var client = new HttpClient() { Timeout = TimeSpan.FromSeconds(120) })
+            {
+                var content = new StringContent(xml, Encoding.UTF8, "text/xml");
+                content.Headers.Add("SOAPAction", soapAction);
+                var response = client.PostAsync(url, content).GetAwaiter().GetResult();
+                string result = response.Content.ReadAsStringAsync().GetAwaiter().GetResult();
+                XmlDocument doc = new XmlDocument();
+                doc.LoadXml(result);
+                XmlNamespaceManager nsmgr = new XmlNamespaceManager(doc.NameTable);
+                nsmgr.AddNamespace("diffgr", "urn:schemas-microsoft-com:xml-diffgram-v1");
+                nsmgr.AddNamespace("msdata", "urn:schemas-microsoft-com:xml-msdata");
+                nsmgr.AddNamespace("soap", "http://schemas.xmlsoap.org/soap/envelope/");
+                nsmgr.AddNamespace("tem", "http://tempuri.org/");
+                XmlNodeList tableNodes = doc.SelectNodes("//diffgr:diffgram/NewDataSet/Table", nsmgr);
+                foreach (XmlNode table in tableNodes)
+                {
+                    int tempInt;
+                    Output0Buffer.AddRow();
+                    Output0Buffer.Distributor = "Hejrat";
+                    Output0Buffer.DistributorCode = 27000;
+                    Output0Buffer.ProductCode = int.TryParse(table["ProductCode"]?.InnerText, out tempInt) ? tempInt : 0;
+                    Output0Buffer.Center = table["StateDescription"]?.InnerText;
+                    Output0Buffer.CenterCode = int.TryParse(table["StateId"]?.InnerText, out tempInt) ? tempInt : 0;
+                    Output0Buffer.Product = table["PersianDescription"]?.InnerText;
+                    Output0Buffer.GLN = table["gln"]?.InnerText;
+                    Output0Buffer.Customer = table["DrugstoreName"]?.InnerText;
+                    Output0Buffer.CustomerCode = table["CustomerCode"]?.InnerText;
+                    Output0Buffer.Address = table["Address"]?.InnerText;
+                    Output0Buffer.ShomarehFaktor = table["FactorID"]?.InnerText;
+                    Output0Buffer.NoeBarge = table["DocumentDescription"]?.InnerText;
+                    Output0Buffer.Price = int.TryParse(table["Price"]?.InnerText, out tempInt) ? tempInt : 0;
+                    Output0Buffer.Quantity = int.TryParse(table["SaleQuantity"]?.InnerText, out tempInt) ? tempInt : 0;
+                    Output0Buffer.Netprice = int.TryParse(table["TotalSaleFee"]?.InnerText, out tempInt) ? tempInt : 0;
+                    Output0Buffer.Date = table["InvoiceDate"]?.InnerText;
+                    Output0Buffer.IsInsert = 1;
+                }
+            }
+        }
+        catch (Exception ex)
+        {
+            bool fireAgain = false;
+            ComponentMetaData.FireError(0, "خطا در دریافت اطلاعات فروش از مشتریان", ex.Message, "", 0, out fireAgain);
+        }
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#region Help:  Introduction to the Script Component
+/* The Script Component allows you to perform virtually any operation that can be accomplished in
+ * a .Net application within the context of an Integration Services data flow.
+ *
+ * Expand the other regions which have "Help" prefixes for examples of specific ways to use
+ * Integration Services features within this script component. */
+#endregion
+
+#region Namespaces
+using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Data.SqlClient;
+using System.Data.SqlTypes;
+using System.Diagnostics;
+using System.Globalization;
+using System.IO;
+using System.Net;
+using System.Net.Http;
+using System.Text;
+using System.Transactions;
+using System.Web.Script.Serialization;
+using System.Xml;
+using Microsoft.SqlServer.Dts.Pipeline.Wrapper;
+using Microsoft.SqlServer.Dts.Runtime.Wrapper;
+using SC_bfedbef221d8482bbaac0c9686612bb4;
+#endregion
+
+/// <summary>
+/// This is the class to which to add your code.  Do not change the name, attributes, or parent
+/// of this class.
+/// </summary>
+[Microsoft.SqlServer.Dts.Pipeline.SSISScriptComponentEntryPointAttribute]
+public class ScriptMain : UserComponent
+{
+    #region Help:  Using Integration Services variables and parameters
+    /* To use a variable in this script, first ensure that the variable has been added to
+     * either the list contained in the ReadOnlyVariables property or the list contained in
+     * the ReadWriteVariables property of this script component, according to whether or not your
+     * code needs to write into the variable.  To do so, save this script, close this instance of
+     * Visual Studio, and update the ReadOnlyVariables and ReadWriteVariables properties in the
+     * Script Transformation Editor window.
+     * To use a parameter in this script, follow the same steps. Parameters are always read-only.
+     *
+     * Example of reading from a variable or parameter:
+     *  DateTime startTime = Variables.MyStartTime;
+     *
+     * Example of writing to a variable:
+     *  Variables.myStringVariable = "new value";
+     */
+    #endregion
+
+    #region Help:  Using Integration Services Connnection Managers
+    /* Some types of connection managers can be used in this script component.  See the help topic
+     * "Working with Connection Managers Programatically" for details.
+     *
+     * To use a connection manager in this script, first ensure that the connection manager has
+     * been added to either the list of connection managers on the Connection Managers page of the
+     * script component editor.  To add the connection manager, save this script, close this instance of
+     * Visual Studio, and add the Connection Manager to the list.
+     *
+     * If the component needs to hold a connection open while processing rows, override the
+     * AcquireConnections and ReleaseConnections methods.
+     * 
+     * Example of using an ADO.Net connection manager to acquire a SqlConnection:
+     *  object rawConnection = Connections.SalesDB.AcquireConnection(transaction);
+     *  SqlConnection salesDBConn = (SqlConnection)rawConnection;
+     *
+     * Example of using a File connection manager to acquire a file path:
+     *  object rawConnection = Connections.Prices_zip.AcquireConnection(transaction);
+     *  string filePath = (string)rawConnection;
+     *
+     * Example of releasing a connection manager:
+     *  Connections.SalesDB.ReleaseConnection(rawConnection);
+     */
+    #endregion
+
+    #region Help:  Firing Integration Services Events
+
+    public override void PreExecute()
+    {
+        base.PreExecute();
+    }
+    public override void PostExecute()
+    {
+        base.PostExecute();
+    }
+
+    public override void CreateNewOutputRows()
+    {
+        try
+        {
+            {
+                string url = "https://ghasemservice.minoogroup.com/GhasemService.asmx";
+                string soapAction = "http://tempuri.org/GetSalesReport";
+                string xml = @"<?xml version=""1.0"" encoding=""utf-8""?>
+<soap:Envelope xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance""
+               xmlns:xsd=""http://www.w3.org/2001/XMLSchema""
+               xmlns:soap=""http://schemas.xmlsoap.org/soap/envelope/"">
+  <soap:Body>
+    <GetSalesReport xmlns=""http://tempuri.org/"">
+      <UserName>kharazmipharm</UserName>
+      <Password>Km724257</Password>
+      <FromDate>14040201</FromDate>
+      <ToDate>14040310</ToDate>
+      <TimeStamp></TimeStamp>
+    </GetSalesReport>
+  </soap:Body>
+</soap:Envelope>";
+
+                using (var client = new HttpClient() { Timeout = TimeSpan.FromSeconds(120) })
+                {
+                    var content = new StringContent(xml, Encoding.UTF8, "text/xml");
+                    content.Headers.Add("SOAPAction", soapAction);
+
+                    var response = client.PostAsync(url, content).GetAwaiter().GetResult();
+                    string result = response.Content.ReadAsStringAsync().GetAwaiter().GetResult();
+
+                    XmlDocument doc = new XmlDocument();
+                    doc.LoadXml(result);
+
+                    XmlNamespaceManager nsmgr = new XmlNamespaceManager(doc.NameTable);
+                    nsmgr.AddNamespace("diffgr", "urn:schemas-microsoft-com:xml-diffgram-v1");
+                    nsmgr.AddNamespace("msdata", "urn:schemas-microsoft-com:xml-msdata");
+                    nsmgr.AddNamespace("soap", "http://schemas.xmlsoap.org/soap/envelope/");
+                    nsmgr.AddNamespace("tem", "http://tempuri.org/");
+
+                    XmlNodeList tableNodes = doc.SelectNodes("//diffgr:diffgram/NewDataSet/Table", nsmgr);
+
+                    foreach (XmlNode table in tableNodes)
+                    {
+                        Output0Buffer.AddRow();
+
+                        Output0Buffer.Distributor = "Qhasem";
+                        Output0Buffer.DistributorCode = 29000;
+
+                        Output0Buffer.Center = table["CenterName"]?.InnerText;
+                        Output0Buffer.CenterCode = int.TryParse(table["CenterID"]?.InnerText, out int intVal) ? intVal : 0;
+
+                        Output0Buffer.Product = table["ProductName"]?.InnerText;
+                        Output0Buffer.ProductCode = int.TryParse(table["ProductID"]?.InnerText, out intVal) ? intVal : 0;
+
+                        Output0Buffer.GLN = table["GLN"]?.InnerText;
+
+                        Output0Buffer.Customer = table["CustomerName"]?.InnerText;
+                        Output0Buffer.CustomerCode = table["CustomerID"]?.InnerText;
+                        Output0Buffer.Address = table["Address"]?.InnerText;
+                        Output0Buffer.ShomarehFaktor = table["FactorID"]?.InnerText;
+
+                        // تبدیل تاریخ فاکتور به عدد کلیدی برای Datekey
+                        Output0Buffer.Datekey = int.TryParse(table["FactorDate"]?.InnerText, out intVal) ? intVal : 0;
+
+                        // مقداردهی اولیه به قیمت‌ها
+                        decimal decVal;
+                        decimal price = decimal.TryParse(table["Price"]?.InnerText, NumberStyles.Any, CultureInfo.InvariantCulture, out decVal) ? decVal : 0;
+
+                        int quantity = int.TryParse(table["Quantity"]?.InnerText, out intVal) ? intVal : 0;
+
+                        // تعیین نوع رکورد: فاکتور اصلی یا مرجوعی
+                        int recordType = int.TryParse(table["RecordTypeID"]?.InnerText, out intVal) ? intVal : 0;
+
+                        if (recordType == 1)
+                        {
+                            // فاکتور اصلی
+                            Output0Buffer.Quantity = quantity;
+                            Output0Buffer.Price = price;
+                            Output0Buffer.Netprice = price * quantity;
+                            Output0Buffer.ReturnQuantity = 0;
+                            Output0Buffer.ReturnPrice = 0;
+                            Output0Buffer.ReturnBonus = 0;
+                        }
+                        else if (recordType == 2)
+                        {
+                            // مرجوعی: برداشتن منفی از مقادیر
+                            Output0Buffer.Quantity = 0;
+                            Output0Buffer.Price = 0;
+                            Output0Buffer.Netprice = 0;
+
+                            Output0Buffer.ReturnQuantity = Math.Abs(quantity);
+                            Output0Buffer.ReturnPrice = Math.Abs(price);
+                            Output0Buffer.ReturnBonus = 0;
+                        }
+                        else
+                        {
+                            // مقادیر ناشناس یا نادیده‌گرفته‌شده
+                            Output0Buffer.Quantity = 0;
+                            Output0Buffer.Price = 0;
+                            Output0Buffer.Netprice = 0;
+                            Output0Buffer.ReturnQuantity = 0;
+                            Output0Buffer.ReturnPrice = 0;
+                            Output0Buffer.ReturnBonus = 0;
+                        }
+
+                        Output0Buffer.NoeBarge = table["RecordType"]?.InnerText;
+
+                        Output0Buffer.Datekey = int.Parse(table["FactorDate"]?.InnerText ?? "0");
+                        Output0Buffer.IsInsert = 1;
+                    }
+
+                }
+            }
+
+        }
+        catch (Exception ex)
+        {
+            bool fireAgain = false;
+            ComponentMetaData.FireError(0, "khata in API customersals", ex.Message, "", 0, out fireAgain);
+        }
+    }
+
+}
