@@ -2,7 +2,7 @@
 <BuildLog xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <ProjectInfo>
     <Name>WEB_ETL</Name>
-    <LastWriteTime>2025-10-23T18:20:36.1470296Z</LastWriteTime>
+    <LastWriteTime>2025-10-26T07:12:15.4213207Z</LastWriteTime>
     <LastKnownProtectionLevel>EncryptSensitiveWithUserKey</LastKnownProtectionLevel>
   </ProjectInfo>
   <LastBuildInfos>
@@ -13,12 +13,12 @@
     </ProjectBuildItemInfo>
     <ProjectBuildItemInfo>
       <Name>Aggrigate All TAble Web to DW.dtsx</Name>
-      <LastWriteTime>2025-10-22T07:46:24.5626457Z</LastWriteTime>
+      <LastWriteTime>2025-10-29T09:58:24.2356775Z</LastWriteTime>
       <LastKnownProtectionLevel>EncryptSensitiveWithUserKey</LastKnownProtectionLevel>
     </ProjectBuildItemInfo>
     <ProjectBuildItemInfo>
       <Name>Total.dtsx</Name>
-      <LastWriteTime>2025-10-23T12:40:00.7047396Z</LastWriteTime>
+      <LastWriteTime>2025-10-26T07:27:15.8324462Z</LastWriteTime>
       <LastKnownProtectionLevel>EncryptSensitiveWithUserKey</LastKnownProtectionLevel>
     </ProjectBuildItemInfo>
     <ProjectBuildItemInfo>
@@ -72,11 +72,6 @@
       <LastKnownProtectionLevel>EncryptSensitiveWithUserKey</LastKnownProtectionLevel>
     </ProjectBuildItemInfo>
     <ProjectBuildItemInfo>
-      <Name>Package1.dtsx</Name>
-      <LastWriteTime>2025-10-23T18:34:44.2881165Z</LastWriteTime>
-      <LastKnownProtectionLevel>EncryptSensitiveWithUserKey</LastKnownProtectionLevel>
-    </ProjectBuildItemInfo>
-    <ProjectBuildItemInfo>
       <Name>Toba.dtsx</Name>
       <LastWriteTime>2025-10-23T16:04:54.174347Z</LastWriteTime>
       <LastKnownProtectionLevel>EncryptSensitiveWithUserKey</LastKnownProtectionLevel>
@@ -119,6 +114,11 @@
     <ProjectBuildItemInfo>
       <Name>ExcelFetch.dtsx</Name>
       <LastWriteTime>2025-10-23T18:18:43.6408253Z</LastWriteTime>
+      <LastKnownProtectionLevel>EncryptSensitiveWithUserKey</LastKnownProtectionLevel>
+    </ProjectBuildItemInfo>
+    <ProjectBuildItemInfo>
+      <Name>AllOfWebServicePackage.dtsx</Name>
+      <LastWriteTime>2025-10-23T18:39:05.5060463Z</LastWriteTime>
       <LastKnownProtectionLevel>EncryptSensitiveWithUserKey</LastKnownProtectionLevel>
     </ProjectBuildItemInfo>
   </LastBuildInfos>
