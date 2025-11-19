@@ -1,0 +1,72 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="11/9/2025 3:44:43 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="IT-ABEDINZADEH"
+  DTS:CreatorName="EL\abedinzadehh"
+  DTS:DTSID="{7788C579-3D6D-4E06-9079-5AAE45E3876F}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="16.0.5685.0"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="InventoryNULL"
+  DTS:PackageType="5"
+  DTS:VersionBuild="2"
+  DTS:VersionGUID="{37882E6A-252C-44D4-8B6A-776191F83365}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[192.168.10.10.Stage]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{D25C2409-A3B9-443A-A9BE-EC6E80716781}"
+      DTS:ObjectName="192.168.10.10.Stage">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="1"
+          DTS:ConnectRetryInterval="5"
+          DTS:ConnectionString="Data Source=192.168.10.10;Initial Catalog=Stage;Provider=MSOLEDBSQL.1;Integrated Security=SSPI;Application Name=SSIS-Package1-{D25C2409-A3B9-443A-A9BE-EC6E80716781}192.168.10.10.Stage;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\invenrory is null"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{7acd64e0-f755-4385-a267-b7e0dfd36f98}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="invenrory is null"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{D25C2409-A3B9-443A-A9BE-EC6E80716781}"
+          SQLTask:SqlStatementSource="update t &#xA;set isinsert= null&#xA;from stage.web.Barij_Inventory t&#xA;where isinsert=1&#xA;Go&#xA;&#xA;update t &#xA;set isinsert= null&#xA;from stage.web.Qhasem_Inventory t&#xA;where isinsert=1&#xA;Go&#xA;&#xA;update t &#xA;set isinsert= null&#xA;from stage.web.Daya_Inventory t&#xA;where isinsert=1&#xA;Go&#xA;&#xA;&#xA;update t &#xA;set isinsert= null&#xA;from stage.web.Momtaz_Inventory t&#xA;where isinsert=1&#xA;Go&#xA;&#xA;update t &#xA;set isinsert= null&#xA;from Stage.web.Momtaz_InventoryNew t&#xA;where isinsert=1&#xA;Go&#xA;&#xA;update t &#xA;set isinsert= null&#xA;from stage.web.Mahya_Inventory t&#xA;where isinsert=1&#xA;Go&#xA;&#xA;update t &#xA;set isinsert= null&#xA;from stage.web.ferdows_Inventory t&#xA;where isinsert=1&#xA;Go&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;update t &#xA;set isinsert= null&#xA;from stage.web.Razi_Inventory t&#xA;where isinsert=1&#xA;Go&#xA;&#xA;&#xA;update t &#xA;set isinsert= null&#xA;from stage.web.Alborz_Inventory t&#xA;where isinsert=1&#xA;Go&#xA;&#xA;&#xA;update t &#xA;set isinsert= null&#xA;from stage.web.Toba_Inventory t&#xA;where isinsert=1&#xA;Go&#xA;&#xA;&#xA;update t &#xA;set isinsert= null&#xA;from stage.web.hasti_Inventory t&#xA;where isinsert=1&#xA;Go&#xA;&#xA;&#xA;&#xA;&#xA;update t &#xA;set IsInsert=null&#xA;from stage.web.samen_Inventory t&#xA;where IsInsert=1&#xA;GO&#xA;&#xA;&#xA;&#xA;update t &#xA;set IsInsert=null&#xA;from stage.web.Hejrat_Inventory t&#xA;where IsInsert=1&#xA;GO&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;update t &#xA;set IsInsert=null&#xA;from stage.web.Nokhbegan t&#xA;where IsInsert=1&#xA;GO&#xA;&#xA;&#xA;update t &#xA;set IsInsert=null&#xA;from stage.web.Shaya t&#xA;where IsInsert=1&#xA;GO&#xA;&#xA;&#xA;&#xA;update t &#xA;set IsInsert=null&#xA;from stage.web.behestan t&#xA;where IsInsert=1&#xA;GO&#xA;&#xA;&#xA;&#xA;update t &#xA;set IsInsert=null&#xA;from stage.web.samen_Inventory t&#xA;where IsInsert=1&#xA;GO&#xA;&#xA;&#xA;&#xA;update t &#xA;set IsInsert=null&#xA;from stage.web.Toba_Inventory t&#xA;where IsInsert=1&#xA;GO&#xA;&#xA;&#xA;&#xA;update t &#xA;set isinsert= null&#xA;from  kharazmi.eltiam_inventory  t&#xA;where isinsert=1&#xA;Go&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="154,42"
+          Id="Package\invenrory is null"
+          TopLeft="60,60" />
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

@@ -21,6 +21,8 @@
         },
         "credential": {
           "AuthenticationKind": "Windows",
+          "kind": "SQL",
+          "path": "192.168.10.10;DW",
           "Username": "el\\abedinzadehh",
           "EncryptConnection": false
         }
@@ -100,12 +102,6 @@
                 "    dbo_dimcenter"
               ]
             }
-          }
-        ],
-        "measures": [
-          {
-            "name": "test",
-            "expression": "USERNAME()"
           }
         ]
       },
@@ -991,12 +987,12 @@
           },
           {
             "name": "RatioNetPriceCurrent/Lastmonth",
-            "expression": " [NetPriceCurrentMonth]/[NetPriceLastMonth]",
+            "expression": " divide ([NetPriceCurrentMonth]-[NetPriceLastMonth Point2Point] ,[NetPriceLastMonth Point2Point] )",
             "formatString": "0.00 %;-0.00 %;0.00 %"
           },
           {
             "name": "RatioNetPriceCurrent/LastYear",
-            "expression": " [NetPriceCurrentYear]/[NetPriceLastYear]",
+            "expression": " divide ([NetPriceCurrentYear]-[NetPriceLastYear Point2Point] , [NetPriceLastYear Point2Point])",
             "formatString": "0.00 %;-0.00 %;0.00 %"
           },
           {
@@ -1827,14 +1823,14 @@
         "name": "DimTarget",
         "columns": [
           {
-            "name": "TargetAmount",
-            "dataType": "double",
-            "sourceColumn": "TargetAmount"
-          },
-          {
             "name": "SalesmanKey",
             "dataType": "int64",
             "sourceColumn": "SalesmanKey"
+          },
+          {
+            "name": "TargetAmount",
+            "dataType": "double",
+            "sourceColumn": "TargetAmount"
           },
           {
             "name": "StartDateKey",
@@ -1870,11 +1866,6 @@
         ],
         "measures": [
           {
-            "name": "TargetAmountMeasure",
-            "expression": "DIVIDE(sum(DimTarget[TargetAmount]), 1000000)",
-            "formatString": "#,0"
-          },
-          {
             "name": "RatioTargetVSSales",
             "expression": [
               " DIVIDE([NetPrice],DimTarget[TargetAmountMeasure]) ",
@@ -1883,6 +1874,11 @@
               ""
             ],
             "formatString": "0.00 %;-0.00 %;0.00 %"
+          },
+          {
+            "name": "TargetAmountMeasure",
+            "expression": "DIVIDE(sum(DimTarget[TargetAmount]), 1000000)",
+            "formatString": "#,0"
           },
           {
             "name": "TargetAmountCurrentYear",
@@ -1908,6 +1904,147 @@
               " [TargetAmountMeasure]- [NetPrice]",
               ""
             ]
+          }
+        ]
+      },
+      {
+        "name": "titaccustomer",
+        "columns": [
+          {
+            "name": "gln",
+            "dataType": "string",
+            "sourceColumn": "gln"
+          },
+          {
+            "name": "OwnerName",
+            "dataType": "string",
+            "sourceColumn": "OwnerName"
+          },
+          {
+            "name": "Latitude",
+            "dataType": "double",
+            "sourceColumn": "Latitude"
+          },
+          {
+            "name": "Longitude",
+            "dataType": "double",
+            "sourceColumn": "Longitude"
+          },
+          {
+            "name": "Provice",
+            "dataType": "string",
+            "sourceColumn": "Provice"
+          },
+          {
+            "name": "mycustomer",
+            "dataType": "int64",
+            "sourceColumn": "mycustomer"
+          },
+          {
+            "name": "customerkey",
+            "dataType": "int64",
+            "sourceColumn": "customerkey"
+          },
+          {
+            "name": "customername",
+            "dataType": "string",
+            "sourceColumn": "customername"
+          },
+          {
+            "name": "newcenter",
+            "dataType": "int64",
+            "sourceColumn": "newcenter"
+          },
+          {
+            "name": "idtitac",
+            "dataType": "int64",
+            "sourceColumn": "idtitac"
+          },
+          {
+            "name": "centerid",
+            "dataType": "int64",
+            "sourceColumn": "centerid"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "Partition",
+            "dataView": "full",
+            "source": {
+              "type": "m",
+              "expression": [
+                "let",
+                "    Source = #\"SQL/192 168 10 10;DW\",",
+                "    dbo_titaccustomer = Source{[Schema=\"dbo\",Item=\"titaccustomer\"]}[Data]",
+                "in",
+                "    dbo_titaccustomer"
+              ]
+            }
+          }
+        ],
+        "measures": [
+          {
+            "name": "ColorMyCustomer",
+            "expression": [
+              " ",
+              "",
+              "VAR SelectedDate = SELECTEDVALUE(DimDate_Big[Gregorian])",
+              "VAR LastInvoiceDate =  LOOKUPVALUE(DimDate_Big[Gregorian], DimDate_Big[datekey], MAX( FactSales[DateKey] ))",
+              "VAR TodayDate = TODAY()",
+              "var diff=",
+              "    IF(",
+              "        ISBLANK( SelectedDate ),",
+              "        DATEDIFF( LastInvoiceDate,TodayDate,DAY),",
+              "        DATEDIFF(LastInvoiceDate,SelectedDate, DAY)",
+              "    )",
+              "",
+              "RETURN",
+              "IF(",
+              "    [NetPrice] > 0 && diff< 90   , \"#5B913B\",  -- Active (سبز)",
+              "    IF(",
+              "        [NetPrice] > 0 && diff>= 90 , \"#FFDE4D\",  -- Deactive (زرد)",
+              "        IF(",
+              "            COUNTROWS(FILTER(titaccustomer, titaccustomer[mycustomer] = 1)) > 0, ",
+              "            \"#B771E5\",  -- Register (بنفش)",
+              "            \"#B82132\"   -- Unregister (قرمز)",
+              "        )))"
+            ]
+          },
+          {
+            "name": "CountAllCustomer",
+            "expression": "CALCULATE( DISTINCTCOUNT(titaccustomer[gln]),ALL(DimDate_Big))"
+          },
+          {
+            "name": "Long",
+            "expression": " IF ([Level map] = \"LongLat\", AVERAGE(titaccustomer[Longitude]), BLANK())"
+          },
+          {
+            "name": "Lat",
+            "expression": " IF ([Level map] = \"LongLat\", AVERAGE(titaccustomer[Latitude]), BLANK())"
+          },
+          {
+            "name": "colorfinal",
+            "expression": " IF ([Level map] = \"LongLat\", [ColorMyCustomer], IF([Level map] = \"ID\", min(dimcenter[color]), BLANK()))"
+          },
+          {
+            "name": "CovarageCustomer",
+            "expression": " DIVIDE([CountCustomerHasBuy], [CountAllCustomer])",
+            "formatString": "0 %;-0 %;0 %"
+          },
+          {
+            "name": "ALLCoverage",
+            "expression": [
+              "  FORMAT([CovarageCustomer], \"##,##%\") & ",
+              "\"|\" & FORMAT([CoverageSales], \"##,##%\")"
+            ]
+          },
+          {
+            "name": "Level map",
+            "expression": " SWITCH (TRUE, ISINSCOPE(titaccustomer[gln]), \"LongLat\", ISINSCOPE(dimcenter[CenterName]), \"ID\", \"unknown\")"
+          },
+          {
+            "name": "countcustomer",
+            "expression": " CALCULATE(DISTINCTCOUNT(titaccustomer[customerkey]) , titaccustomer[mycustomer]=1)"
           }
         ]
       },
@@ -2026,147 +2163,6 @@
               ""
             ],
             "formatString": "0.0 %;-0.0 %;0.0 %"
-          }
-        ]
-      },
-      {
-        "name": "titaccustomer",
-        "columns": [
-          {
-            "name": "idtitac",
-            "dataType": "int64",
-            "sourceColumn": "idtitac"
-          },
-          {
-            "name": "gln",
-            "dataType": "string",
-            "sourceColumn": "gln"
-          },
-          {
-            "name": "OwnerName",
-            "dataType": "string",
-            "sourceColumn": "OwnerName"
-          },
-          {
-            "name": "Provice",
-            "dataType": "string",
-            "sourceColumn": "Provice"
-          },
-          {
-            "name": "Latitude",
-            "dataType": "double",
-            "sourceColumn": "Latitude"
-          },
-          {
-            "name": "Longitude",
-            "dataType": "double",
-            "sourceColumn": "Longitude"
-          },
-          {
-            "name": "customerkey",
-            "dataType": "int64",
-            "sourceColumn": "customerkey"
-          },
-          {
-            "name": "customername",
-            "dataType": "string",
-            "sourceColumn": "customername"
-          },
-          {
-            "name": "centerid",
-            "dataType": "int64",
-            "sourceColumn": "centerid"
-          },
-          {
-            "name": "newcenter",
-            "dataType": "int64",
-            "sourceColumn": "newcenter"
-          },
-          {
-            "name": "mycustomer",
-            "dataType": "int64",
-            "sourceColumn": "mycustomer"
-          }
-        ],
-        "partitions": [
-          {
-            "name": "Partition",
-            "dataView": "full",
-            "source": {
-              "type": "m",
-              "expression": [
-                "let",
-                "    Source = #\"SQL/192 168 10 10;DW\",",
-                "    dbo_titaccustomer = Source{[Schema=\"dbo\",Item=\"titaccustomer\"]}[Data]",
-                "in",
-                "    dbo_titaccustomer"
-              ]
-            }
-          }
-        ],
-        "measures": [
-          {
-            "name": "ColorMyCustomer",
-            "expression": [
-              " ",
-              "",
-              "VAR SelectedDate = SELECTEDVALUE(DimDate_Big[Gregorian])",
-              "VAR LastInvoiceDate =  LOOKUPVALUE(DimDate_Big[Gregorian], DimDate_Big[datekey], MAX( FactSales[DateKey] ))",
-              "VAR TodayDate = TODAY()",
-              "var diff=",
-              "    IF(",
-              "        ISBLANK( SelectedDate ),",
-              "        DATEDIFF( LastInvoiceDate,TodayDate,DAY),",
-              "        DATEDIFF(LastInvoiceDate,SelectedDate, DAY)",
-              "    )",
-              "",
-              "RETURN",
-              "IF(",
-              "    [NetPrice] > 0 && diff< 90   , \"#5B913B\",  -- Active (سبز)",
-              "    IF(",
-              "        [NetPrice] > 0 && diff>= 90 , \"#FFDE4D\",  -- Deactive (زرد)",
-              "        IF(",
-              "            COUNTROWS(FILTER(titaccustomer, titaccustomer[mycustomer] = 1)) > 0, ",
-              "            \"#B771E5\",  -- Register (بنفش)",
-              "            \"#B82132\"   -- Unregister (قرمز)",
-              "        )))"
-            ]
-          },
-          {
-            "name": "CountAllCustomer",
-            "expression": "CALCULATE( DISTINCTCOUNT(titaccustomer[gln]),ALL(DimDate_Big))"
-          },
-          {
-            "name": "Level map",
-            "expression": " SWITCH (TRUE, ISINSCOPE(titaccustomer[gln]), \"LongLat\", ISINSCOPE(dimcenter[CenterName]), \"ID\", \"unknown\")"
-          },
-          {
-            "name": "Long",
-            "expression": " IF ([Level map] = \"LongLat\", AVERAGE(titaccustomer[Longitude]), BLANK())"
-          },
-          {
-            "name": "Lat",
-            "expression": " IF ([Level map] = \"LongLat\", AVERAGE(titaccustomer[Latitude]), BLANK())"
-          },
-          {
-            "name": "colorfinal",
-            "expression": " IF ([Level map] = \"LongLat\", [ColorMyCustomer], IF([Level map] = \"ID\", min(dimcenter[color]), BLANK()))"
-          },
-          {
-            "name": "CovarageCustomer",
-            "expression": " DIVIDE([CountCustomerHasBuy], [CountAllCustomer])",
-            "formatString": "0 %;-0 %;0 %"
-          },
-          {
-            "name": "ALLCoverage",
-            "expression": [
-              "  FORMAT([CovarageCustomer], \"##,##%\") & ",
-              "\"|\" & FORMAT([CoverageSales], \"##,##%\")"
-            ]
-          },
-          {
-            "name": "countcustomer",
-            "expression": " CALCULATE(DISTINCTCOUNT(titaccustomer[customerkey]) , titaccustomer[mycustomer]=1)"
           }
         ]
       },
@@ -2469,16 +2465,16 @@
             "sourceColumn": "AmountAllocated"
           },
           {
+            "name": "centerid",
+            "dataType": "int64",
+            "sourceColumn": "centerid"
+          },
+          {
             "type": "calculated",
             "name": "SeasonText",
             "dataType": "string",
             "isDataTypeInferred": true,
             "expression": " if(dimbill[season]=1,\"شرکت\", \"مشتری\")"
-          },
-          {
-            "name": "centerid",
-            "dataType": "int64",
-            "sourceColumn": "centerid"
           }
         ],
         "partitions": [
@@ -2730,28 +2726,6 @@
         ],
         "measures": [
           {
-            "name": "MojodiAvalDore",
-            "expression": [
-              " ",
-              "",
-              "var fdate= SELECTEDVALUE(DimDate_Big[Jalali_Year]) ",
-              "",
-              "--VAR fyear=left(fdate,4)",
-              "var fidate=CONVERT(CONCATENATE(fdate, \"0101\"), INTEGER)",
-              "VAR ProductFilter =",
-              "    VALUES(DimProduct[ProductKey])",
-              "return  ",
-              "CALCULATE(sum(FactInventory[Quantity]) - sum(FactInventory[QtyReserved])",
-              ", FactInventory[fiscalyearkey]=fdate",
-              ", FactInventory[DateKey]<=fidate",
-              ",TREATAS(ProductFilter, FactInventory[ProductKey])",
-              ",  REMOVEFILTERS(DimDate_Big)",
-              "",
-              ")",
-              "   "
-            ]
-          },
-          {
             "name": "MojodiAmade",
             "expression": [
               " ",
@@ -2837,6 +2811,28 @@
               " DIVIDE([CountWorkDay], ITR)  "
             ],
             "formatString": "#,0"
+          },
+          {
+            "name": "MojodiAvalDore",
+            "expression": [
+              " ",
+              "",
+              "var fdate= SELECTEDVALUE(DimDate_Big[Jalali_Year]) ",
+              "",
+              "--VAR fyear=left(fdate,4)",
+              "var fidate=CONVERT(CONCATENATE(fdate, \"0101\"), INTEGER)",
+              "VAR ProductFilter =",
+              "    VALUES(DimProduct[ProductKey])",
+              "return  ",
+              "CALCULATE(sum(FactInventory[Quantity]) - sum(FactInventory[QtyReserved])",
+              ", FactInventory[fiscalyearkey]=fdate",
+              ", FactInventory[DateKey]<=fidate",
+              ",TREATAS(ProductFilter, FactInventory[ProductKey])",
+              ",  REMOVEFILTERS(DimDate_Big)",
+              "",
+              ")",
+              "   "
+            ]
           },
           {
             "name": "RialMojodiAvalDore",
@@ -3715,6 +3711,77 @@
           {
             "name": "DifferenceIncomeExpenses",
             "expression": "[SalesFinance]-[ExpensesMosbat]"
+          },
+          {
+            "name": "GardeshDaraiiSabet",
+            "expression": "DIVIDE([SalesFinance], [DaraiiSabetMashhod])",
+            "formatString": "#,##0.00",
+            "lineageTag": "d67763e2-61a8-4fcb-b862-79d5cad7d7fa"
+          },
+          {
+            "name": "GardeshKolDaraii",
+            "expression": "DIVIDE([SalesFinance], [Daraii])",
+            "formatString": "#,##0.00",
+            "lineageTag": "d9e28e81-485d-4e2f-8e9d-bbe22bcf9386"
+          },
+          {
+            "name": "KolBedehiBarKolDaraii",
+            "expression": "DIVIDE([Bedehi], [Daraii])",
+            "formatString": "#,##0.00",
+            "lineageTag": "efa667a0-b6af-431b-b6a1-c8dbc449268e"
+          },
+          {
+            "name": "GhodratKasbDaraii",
+            "expression": "DIVIDE([ProfitOperationsBeforeTax], [SalesFinance])",
+            "formatString": "#,##0.00",
+            "lineageTag": "a2d3c94b-ef22-43cc-ad3d-79fd4d364618"
+          },
+          {
+            "name": "BazdehKolDaraii",
+            "expression": "DIVIDE([NetProfit], [Daraii])",
+            "formatString": "#,##0.00",
+            "lineageTag": "23744d42-3a26-4c94-bd19-048ca6e0a4d0"
+          },
+          {
+            "name": "BazdehSaham",
+            "expression": "DIVIDE([NetProfit], [HoghoghMalekane])",
+            "lineageTag": "3105d3a2-a26f-4e4c-9319-d5cf3b29ffa0"
+          },
+          {
+            "name": "Bedehijarii toHoghoghMalekane",
+            "expression": "DIVIDE([BedehiJari], [HoghoghMalekane])",
+            "lineageTag": "12c61527-6842-4749-ae9b-22db895b7cef"
+          },
+          {
+            "name": "BazdehHoghoghMalekane",
+            "expression": " DIVIDE([NetProfit], [HoghoghMalekane])",
+            "formatString": "#,##0.00",
+            "lineageTag": "ad74da2c-6d18-40e5-98c9-69c76a56ae05"
+          },
+          {
+            "name": "BedehiToHoghoghMalekane",
+            "expression": "DIVIDE([Bedehi], [HoghoghMalekane])",
+            "lineageTag": "0b971096-9f5c-49ec-9013-2be535ac1e2c"
+          },
+          {
+            "name": "DaraiiSabetTo HoghoghMalekane",
+            "expression": "DIVIDE([DaraiiSabetMashhod], [HoghoghMalekane])",
+            "formatString": "#,##0.00",
+            "lineageTag": "42128508-3ffc-41d9-b0df-112d70aa2f11"
+          },
+          {
+            "name": "HazineBahre",
+            "expression": [
+              " CALCULATE([Balanced], ",
+              "DimAccountL1_3[IdL3] in {345})"
+            ],
+            "lineageTag": "8ceb81ab-eef3-4b9e-9183-c3dbb3af7370"
+          },
+          {
+            "name": "TavanPardakht",
+            "expression": " DIVIDE([ProfitOperationsBeforeTax], [HazineBahre])",
+            "formatString": "#,##0.00",
+            "lineageTag": "7a57b025-05c1-464d-b5db-922c65188957"
           }
         ]
       },
@@ -3780,6 +3847,11 @@
             "name": "NatureL1",
             "dataType": "int64",
             "sourceColumn": "NatureL1"
+          },
+          {
+            "name": "moadel",
+            "dataType": "string",
+            "sourceColumn": "moadel"
           }
         ],
         "partitions": [
@@ -3933,6 +4005,190 @@
                 "    dbo_Diml5"
               ]
             }
+          }
+        ]
+      },
+      {
+        "name": "factFinance_P_L",
+        "columns": [
+          {
+            "name": "PeriodType",
+            "dataType": "string",
+            "sourceColumn": "PeriodType",
+            "sortByColumn": "PeriodTypeId"
+          },
+          {
+            "name": "SodvaZian",
+            "dataType": "string",
+            "sourceColumn": "SodvaZian",
+            "sortByColumn": "SodvaZianSortID"
+          },
+          {
+            "name": "Amount",
+            "dataType": "double",
+            "sourceColumn": "Amount",
+            "formatString": "#,0"
+          },
+          {
+            "name": "RatioToRevenuePercent",
+            "dataType": "double",
+            "sourceColumn": "RatioToRevenuePercent",
+            "formatString": "0 %;-0 %;0 %"
+          },
+          {
+            "name": "datekey",
+            "dataType": "int64",
+            "sourceColumn": "datekey"
+          },
+          {
+            "name": "SodvaZianSortID",
+            "dataType": "int64",
+            "sourceColumn": "SodvaZianSortID"
+          },
+          {
+            "name": "PeriodTypeId",
+            "dataType": "int64",
+            "sourceColumn": "PeriodTypeId"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "Partition",
+            "dataView": "full",
+            "source": {
+              "type": "m",
+              "expression": [
+                "let",
+                "    Source = #\"SQL/192 168 10 10;DW\",",
+                "    dbo_factFinance_P_L = Source{[Schema=\"dbo\",Item=\"factFinance_P_L\"]}[Data]",
+                "in",
+                "    dbo_factFinance_P_L"
+              ]
+            }
+          }
+        ],
+        "measures": [
+          {
+            "name": "Nesbat",
+            "expression": " ABS(sum(factFinance_P_L[RatioToRevenuePercent]))",
+            "formatString": "#,##0.00 %",
+            "lineageTag": "ce2d2da1-7617-4a6e-a6b8-fa091de45346"
+          },
+          {
+            "name": "Amount_Finance",
+            "expression": "divide (sum(factfinance_p_L[Amount]), 1000000)",
+            "formatString": "#,##0",
+            "lineageTag": "1a19b286-8e20-4eef-838d-cb79aa8e2eff"
+          }
+        ]
+      },
+      {
+        "name": "KPI_Financ",
+        "columns": [
+          {
+            "type": "calculatedTableColumn",
+            "name": "ID",
+            "dataType": "int64",
+            "isNameInferred": true,
+            "isDataTypeInferred": true,
+            "sourceColumn": "[ID]"
+          },
+          {
+            "type": "calculatedTableColumn",
+            "name": "Title",
+            "dataType": "string",
+            "isNameInferred": true,
+            "isDataTypeInferred": true,
+            "sourceColumn": "[Title]"
+          },
+          {
+            "type": "calculatedTableColumn",
+            "name": "Englishname",
+            "dataType": "string",
+            "isNameInferred": true,
+            "isDataTypeInferred": true,
+            "sourceColumn": "[Englishname]"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "CalculatedTable 1",
+            "source": {
+              "type": "calculated",
+              "expression": [
+                "  DATATABLE(",
+                "    \"ID\", INTEGER,",
+                "    \"Title\", STRING,",
+                "    \"Englishname\", STRING,",
+                "     ",
+                "",
+                "    { {1,\"نسبت جاری\",\"Nesbatjari\"},",
+                "       {2,\"نسبت آنی\",\"NesbatAni\"},",
+                "{3,\"گردش موجودی کالا\",\"DIO\"},",
+                "{4,\"دوره وصول مطالبات\",\"DSO\"},",
+                "{5,\"گردش دارایی ثابت\",\"GardeshDaraiiSabet\"},",
+                "{6,\"گردش کل دارایی ها\",\"GardeshKolDaraii\"},",
+                "{7,\"کل بدهی بر کل دارایی\",\"KolBedehiBarKolDaraii\"},",
+                "{8,\"توان پرداخت بهره\",\"TavanPardakht\"},",
+                "{9,\"حاشیه سودخالص\",\"NetProfitMargin\"},",
+                "{10,\"قدرت کسب دارایی\",\"GhodratKasbDaraii\"},",
+                "{11,\"بازده کل دارایی\",\"BazdehKolDaraii\"},",
+                "{12,\"بازده سهام\",\"BazdehSaham\"},",
+                "{13,\"نسبت بدهی جاری به ارزش ویژه\",\"Bedehijarii toHoghoghMalekane\"},",
+                "{14,\"بازده حقوق صاحبان سهام\",\"BazdehHoghoghMalekane\"},",
+                "{15,\"نسبت کل بدهی به ارزش ویژه\",\"BedehiToHoghoghMalekane\"},",
+                "{16,\"نسبت دارایی ثابت به ارزش ویژه\",\"DaraiiSabetTo HoghoghMalekane\"}",
+                "",
+                "       ",
+                "        }  ",
+                " )",
+                ""
+              ]
+            }
+          }
+        ],
+        "measures": [
+          {
+            "name": "Financial ratios",
+            "expression": [
+              "",
+              "VAR sel = SELECTEDVALUE(KPI_Financ[Englishname])",
+              "RETURN",
+              "SWITCH(",
+              "    TRUE(),",
+              "    sel = \"Nesbatjari\", COALESCE([Nesbatjari],0),",
+              "    sel = \"NesbatAni\", COALESCE([NesbatAni],0),",
+              "    sel = \"GardeshDaraiiSabet\", COALESCE([GardeshDaraiiSabet],0),",
+              "    sel = \"GardeshKolDaraii\", COALESCE([GardeshKolDaraii],0),",
+              "    sel = \"KolBedehiBarKolDaraii\", COALESCE([KolBedehiBarKolDaraii],0),",
+              "    sel = \"TavanPardakht\", COALESCE([TavanPardakht],0),",
+              "    sel = \"NetProfitMargin\", COALESCE([NetProfitMargin],0),",
+              "    sel = \"GhodratKasbDaraii\", COALESCE([GhodratKasbDaraii],0),",
+              "    sel = \"BazdehKolDaraii\", COALESCE([BazdehKolDaraii],0),",
+              "    sel = \"BazdehSaham\", COALESCE([BazdehSaham],0),",
+              "    sel = \"Bedehijarii toHoghoghMalekane\", COALESCE([Bedehijarii toHoghoghMalekane],0),",
+              "    sel = \"BazdehHoghoghMalekane\", COALESCE([BazdehHoghoghMalekane],0),",
+              "    sel = \"BedehiToHoghoghMalekane\", COALESCE([BedehiToHoghoghMalekane],0),",
+              "    sel = \"DaraiiSabetTo HoghoghMalekane\", COALESCE([DaraiiSabetTo HoghoghMalekane],0),",
+              "",
+              "    -- ✅ وقتی هیچ انتخابی نشده باشد",
+              "    COALESCE([Nesbatjari],0)",
+              "    + COALESCE([NesbatAni],0)",
+              "    + COALESCE([GardeshDaraiiSabet],0)",
+              "    + COALESCE([GardeshKolDaraii],0)",
+              "    + COALESCE([KolBedehiBarKolDaraii],0)",
+              "    + COALESCE([TavanPardakht],0)",
+              "    + COALESCE([NetProfitMargin],0)",
+              "    + COALESCE([GhodratKasbDaraii],0)",
+              "    + COALESCE([BazdehKolDaraii],0)",
+              "    + COALESCE([BazdehSaham],0)",
+              "    + COALESCE([Bedehijarii toHoghoghMalekane],0)",
+              "    + COALESCE([BazdehHoghoghMalekane],0)",
+              "    + COALESCE([BedehiToHoghoghMalekane],0)",
+              "    + COALESCE([DaraiiSabetTo HoghoghMalekane],0)",
+              ")",
+              ""
+            ]
           }
         ]
       }
@@ -4130,12 +4386,47 @@
         "toTable": "Diml4",
         "toColumn": "AccountId4",
         "crossFilteringBehavior": "bothDirections"
+      },
+      {
+        "name": "2ba1e88a-4ba2-49ed-aa8f-ed97552a2568",
+        "fromTable": "factFinance_P_L",
+        "fromColumn": "datekey",
+        "toTable": "DimDate_Big",
+        "toColumn": "datekey"
+      }
+    ],
+    "roles": [
+      {
+        "name": "Role",
+        "modelPermission": "read",
+        "members": [
+          {
+            "memberName": "EL\\BI-Eltiam-Managment",
+            "memberId": "S-1-5-21-703900734-646726423-983355036-8808"
+          },
+          {
+            "memberName": "EL\\BI-Eltiam-Setad",
+            "memberId": "S-1-5-21-703900734-646726423-983355036-8814"
+          },
+          {
+            "memberName": "EL\\IT-Group",
+            "memberId": "S-1-5-21-703900734-646726423-983355036-1284"
+          },
+          {
+            "memberName": "APPBI\\Bamdad",
+            "memberId": "S-1-5-21-499568545-3104466371-3761005532-1009"
+          }
+        ]
       }
     ],
     "annotations": [
       {
         "name": "ClientCompatibilityLevel",
         "value": "700"
+      },
+      {
+        "name": "__TEdtr",
+        "value": "1"
       }
     ]
   },

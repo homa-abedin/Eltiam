@@ -2,7 +2,7 @@
 <BuildLog xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <ProjectInfo>
     <Name>WEB_ETL</Name>
-    <LastWriteTime>2025-10-26T07:12:15.4213207Z</LastWriteTime>
+    <LastWriteTime>2025-11-09T12:36:40.4124514Z</LastWriteTime>
     <LastKnownProtectionLevel>EncryptSensitiveWithUserKey</LastKnownProtectionLevel>
   </ProjectInfo>
   <LastBuildInfos>
@@ -13,17 +13,17 @@
     </ProjectBuildItemInfo>
     <ProjectBuildItemInfo>
       <Name>Aggrigate All TAble Web to DW.dtsx</Name>
-      <LastWriteTime>2025-10-29T09:58:24.2356775Z</LastWriteTime>
+      <LastWriteTime>2025-11-09T12:20:53.8802309Z</LastWriteTime>
       <LastKnownProtectionLevel>EncryptSensitiveWithUserKey</LastKnownProtectionLevel>
     </ProjectBuildItemInfo>
     <ProjectBuildItemInfo>
       <Name>Total.dtsx</Name>
-      <LastWriteTime>2025-10-26T07:27:15.8324462Z</LastWriteTime>
+      <LastWriteTime>2025-11-19T12:05:08.8393817Z</LastWriteTime>
       <LastKnownProtectionLevel>EncryptSensitiveWithUserKey</LastKnownProtectionLevel>
     </ProjectBuildItemInfo>
     <ProjectBuildItemInfo>
       <Name>MarketShare.dtsx</Name>
-      <LastWriteTime>2025-10-06T13:57:51.485471Z</LastWriteTime>
+      <LastWriteTime>2025-11-04T08:00:18.8270298Z</LastWriteTime>
       <LastKnownProtectionLevel>EncryptSensitiveWithUserKey</LastKnownProtectionLevel>
     </ProjectBuildItemInfo>
     <ProjectBuildItemInfo>
@@ -113,12 +113,67 @@
     </ProjectBuildItemInfo>
     <ProjectBuildItemInfo>
       <Name>ExcelFetch.dtsx</Name>
-      <LastWriteTime>2025-10-23T18:18:43.6408253Z</LastWriteTime>
+      <LastWriteTime>2025-11-19T09:03:29.9455093Z</LastWriteTime>
       <LastKnownProtectionLevel>EncryptSensitiveWithUserKey</LastKnownProtectionLevel>
     </ProjectBuildItemInfo>
     <ProjectBuildItemInfo>
       <Name>AllOfWebServicePackage.dtsx</Name>
-      <LastWriteTime>2025-10-23T18:39:05.5060463Z</LastWriteTime>
+      <LastWriteTime>2025-11-08T06:35:22.7456894Z</LastWriteTime>
+      <LastKnownProtectionLevel>EncryptSensitiveWithUserKey</LastKnownProtectionLevel>
+    </ProjectBuildItemInfo>
+    <ProjectBuildItemInfo>
+      <Name>ProductSKU.dtsx</Name>
+      <LastWriteTime>2025-11-19T11:16:40.0886436Z</LastWriteTime>
+      <LastKnownProtectionLevel>EncryptSensitiveWithUserKey</LastKnownProtectionLevel>
+    </ProjectBuildItemInfo>
+    <ProjectBuildItemInfo>
+      <Name>ProductEmail.dtsx</Name>
+      <LastWriteTime>2025-11-09T12:36:40.1624326Z</LastWriteTime>
+      <LastKnownProtectionLevel>EncryptSensitiveWithUserKey</LastKnownProtectionLevel>
+    </ProjectBuildItemInfo>
+    <ProjectBuildItemInfo>
+      <Name>CodeExcelCEnter.dtsx</Name>
+      <LastWriteTime>2025-11-19T09:03:29.2354618Z</LastWriteTime>
+      <LastKnownProtectionLevel>EncryptSensitiveWithUserKey</LastKnownProtectionLevel>
+    </ProjectBuildItemInfo>
+    <ProjectBuildItemInfo>
+      <Name>Update Center.dtsx</Name>
+      <LastWriteTime>2025-11-19T11:44:26.5879684Z</LastWriteTime>
+      <LastKnownProtectionLevel>EncryptSensitiveWithUserKey</LastKnownProtectionLevel>
+    </ProjectBuildItemInfo>
+    <ProjectBuildItemInfo>
+      <Name>EmailCenter.dtsx</Name>
+      <LastWriteTime>2025-11-09T12:20:53.5839783Z</LastWriteTime>
+      <LastKnownProtectionLevel>EncryptSensitiveWithUserKey</LastKnownProtectionLevel>
+    </ProjectBuildItemInfo>
+    <ProjectBuildItemInfo>
+      <Name>FactSales.dtsx</Name>
+      <LastWriteTime>2025-11-19T10:52:32.8857154Z</LastWriteTime>
+      <LastKnownProtectionLevel>EncryptSensitiveWithUserKey</LastKnownProtectionLevel>
+    </ProjectBuildItemInfo>
+    <ProjectBuildItemInfo>
+      <Name>RetuenFactSales.dtsx</Name>
+      <LastWriteTime>2025-11-19T10:52:32.8388366Z</LastWriteTime>
+      <LastKnownProtectionLevel>EncryptSensitiveWithUserKey</LastKnownProtectionLevel>
+    </ProjectBuildItemInfo>
+    <ProjectBuildItemInfo>
+      <Name>FactInventory.dtsx</Name>
+      <LastWriteTime>2025-11-19T10:52:32.4325839Z</LastWriteTime>
+      <LastKnownProtectionLevel>EncryptSensitiveWithUserKey</LastKnownProtectionLevel>
+    </ProjectBuildItemInfo>
+    <ProjectBuildItemInfo>
+      <Name>InventoryNULL.dtsx</Name>
+      <LastWriteTime>2025-11-09T12:25:27.4726713Z</LastWriteTime>
+      <LastKnownProtectionLevel>EncryptSensitiveWithUserKey</LastKnownProtectionLevel>
+    </ProjectBuildItemInfo>
+    <ProjectBuildItemInfo>
+      <Name>SalesNULL.dtsx</Name>
+      <LastWriteTime>2025-11-09T12:20:51.3090252Z</LastWriteTime>
+      <LastKnownProtectionLevel>EncryptSensitiveWithUserKey</LastKnownProtectionLevel>
+    </ProjectBuildItemInfo>
+    <ProjectBuildItemInfo>
+      <Name>GatterALL.dtsx</Name>
+      <LastWriteTime>2025-11-19T12:07:40.5070578Z</LastWriteTime>
       <LastKnownProtectionLevel>EncryptSensitiveWithUserKey</LastKnownProtectionLevel>
     </ProjectBuildItemInfo>
   </LastBuildInfos>

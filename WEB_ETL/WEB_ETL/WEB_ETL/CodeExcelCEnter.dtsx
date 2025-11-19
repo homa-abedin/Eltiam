@@ -1,0 +1,269 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="11/9/2025 3:39:18 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="IT-ABEDINZADEH"
+  DTS:CreatorName="EL\abedinzadehh"
+  DTS:DTSID="{5FA06B64-AF97-498F-B665-D1050BD0774D}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="16.0.5685.0"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="CodeExcelCEnter"
+  DTS:PackageType="5"
+  DTS:VersionBuild="5"
+  DTS:VersionGUID="{9FFC8E8D-07E1-491A-A32C-3E035CF2C5AE}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[192.168.10.10.Stage]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{7B3F96E3-49ED-4574-9BFB-55862831B175}"
+      DTS:ObjectName="192.168.10.10.Stage">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="1"
+          DTS:ConnectRetryInterval="5"
+          DTS:ConnectionString="Data Source=192.168.10.10;Initial Catalog=Stage;Provider=MSOLEDBSQL.1;Integrated Security=SSPI;Application Name=SSIS-Package1-{7B3F96E3-49ED-4574-9BFB-55862831B175}192.168.10.10.Stage;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Create Center Code Excel"
+      DTS:CreationName="STOCK:SEQUENCE"
+      DTS:Description="Sequence Container"
+      DTS:DTSID="{e28ecb93-8368-49be-8157-3800afad1f71}"
+      DTS:ExecutableType="STOCK:SEQUENCE"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Create Center Code Excel">
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\Create Center Code Excel\BehestanCenter"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{80de73be-6d2f-4aac-975d-c9e9ab5a93c9}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="BehestanCenter"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{7B3F96E3-49ED-4574-9BFB-55862831B175}"
+              SQLTask:SqlStatementSource=" INSERT INTO web.behestan_center (center)&#xA;SELECT DISTINCT c2.Center&#xA;FROM [web].behestan c2&#xA;WHERE NOT EXISTS (&#xA;    SELECT 1&#xA;    FROM web.behestan_center c1&#xA;    WHERE c1.center = c2.Center and Center is not null&#xA;) &#xA;and c2.Center is not null&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Create Center Code Excel\HejratCenter"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:Disabled="True"
+          DTS:DTSID="{dc51f13d-05a4-4804-9319-b7187de9be45}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="HejratCenter"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{A80B0B34-5E8D-4ED1-B76E-7B257A977CBE}"
+              SQLTask:SqlStatementSource=" INSERT INTO web.Hejrat_center (center)&#xA;SELECT DISTINCT c2.Center&#xA;FROM [web].hejrat c2&#xA;WHERE NOT EXISTS (&#xA;    SELECT 1&#xA;    FROM web.Hejrat_center c1&#xA;    WHERE c1.center = c2.Center&#xA;) &#xA;order by c2.Center" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Create Center Code Excel\NokhbeganCenter"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{6bd1b877-02df-4be5-8884-527ea94c8f50}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="NokhbeganCenter"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{7B3F96E3-49ED-4574-9BFB-55862831B175}"
+              SQLTask:SqlStatementSource=" INSERT INTO web.nokhbegan_center (center)&#xA;SELECT DISTINCT c2.Branch&#xA;FROM [web].Nokhbegan c2&#xA;WHERE NOT EXISTS (&#xA;    SELECT 1&#xA;    FROM web.nokhbegan_center c1&#xA;    WHERE c1.center = c2.Branch and Center is not null&#xA;) &#xA;and c2.Branch is not null&#xA;&#xA;&#xA;Go&#xA;&#xA;delete from web.nokhbegan_center where center =''&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Create Center Code Excel\ShayaCEnter"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:Disabled="True"
+          DTS:DTSID="{ea503d3e-05a3-440a-a2e4-a6ebd818bfcb}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="ShayaCEnter"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{7B3F96E3-49ED-4574-9BFB-55862831B175}"
+              SQLTask:SqlStatementSource="INSERT INTO web.shaya_center (center)&#xA;SELECT DISTINCT c2.Center&#xA;FROM [web].[Shaya] c2&#xA;WHERE NOT EXISTS (&#xA;    SELECT 1&#xA;    FROM web.shaya_center c1&#xA;    WHERE c1.center = c2.Center&#xA;) &#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Create Center Code Excel.PrecedenceConstraints[Constraint]"
+          DTS:CreationName=""
+          DTS:DTSID="{11dd6234-f4a1-4c0f-9ca2-8fb6f7585d97}"
+          DTS:From="Package\Create Center Code Excel\ShayaCEnter"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint"
+          DTS:To="Package\Create Center Code Excel\HejratCenter"
+          DTS:Value="2" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Create Center Code Excel.PrecedenceConstraints[Constraint 1]"
+          DTS:CreationName=""
+          DTS:DTSID="{843fdbb1-acd1-4b4a-be8e-abfbfaf8deb2}"
+          DTS:From="Package\Create Center Code Excel\HejratCenter"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 1"
+          DTS:To="Package\Create Center Code Excel\BehestanCenter"
+          DTS:Value="2" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Create Center Code Excel.PrecedenceConstraints[Constraint 2]"
+          DTS:CreationName=""
+          DTS:DTSID="{81147ae2-daeb-4225-91cf-f95b86f51409}"
+          DTS:From="Package\Create Center Code Excel\BehestanCenter"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 2"
+          DTS:To="Package\Create Center Code Excel\NokhbeganCenter"
+          DTS:Value="2" />
+      </DTS:PrecedenceConstraints>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="153,42"
+          Id="Package\Create Center Code Excel\BehestanCenter"
+          TopLeft="19,167" />
+        <NodeLayout
+          Size="139,42"
+          Id="Package\Create Center Code Excel\HejratCenter"
+          TopLeft="19,85" />
+        <NodeLayout
+          Size="163,42"
+          Id="Package\Create Center Code Excel\NokhbeganCenter"
+          TopLeft="20,237" />
+        <NodeLayout
+          Size="139,42"
+          Id="Package\Create Center Code Excel\ShayaCEnter"
+          TopLeft="28,20" />
+        <EdgeLayout
+          Id="Package\Create Center Code Excel.PrecedenceConstraints[Constraint]"
+          TopLeft="97.5,62">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-9,23"
+              Start="0,0"
+              End="-9,15.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,7.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,7.5"
+                    Point2="0,11.5"
+                    Point3="-4,11.5" />
+                  <mssgle:LineSegment
+                    End="-5,11.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-5,11.5"
+                    Point2="-9,11.5"
+                    Point3="-9,15.5" />
+                  <mssgle:LineSegment
+                    End="-9,15.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-29.804453125,16.5,50.60890625,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Create Center Code Excel.PrecedenceConstraints[Constraint 1]"
+          TopLeft="92,127">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,40"
+              Start="0,0"
+              End="0,32.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,32.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-25.304453125,10.4453125,50.60890625,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Create Center Code Excel.PrecedenceConstraints[Constraint 2]"
+          TopLeft="98.5,209">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,28"
+              Start="0,0"
+              End="0,20.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,20.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-25.304453125,4.4453125,50.60890625,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="240,334"
+          Size="240,377"
+          Id="Package\Create Center Code Excel"
+          TopLeft="60,60" />
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

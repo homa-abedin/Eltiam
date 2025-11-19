@@ -11,8 +11,8 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="Total"
   DTS:PackageType="5"
-  DTS:VersionBuild="19"
-  DTS:VersionGUID="{4102E1EF-5821-42FC-A9F8-8C4647BF424A}">
+  DTS:VersionBuild="21"
+  DTS:VersionGUID="{0871E75E-2C11-44EB-9A3E-06C89058A820}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -124,17 +124,17 @@
       </DTS:PrecedenceConstraints>
     </DTS:Executable>
     <DTS:Executable
-      DTS:refId="Package\KHARAZMI"
+      DTS:refId="Package\Sales_Rahkaran_ KHARAZMI"
       DTS:CreationName="STOCK:SEQUENCE"
       DTS:Description="Sequence Container"
       DTS:DTSID="{325B9CAF-50EB-4D50-9681-D30A48C2EE99}"
       DTS:ExecutableType="STOCK:SEQUENCE"
       DTS:LocaleID="-1"
-      DTS:ObjectName="KHARAZMI">
+      DTS:ObjectName="Sales_Rahkaran_ KHARAZMI">
       <DTS:Variables />
       <DTS:Executables>
         <DTS:Executable
-          DTS:refId="Package\KHARAZMI\Analysis Services Processing Task_Kharazmi"
+          DTS:refId="Package\Sales_Rahkaran_ KHARAZMI\Analysis Services Processing Task_Kharazmi"
           DTS:CreationName="Microsoft.DTSProcessingTask"
           DTS:Description="Analysis Services Processing Task"
           DTS:DTSID="{3f35405f-5047-41ae-8815-844fd2f999c3}"
@@ -150,7 +150,7 @@
           </DTS:ObjectData>
         </DTS:Executable>
         <DTS:Executable
-          DTS:refId="Package\KHARAZMI\DW_Kharami"
+          DTS:refId="Package\Sales_Rahkaran_ KHARAZMI\DW_Kharami"
           DTS:CreationName="Microsoft.ExecutePackageTask"
           DTS:Description="Execute Package Task"
           DTS:DTSID="{024580ce-48fe-4f76-86f7-1ec1b0592498}"
@@ -167,7 +167,24 @@
           </DTS:ObjectData>
         </DTS:Executable>
         <DTS:Executable
-          DTS:refId="Package\KHARAZMI\STAGE_Kharazmi"
+          DTS:refId="Package\Sales_Rahkaran_ KHARAZMI\Finance - DW-Stage"
+          DTS:CreationName="Microsoft.ExecutePackageTask"
+          DTS:Description="Execute Package Task"
+          DTS:DTSID="{09B0FE8F-AB21-47AA-B56B-7D0610BD977D}"
+          DTS:ExecutableType="Microsoft.ExecutePackageTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Finance - DW-Stage"
+          DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <ExecutePackageTask>
+              <UseProjectReference>True</UseProjectReference>
+              <PackageName>Finance_kharazmi.dtsx</PackageName>
+            </ExecutePackageTask>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Sales_Rahkaran_ KHARAZMI\STAGE_Kharazmi"
           DTS:CreationName="Microsoft.ExecutePackageTask"
           DTS:Description="Execute Package Task"
           DTS:DTSID="{c5246997-9059-4eae-a14d-a8716b6a73b5}"
@@ -186,21 +203,29 @@
       </DTS:Executables>
       <DTS:PrecedenceConstraints>
         <DTS:PrecedenceConstraint
-          DTS:refId="Package\KHARAZMI.PrecedenceConstraints[Constraint 2]"
+          DTS:refId="Package\Sales_Rahkaran_ KHARAZMI.PrecedenceConstraints[Constraint]"
+          DTS:CreationName=""
+          DTS:DTSID="{C227580F-0F05-416D-888C-8A4B7D07ED08}"
+          DTS:From="Package\Sales_Rahkaran_ KHARAZMI\DW_Kharami"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint"
+          DTS:To="Package\Sales_Rahkaran_ KHARAZMI\Finance - DW-Stage" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Sales_Rahkaran_ KHARAZMI.PrecedenceConstraints[Constraint 1]"
+          DTS:CreationName=""
+          DTS:DTSID="{45EC7E80-4A84-40FC-96D3-A8E958D46397}"
+          DTS:From="Package\Sales_Rahkaran_ KHARAZMI\Finance - DW-Stage"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 1"
+          DTS:To="Package\Sales_Rahkaran_ KHARAZMI\Analysis Services Processing Task_Kharazmi" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Sales_Rahkaran_ KHARAZMI.PrecedenceConstraints[Constraint 2]"
           DTS:CreationName=""
           DTS:DTSID="{CD80CEEC-34C2-482B-9835-26F1C9BCC421}"
-          DTS:From="Package\KHARAZMI\STAGE_Kharazmi"
+          DTS:From="Package\Sales_Rahkaran_ KHARAZMI\STAGE_Kharazmi"
           DTS:LogicalAnd="True"
           DTS:ObjectName="Constraint 2"
-          DTS:To="Package\KHARAZMI\DW_Kharami" />
-        <DTS:PrecedenceConstraint
-          DTS:refId="Package\KHARAZMI.PrecedenceConstraints[Constraint 3]"
-          DTS:CreationName=""
-          DTS:DTSID="{BFAD7872-7438-47B2-8343-9CA078FB465D}"
-          DTS:From="Package\KHARAZMI\DW_Kharami"
-          DTS:LogicalAnd="True"
-          DTS:ObjectName="Constraint 3"
-          DTS:To="Package\KHARAZMI\Analysis Services Processing Task_Kharazmi" />
+          DTS:To="Package\Sales_Rahkaran_ KHARAZMI\DW_Kharami" />
       </DTS:PrecedenceConstraints>
     </DTS:Executable>
   </DTS:Executables>
@@ -212,7 +237,7 @@
       DTS:From="Package\ELTIAM"
       DTS:LogicalAnd="True"
       DTS:ObjectName="Constraint"
-      DTS:To="Package\KHARAZMI"
+      DTS:To="Package\Sales_Rahkaran_ KHARAZMI"
       DTS:Value="2" />
   </DTS:PrecedenceConstraints>
   <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
@@ -304,18 +329,18 @@
           TopLeft="98,69" />
         <NodeLayout
           Size="286,42"
-          Id="Package\KHARAZMI\Analysis Services Processing Task_Kharazmi"
-          TopLeft="5.5,187.5" />
+          Id="Package\Sales_Rahkaran_ KHARAZMI\Analysis Services Processing Task_Kharazmi"
+          TopLeft="5.5,271.5" />
         <NodeLayout
           Size="140,42"
-          Id="Package\KHARAZMI\DW_Kharami"
+          Id="Package\Sales_Rahkaran_ KHARAZMI\DW_Kharami"
           TopLeft="72.5,84.5" />
         <NodeLayout
           Size="195,42"
-          Id="Package\KHARAZMI\STAGE_Kharazmi"
+          Id="Package\Sales_Rahkaran_ KHARAZMI\STAGE_Kharazmi"
           TopLeft="43.5,5.5" />
         <EdgeLayout
-          Id="Package\KHARAZMI.PrecedenceConstraints[Constraint 2]"
+          Id="Package\Sales_Rahkaran_ KHARAZMI.PrecedenceConstraints[Constraint 2]"
           TopLeft="141.75,47.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
@@ -336,20 +361,58 @@
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
+        <NodeLayout
+          Size="173,42"
+          Id="Package\Sales_Rahkaran_ KHARAZMI\Finance - DW-Stage"
+          TopLeft="49,177" />
         <EdgeLayout
-          Id="Package\KHARAZMI.PrecedenceConstraints[Constraint 3]"
-          TopLeft="145.5,126.5">
+          Id="Package\Sales_Rahkaran_ KHARAZMI.PrecedenceConstraints[Constraint]"
+          TopLeft="139,126.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,61"
+              EndConnector="0,50.5"
               Start="0,0"
-              End="0,53.5">
+              End="0,43">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,53.5" />
+                    End="0,43" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Sales_Rahkaran_ KHARAZMI.PrecedenceConstraints[Constraint 1]"
+          TopLeft="135.5,219">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="13,52.5"
+              Start="0,0"
+              End="13,45">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,22.25" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,22.25"
+                    Point2="0,26.25"
+                    Point3="4,26.25" />
+                  <mssgle:LineSegment
+                    End="9,26.25" />
+                  <mssgle:CubicBezierSegment
+                    Point1="9,26.25"
+                    Point2="13,26.25"
+                    Point3="13,30.25" />
+                  <mssgle:LineSegment
+                    End="13,45" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -361,31 +424,43 @@
         <ContainerLayout
           HeaderHeight="43"
           IsExpanded="True"
-          PanelSize="296,284"
-          Size="296,327"
-          Id="Package\KHARAZMI"
+          PanelSize="296,364"
+          Size="296,407"
+          Id="Package\Sales_Rahkaran_ KHARAZMI"
           TopLeft="483,86" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint]"
-          TopLeft="381,248">
+          TopLeft="381,246.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="102,0"
+              EndConnector="102,43"
               Start="0,0"
-              End="94.5,0">
+              End="94.5,43">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="94.5,0" />
+                    End="47,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="47,0"
+                    Point2="51,0"
+                    Point3="51,4" />
+                  <mssgle:LineSegment
+                    End="51,39" />
+                  <mssgle:CubicBezierSegment
+                    Point1="51,39"
+                    Point2="51,43"
+                    Point3="55,43" />
+                  <mssgle:LineSegment
+                    End="94.5,43" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="21.945546875,5,50.60890625,11.609375"
+              BoundingBox="25.695546875,-17.609375,50.60890625,11.609375"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>

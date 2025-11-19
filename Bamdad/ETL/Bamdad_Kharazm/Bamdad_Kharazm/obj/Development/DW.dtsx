@@ -11,8 +11,8 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="DW"
   DTS:PackageType="5"
-  DTS:VersionBuild="272"
-  DTS:VersionGUID="{BE08F68C-8250-47B4-80F1-4F724440302A}">
+  DTS:VersionBuild="283"
+  DTS:VersionGUID="{3804C7D5-B6DB-453D-BE59-E2EFB75A98D2}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -311,6 +311,14 @@
                           refId="Package\FactFinance\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[IDL2]"
                           dataType="i4"
                           name="IDL2" />
+                        <externalMetadataColumn
+                          refId="Package\FactFinance\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[DL5ID]"
+                          dataType="i4"
+                          name="DL5ID" />
+                        <externalMetadataColumn
+                          refId="Package\FactFinance\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[DL6ID]"
+                          dataType="i4"
+                          name="DL6ID" />
                       </externalMetadataColumns>
                     </input>
                   </inputs>
@@ -714,12 +722,29 @@ and d.Isupdate=1</property>
           DTS:LocaleID="-1"
           DTS:ObjectName="delete Rows isupdate1"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="0">
+          DTS:ThreadHint="1">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
               SQLTask:Connection="{3810A15B-64DA-40D3-9826-B8CC9CADDE42}"
-              SQLTask:SqlStatementSource="delete  fs &#xA;from  dw..FactFinance fs &#xA;left join eltiam.FINDocDetails d on d.Id=fs.DetailID&#xA;left join eltiam.FINDocHeaders h on h.Id=fs.DocHeaderID&#xA;where d.isupdate=1&#xA;or h.isupdate=1" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+              SQLTask:SqlStatementSource="delete fs&#xA;from  dw..FactFinance fs &#xA; join eltiam.FINDocDetails d on d.Id=fs.DetailID&#xA; join eltiam.FINDocHeaders h on h.Id=fs.DocHeaderID&#xA;where d.isupdate=1&#xA;or h.isupdate=1" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\FactFinance\factFinance_P_L"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{DD6462BD-4286-40F3-B15D-7C9F58B386D4}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="factFinance_P_L"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{3810A15B-64DA-40D3-9826-B8CC9CADDE42}"
+              SQLTask:SqlStatementSource="drop table if exists dw..factFinance_P_L&#xA;GO&#xA;&#xA;;WITH Periods AS (&#xA;    SELECT Jalali_Year, N'۳ماهه' AS PeriodType, &#xA;           CAST(Jalali_Year * 10000 + 101 AS int) AS StartDate,&#xA;           CAST(Jalali_Year * 10000 + 331 AS int) AS EndDate&#xA;    FROM dimdate&#xA;    GROUP BY Jalali_Year&#xA;    UNION ALL&#xA;    SELECT Jalali_Year, N'۶ماهه', &#xA;           CAST(Jalali_Year * 10000 + 101 AS int),&#xA;           CAST(Jalali_Year * 10000 + 631 AS int)&#xA;    FROM dimdate&#xA;    GROUP BY Jalali_Year&#xA;    UNION ALL&#xA;    SELECT Jalali_Year, N'۹ماهه',&#xA;           CAST(Jalali_Year * 10000 + 101 AS int),&#xA;           CAST(Jalali_Year * 10000 + 930 AS int)&#xA;    FROM dimdate&#xA;    GROUP BY Jalali_Year&#xA;    UNION ALL&#xA;    SELECT Jalali_Year, N'۱۲ماهه',&#xA;           CAST(Jalali_Year * 10000 + 101 AS int),&#xA;           CAST(Jalali_Year * 10000 + 1231 AS int)&#xA;    FROM dimdate&#xA;    GROUP BY Jalali_Year&#xA;)&#xA;, base AS (&#xA;    SELECT &#xA;        p.Jalali_Year,&#xA;        p.PeriodType,&#xA;        CASE &#xA;            WHEN f.IDL2 = 28 THEN 1 --N'SalesFinance'&#xA;            WHEN f.IDL2 IN (37,36) THEN 2--N'COGS'&#xA;            WHEN f.IDL2 IN (31,34,35) THEN 3--N'Expenses'&#xA;            WHEN f.IDL2 = 29 THEN 4--N'OtherIncome'&#xA;            WHEN f.IDL2 = 32 THEN 5--N'OtherExpenses'&#xA;            WHEN f.IDL2 = 33 THEN 6--N'FinancialExpenses'&#xA;            WHEN f.IDL2 = 30 THEN 7--N'OtherNONOperationIncome'&#xA;        END AS SodvaZian,idl2,p.StartDate, p.EndDate,&#xA;        SUM(f.DebitBalance) AS Amount&#xA;    FROM dw..FactFinance f&#xA;    JOIN Periods p &#xA;      ON f.DateKey &gt;= p.StartDate AND f.DateKey &lt;p.EndDate&#xA;    WHERE f.FINDocHeader_FINDocType NOT IN (2,4)&#xA;    GROUP BY p.Jalali_Year, p.PeriodType, f.IDL2,p.StartDate, p.EndDate &#xA;)&#xA;&#xA;,&#xA;-- خلاصه سالانه با Pivot ساده (برای محاسبات بعدی)&#xA;agg AS (&#xA;    SELECT&#xA;        Jalali_Year,PeriodType,&#xA;        SUM(CASE WHEN SodvaZian = 1--N'SalesFinance'&#xA;&#x9;&#x9;&#x9;THEN -1*Amount ELSE 0 END) AS daramad_amaliati,&#xA;        SUM(CASE WHEN SodvaZian = 2--N'COGS' &#xA;&#x9;&#x9;THEN -1*Amount ELSE 0 END) AS bahaye_tamam,&#xA;        SUM(CASE WHEN SodvaZian = 3--N'Expenses' &#xA;&#x9;&#x9;THEN -1*Amount ELSE 0 END) AS hazine_edari,&#xA;        SUM(CASE WHEN SodvaZian = 4--N'OtherIncome' &#xA;&#x9;&#x9;THEN -1*Amount ELSE 0 END) AS saye_daramad,&#xA;        SUM(CASE WHEN SodvaZian = 5--N'OtherExpenses'&#xA;&#x9;&#x9;THEN -1*Amount ELSE 0 END) AS saye_hazine,&#xA;        SUM(CASE WHEN SodvaZian = 6--N'FinancialExpenses'&#xA;&#x9;&#x9;THEN -1*Amount ELSE 0 END) AS hazine_mali,&#xA;        SUM(CASE WHEN SodvaZian = 7--N'OtherNONOperationIncome' &#xA;&#x9;&#x9;THEN -1*Amount ELSE 0 END) AS saye_daramad_amaliati&#xA;    FROM base&#xA;    GROUP BY Jalali_Year, PeriodType&#xA;)&#xA;&#xA;,&#xA;calc AS (&#xA;     SELECT&#xA;        Jalali_Year,PeriodType,&#xA;       CAST( daramad_amaliati AS decimal(18,2))[درآمد عملیاتی] ,&#xA;        CAST( bahaye_tamam AS decimal(18,2))[بهای تمام شده],&#xA;        CAST( hazine_edari AS decimal(18,2))[هزینه‌های فروش، اداری و عمومی],&#xA;        CAST( saye_daramad AS decimal(18,2))[سایر درآمدها],&#xA;        CAST( saye_hazine AS decimal(18,2))[سایر هزینه‌ها],&#xA;        CAST( hazine_mali AS decimal(18,2))[هزینه‌های مالی],&#xA;        CAST( saye_daramad_amaliati AS decimal(18,2))[سایر درآمدهای غیرعملیاتی],&#xA;        -- محاسبات صحیح&#xA;        CAST((daramad_amaliati + bahaye_tamam)AS decimal(18,2))  AS [سود ناخالص],&#xA;        CAST((daramad_amaliati + bahaye_tamam + hazine_edari + saye_daramad + saye_hazine)AS decimal(18,2)) AS [سود عملیاتی],&#xA;        CAST((daramad_amaliati +bahaye_tamam + hazine_edari + saye_daramad + saye_hazine &#xA;         + hazine_mali + saye_daramad_amaliati)AS decimal(18,2)) AS [سود عملیات در حال تداوم قبل از مالیات],&#xA;       CAST(&#xA;            CASE &#xA;                WHEN (daramad_amaliati + bahaye_tamam + hazine_edari + saye_daramad + saye_hazine &#xA;                      + hazine_mali + saye_daramad_amaliati) &lt; 0 THEN 0&#xA;                ELSE (daramad_amaliati + bahaye_tamam + hazine_edari + saye_daramad + saye_hazine &#xA;                      + hazine_mali + saye_daramad_amaliati) * -0.25&#xA;            END &#xA;        AS decimal(18,2) ) AS [هزینه مالیات بردرآمد],&#xA;&#xA;&#x9;&#x9;CAST((daramad_amaliati +bahaye_tamam + hazine_edari + saye_daramad + saye_hazine &#xA;         + hazine_mali + saye_daramad_amaliati)&#xA;&#x9;&#x9; +&#xA;&#x9;&#xA;            CASE &#xA;                WHEN (daramad_amaliati + bahaye_tamam + hazine_edari + saye_daramad + saye_hazine &#xA;                      + hazine_mali + saye_daramad_amaliati) &lt; 0 THEN 0&#xA;                ELSE (daramad_amaliati + bahaye_tamam + hazine_edari + saye_daramad + saye_hazine &#xA;                      + hazine_mali + saye_daramad_amaliati) * -0.25&#xA;            END &#xA;        AS decimal(18,2) ) as [سود خالص]&#xA;&#xA;    FROM agg&#xA;),&#xA;unpvt AS (&#xA;    SELECT &#xA;        Jalali_Year,&#xA;&#x9;&#x9;PeriodType,&#xA;        SodvaZian,&#xA;        Amount&#xA;    FROM calc&#xA;    UNPIVOT (&#xA;        Amount FOR SodvaZian IN (&#xA;            [درآمد عملیاتی],&#xA;            [بهای تمام شده],&#xA;            [هزینه‌های فروش، اداری و عمومی],&#xA;            [سایر درآمدها],&#xA;            [سایر هزینه‌ها],&#xA;            [هزینه‌های مالی],&#xA;            [سایر درآمدهای غیرعملیاتی],&#xA;            [سود ناخالص],&#xA;            [سود عملیاتی],&#xA;            [سود عملیات در حال تداوم قبل از مالیات],&#xA;            [هزینه مالیات بردرآمد],&#xA;            [سود خالص]&#xA;        )&#xA;    ) AS unpvt&#xA;)&#xA;-- 👇 محاسبه درصد نسبت به درآمد عملیاتی&#xA;SELECT &#xA;  cast (concat(u.Jalali_Year ,'0101') as int )datekey,&#xA;&#x9;u.PeriodType,&#xA;    u.SodvaZian,&#xA;    u.Amount,&#xA;    CAST(&#xA;        CASE &#xA;            WHEN a.daramad_amaliati = 0 THEN NULL&#xA;            ELSE (u.Amount / a.daramad_amaliati) &#xA;        END AS decimal(10,4)&#xA;    ) AS RatioToRevenuePercent&#xA;&#x9;, CASE &#xA;        WHEN u.SodvaZian = N'درآمد عملیاتی' THEN 1&#xA;        WHEN u.SodvaZian = N'بهای تمام شده' THEN 2&#xA;        WHEN u.SodvaZian = N'سود ناخالص'   THEN 3&#xA;        WHEN u.SodvaZian = N'هزینه‌های فروش، اداری و عمومی'  THEN 4&#xA;        WHEN u.SodvaZian = N'سایر درآمدها'   THEN 5&#xA;        WHEN u.SodvaZian = N'سایر هزینه‌ها'   THEN 6&#xA;        WHEN u.SodvaZian = N'هزینه‌های مالی'   THEN 8&#xA;        WHEN u.SodvaZian = N'سایر درآمدهای غیرعملیاتی' THEN 9&#xA;        WHEN u.SodvaZian = N'سود عملیاتی' THEN 7&#xA;        WHEN u.SodvaZian = N'سود عملیات در حال تداوم قبل از مالیات' THEN 10&#xA;        WHEN u.SodvaZian = N'هزینه مالیات بردرآمد'  THEN 11&#xA;        WHEN u.SodvaZian = N'سود خالص'     THEN 12&#xA;        ELSE 99&#xA;    END AS SodvaZianSortID&#xA;&#x9;,CASE u.PeriodType &#xA;              WHEN N'۳ماهه' THEN 1 &#xA;              WHEN N'۶ماهه' THEN 2 &#xA;              WHEN N'۹ماهه' THEN 3 &#xA;              when N'۱۲ماهه' then 4 END as PeriodTypeId&#xA;&#x9;into dw..factFinance_P_L&#xA;FROM unpvt u&#xA;JOIN agg a ON u.Jalali_Year = a.Jalali_Year and u.PeriodType= a.PeriodType &#xA;ORDER BY datekey, &#xA;         CASE u.PeriodType &#xA;              WHEN N'۳ماهه' THEN 1 &#xA;              WHEN N'۶ماهه' THEN 2 &#xA;              WHEN N'۹ماهه' THEN 3 &#xA;              ELSE 4 END;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
           </DTS:ObjectData>
         </DTS:Executable>
         <DTS:Executable
@@ -947,6 +972,14 @@ and d.Isupdate=1</property>
                           refId="Package\FactFinance\Insert\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[IDL2]"
                           dataType="i4"
                           name="IDL2" />
+                        <externalMetadataColumn
+                          refId="Package\FactFinance\Insert\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[DL5ID]"
+                          dataType="i4"
+                          name="DL5ID" />
+                        <externalMetadataColumn
+                          refId="Package\FactFinance\Insert\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[DL6ID]"
+                          dataType="i4"
+                          name="DL6ID" />
                       </externalMetadataColumns>
                     </input>
                   </inputs>
@@ -1344,6 +1377,7 @@ and d.isinsert=1</property>
           DTS:refId="Package\FactFinance\soratMali"
           DTS:CreationName="Microsoft.ExecuteSQLTask"
           DTS:Description="Execute SQL Task"
+          DTS:Disabled="True"
           DTS:DTSID="{c950f172-143e-4164-a314-4ba850c9081d}"
           DTS:ExecutableType="Microsoft.ExecuteSQLTask"
           DTS:LocaleID="-1"
@@ -1366,7 +1400,7 @@ and d.isinsert=1</property>
           DTS:LocaleID="-1"
           DTS:ObjectName="update column isinsert"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="0">
+          DTS:ThreadHint="1">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
@@ -1383,7 +1417,7 @@ and d.isinsert=1</property>
           DTS:LocaleID="-1"
           DTS:ObjectName="update column isupdate"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="0">
+          DTS:ThreadHint="1">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
@@ -1428,11 +1462,11 @@ and d.isinsert=1</property>
         <DTS:PrecedenceConstraint
           DTS:refId="Package\FactFinance.PrecedenceConstraints[Constraint 4]"
           DTS:CreationName=""
-          DTS:DTSID="{02A59D9D-CF1B-4EEA-95D2-C0580EC7A163}"
+          DTS:DTSID="{D365CB00-9160-4408-8C70-B40618D590AA}"
           DTS:From="Package\FactFinance\update column isupdate"
           DTS:LogicalAnd="True"
           DTS:ObjectName="Constraint 4"
-          DTS:To="Package\FactFinance\soratMali" />
+          DTS:To="Package\FactFinance\factFinance_P_L" />
       </DTS:PrecedenceConstraints>
     </DTS:Executable>
     <DTS:Executable
@@ -6879,7 +6913,7 @@ or rds.isupdate=1 and sku.isupdate=1 or rds.isinsert=1 )</property>
           DTS:LocaleID="-1"
           DTS:ObjectName="delete Rows isupdate1"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="1">
+          DTS:ThreadHint="2">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
@@ -8724,7 +8758,7 @@ or sku.isinsert=1  )</property>
           DTS:LocaleID="-1"
           DTS:ObjectName="update column isinsert"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="1">
+          DTS:ThreadHint="2">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
@@ -8741,7 +8775,7 @@ or sku.isinsert=1  )</property>
           DTS:LocaleID="-1"
           DTS:ObjectName="update column isupdate"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="1">
+          DTS:ThreadHint="2">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
@@ -8809,7 +8843,7 @@ or sku.isinsert=1  )</property>
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
               SQLTask:Connection="{3810A15B-64DA-40D3-9826-B8CC9CADDE42}"
-              SQLTask:SqlStatementSource="drop table if exists  dw..DimAccountL1_3&#xA;GO&#xA;&#xA;select &#xA;l3.id IdL3, l3.code CodeL3,l3.Name NameL3, l3.NatureLookup NatureL3&#xA;,l2.id IdL2, l2.code CodeL2,l2.Name NameL2, l2.NatureLookup NatureL2&#xA;,l1.id IdL1, l1.code CodeL1,l1.Name NameL1, l1.NatureLookup NatureL1&#xA;into dw..DimAccountL1_3&#xA;from [Stage].[Eltiam].FINL3Accounts l3&#xA;LEFT JOIN (select * from [Stage].[Eltiam].FINL2Accounts) AS l2 ON l2.Id = l3.FINAccountsL3_FINAccountsL2&#xA;LEFT JOIN (select * from [Stage].[Eltiam].FINL1Accounts) AS l1 ON l1.Id = FINAccountsL2_FINAccountsL1&#xA;&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+              SQLTask:SqlStatementSource="drop table if exists  dw..DimAccountL1_3&#xA;GO&#xA;&#xA;select &#xA;l3.id IdL3, l3.code CodeL3,l3.Name NameL3, l3.NatureLookup NatureL3, &#xA;case when l3.Code in (71069,71008,71045,71065) then N'لجستیک'&#xA; when l3.Code in (75002,75006,75007,74034,74005,74035,74039,74047,74023,74043,74010,75009,75010,&#xA;75008,74045,75001,74004,74003,74044,74043,74046,74040,74030,75004,75016,74009,71030,75012,74002,&#xA;74006,75005,75026,74008,74013,74042) then N'پرسنلی'&#xA;when l3.Code in (73005,73001,73006,73003) then N'مالی'&#xA;when l3.Code in (71026,71056,71061,71058,71057,71055,71062) then N'حمل'&#xA;when l3.Code in (71002,71003,71004,71005,71001,71038,71050,71059,71067) then N'بیمه'&#xA;when l3.Code in (71013,71014,71012,71015) then N'قبوض مصرفی'&#xA;when l3.Code in (71007,71006) then N'تعمیرات ساختمان و اثاثیه'&#xA;when l3.Code in (71060,71016) then N'سوخت'&#xA;when l3.Code in ( 71020,71046,71039,71024,71032,71017,71022,71034,71018,71031,71035,71042,71054,71010,71078,71021,71051,71033,71027,71019,71075) then N'عمومی'&#xA;when l3.Code in (71023) then N'اجاره انبار'&#xA;when l3.Code in  (71028) then N'استهلاک دارایی ثابت'&#xA;when l3.Code in  (71076) then N'حسابرسی'&#xA;else l3.Name end as moadel&#xA;&#xA;&#xA;&#xA;,l2.id IdL2, l2.code CodeL2,l2.Name NameL2, l2.NatureLookup NatureL2&#xA;,l1.id IdL1, l1.code CodeL1,l1.Name NameL1, l1.NatureLookup NatureL1&#xA;into dw..DimAccountL1_3&#xA;from [Stage].[Eltiam].FINL3Accounts l3&#xA;LEFT JOIN (select * from [Stage].[Eltiam].FINL2Accounts) AS l2 ON l2.Id = l3.FINAccountsL3_FINAccountsL2&#xA;LEFT JOIN (select * from [Stage].[Eltiam].FINL1Accounts) AS l1 ON l1.Id = FINAccountsL2_FINAccountsL1&#xA;&#xA;&#xA;&#xA;&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
           </DTS:ObjectData>
         </DTS:Executable>
         <DTS:Executable
@@ -8826,7 +8860,7 @@ or sku.isinsert=1  )</property>
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
               SQLTask:Connection="{E970A75E-CC5B-470D-ABB1-F78F1E832DB9}"
-              SQLTask:SqlStatementSource="drop table if exists dw..Diml5&#xA;GO&#xA;&#xA;select fa.Id AccountId5, fa.code AccountCode5,fa.Name AccountName5, State StateAccount5 &#xA;, FINDetailAccount_FINDetailAccountType TypeAccountID5, t.name TypeAccountName5&#xA;, a.id employeeid , a.Code employeeCode , a.CenterKey, a.Status,a.StatusId, WarehouseId,c.FINDetailAccountKey dlid4&#xA;into dw..Diml5&#xA;from    stage.[Eltiam].[FINDetailAccounts] fa&#xA;left join (select * from stage.[Eltiam].FINDetailAccountTypes) t on t.id= fa.FINDetailAccount_FINDetailAccountType&#xA;left join (  select * from  stage.[Eltiam].HCMEmployees) a on fa.id=a.FINDetailAccountKey&#xA;left join (select * from stage.eltiam.PUBCenters)c on c.Id= a.CenterKey&#xA;&#xA;GO&#xA;&#xA;&#xA;drop table if exists dw..Diml4&#xA;GO&#xA;&#xA;select fa.Id AccountId4, code AccountCode4,fa.Name AccountName4, State StateAccount4 , FINDetailAccount_FINDetailAccountType TypeAccountID4, t.name TypeAccountName4&#xA;into dw..Diml4&#xA;from    stage.[Eltiam].[FINDetailAccounts] fa&#xA;left join (select * from stage.[Eltiam].FINDetailAccountTypes) t on t.id= fa.FINDetailAccount_FINDetailAccountType" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+              SQLTask:SqlStatementSource="drop table if exists dw..Diml5&#xA;GO&#xA;&#xA;select fa.Id AccountId5, fa.code AccountCode5,fa.Name AccountName5, State StateAccount5 &#xA;, FINDetailAccount_FINDetailAccountType TypeAccountID5, t.name TypeAccountName5&#xA;, a.id employeeid , a.Code employeeCode , a.CenterKey, a.Status,a.StatusId, WarehouseId,c.FINDetailAccountKey dlid4&#xA;into dw..Diml5&#xA;from    stage.[Eltiam].[FINDetailAccounts] fa&#xA;left join (select * from stage.[Eltiam].FINDetailAccountTypes) t on t.id= fa.FINDetailAccount_FINDetailAccountType&#xA;left join (  select * from  stage.[Eltiam].HCMEmployees) a on fa.id=a.FINDetailAccountKey&#xA;left join (select * from stage.eltiam.PUBCenters)c on c.Id= a.CenterKey&#xA;&#xA;GO&#xA;&#xA;drop table if exists dw..Diml4&#xA;select fa.Id AccountId4, code AccountCode4,fa.Name AccountName4, State StateAccount4 &#xA;, FINDetailAccount_FINDetailAccountType TypeAccountID4, t.name TypeAccountName4&#xA;, case when fa.Id =26 then 0.6&#xA;when fa.Id=7 then 0.96&#xA;when fa.Id=24  then 0.3&#xA;when fa.Id=30 then 0.205&#xA;when fa.Id=19 then 0.24&#xA;when fa.Id=17 then 0.42&#xA;when fa.Id=29 then 0.32&#xA;when fa.Id=21 then 0.7&#xA;when fa.Id=23 then  0.21&#xA;when fa.Id=16 then 0.61&#xA;when fa.Id=14 then 0.505&#xA;when fa.Id=13 then 0.31&#xA;when fa.Id=28 then 0.815&#xA;when fa.Id=247 then 0.55&#xA;when fa.Id=12 then 0.2&#xA;when fa.Id=15 then 0.375&#xA;when fa.Id=11 then 0.41&#xA;when fa.Id=25 then 0.23&#xA;when fa.Id=8 then 0.116&#xA;when fa.Id=27 then 0.21&#xA;when fa.Id=18 then 0.41&#xA;when fa.Id=22 then 0.26 end as zarib&#xA;&#xA;&#xA;&#xA;into dw..Diml4&#xA;from    stage.[Eltiam].[FINDetailAccounts] fa&#xA;left join (select * from stage.[Eltiam].FINDetailAccountTypes) t on t.id= fa.FINDetailAccount_FINDetailAccountType" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
           </DTS:ObjectData>
         </DTS:Executable>
       </DTS:Executables>
@@ -13010,6 +13044,10 @@ LEFT JOIN eltiam.[HCMEmployees] H ON H.Id=S.EmployeeKey</property>
           Id="Package\FactFinance\delete Rows isupdate1"
           TopLeft="21,155" />
         <NodeLayout
+          Size="155,42"
+          Id="Package\FactFinance\factFinance_P_L"
+          TopLeft="170,377" />
+        <NodeLayout
           Size="107,42"
           Id="Package\FactFinance\Insert"
           TopLeft="42,6" />
@@ -13143,26 +13181,26 @@ LEFT JOIN eltiam.[HCMEmployees] H ON H.Id=S.EmployeeKey</property>
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="-77.5,60"
+              EndConnector="95.5,37"
               Start="0,0"
-              End="-77.5,52.5">
+              End="95.5,29.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,26" />
+                    End="0,14.5" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,26"
-                    Point2="0,30"
-                    Point3="-4,30" />
+                    Point1="0,14.5"
+                    Point2="0,18.5"
+                    Point3="4,18.5" />
                   <mssgle:LineSegment
-                    End="-73.5,30" />
+                    End="91.5,18.5" />
                   <mssgle:CubicBezierSegment
-                    Point1="-73.5,30"
-                    Point2="-77.5,30"
-                    Point3="-77.5,34" />
+                    Point1="91.5,18.5"
+                    Point2="95.5,18.5"
+                    Point3="95.5,22.5" />
                   <mssgle:LineSegment
-                    End="-77.5,52.5" />
+                    End="95.5,29.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -13174,8 +13212,8 @@ LEFT JOIN eltiam.[HCMEmployees] H ON H.Id=S.EmployeeKey</property>
         <ContainerLayout
           HeaderHeight="43"
           IsExpanded="True"
-          PanelSize="299,497"
-          Size="299,540"
+          PanelSize="338,497"
+          Size="338,540"
           Id="Package\FactFinance"
           TopLeft="905,658" />
         <NodeLayout
@@ -14125,30 +14163,18 @@ LEFT JOIN eltiam.[HCMEmployees] H ON H.Id=S.EmployeeKey</property>
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 2]"
-          TopLeft="1076.5,549">
+          TopLeft="1075.25,549">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="-22,109"
+              EndConnector="0,109"
               Start="0,0"
-              End="-22,101.5">
+              End="0,101.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,50.5" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,50.5"
-                    Point2="0,54.5"
-                    Point3="-4,54.5" />
-                  <mssgle:LineSegment
-                    End="-18,54.5" />
-                  <mssgle:CubicBezierSegment
-                    Point1="-18,54.5"
-                    Point2="-22,54.5"
-                    Point3="-22,58.5" />
-                  <mssgle:LineSegment
-                    End="-22,101.5" />
+                    End="0,101.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -14159,30 +14185,30 @@ LEFT JOIN eltiam.[HCMEmployees] H ON H.Id=S.EmployeeKey</property>
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 3]"
-          TopLeft="1204,928">
+          TopLeft="1243,928">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="79,-105"
+              EndConnector="40,-105"
               Start="0,0"
-              End="71.5,-105">
+              End="32.5,-105">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="35.5,0" />
+                    End="16,0" />
                   <mssgle:CubicBezierSegment
-                    Point1="35.5,0"
-                    Point2="39.5,0"
-                    Point3="39.5,-4" />
+                    Point1="16,0"
+                    Point2="20,0"
+                    Point3="20,-4" />
                   <mssgle:LineSegment
-                    End="39.5,-101" />
+                    End="20,-101" />
                   <mssgle:CubicBezierSegment
-                    Point1="39.5,-101"
-                    Point2="39.5,-105"
-                    Point3="43.5,-105" />
+                    Point1="20,-101"
+                    Point2="20,-105"
+                    Point3="24,-105" />
                   <mssgle:LineSegment
-                    End="71.5,-105" />
+                    End="32.5,-105" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>

@@ -11,8 +11,8 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="DW_Kharazmi"
   DTS:PackageType="5"
-  DTS:VersionBuild="70"
-  DTS:VersionGUID="{403F55CE-1AF0-42C8-A159-1DB7CBC3A6CA}">
+  DTS:VersionBuild="80"
+  DTS:VersionGUID="{2193B2ED-FB87-484A-A9D3-397754F45CA6}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -92,6 +92,23 @@
         <SQLTask:SqlTaskData
           SQLTask:Connection="{B497DD00-C1C2-4B58-A27A-FCFA87D02C4B}"
           SQLTask:SqlStatementSource="--use [DW_kharazmi]&#xA;drop table if exists  [DW].kharazmi.dimproductgroup &#xA;--use [DW_kharazmi] &#xA;select a.*,p.*, pr.ProductID,pr.SecondCode, case when p.State= 1 then N'فعال' when p.state=2 then N'غیرفعال' else N'معلق' end as statename &#xA;--,BiggestUnit.PartRef,BiggestUnit.Name Bigname &#xA;--,isnull(BiggestUnit.Weight,0) Bigsize,SmallestUnit.Name smallname,isnull(SmallestUnit.Weight,0) SmallSize&#xA;--,Major.Name majorname, isnull(Major.Weight,0) MajorSize  &#xA;into [DW].kharazmi.dimproductgroup &#xA;from &#xA;&#xA;(&#xA;SELECT &#xA;&#x9;eg1.EntityGroupingID as idSath1&#xA;&#x9;,eg1.Name as NameSath1&#xA;&#x9;,eg2.EntityGroupID idSath2&#xA;&#x9;,eg2.Name NameSath2&#xA;&#x9;,eg3.EntityGroupID idSath3&#xA;&#x9;,eg3.Name NameSath3&#xA;&#x9;&#x9;,eg4.EntityGroupID idSath4&#xA;&#x9;,eg4.Name NameSath4&#xA;&#xA;&#xA;&#xA;&#x9;,eg1.EntityName&#xA;&#x9;, eg1.EntityGroupingID&#xA;&#x9;,case &#xA;&#x9;&#x9;&#x9;--when eg7.EntityGroupID is not null then eg7.EntityGroupID &#xA;&#x9;&#x9; -- when eg6.EntityGroupID is not null then eg6.EntityGroupID &#xA;&#x9;&#x9; -- when eg5.EntityGroupID is not null then eg5.EntityGroupID &#xA;&#x9;&#x9;  when eg4.EntityGroupID is not null then eg4.EntityGroupID &#xA;&#x9;&#x9;  when eg3.EntityGroupID is not null then eg3.EntityGroupID &#xA;&#x9;&#xA;&#x9;else&#xA;&#x9;&#xA;&#x9;eg2.EntityGroupID end as id&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;&#xA;FROM kharazmi.EntityGrouping eg1 &#xA;left join ( select * from kharazmi.EntityGroup where ParentRef is null)eg2 on eg2.EntityGroupingRef=eg1.EntityGroupingID&#xA;left join ( select * from kharazmi.EntityGroup where ParentRef is not null)eg3 on eg3.ParentRef=eg2.EntityGroupID&#xA;left join ( select * from kharazmi.EntityGroup where ParentRef is not null)eg4 on eg4.ParentRef=eg3.EntityGroupID&#xA;--left join ( select * from kharazmi.EntityGroup where ParentRef is not null)eg5 on eg5.ParentRef=eg4.EntityGroupID&#xA;--left join ( select * from kharazmi.EntityGroup where ParentRef is not null)eg6 on eg6.ParentRef=eg5.EntityGroupID&#xA;--left join ( select * from kharazmi.EntityGroup where ParentRef is not null)eg7 on eg7.ParentRef=eg6.EntityGroupID&#xA;where eg1.EntityGroupingID in ( 590, 623)&#xA; )a&#xA;&#xA; &#xA; left join (select * from kharazmi.partGroupMember  )pm on pm.GroupRef=a.id and a.idSath1 = pm.GroupingRef &#xA;left join (select PartID,Code, Name,State, PropertiesComment from kharazmi.part ) p on p.PartID=pm.MemberID&#xA;--left join (&#xA;--&#x9;&#x9;&#x9;&#x9;select PU.Weight,PartID,pu.Name&#xA;--&#x9;&#x9;&#x9;&#x9;from  kharazmi.part PR WITH(NOLOCK) &#xA;--&#x9;&#x9;&#x9;&#x9;left JOIN kharazmi.UNIT U WITH(NOLOCK) ON U.UnitID=pr.UnitRef&#xA;--&#x9;&#x9;&#x9;&#x9;LEFT JOIN kharazmi.PartUnit PU WITH(NOLOCK) ON PU.PartUnitID=PR.BiggestUnitPartEntityUnitRef &#xA;--&#x9;&#x9;&#x9;&#x9;)BiggestUnit on BiggestUnit.ProductID=P.ProductID&#xA;--left join (&#xA;--&#x9;&#x9;&#x9;&#x9;select PU.Weight,PartRef,ProductID,pu.Name&#xA;--&#x9;&#x9;&#x9;&#x9;from  kharazmi.Product PR WITH(NOLOCK) &#xA;--&#x9;&#x9;&#x9;&#x9;left JOIN kharazmi.UNIT U WITH(NOLOCK) ON U.UnitID=pr.UnitRef&#xA;--&#x9;&#x9;&#x9;&#x9;LEFT JOIN kharazmi.PartUnit PU WITH(NOLOCK) ON PU.PartUnitID=PR.SmallestUnitPartEntityUnitRef &#xA;--&#x9;&#x9;&#x9;&#x9;)SmallestUnit on SmallestUnit.ProductID=P.ProductID&#xA;--left join (&#xA;--&#x9;&#x9;&#x9;&#x9;select PU.Weight,PartRef,ProductID,pu.Name&#xA;--&#x9;&#x9;&#x9;&#x9;from  kharazmi.Product PR WITH(NOLOCK) &#xA;--&#x9;&#x9;&#x9;&#x9;left JOIN kharazmi.UNIT U WITH(NOLOCK) ON U.UnitID=pr.UnitRef&#xA;--&#x9;&#x9;&#x9;&#x9;LEFT JOIN kharazmi.PartUnit PU WITH(NOLOCK) ON PU.PartUnitID=PR.PartMajorEntityUnitRef &#xA;--&#x9;&#x9;&#x9;&#x9;)Major on Major.ProductID=P.ProductID&#xA;left join (select * from kharazmi.product)pr on pr.PartRef=p.PartID&#xA;&#xA; where entitygroupingid in ( 590, 623)&#xA;-- and idSath1=184&#xA;--where BiggestUnit.PartRef=1756&#xA;--and idSath1=63&#xA;--order by idSath2, idSath3&#xA;&#xA;--select  * from kharazmi.product where state=2" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\DimProductPrice"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{ba8acbd2-07b3-4569-afe2-de1a86ad6f68}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="DimProductPrice"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{B497DD00-C1C2-4B58-A27A-FCFA87D02C4B}"
+          SQLTask:SqlStatementSource="drop table if exists DW.kharazmi.DimPRoductPrice&#xA; GO&#xA;&#xA;&#xA;SELECT d.datekey StartDate    ,isnull( lead(d.datekey) over (partition by  ProductRef order by  d.datekey),99999999)  as EndDate&#xA; ,  p.Number productcode, fee&#xA; into DW.kharazmi.DimPRoductPrice&#xA;  FROM kharazmi.SLS3PriceList pl&#xA;  join (SELECT *  FROM  [kharazmi].SLS3PriceListItem) pli on pl.PriceListID= pli.PriceListRef&#xA;  join (select * from kharazmi.product)p on p.ProductID= pli.ProductRef&#xA;  left  join (select * from dimdate)d on d.Date=  cast (StartDate as date)&#xA;  left join (select * from dimdate)d1 on d1.Date=cast ( EndDate as date)&#xA;&#xA;  where pl.State=2 and SalesDocumentType=2 and PriceListType=1 and EndDate is  null" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
       </DTS:ObjectData>
     </DTS:Executable>
     <DTS:Executable
@@ -2386,11 +2403,11 @@ o.OrderID
     <DTS:PrecedenceConstraint
       DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
       DTS:CreationName=""
-      DTS:DTSID="{B4232724-081D-4565-AEBF-F9CE149E44F3}"
+      DTS:DTSID="{E270B8AB-F1C5-40FC-B2F9-6E09AAA616F1}"
       DTS:From="Package\DimSKU"
       DTS:LogicalAnd="True"
       DTS:ObjectName="Constraint 1"
-      DTS:To="Package\FactSales" />
+      DTS:To="Package\DimProductPrice" />
     <DTS:PrecedenceConstraint
       DTS:refId="Package.PrecedenceConstraints[Constraint 2]"
       DTS:CreationName=""
@@ -2423,6 +2440,14 @@ o.OrderID
       DTS:LogicalAnd="True"
       DTS:ObjectName="Constraint 5"
       DTS:To="Package\DimSKU" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 6]"
+      DTS:CreationName=""
+      DTS:DTSID="{B75BC477-8259-43EF-A22C-C05A3289EF95}"
+      DTS:From="Package\DimProductPrice"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 6"
+      DTS:To="Package\FactSales" />
   </DTS:PrecedenceConstraints>
   <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
 <!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
@@ -2448,6 +2473,10 @@ o.OrderID
           Size="162,42"
           Id="Package\DimProductGroup"
           TopLeft="77,87" />
+        <NodeLayout
+          Size="156,42"
+          Id="Package\DimProductPrice"
+          TopLeft="117,551" />
         <NodeLayout
           Size="143,42"
           Id="Package\DimSalesArea"
@@ -2623,30 +2652,30 @@ o.OrderID
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 1]"
-          TopLeft="239,486">
+          TopLeft="180.5,507">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="105,-223"
+              EndConnector="14.5,44"
               Start="0,0"
-              End="97.5,-223">
+              End="14.5,36.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="48.5,0" />
+                    End="0,18" />
                   <mssgle:CubicBezierSegment
-                    Point1="48.5,0"
-                    Point2="52.5,0"
-                    Point3="52.5,-4" />
+                    Point1="0,18"
+                    Point2="0,22"
+                    Point3="4,22" />
                   <mssgle:LineSegment
-                    End="52.5,-219" />
+                    End="10.5,22" />
                   <mssgle:CubicBezierSegment
-                    Point1="52.5,-219"
-                    Point2="52.5,-223"
-                    Point3="56.5,-223" />
+                    Point1="10.5,22"
+                    Point2="14.5,22"
+                    Point3="14.5,26" />
                   <mssgle:LineSegment
-                    End="97.5,-223" />
+                    End="14.5,36.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -2747,6 +2776,40 @@ o.OrderID
                   Capacity="5">
                   <mssgle:LineSegment
                     End="0,47.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 6]"
+          TopLeft="219.666666666667,551">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="273.833333333333,-69"
+              Start="0,0"
+              End="273.833333333333,-61.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,-24.0203045685279" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,-24.0203045685279"
+                    Point2="0,-28.0203045685279"
+                    Point3="4,-28.0203045685279" />
+                  <mssgle:LineSegment
+                    End="269.833333333333,-28.0203045685279" />
+                  <mssgle:CubicBezierSegment
+                    Point1="269.833333333333,-28.0203045685279"
+                    Point2="273.833333333333,-28.0203045685279"
+                    Point3="273.833333333333,-32.0203045685279" />
+                  <mssgle:LineSegment
+                    End="273.833333333333,-61.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>

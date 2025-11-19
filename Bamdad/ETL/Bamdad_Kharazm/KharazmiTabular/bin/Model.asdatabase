@@ -27,6 +27,293 @@
     ],
     "tables": [
       {
+        "name": "DimDate",
+        "columns": [
+          {
+            "name": "Date",
+            "dataType": "dateTime",
+            "sourceColumn": "Date"
+          },
+          {
+            "name": "Gregorian",
+            "dataType": "string",
+            "sourceColumn": "Gregorian"
+          },
+          {
+            "name": "Gregorian_Year",
+            "dataType": "int64",
+            "sourceColumn": "Gregorian_Year"
+          },
+          {
+            "name": "Gregorian_Month",
+            "dataType": "int64",
+            "sourceColumn": "Gregorian_Month"
+          },
+          {
+            "name": "Gregorian_MonthStr",
+            "dataType": "string",
+            "sourceColumn": "Gregorian_MonthStr"
+          },
+          {
+            "name": "Gregorian_MonthString",
+            "dataType": "string",
+            "sourceColumn": "Gregorian_MonthString"
+          },
+          {
+            "name": "Gregorian_Day",
+            "dataType": "int64",
+            "sourceColumn": "Gregorian_Day"
+          },
+          {
+            "name": "Gregorian_DayOfWeekId",
+            "dataType": "int64",
+            "sourceColumn": "Gregorian_DayOfWeekId"
+          },
+          {
+            "name": "Gregorian_DayOfWeek",
+            "dataType": "string",
+            "sourceColumn": "Gregorian_DayOfWeek"
+          },
+          {
+            "name": "Gregorian_DayOfWeekStr",
+            "dataType": "string",
+            "sourceColumn": "Gregorian_DayOfWeekStr"
+          },
+          {
+            "name": "Gregorian_DayOfYear",
+            "dataType": "int64",
+            "sourceColumn": "Gregorian_DayOfYear"
+          },
+          {
+            "name": "Gregorian_ToLongDateString",
+            "dataType": "string",
+            "sourceColumn": "Gregorian_ToLongDateString"
+          },
+          {
+            "name": "Gregorian_YearMonth",
+            "dataType": "string",
+            "sourceColumn": "Gregorian_YearMonth"
+          },
+          {
+            "name": "Gregorian_MonthDay",
+            "dataType": "string",
+            "sourceColumn": "Gregorian_MonthDay"
+          },
+          {
+            "name": "SeasonEn",
+            "dataType": "string",
+            "sourceColumn": "SeasonEn"
+          },
+          {
+            "name": "Gregorian_Format1",
+            "dataType": "string",
+            "sourceColumn": "Gregorian_Format1"
+          },
+          {
+            "name": "Gregorian_Format2",
+            "dataType": "string",
+            "sourceColumn": "Gregorian_Format2"
+          },
+          {
+            "name": "Gregorian_Format3",
+            "dataType": "string",
+            "sourceColumn": "Gregorian_Format3"
+          },
+          {
+            "name": "Gregorian_Format4",
+            "dataType": "string",
+            "sourceColumn": "Gregorian_Format4"
+          },
+          {
+            "name": "Gregorian_Format5",
+            "dataType": "string",
+            "sourceColumn": "Gregorian_Format5"
+          },
+          {
+            "name": "Gregorian_Format6",
+            "dataType": "string",
+            "sourceColumn": "Gregorian_Format6"
+          },
+          {
+            "name": "Jalali",
+            "dataType": "string",
+            "sourceColumn": "Jalali"
+          },
+          {
+            "name": "Jalali_Year",
+            "dataType": "int64",
+            "sourceColumn": "Jalali_Year",
+            "formatString": "0",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Jalali_Month",
+            "dataType": "int64",
+            "sourceColumn": "Jalali_Month"
+          },
+          {
+            "name": "Jalali_MonthString",
+            "dataType": "string",
+            "sourceColumn": "Jalali_MonthString",
+            "sortByColumn": "Jalali_Month"
+          },
+          {
+            "name": "Jalali_Day",
+            "dataType": "int64",
+            "sourceColumn": "Jalali_Day"
+          },
+          {
+            "name": "Jalali_DayOfWeekId",
+            "dataType": "int64",
+            "sourceColumn": "Jalali_DayOfWeekId"
+          },
+          {
+            "name": "Jalali_DayOfWeek",
+            "dataType": "string",
+            "sourceColumn": "Jalali_DayOfWeek"
+          },
+          {
+            "name": "Jalali_DayOfYear",
+            "dataType": "int64",
+            "sourceColumn": "Jalali_DayOfYear"
+          },
+          {
+            "name": "Jalali_ToLongDateString",
+            "dataType": "string",
+            "sourceColumn": "Jalali_ToLongDateString"
+          },
+          {
+            "name": "Jalali_YearMonth",
+            "dataType": "string",
+            "sourceColumn": "Jalali_YearMonth"
+          },
+          {
+            "name": "Jalali_MonthDay",
+            "dataType": "string",
+            "sourceColumn": "Jalali_MonthDay"
+          },
+          {
+            "name": "SeasonFa",
+            "dataType": "string",
+            "sourceColumn": "SeasonFa",
+            "sortByColumn": "seasonID"
+          },
+          {
+            "name": "Jalali_Format1",
+            "dataType": "string",
+            "sourceColumn": "Jalali_Format1"
+          },
+          {
+            "name": "Jalali_Format2",
+            "dataType": "string",
+            "sourceColumn": "Jalali_Format2"
+          },
+          {
+            "name": "Jalali_Format3",
+            "dataType": "string",
+            "sourceColumn": "Jalali_Format3"
+          },
+          {
+            "name": "Jalali_Format4",
+            "dataType": "string",
+            "sourceColumn": "Jalali_Format4"
+          },
+          {
+            "name": "Jalali_Format5",
+            "dataType": "string",
+            "sourceColumn": "Jalali_Format5"
+          },
+          {
+            "name": "Jalali_Format6",
+            "dataType": "string",
+            "sourceColumn": "Jalali_Format6"
+          },
+          {
+            "name": "datekey",
+            "dataType": "int64",
+            "sourceColumn": "datekey"
+          },
+          {
+            "name": "isworkingday",
+            "dataType": "int64",
+            "sourceColumn": "isworkingday"
+          },
+          {
+            "name": "seasonID",
+            "dataType": "int64",
+            "sourceColumn": "seasonID"
+          },
+          {
+            "name": "Curren_Month",
+            "dataType": "int64",
+            "sourceColumn": "Curren_Month"
+          },
+          {
+            "name": "Current_Year",
+            "dataType": "int64",
+            "sourceColumn": "Current_Year"
+          },
+          {
+            "name": "Last_Month",
+            "dataType": "int64",
+            "sourceColumn": "Last_Month"
+          },
+          {
+            "name": "Last_Year",
+            "dataType": "int64",
+            "sourceColumn": "Last_Year"
+          },
+          {
+            "name": "Semester",
+            "dataType": "int64",
+            "sourceColumn": "Semester"
+          },
+          {
+            "type": "calculated",
+            "name": "Before Year",
+            "dataType": "int64",
+            "isDataTypeInferred": true,
+            "expression": " DimDate[Jalali_Year]-1"
+          },
+          {
+            "name": "LastYearDateKey",
+            "dataType": "int64",
+            "sourceColumn": "LastYearDateKey"
+          },
+          {
+            "name": "Istoday",
+            "dataType": "int64",
+            "sourceColumn": "Istoday"
+          },
+          {
+            "name": "week_in_season",
+            "dataType": "string",
+            "sourceColumn": "week_in_season"
+          },
+          {
+            "name": "number_week",
+            "dataType": "int64",
+            "sourceColumn": "number_week"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "Partition",
+            "dataView": "full",
+            "source": {
+              "type": "m",
+              "expression": [
+                "let",
+                "    Source = #\"SQL/192 168 10 10;DW\",",
+                "    dbo_vw_DimDate_Big = Source{[Schema=\"dbo\",Item=\"vw_DimDate_Big\"]}[Data]",
+                "in",
+                "    dbo_vw_DimDate_Big"
+              ]
+            }
+          }
+        ]
+      },
+      {
         "name": "dimcustomer",
         "columns": [
           {
@@ -124,7 +411,7 @@
         "measures": [
           {
             "name": "WebSelectCustomerName",
-            "expression": " IF(ISBLANK(SELECTEDVALUE(dimcustomer[namecustomer])),\"همه شرکتهای پخش\", SELECTEDVALUE (dimcustomer[namecustomer]))"
+            "expression": " IF(ISBLANK(SELECTEDVALUE(dimcustomer[nikname])),\"همه شرکتهای پخش\", SELECTEDVALUE (dimcustomer[nikname]))"
           },
           {
             "name": "pakhs",
@@ -659,26 +946,6 @@
             ]
           },
           {
-            "name": "SalesYTD_PrevPersian",
-            "expression": [
-              "",
-              "",
-              "VAR CurrentYear = LOOKUPVALUE(DimDate[Jalali_Year],DimDate[Date],today())",
-              "VAR CurrentDayOfYear = LOOKUPVALUE(DimDate[Jalali_DayOfYear],DimDate[Date],today())",
-              "RETURN",
-              " ",
-              "",
-              "CALCULATE(",
-              "    [NetPrice],",
-              "    FILTER(",
-              "        ALL(DimDate),",
-              "        DimDate[Jalali_Year] = CurrentYear - 1 &&",
-              "        DimDate[Jalali_DayOfYear] <= CurrentDayOfYear",
-              "    )",
-              ")"
-            ]
-          },
-          {
             "name": "SalesYTD_Persian",
             "expression": [
               "",
@@ -700,6 +967,26 @@
               "            DimDate[Jalali_Month] < TodayMonth ||",
               "            (DimDate[Jalali_Month] = TodayMonth && DimDate[Jalali_Day] <= TodayDay)",
               "        )",
+              "    )",
+              ")"
+            ]
+          },
+          {
+            "name": "SalesYTD_PrevPersian",
+            "expression": [
+              "",
+              "",
+              "VAR CurrentYear = LOOKUPVALUE(DimDate[Jalali_Year],DimDate[Date],today())",
+              "VAR CurrentDayOfYear = LOOKUPVALUE(DimDate[Jalali_DayOfYear],DimDate[Date],today())",
+              "RETURN",
+              " ",
+              "",
+              "CALCULATE(",
+              "    [NetPrice],",
+              "    FILTER(",
+              "        ALL(DimDate),",
+              "        DimDate[Jalali_Year] = CurrentYear - 1 &&",
+              "        DimDate[Jalali_DayOfYear] <= CurrentDayOfYear",
               "    )",
               ")"
             ]
@@ -1076,409 +1363,6 @@
         ]
       },
       {
-        "name": "DimDate",
-        "columns": [
-          {
-            "name": "Date",
-            "dataType": "dateTime",
-            "sourceColumn": "Date"
-          },
-          {
-            "name": "Gregorian",
-            "dataType": "string",
-            "sourceColumn": "Gregorian"
-          },
-          {
-            "name": "Gregorian_Year",
-            "dataType": "int64",
-            "sourceColumn": "Gregorian_Year"
-          },
-          {
-            "name": "Gregorian_Month",
-            "dataType": "int64",
-            "sourceColumn": "Gregorian_Month"
-          },
-          {
-            "name": "Gregorian_MonthStr",
-            "dataType": "string",
-            "sourceColumn": "Gregorian_MonthStr"
-          },
-          {
-            "name": "Gregorian_MonthString",
-            "dataType": "string",
-            "sourceColumn": "Gregorian_MonthString"
-          },
-          {
-            "name": "Gregorian_Day",
-            "dataType": "int64",
-            "sourceColumn": "Gregorian_Day"
-          },
-          {
-            "name": "Gregorian_DayOfWeekId",
-            "dataType": "int64",
-            "sourceColumn": "Gregorian_DayOfWeekId"
-          },
-          {
-            "name": "Gregorian_DayOfWeek",
-            "dataType": "string",
-            "sourceColumn": "Gregorian_DayOfWeek"
-          },
-          {
-            "name": "Gregorian_DayOfWeekStr",
-            "dataType": "string",
-            "sourceColumn": "Gregorian_DayOfWeekStr"
-          },
-          {
-            "name": "Gregorian_DayOfYear",
-            "dataType": "int64",
-            "sourceColumn": "Gregorian_DayOfYear"
-          },
-          {
-            "name": "Gregorian_ToLongDateString",
-            "dataType": "string",
-            "sourceColumn": "Gregorian_ToLongDateString"
-          },
-          {
-            "name": "Gregorian_YearMonth",
-            "dataType": "string",
-            "sourceColumn": "Gregorian_YearMonth"
-          },
-          {
-            "name": "Gregorian_MonthDay",
-            "dataType": "string",
-            "sourceColumn": "Gregorian_MonthDay"
-          },
-          {
-            "name": "SeasonEn",
-            "dataType": "string",
-            "sourceColumn": "SeasonEn"
-          },
-          {
-            "name": "Gregorian_Format1",
-            "dataType": "string",
-            "sourceColumn": "Gregorian_Format1"
-          },
-          {
-            "name": "Gregorian_Format2",
-            "dataType": "string",
-            "sourceColumn": "Gregorian_Format2"
-          },
-          {
-            "name": "Gregorian_Format3",
-            "dataType": "string",
-            "sourceColumn": "Gregorian_Format3"
-          },
-          {
-            "name": "Gregorian_Format4",
-            "dataType": "string",
-            "sourceColumn": "Gregorian_Format4"
-          },
-          {
-            "name": "Gregorian_Format5",
-            "dataType": "string",
-            "sourceColumn": "Gregorian_Format5"
-          },
-          {
-            "name": "Gregorian_Format6",
-            "dataType": "string",
-            "sourceColumn": "Gregorian_Format6"
-          },
-          {
-            "name": "Jalali",
-            "dataType": "string",
-            "sourceColumn": "Jalali"
-          },
-          {
-            "name": "Jalali_Year",
-            "dataType": "int64",
-            "sourceColumn": "Jalali_Year",
-            "formatString": "0",
-            "summarizeBy": "none"
-          },
-          {
-            "name": "Jalali_Month",
-            "dataType": "int64",
-            "sourceColumn": "Jalali_Month"
-          },
-          {
-            "name": "Jalali_MonthString",
-            "dataType": "string",
-            "sourceColumn": "Jalali_MonthString",
-            "sortByColumn": "Jalali_Month"
-          },
-          {
-            "name": "Jalali_Day",
-            "dataType": "int64",
-            "sourceColumn": "Jalali_Day"
-          },
-          {
-            "name": "Jalali_DayOfWeekId",
-            "dataType": "int64",
-            "sourceColumn": "Jalali_DayOfWeekId"
-          },
-          {
-            "name": "Jalali_DayOfWeek",
-            "dataType": "string",
-            "sourceColumn": "Jalali_DayOfWeek"
-          },
-          {
-            "name": "Jalali_DayOfYear",
-            "dataType": "int64",
-            "sourceColumn": "Jalali_DayOfYear"
-          },
-          {
-            "name": "Jalali_ToLongDateString",
-            "dataType": "string",
-            "sourceColumn": "Jalali_ToLongDateString"
-          },
-          {
-            "name": "Jalali_YearMonth",
-            "dataType": "string",
-            "sourceColumn": "Jalali_YearMonth"
-          },
-          {
-            "name": "Jalali_MonthDay",
-            "dataType": "string",
-            "sourceColumn": "Jalali_MonthDay"
-          },
-          {
-            "name": "SeasonFa",
-            "dataType": "string",
-            "sourceColumn": "SeasonFa",
-            "sortByColumn": "seasonID"
-          },
-          {
-            "name": "Jalali_Format1",
-            "dataType": "string",
-            "sourceColumn": "Jalali_Format1"
-          },
-          {
-            "name": "Jalali_Format2",
-            "dataType": "string",
-            "sourceColumn": "Jalali_Format2"
-          },
-          {
-            "name": "Jalali_Format3",
-            "dataType": "string",
-            "sourceColumn": "Jalali_Format3"
-          },
-          {
-            "name": "Jalali_Format4",
-            "dataType": "string",
-            "sourceColumn": "Jalali_Format4"
-          },
-          {
-            "name": "Jalali_Format5",
-            "dataType": "string",
-            "sourceColumn": "Jalali_Format5"
-          },
-          {
-            "name": "Jalali_Format6",
-            "dataType": "string",
-            "sourceColumn": "Jalali_Format6"
-          },
-          {
-            "name": "datekey",
-            "dataType": "int64",
-            "sourceColumn": "datekey"
-          },
-          {
-            "name": "isworkingday",
-            "dataType": "int64",
-            "sourceColumn": "isworkingday"
-          },
-          {
-            "name": "seasonID",
-            "dataType": "int64",
-            "sourceColumn": "seasonID"
-          },
-          {
-            "name": "Curren_Month",
-            "dataType": "int64",
-            "sourceColumn": "Curren_Month"
-          },
-          {
-            "name": "Current_Year",
-            "dataType": "int64",
-            "sourceColumn": "Current_Year"
-          },
-          {
-            "name": "Last_Month",
-            "dataType": "int64",
-            "sourceColumn": "Last_Month"
-          },
-          {
-            "name": "Last_Year",
-            "dataType": "int64",
-            "sourceColumn": "Last_Year"
-          },
-          {
-            "name": "Semester",
-            "dataType": "int64",
-            "sourceColumn": "Semester"
-          },
-          {
-            "type": "calculated",
-            "name": "Before Year",
-            "dataType": "int64",
-            "isDataTypeInferred": true,
-            "expression": " DimDate[Jalali_Year]-1"
-          },
-          {
-            "name": "LastYearDateKey",
-            "dataType": "int64",
-            "sourceColumn": "LastYearDateKey"
-          },
-          {
-            "name": "Istoday",
-            "dataType": "int64",
-            "sourceColumn": "Istoday"
-          },
-          {
-            "name": "week_in_season",
-            "dataType": "string",
-            "sourceColumn": "week_in_season"
-          },
-          {
-            "name": "number_week",
-            "dataType": "int64",
-            "sourceColumn": "number_week"
-          }
-        ],
-        "partitions": [
-          {
-            "name": "Partition",
-            "dataView": "full",
-            "source": {
-              "type": "m",
-              "expression": [
-                "let",
-                "    Source = #\"SQL/192 168 10 10;DW\",",
-                "    dbo_vw_DimDate_Big = Source{[Schema=\"dbo\",Item=\"vw_DimDate_Big\"]}[Data]",
-                "in",
-                "    dbo_vw_DimDate_Big"
-              ]
-            }
-          }
-        ]
-      },
-      {
-        "name": "dimproductgroup",
-        "columns": [
-          {
-            "name": "idSath1",
-            "dataType": "int64",
-            "sourceColumn": "idSath1"
-          },
-          {
-            "name": "NameSath1",
-            "dataType": "string",
-            "sourceColumn": "NameSath1"
-          },
-          {
-            "name": "idSath2",
-            "dataType": "int64",
-            "sourceColumn": "idSath2"
-          },
-          {
-            "name": "NameSath2",
-            "dataType": "string",
-            "sourceColumn": "NameSath2"
-          },
-          {
-            "name": "idSath3",
-            "dataType": "int64",
-            "sourceColumn": "idSath3"
-          },
-          {
-            "name": "NameSath3",
-            "dataType": "string",
-            "sourceColumn": "NameSath3"
-          },
-          {
-            "name": "idSath4",
-            "dataType": "int64",
-            "sourceColumn": "idSath4"
-          },
-          {
-            "name": "NameSath4",
-            "dataType": "string",
-            "sourceColumn": "NameSath4"
-          },
-          {
-            "name": "EntityName",
-            "dataType": "string",
-            "sourceColumn": "EntityName"
-          },
-          {
-            "name": "id",
-            "dataType": "int64",
-            "sourceColumn": "id"
-          },
-          {
-            "name": "ProductID",
-            "dataType": "int64",
-            "sourceColumn": "ProductID"
-          },
-          {
-            "name": "Name",
-            "dataType": "string",
-            "sourceColumn": "Name"
-          },
-          {
-            "name": "State",
-            "dataType": "int64",
-            "sourceColumn": "State"
-          },
-          {
-            "name": "statename",
-            "dataType": "string",
-            "sourceColumn": "statename"
-          },
-          {
-            "name": "EntityGroupingID",
-            "dataType": "int64",
-            "sourceColumn": "EntityGroupingID"
-          },
-          {
-            "name": "PartID",
-            "dataType": "int64",
-            "sourceColumn": "PartID"
-          },
-          {
-            "name": "Code",
-            "dataType": "string",
-            "sourceColumn": "Code"
-          },
-          {
-            "name": "PropertiesComment",
-            "dataType": "string",
-            "sourceColumn": "PropertiesComment"
-          },
-          {
-            "name": "SecondCode",
-            "dataType": "string",
-            "sourceColumn": "SecondCode"
-          }
-        ],
-        "partitions": [
-          {
-            "name": "Partition",
-            "dataView": "full",
-            "source": {
-              "type": "m",
-              "expression": [
-                "let",
-                "    Source = #\"SQL/192 168 10 10;DW\",",
-                "    kharazmi_dimproductgroup = Source{[Schema=\"kharazmi\",Item=\"dimproductgroup\"]}[Data]",
-                "in",
-                "    kharazmi_dimproductgroup"
-              ]
-            }
-          }
-        ]
-      },
-      {
         "name": "DimTarget",
         "columns": [
           {
@@ -1560,6 +1444,122 @@
             "name": "TargetAmountCurrentYear",
             "expression": " CALCULATE(DimTarget[TargetAmount], FILTER(ALL(DimDate),DimDate[Current_Year]=1))",
             "formatString": "#,0"
+          }
+        ]
+      },
+      {
+        "name": "dimproductgroup",
+        "columns": [
+          {
+            "name": "idSath1",
+            "dataType": "int64",
+            "sourceColumn": "idSath1"
+          },
+          {
+            "name": "NameSath1",
+            "dataType": "string",
+            "sourceColumn": "NameSath1"
+          },
+          {
+            "name": "idSath2",
+            "dataType": "int64",
+            "sourceColumn": "idSath2"
+          },
+          {
+            "name": "NameSath2",
+            "dataType": "string",
+            "sourceColumn": "NameSath2"
+          },
+          {
+            "name": "idSath3",
+            "dataType": "int64",
+            "sourceColumn": "idSath3"
+          },
+          {
+            "name": "NameSath3",
+            "dataType": "string",
+            "sourceColumn": "NameSath3"
+          },
+          {
+            "name": "idSath4",
+            "dataType": "int64",
+            "sourceColumn": "idSath4"
+          },
+          {
+            "name": "NameSath4",
+            "dataType": "string",
+            "sourceColumn": "NameSath4"
+          },
+          {
+            "name": "EntityName",
+            "dataType": "string",
+            "sourceColumn": "EntityName"
+          },
+          {
+            "name": "EntityGroupingID",
+            "dataType": "int64",
+            "sourceColumn": "EntityGroupingID"
+          },
+          {
+            "name": "id",
+            "dataType": "int64",
+            "sourceColumn": "id"
+          },
+          {
+            "name": "ProductID",
+            "dataType": "int64",
+            "sourceColumn": "ProductID"
+          },
+          {
+            "name": "Name",
+            "dataType": "string",
+            "sourceColumn": "Name"
+          },
+          {
+            "name": "State",
+            "dataType": "int64",
+            "sourceColumn": "State"
+          },
+          {
+            "name": "statename",
+            "dataType": "string",
+            "sourceColumn": "statename"
+          },
+          {
+            "name": "PartID",
+            "dataType": "int64",
+            "sourceColumn": "PartID"
+          },
+          {
+            "name": "Code",
+            "dataType": "string",
+            "sourceColumn": "Code"
+          },
+          {
+            "name": "PropertiesComment",
+            "dataType": "string",
+            "sourceColumn": "PropertiesComment"
+          },
+          {
+            "name": "SecondCode",
+            "dataType": "string",
+            "sourceColumn": "SecondCode"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "Partition",
+            "dataView": "full",
+            "source": {
+              "type": "m",
+              "expression": [
+                "let",
+                "    Source = #\"SQL/192 168 10 10;DW\",",
+                "    kharazmi_dimproductgroup = Source{[Schema=\"kharazmi\",Item=\"dimproductgroup\"]}[Data]",
+                "in",
+                "    kharazmi_dimproductgroup"
+              ]
+            }
           }
         ]
       },
@@ -1697,7 +1697,7 @@
         "measures": [
           {
             "name": "WebSelectCenterName",
-            "expression": " IF(ISBLANK(SELECTEDVALUE(DimCenterPakhsh[CenterName])),\"همه مراکز\", SELECTEDVALUE (DimCenterPakhsh[CenterName]))"
+            "expression": " IF(ISBLANK(SELECTEDVALUE(DimCenterPakhsh[centername])),\"همه مراکز\", SELECTEDVALUE (DimCenterPakhsh[centername]))"
           }
         ]
       },
@@ -2005,52 +2005,13 @@
             ]
           },
           {
-            "name": "webKPI MeasureAmount",
-            "expression": [
-              " ",
-              "var selectedMetric= SELECTEDVALUE(MeasureTable[measure])",
-              "return",
-              "SWITCH(TRUE()",
-              "    , selectedMetric= \"80-20\" && [webParetoChartAmount] <= 0.80, [webRatio Product To All Sales],",
-              "  ",
-              "selectedMetric=\"discountproduct\", [WebRatioPrizeTOSalesAmount],",
-              "//selectedMetric= \"distribution\" && [webCountCustomer not Buy]>0,[webRatio Product To All Sales] ,",
-              "selectedMetric=\"allproduct\", [webRatio Product To All Sales],",
-              "selectedMetric=\"newproduct\"&& [New Product 3 Years]<=36,[NewProductColor],",
-              "BLANK()",
-              ")",
-              ""
-            ],
-            "formatString": "0 %;-0 %;0 %"
-          },
-          {
             "name": "webRatio Product To All Sales",
             "expression": [
               "if([WebSalesAmount]<>0, DIVIDE([WebSalesAmount]",
               ", CALCULATE([WebSalesAmount], all(dimproduct[name])",
               ", all(dimcustomer[nikname]))),0)"
             ],
-            "formatString": "0 %;-0 %;0 %"
-          },
-          {
-            "name": "webParetoChartAmount",
-            "expression": [
-              "",
-              "var staterev= [WebSalesAmount]",
-              "var allsales= CALCULATE([WebSalesAmount],ALLSELECTED(FactSalesWeb))",
-              "return ",
-              "DIVIDE(",
-              "    sumx(",
-              "        FILTER(",
-              "            SUMMARIZE(ALLSELECTED(FactSalesWeb), dimproduct[name],",
-              "               \"TotalSales\", [WebSalesAmount]),",
-              "                    [TotalSales]>=staterev), [TotalSales]),",
-              "allsales, 0)",
-              "",
-              "",
-              "",
-              ""
-            ]
+            "formatString": "0.00 %;-0.00 %;0.00 %"
           },
           {
             "name": "webCountCustomerBuy",
@@ -2111,19 +2072,6 @@
             ]
           },
           {
-            "name": "webAmountPrize",
-            "expression": [
-              "",
-              "VAR TotalReturn = ",
-              "  DIVIDE(CALCULATE( sum (FactSalesWeb[price]), FactSalesWeb[IsPrize]=1),1000000)",
-              "",
-              "RETURN",
-              "COALESCE(TotalReturn, 0)",
-              ""
-            ],
-            "formatString": "#,0"
-          },
-          {
             "name": "webpriceNakhales",
             "expression": [
               "",
@@ -2140,11 +2088,8 @@
           {
             "name": "webQuantityNakhales",
             "expression": [
-              "",
-              "VAR TotalReturn = ",
-              "  CALCULATE(sum('FactSalesWeb'[Quantity]),COALESCE('FactSalesWeb'[IsPrize],0)=0)",
-              "RETURN",
-              "COALESCE(TotalReturn, 0)"
+              "  CALCULATE(sum('FactSalesWeb'[Quantity]),'FactSalesWeb'[IsPrize]=0)",
+              ""
             ],
             "formatString": "#,0"
           },
@@ -2219,29 +2164,9 @@
             "formatString": "0.0 %;-0.0 %;0.0 %"
           },
           {
-            "name": "WebPrizeAmountKhales",
-            "expression": [
-              " [webAmountPrize]-[WebReturnPrizeAmount]",
-              "",
-              ""
-            ]
-          },
-          {
-            "name": "WebRatioPrizeTOSalesQuantity",
-            "expression": " if ( [PrizeQuantityKhales]= 0 , 0 ,  DIVIDE( [PrizeQuantityKhales], [WebSalesQuantity]))",
-            "formatString": "0 %;-0 %;0 %"
-          },
-          {
-            "name": "WebRatioPrizeTOSalesAmount",
-            "expression": [
-              "DIVIDE( [WebPrizeAmountKhales], [WebSalesAmount])",
-              ""
-            ],
-            "formatString": "0 %;-0 %;0 %"
-          },
-          {
             "name": "webTedadFactor",
-            "expression": " DISTINCTCOUNT(FactSalesWeb[SalesID])"
+            "expression": " DISTINCTCOUNT(FactSalesWeb[SalesID])",
+            "formatString": "#,0"
           },
           {
             "name": "WebRatioQuantityWithCntFactor",
@@ -2378,18 +2303,6 @@
             "formatString": "0.0 %;-0.0 %;0.0 %"
           },
           {
-            "name": "WebRemainTargetAmount",
-            "expression": [
-              "[TargetAmount]-[WebSalesAmount]",
-              ""
-            ]
-          },
-          {
-            "name": "webRatioTargetVSSalesAMount%",
-            "expression": "DIVIDE([WebSalesAmount],  DimTarget[TargetAmount])",
-            "formatString": "0 %;-0 %;0 %"
-          },
-          {
             "name": "AmountLastPeriod",
             "expression": [
               " ",
@@ -2400,7 +2313,8 @@
               "        DimDate[datekey]",
               "    ), all(DimDate[datekey])",
               ")"
-            ]
+            ],
+            "formatString": "#,0"
           },
           {
             "name": "webAmountGrowth %",
@@ -2425,7 +2339,8 @@
               "        DimDate[datekey]",
               "    ), all(DimDate[datekey])",
               ")"
-            ]
+            ],
+            "formatString": "#,0"
           },
           {
             "name": "webQuantityGrowth %",
@@ -2445,6 +2360,13 @@
             "formatString": "0.00 %;-0.00 %;0.00 %"
           },
           {
+            "name": "WebRemainTargetAmount",
+            "expression": [
+              "[TargetAmount]-[WebSalesAmount]",
+              ""
+            ]
+          },
+          {
             "name": "WebRemainTargetQuntity",
             "expression": [
               "[TargetCount]-[WebSalesQuantity]",
@@ -2452,8 +2374,86 @@
             ]
           },
           {
+            "name": "webRatioTargetVSSalesAMount%",
+            "expression": "DIVIDE([WebSalesAmount],  DimTarget[TargetAmount])",
+            "formatString": "0 %;-0 %;0 %"
+          },
+          {
+            "name": "WebRatioPrizeTOSalesQuantity",
+            "expression": " if ( [PrizeQuantityKhales]= 0 , 0 ,  DIVIDE( [PrizeQuantityKhales], [WebSalesQuantity]))",
+            "formatString": "0 %;-0 %;0 %"
+          },
+          {
             "name": "PrizeQuantityKhales",
             "expression": " [WebQuantityPrize]- FactReturnSalesWeb[webReturnPrizeQuantity]"
+          },
+          {
+            "name": "webKPI MeasureAmount",
+            "expression": [
+              " ",
+              "var selectedMetric= SELECTEDVALUE(MeasureTable[measure])",
+              "return",
+              "SWITCH(TRUE()",
+              "    , selectedMetric= \"80-20\" && [webParetoChartAmount] <= 0.80, [webRatio Product To All Sales],",
+              "  ",
+              "selectedMetric=\"discountproduct\", [WebRatioPrizeTOSalesAmount],",
+              "//selectedMetric= \"distribution\" && [webCountCustomer not Buy]>0,[webRatio Product To All Sales] ,",
+              "selectedMetric=\"allproduct\", [webRatio Product To All Sales],",
+              "selectedMetric=\"newproduct\"&& [New Product 3 Years]<=36,[NewProductColor],",
+              "BLANK()",
+              ")",
+              ""
+            ],
+            "formatString": "0.000 %;-0.000 %;0.000 %"
+          },
+          {
+            "name": "webParetoChartAmount",
+            "expression": [
+              "",
+              "var staterev= [WebSalesAmount]",
+              "var allsales= CALCULATE([WebSalesAmount],ALLSELECTED(FactSalesWeb))",
+              "return ",
+              "DIVIDE(",
+              "    sumx(",
+              "        FILTER(",
+              "            SUMMARIZE(ALLSELECTED(FactSalesWeb), dimproduct[name],",
+              "               \"TotalSales\", [WebSalesAmount]),",
+              "                    [TotalSales]>=staterev), [TotalSales]),",
+              "allsales, 0)",
+              "",
+              "",
+              "",
+              ""
+            ]
+          },
+          {
+            "name": "webAmountPrize",
+            "expression": [
+              "",
+              "VAR TotalReturn = ",
+              "  DIVIDE(CALCULATE( sum (FactSalesWeb[price]), FactSalesWeb[IsPrize]=1),1000000)",
+              "",
+              "RETURN",
+              "COALESCE(TotalReturn, 0)",
+              ""
+            ],
+            "formatString": "#,0"
+          },
+          {
+            "name": "WebPrizeAmountKhales",
+            "expression": [
+              " [webAmountPrize]-[WebReturnPrizeAmount]",
+              "",
+              ""
+            ]
+          },
+          {
+            "name": "WebRatioPrizeTOSalesAmount",
+            "expression": [
+              "DIVIDE( [WebPrizeAmountKhales], [WebSalesAmount])",
+              ""
+            ],
+            "formatString": "0 %;-0 %;0 %"
           },
           {
             "name": "webRatio Product To All Sales Quantity",
@@ -2461,7 +2461,8 @@
               "if([WebSalesQuantity]<>0, DIVIDE([WebSalesQuantity]",
               ", CALCULATE([WebSalesQuantity], all(dimproduct[name])",
               ", all(dimcustomer[nikname]))),0)"
-            ]
+            ],
+            "formatString": "0.00 %;-0.00 %;0.00 %"
           },
           {
             "name": "webParetoChartQuantity",
@@ -2496,7 +2497,7 @@
               ")",
               ""
             ],
-            "formatString": "0.0 %;-0.0 %;0.0 %"
+            "formatString": "0.000 %;-0.000 %;0.000 %"
           },
           {
             "name": "webPareto CountQuantity",
@@ -2551,6 +2552,82 @@
             "name": "WebRatioprizeProductToALll",
             "expression": " DIVIDE([WebCountproductPrize], [webCountProduct])",
             "formatString": "0.0 %;-0.0 %;0.0 %"
+          },
+          {
+            "name": "UpdateLastDate",
+            "expression": [
+              " ",
+              "var m =CALCULATE( max(FactSalesWeb[BillShamsiDate]), ALL(DimDate))",
+              "RETURN LOOKUPVALUE(DimDate[Jalali], DimDate[datekey], m)"
+            ]
+          },
+          {
+            "name": "webRatio Consumer To All Sales",
+            "expression": [
+              "if (ISBLANK([WebSalesAmount]),0",
+              ", DIVIDE([WebSalesAmount], CALCULATE([WebSalesAmount], all(DimCustomerPakhsh))))"
+            ],
+            "formatString": "0.00 %;-0.00 %;0.00 %"
+          },
+          {
+            "name": "AVGSalesQuantity",
+            "expression": [
+              " ",
+              "",
+              "var countmonth=DATEDIFF( min(DimDate[Date]), max(DimDate[Date]),MONTH)",
+              "return  DIVIDE([WebSalesQuantity], countmonth)",
+              "",
+              ""
+            ],
+            "formatString": "#,0"
+          },
+          {
+            "name": "AVGSalesAmount",
+            "expression": [
+              " ",
+              "",
+              "var countmonth=DATEDIFF( min(DimDate[Date]), max(DimDate[Date]),MONTH)",
+              "return  DIVIDE([WebSalesAmount], countmonth)"
+            ],
+            "formatString": "#,0"
+          },
+          {
+            "name": "New Measure",
+            "lineageTag": "d5b040ef-19be-492e-9fff-10ce11a95f99"
+          },
+          {
+            "name": "ParetCustomerAmount",
+            "expression": [
+              "",
+              "var staterev= [WebSalesAmount]",
+              "var allsales= CALCULATE([WebSalesAmount],ALLSELECTED(FactSalesWeb))",
+              "return ",
+              "DIVIDE(",
+              "    sumx(",
+              "        FILTER(",
+              "            SUMMARIZE(ALLSELECTED(FactSalesWeb), DimCustomerPakhsh[FullName],",
+              "               \"TotalSales\", [WebSalesAmount]),",
+              "                    [TotalSales]>=staterev), [TotalSales]),",
+              "allsales, 0)"
+            ],
+            "lineageTag": "eba1f1c6-3ce3-4877-8312-0f84750c2044"
+          },
+          {
+            "name": "ParetoCustomerAmount",
+            "expression": [
+              "",
+              "var staterev= [WebSalesAmount]",
+              "var allsales= CALCULATE([WebSalesAmount],ALLSELECTED(FactSalesWeb))",
+              "return ",
+              "DIVIDE(",
+              "    sumx(",
+              "        FILTER(",
+              "            SUMMARIZE(ALLSELECTED(FactSalesWeb), DimCustomerPakhsh[FullName],",
+              "               \"TotalSales\", [WebSalesAmount]),",
+              "                    [TotalSales]>=staterev), [TotalSales]),",
+              "allsales, 0)"
+            ],
+            "lineageTag": "57bc8e2d-1b52-4b31-986c-c72f3140aaf9"
           }
         ]
       },
@@ -2639,12 +2716,8 @@
             "name": "webReturnQuantity",
             "expression": [
               "",
-              "VAR TotalReturn = CALCULATE(",
-              "    SUM(FactReturnSalesWeb[Quantity]),",
-              "   COALESCE( FactReturnSalesWeb[IsPrize],0) = 0",
-              ")",
-              "RETURN",
-              "COALESCE(TotalReturn, 0)"
+              " CALCULATE(    SUM(FactReturnSalesWeb[Quantity]), FactReturnSalesWeb[IsPrize]=0)",
+              ""
             ],
             "formatString": "#,0"
           },
@@ -2661,6 +2734,11 @@
               "COALESCE(TotalReturn, 0)"
             ],
             "formatString": "#,0"
+          },
+          {
+            "name": "WebRatioReturnAmountToSales",
+            "expression": " DIVIDE(FactReturnSalesWeb[webReturnAmount], FactSalesWeb[WebSalesAmount])",
+            "formatString": "0.00 %;-0.00 %;0.00 %"
           },
           {
             "name": "webReturnPrizeQuantity",
@@ -2691,9 +2769,32 @@
             ]
           },
           {
-            "name": "WebRatioReturnAmountToSales",
-            "expression": " DIVIDE(FactReturnSalesWeb[webReturnAmount], FactSalesWeb[WebSalesAmount])",
-            "formatString": "0 %;-0 %;0 %"
+            "name": "WebRatioReturnQuanntityToSales",
+            "expression": " DIVIDE(FactReturnSalesWeb[webReturnQuantity], FactSalesWeb[WebSalesQuantity])",
+            "formatString": "0.00 %;-0.00 %;0.00 %"
+          },
+          {
+            "name": "CountCustomerReturn",
+            "expression": [
+              " CALCULATE(if (ISBLANK( DISTINCTCOUNT(FactReturnSalesWeb[GLN])) ",
+              ", 0 ",
+              ",DISTINCTCOUNT(FactReturnSalesWeb[GLN]) ",
+              "))"
+            ]
+          },
+          {
+            "name": "RatioReturnCustomerToAll",
+            "expression": "DIVIDE( [CountCustomerReturn], [WebCountCustomer])",
+            "formatString": "0.00 %;-0.00 %;0.00 %"
+          },
+          {
+            "name": "WebCountproductReturn",
+            "expression": " CALCULATE(DISTINCTCOUNT(FactReturnSalesWeb[productcode]))"
+          },
+          {
+            "name": "WebRatioReturnProductToALll",
+            "expression": " DIVIDE([WebCountproductReturn], [webCountProduct])",
+            "formatString": "0.00 %;-0.00 %;0.00 %"
           }
         ]
       },
@@ -2729,6 +2830,14 @@
             "name": "Provice",
             "dataType": "string",
             "sourceColumn": "Provice"
+          },
+          {
+            "type": "calculated",
+            "name": "FullName",
+            "dataType": "string",
+            "isDataTypeInferred": true,
+            "expression": "CONCATENATE(DimCustomerPakhsh[CustomerName],DimCustomerPakhsh[GLN] )",
+            "lineageTag": "495a8baa-2d8f-41f1-b52b-b69cbe8bcfc9"
           }
         ],
         "partitions": [
@@ -2743,77 +2852,6 @@
                 "    kharazmi_DimCustomerPakhsh = Source{[Schema=\"kharazmi\",Item=\"DimCustomerPakhsh\"]}[Data]",
                 "in",
                 "    kharazmi_DimCustomerPakhsh"
-              ]
-            }
-          }
-        ]
-      },
-      {
-        "name": "kharazmi FactInventoryWeb",
-        "columns": [
-          {
-            "name": "datekey",
-            "dataType": "int64",
-            "sourceColumn": "datekey"
-          },
-          {
-            "name": "productcode1",
-            "dataType": "double",
-            "sourceColumn": "productcode1"
-          },
-          {
-            "name": "centerid",
-            "dataType": "int64",
-            "sourceColumn": "centerid"
-          },
-          {
-            "name": "BatchNo",
-            "dataType": "string",
-            "sourceColumn": "BatchNo"
-          },
-          {
-            "name": "ExpDate",
-            "dataType": "dateTime",
-            "sourceColumn": "ExpDate"
-          },
-          {
-            "name": "QtyStock",
-            "dataType": "int64",
-            "sourceColumn": "QtyStock"
-          },
-          {
-            "name": "InWay",
-            "dataType": "int64",
-            "sourceColumn": "InWay"
-          },
-          {
-            "name": "QtystockPrice",
-            "dataType": "double",
-            "sourceColumn": "QtystockPrice"
-          },
-          {
-            "name": "pakhsh",
-            "dataType": "string",
-            "sourceColumn": "pakhsh"
-          },
-          {
-            "name": "valuepakhsh",
-            "dataType": "int64",
-            "sourceColumn": "valuepakhsh"
-          }
-        ],
-        "partitions": [
-          {
-            "name": "Partition",
-            "dataView": "full",
-            "source": {
-              "type": "m",
-              "expression": [
-                "let",
-                "    Source = #\"SQL/192 168 10 10;DW\",",
-                "    kharazmi_FactInventoryWeb = Source{[Schema=\"kharazmi\",Item=\"FactInventoryWeb\"]}[Data]",
-                "in",
-                "    kharazmi_FactInventoryWeb"
               ]
             }
           }
@@ -2930,7 +2968,7 @@
                 "    \"title\", STRING,",
                 "    \"discrib\", STRING,",
                 "    {",
-                "        { \"80-20\", \"80-20\", \"اصل 80-20 در مشتریان\" },",
+                "        { \"80-20\", \"80-20\", \"80-20\" },",
                 "        { \"discountproduct\", \"تخفیف محصولات\" ,\"توزیع درصد تخفیف به مشتریان\"},",
                 "        { \"allproduct\", \"همه محصولات\" ,\"سهم از فروش به مشتریان\"}",
                 "   ",
@@ -2938,6 +2976,680 @@
                 ")"
               ]
             }
+          }
+        ],
+        "measures": [
+          {
+            "name": "01-DebitBalance",
+            "expression": "CALCULATE(SUM(FactFinance[DebitBalance]))/1000000",
+            "displayFolder": "Finance",
+            "lineageTag": "1ed6c40b-71dc-40ff-b861-375c38171957"
+          },
+          {
+            "name": "DaraeSabetMashhood",
+            "expression": "CALCULATE([01-DebitBalance],FactFinance[AccountID] in {2110,2111,2112,2113,2114,2115,2116,2118,2119,2121,2125,2211,2212,2213,2214,2215,2216,2218,2219,2220,1584})",
+            "displayFolder": "Finance",
+            "lineageTag": "a333d036-9a08-41ee-a705-d076dc77cd28"
+          },
+          {
+            "name": "DaraeNamashhood",
+            "expression": "CALCULATE([01-DebitBalance],FactFinance[AccountID] IN {2310,2313,2314,2221})",
+            "displayFolder": "Finance",
+            "lineageTag": "d15a6b80-c56a-4156-b964-f2e763494e84"
+          },
+          {
+            "name": "SarmayegozariBolandModdat",
+            "expression": "CALCULATE([01-DebitBalance], FactFinance[AccountID] IN {1230,2410})",
+            "displayFolder": "Finance",
+            "lineageTag": "983f336c-a305-4701-9040-9017eaf88521"
+          },
+          {
+            "name": "DaraehayeGheireJari",
+            "expression": "[DaraeSabetMashhood] + [DaraeNamashhood] + [SarmayegozariBolandModdat]",
+            "displayFolder": "Finance",
+            "lineageTag": "1290288b-273b-48a1-9593-11fb5d863f20"
+          },
+          {
+            "name": "Pishpardakhtaha",
+            "expression": "CALCULATE([01-DebitBalance],FactFinance[AccountID] in {1645,1650,1660,1702,1703,1704,1705,1706,1707,1708,1709,1711,1712,1713,1714,1798,3114,3212})",
+            "displayFolder": "Finance",
+            "lineageTag": "1214343a-83c3-4a4a-969c-5184df22665b"
+          },
+          {
+            "name": "MojodiNaghd",
+            "expression": "CALCULATE([01-DebitBalance], FactFinance[AccountID] in {1110,1115,1126,1130})",
+            "displayFolder": "Finance",
+            "lineageTag": "dec28cf8-c99d-4032-bffb-ca950bc729ca"
+          },
+          {
+            "name": "DaryaftanihayeTejariVaSayereDaryaftaniha",
+            "expression": "CALCULATE([01-DebitBalance],FactFinance[AccountID] IN {1140,1141,1310,1320,1330,1420,1430,1451,1452,1458,1462,1464,1499,3214,3249})",
+            "displayFolder": "Finance",
+            "lineageTag": "527a9a4c-cfb2-4355-9f59-ba1787a6a08f"
+          },
+          {
+            "name": "Sarmayeh",
+            "expression": "-CALCULATE([01-DebitBalance],FactFinance[AccountID] = {5110})",
+            "displayFolder": "Finance",
+            "lineageTag": "0299eb8e-419d-43d7-a75a-adb310af9daa"
+          },
+          {
+            "name": "SoodeAnbashte",
+            "expression": "-CALCULATE([01-DebitBalance],FactFinance[AccountID] in {5410,5420})",
+            "displayFolder": "Finance",
+            "lineageTag": "01aced9b-20e6-4b3b-ac4d-c8a8a8a0d44d"
+          },
+          {
+            "name": "ZakhireMazayayePayanKhedmateKarkonan",
+            "expression": "-CALCULATE([01-DebitBalance],FactFinance[AccountID] = 4310)",
+            "displayFolder": "Finance",
+            "lineageTag": "5d25287e-ee10-4648-96b6-debc8176cc55"
+          },
+          {
+            "name": "PardakhtanihayeTejariVaSayer",
+            "expression": "CALCULATE([01-DebitBalance], FactFinance[AccountID] IN {1320,1420,1430,1450,1463,1445,1650,1660,3110,3114,3115,3119,3199,3210,3212,3215,3217,3220,3221,3227,3229,3230,3235,3236,3247,3250,3298,3299,4311})",
+            "displayFolder": "Finance",
+            "lineageTag": "d5189876-e175-48a4-b117-3fd0769cec50"
+          },
+          {
+            "name": "MaliatPardakhtani",
+            "expression": "-CALCULATE([01-DebitBalance],FactFinance[AccountID] =3410)",
+            "displayFolder": "Finance",
+            "lineageTag": "c7a85741-6c3d-4a59-9174-61b68ecffb6f"
+          },
+          {
+            "name": "SoodeSahamePardakhtani",
+            "expression": "-CALCULATE([01-DebitBalance], FactFinance[AccountID] =3510)",
+            "displayFolder": "Finance",
+            "lineageTag": "bf7622c7-b57b-46b7-a034-0de0e5b33e9b"
+          },
+          {
+            "name": "TashilateMali",
+            "expression": "-CALCULATE([01-DebitBalance],FactFinance[AccountID] IN {1489,1494,2940,3614,3615,3616})",
+            "displayFolder": "Finance",
+            "lineageTag": "168d1f7f-5652-4bf5-a1ef-021a88ac23ae"
+          },
+          {
+            "name": "DaramadAmaliyati",
+            "expression": "-CALCULATE([01-DebitBalance],FactFinance[AccountID] in {6105,6110,6113,6115,6120,6125,6130,6145,6410,6415,6420,6425,6445,6505,6510,6511,6513,6515,6520,6525,6545,6546,6411,6413})",
+            "displayFolder": "Finance",
+            "lineageTag": "84b7298c-1d53-4538-baa5-6d7914d8b91b"
+          },
+          {
+            "name": "BahayeTamamshodeDaramadhayeAmaliyati",
+            "expression": [
+              "var x =",
+              "CALCULATE(",
+              "    [01-DebitBalance],",
+              "    FactFinance[AccountID] = 7810,",
+              "    FILTER(",
+              "        FINDescription,",
+              "        SEARCH(\"مواد\", FINDescription[description], 1, 0) > 0",
+              "    )",
+              ")",
+              "var y = CALCULATE([01-DebitBalance],FactFinance[AccountID] in {7810,8901})",
+              "",
+              "return -(y-x)"
+            ],
+            "displayFolder": "Finance",
+            "lineageTag": "d8a3e59e-eda9-4e28-8a69-00084f5e613f"
+          },
+          {
+            "name": "HazinehayeForooshVaEdariVaOmomi",
+            "expression": "-CALCULATE([01-DebitBalance], FactFinance[AccountID] in {7102,7103,7104,7105,7106,7107,7110,7113,7114,7115,7116,7117,7119,7120,7121,7122,7123,7124,7127,7129,7130,7133,7134,7135,7136,7137,7138,7139,7142,7199,7201,7203,7205,7206,7208,7209,7210,7211,7214,7215,7216,7217,7301,7302,7303,7304,7305,7306,7307,7308,7309,7310,7311,7312,7313,7314,7315,7316,7317,7318,7319,7320,7321,7323,7324,7325,7326,7327,7328,7329,7331,7332,7333,7335,7336,7337,7338,7340,7343,7345,7346,7350,7354,7358,7360,7361,7362,7366,7367,7368,7369,7370,7371,7372,7373,7410,7420,7430,7440,7450,7460,7470,7480,7490,7491,7530,8906,8908})",
+            "displayFolder": "Finance",
+            "lineageTag": "da470152-8960-4904-80bf-96bc93311a94"
+          },
+          {
+            "name": "SayereDaramadha",
+            "expression": "-CALCULATE([01-DebitBalance],FactFinance[AccountID] in {6212,6216,6299})",
+            "displayFolder": "Finance",
+            "lineageTag": "991a1b0b-5908-499a-bcdc-442520ee6896"
+          },
+          {
+            "name": "Hazinehaye Mali",
+            "expression": "-CALCULATE([01-DebitBalance], FactFinance[AccountID] in {7510,7520,7525})",
+            "displayFolder": "Finance",
+            "lineageTag": "ef2053ce-ca65-4e67-a439-ec0e658eb8f7"
+          },
+          {
+            "name": "SayerDaramadhaVaHazinehayeGheireAmaliyati",
+            "expression": "-CALCULATE([01-DebitBalance],FactFinance[AccountID] in {6319})",
+            "displayFolder": "Finance",
+            "lineageTag": "b546a0bf-e4f7-4b16-bdc4-3f37df1cd865"
+          },
+          {
+            "name": "SoodAmaliyatdarhaleTadavomGhabl az Maliyat",
+            "expression": [
+              " var x =",
+              "CALCULATE(",
+              "    [01-DebitBalance],",
+              "    FactFinance[AccountID] = 7810,",
+              "    FILTER(",
+              "        FINDescription,",
+              "        SEARCH(\"مواد\", FINDescription[description], 1, 0) > 0",
+              "    )",
+              ")",
+              " var y = CALCULATE([01-DebitBalance], FactFinance[AccountID] in {6210,6211})",
+              " var z= CALCULATE([01-DebitBalance], FactFinance[AccountID] in{6399,6319})",
+              " return y+x+z"
+            ],
+            "displayFolder": "Finance",
+            "lineageTag": "485dce3a-4bf8-4926-bea2-f72410cd698b"
+          },
+          {
+            "name": "HazineMaliyatBarDaramadSaleJari",
+            "expression": "(CALCULATE([01-DebitBalance], FactFinance[AccountID]  in {6319,3212}) * 20) /100",
+            "displayFolder": "Finance",
+            "lineageTag": "172c7603-73e0-40d2-8510-ec758b82728a"
+          },
+          {
+            "name": "SoodNakhales",
+            "expression": "[DaramadAmaliyati]+[BahayeTamamshodeDaramadhayeAmaliyati]",
+            "displayFolder": "Finance",
+            "lineageTag": "836f983e-af55-4efd-8d24-c3c572b5c42e"
+          },
+          {
+            "name": "MojodiMavadVaKala",
+            "expression": " CALCULATE([01-DebitBalance],FactFinance[AccountID] IN {1495,1510,1511,1520,1524,1525,1535,1536,1545,1578,1592})",
+            "displayFolder": "Finance",
+            "lineageTag": "6886220b-7fab-4d1e-b1e7-2af92da289f4"
+          },
+          {
+            "name": "AndookhteGhanooni",
+            "expression": "-CALCULATE([01-DebitBalance],FactFinance[AccountID] = 5210)",
+            "displayFolder": "Finance",
+            "lineageTag": "24ad0436-0376-48f9-aa22-1aaa275d00b3"
+          },
+          {
+            "name": "DaraeJari",
+            "expression": "[Pishpardakhtaha]+[MojodiMavadVaKala]+[DaryaftanihayeTejariVaSayereDaryaftaniha]+[MojodiNaghd]",
+            "displayFolder": "Finance",
+            "lineageTag": "5a143c38-641a-4c88-857c-c22b6df1fb50"
+          },
+          {
+            "name": "Darae",
+            "expression": "[DaraeJari]+[DaraehayeGheireJari]",
+            "displayFolder": "Finance",
+            "lineageTag": "dd6f5854-12a8-43d4-8a98-2fb8b3d56394"
+          },
+          {
+            "name": "HoghoghMalekane",
+            "expression": "[Sarmayeh]+[AndookhteGhanooni]+[SoodeAnbashte]",
+            "displayFolder": "Finance",
+            "lineageTag": "4b5e3dbf-a20e-4d3a-a118-a9c4fa1cc9c1"
+          },
+          {
+            "name": "SayerHazine",
+            "expression": "CALCULATE([01-DebitBalance],FactFinance[AccountID] in {6399,7810})",
+            "displayFolder": "Finance",
+            "lineageTag": "ea5b9e47-d672-4727-8a7d-7124d95623d2"
+          },
+          {
+            "name": "SoodAmaliyati",
+            "expression": "[SoodNakhales]+[HazinehayeForooshVaEdariVaOmomi]+[SayereDaramadha]+[SayerHazine]",
+            "displayFolder": "Finance",
+            "lineageTag": "cd36f59a-55d6-4d8b-8581-f0f4d451092d"
+          },
+          {
+            "name": "SoodAmaliyatDarHalTadavomGhablazMaliyat",
+            "expression": "[SoodAmaliyati]+[Hazinehaye Mali]+[SayerDaramadhaVaHazinehayeGheireAmaliyati]-1",
+            "displayFolder": "Finance",
+            "lineageTag": "76d5941e-cc34-455e-9020-481c1ef89c58"
+          },
+          {
+            "name": "SoodKhalesAmaliyatDarhalTadavom",
+            "expression": "[SoodAmaliyatDarHalTadavomGhablazMaliyat]+[HazineMaliyatBarDaramadSaleJari]",
+            "displayFolder": "Finance",
+            "lineageTag": "a67c5b19-8029-4004-bc64-9e3b929996da"
+          },
+          {
+            "name": "DaramadAmaliyati_LastYear",
+            "expression": [
+              "CALCULATE(ABS([DaramadAmaliyati]),",
+              " USERELATIONSHIP ('FactFinance'[DateID] , 'DimDate'[LastYearDateKey] )",
+              ")"
+            ],
+            "displayFolder": "Finance",
+            "lineageTag": "668c240c-d4f8-4b48-b500-48fe3cccd75d"
+          }
+        ]
+      },
+      {
+        "name": "DimAccount",
+        "columns": [
+          {
+            "name": "EntityID",
+            "dataType": "int64",
+            "sourceColumn": "EntityID"
+          },
+          {
+            "name": "SLID",
+            "dataType": "int64",
+            "sourceColumn": "SLID"
+          },
+          {
+            "name": "PLID",
+            "dataType": "int64",
+            "sourceColumn": "PLID"
+          },
+          {
+            "name": "GLID",
+            "dataType": "int64",
+            "sourceColumn": "GLID"
+          },
+          {
+            "name": "Title",
+            "dataType": "string",
+            "sourceColumn": "Title"
+          },
+          {
+            "name": "PLTitle",
+            "dataType": "string",
+            "sourceColumn": "PLTitle"
+          },
+          {
+            "name": "GLTitle",
+            "dataType": "string",
+            "sourceColumn": "GLTitle"
+          },
+          {
+            "name": "EnglishTitle",
+            "dataType": "string",
+            "sourceColumn": "EnglishTitle"
+          },
+          {
+            "name": "EnglishPLTitle",
+            "dataType": "string",
+            "sourceColumn": "EnglishPLTitle"
+          },
+          {
+            "name": "EnglishGLTitle",
+            "dataType": "string",
+            "sourceColumn": "EnglishGLTitle"
+          },
+          {
+            "name": "plcode",
+            "dataType": "int64",
+            "sourceColumn": "plcode"
+          },
+          {
+            "name": "glcode",
+            "dataType": "int64",
+            "sourceColumn": "glcode"
+          },
+          {
+            "name": "slcode",
+            "dataType": "int64",
+            "sourceColumn": "slcode"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "Partition",
+            "dataView": "full",
+            "source": {
+              "type": "m",
+              "expression": [
+                "let",
+                "    Source = #\"SQL/192 168 10 10;DW\",",
+                "    kharazmi_DimAccount = Source{[Schema=\"kharazmi\",Item=\"DimAccount\"]}[Data]",
+                "in",
+                "    kharazmi_DimAccount"
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "name": "FactFinance",
+        "columns": [
+          {
+            "name": "VoucherID",
+            "dataType": "int64",
+            "sourceColumn": "VoucherID"
+          },
+          {
+            "name": "VoucherItemid",
+            "dataType": "int64",
+            "sourceColumn": "VoucherItemid"
+          },
+          {
+            "name": "AccountingVoucherTypeID",
+            "dataType": "int64",
+            "sourceColumn": "AccountingVoucherTypeID"
+          },
+          {
+            "name": "AccountingVoucherStateID",
+            "dataType": "int64",
+            "sourceColumn": "AccountingVoucherStateID"
+          },
+          {
+            "name": "BranchID",
+            "dataType": "int64",
+            "sourceColumn": "BranchID"
+          },
+          {
+            "name": "AccountID",
+            "dataType": "int64",
+            "sourceColumn": "AccountID"
+          },
+          {
+            "name": "DL4ID",
+            "dataType": "int64",
+            "sourceColumn": "DL4ID"
+          },
+          {
+            "name": "Debit",
+            "dataType": "double",
+            "sourceColumn": "Debit"
+          },
+          {
+            "name": "Credit",
+            "dataType": "double",
+            "sourceColumn": "Credit"
+          },
+          {
+            "name": "DebitBalance",
+            "dataType": "double",
+            "sourceColumn": "DebitBalance"
+          },
+          {
+            "name": "DateID",
+            "dataType": "int64",
+            "sourceColumn": "DateID"
+          },
+          {
+            "name": "DL5ID",
+            "dataType": "int64",
+            "sourceColumn": "DL5ID"
+          },
+          {
+            "name": "DL6ID",
+            "dataType": "int64",
+            "sourceColumn": "DL6ID"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "Partition",
+            "dataView": "full",
+            "source": {
+              "type": "m",
+              "expression": [
+                "let",
+                "    Source = #\"SQL/192 168 10 10;DW\",",
+                "    kharazmi_FactFinance = Source{[Schema=\"kharazmi\",Item=\"FactFinance\"]}[Data]",
+                "in",
+                "    kharazmi_FactFinance"
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "name": "FINDescription",
+        "columns": [
+          {
+            "name": "VoucherItemID",
+            "dataType": "int64",
+            "sourceColumn": "VoucherItemID"
+          },
+          {
+            "name": "description",
+            "dataType": "string",
+            "sourceColumn": "description"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "Partition",
+            "dataView": "full",
+            "source": {
+              "type": "m",
+              "expression": [
+                "let",
+                "    Source = #\"SQL/192 168 10 10;DW\",",
+                "    kharazmi_FINDescription = Source{[Schema=\"kharazmi\",Item=\"FINDescription\"]}[Data]",
+                "in",
+                "    kharazmi_FINDescription"
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "name": "FactInventoryWeb",
+        "columns": [
+          {
+            "name": "datekey",
+            "dataType": "int64",
+            "sourceColumn": "datekey"
+          },
+          {
+            "name": "productcode",
+            "dataType": "double",
+            "sourceColumn": "productcode"
+          },
+          {
+            "name": "centerid",
+            "dataType": "int64",
+            "sourceColumn": "centerid"
+          },
+          {
+            "name": "BatchNo",
+            "dataType": "int64",
+            "sourceColumn": "BatchNo"
+          },
+          {
+            "name": "ExpDate",
+            "dataType": "dateTime",
+            "sourceColumn": "ExpDate"
+          },
+          {
+            "name": "QtyStock",
+            "dataType": "int64",
+            "sourceColumn": "QtyStock"
+          },
+          {
+            "name": "InWay",
+            "dataType": "int64",
+            "sourceColumn": "InWay"
+          },
+          {
+            "name": "QtystockPrice",
+            "dataType": "double",
+            "sourceColumn": "QtystockPrice"
+          },
+          {
+            "name": "pakhsh",
+            "dataType": "string",
+            "sourceColumn": "pakhsh"
+          },
+          {
+            "name": "valuepakhsh",
+            "dataType": "int64",
+            "sourceColumn": "valuepakhsh"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "Partition",
+            "dataView": "full",
+            "source": {
+              "type": "m",
+              "expression": [
+                "let",
+                "    Source = #\"SQL/192 168 10 10;DW\",",
+                "    kharazmi_FactInventoryWeb = Source{[Schema=\"kharazmi\",Item=\"FactInventoryWeb\"]}[Data]",
+                "in",
+                "    kharazmi_FactInventoryWeb"
+              ]
+            }
+          }
+        ],
+        "measures": [
+          {
+            "name": "QuantityStock",
+            "expression": [
+              " VAR dat= max(DimDate[datekey])",
+              "RETURN CALCULATE(sum(FactInventoryWeb[QtyStock]) , FactInventoryWeb[datekey]= dat)"
+            ],
+            "formatString": "#,##0",
+            "lineageTag": "85fe6c92-39fd-4664-98ba-e0d4a97518b5"
+          },
+          {
+            "name": "QuantityInWay",
+            "expression": [
+              " VAR dat= max(DimDate[datekey])",
+              "RETURN CALCULATE(sum(FactInventoryWeb[InWay]) , FactInventoryWeb[datekey]= dat)"
+            ],
+            "formatString": "#,##0",
+            "lineageTag": "ebec7a9d-3211-4b1c-9167-a62d71adf737"
+          },
+          {
+            "name": "StockPrice",
+            "expression": [
+              " VAR dat= max(DimDate[datekey])",
+              "var kol= CALCULATE(sumx(FactInventoryWeb,FactInventoryWeb[QtystockPrice]*FactInventoryWeb[Qtystock])",
+              " , FactInventoryWeb[datekey]= dat)",
+              "return divide (kol, 10000000)"
+            ],
+            "formatString": "#,##0",
+            "lineageTag": "05b7e960-9ead-4e55-8fe8-bd9d5b20ac8f"
+          },
+          {
+            "name": "CountofProduct Inventory",
+            "expression": [
+              " ",
+              "CALCULATE(",
+              "    COUNTROWS(DISTINCT(FactInventoryWeb[productcode]))",
+              "    , FactInventoryWeb[datekey]= max(DimDate[datekey]), (FactInventoryWeb[QtyStock]>0 || FactInventoryWeb[InWay]>0)",
+              ")",
+              "    "
+            ],
+            "lineageTag": "77aa5301-c6e4-48d4-863d-02ee794dba62"
+          },
+          {
+            "name": "CountofSKUInventory",
+            "expression": [
+              " ",
+              "CALCULATE(",
+              "    COUNTROWS(DISTINCT(FactInventoryWeb[BatchNo]))",
+              "    ",
+              "    , FactInventoryWeb[datekey]= max(DimDate[datekey]), (FactInventoryWeb[QtyStock]>0 || FactInventoryWeb[InWay]>0)",
+              ")"
+            ],
+            "lineageTag": "f5c90a10-fef2-4a7c-9f02-e5d09364e5cf"
+          },
+          {
+            "name": "ExpiringIn15Months",
+            "expression": [
+              " ",
+              "CALCULATE(",
+              "    COUNTROWS(DISTINCT(FactInventoryWeb[BatchNo])),",
+              "        FactInventoryWeb[ExpDate] <= EDATE(TODAY(), 15)",
+              "    , FactInventoryWeb[datekey]= max(DimDate[datekey]), (FactInventoryWeb[QtyStock]>0 || FactInventoryWeb[InWay]>0)",
+              ")"
+            ],
+            "lineageTag": "cad86fd3-1be1-4da2-ab33-e065b26d82ae"
+          },
+          {
+            "name": "ExpiringStockValue",
+            "expression": [
+              " ",
+              "CALCULATE(",
+              "    [StockPrice],",
+              "     FactInventoryWeb[ExpDate] <= EDATE(TODAY(), 15)",
+              "    , FactInventoryWeb[datekey]= max(DimDate[datekey]), (FactInventoryWeb[QtyStock]>0 || FactInventoryWeb[InWay]>0)",
+              ")"
+            ],
+            "lineageTag": "01f9c4e3-50d4-415d-aac4-b480d64e4184"
+          },
+          {
+            "name": "Ratio of monghazi be kol",
+            "expression": " DIVIDE([ExpiringIn15Months], [CountofSKUInventory])",
+            "formatString": "#,##0 %",
+            "lineageTag": "a02e1963-d177-4f34-bbe9-5cfaf6c21ca9"
+          },
+          {
+            "name": "RAtio of monghazi to rial mojodi",
+            "expression": " DIVIDE([ExpiringStockValue], [StockPrice])",
+            "formatString": "#,##0 %",
+            "lineageTag": "04ce3dd4-4531-4eb9-8007-1af41778b0a6"
+          },
+          {
+            "name": "RemainExpirationMonth",
+            "expression": [
+              "",
+              "VAR ExpDate = MIN(FactInventoryWeb[ExpDate])   ",
+              "VAR x = DATEDIFF(TODAY(), ExpDate, MONTH)      ",
+              "VAR MinExpDateForProduct = ",
+              "   calculate(min(FactInventoryWeb[ExpDate]), FactInventoryWeb[ExpDate]<>DATE(2000,1,1) )",
+              "",
+              "VAR MinMonthRemaining = DATEDIFF(TODAY(), MinExpDateForProduct, MONTH)  ",
+              "",
+              "RETURN",
+              "SWITCH(",
+              "    TRUE(),",
+              "    ISINSCOPE(dimproduct[FullName Product]) && NOT ISINSCOPE(FactInventoryWeb[BatchNo]), ",
+              "        MinMonthRemaining, ",
+              "    ISINSCOPE(FactInventoryWeb[BatchNo]), ",
+              "        x, ",
+              "    0 ",
+              ")",
+              "",
+              " "
+            ],
+            "lineageTag": "a025e1c9-1262-44b3-8543-e22b95b67513"
+          },
+          {
+            "name": "ColorInventory",
+            "expression": [
+              "",
+              "VAR ExpDate = MIN(FactInventoryWeb[ExpDate])",
+              "VAR RemainMonth = DATEDIFF(TODAY(), ExpDate, MONTH)",
+              "VAR HasNearExpiryBatch =",
+              "    CALCULATE(",
+              "        COUNTROWS(distinct (FactInventoryWeb[BatchNo])),",
+              "        FactInventoryWeb[ExpDate] <= EDATE(TODAY(), 15), FactInventoryWeb[Qtystock]>0",
+              "        ,ALLEXCEPT(dimproduct, dimproduct[FullName Product]),FactInventoryWeb[ExpDate] <> DATE(2000,1,1)",
+              "        )",
+              "RETURN",
+              "SWITCH(",
+              "    TRUE(),",
+              "    ISBLANK(ExpDate)",
+              "    , \"#6A9C89\",      ",
+              "    ISINSCOPE(dimproduct[FullName Product])&& NOT ISINSCOPE(FactInventoryWeb[BatchNo]) && HasNearExpiryBatch > 0, \"#C80000\", ",
+              "    ISINSCOPE(FactInventoryWeb[BatchNo]) && RemainMonth <= 15, \"#C80000\", ",
+              "",
+              "    \"#6A9C89\" ",
+              ")",
+              ""
+            ],
+            "lineageTag": "6f00acdc-5fac-44c1-81d1-54f98226bf94"
+          },
+          {
+            "name": "NearExpirationDate",
+            "expression": [
+              "",
+              "VAR MinExpDateForProduct = ",
+              "   calculate(min(FactInventoryWeb[ExpDate]), FactInventoryWeb[ExpDate]<>DATE(2000,1,1) )",
+              "",
+              "",
+              "",
+              "RETURN",
+              "SWITCH(",
+              "    TRUE(),",
+              "    ISINSCOPE(dimproduct[FullName Product]) && NOT ISINSCOPE(FactInventoryWeb[BatchNo]), ",
+              "        MinExpDateForProduct, ",
+              "    ISINSCOPE(FactInventoryWeb[BatchNo]), ",
+              "       min( FactInventoryWeb[ExpDate]), ",
+              "    DATE(2000,1,1) ",
+              ")",
+              ""
+            ],
+            "lineageTag": "d25d399a-388a-43a1-99bb-7f7ea7c074de"
           }
         ]
       }
@@ -3038,13 +3750,6 @@
         "toColumn": "Id"
       },
       {
-        "name": "40b57a92-d273-4e16-a5bc-50e8059b38de",
-        "fromTable": "kharazmi FactInventoryWeb",
-        "fromColumn": "productcode1",
-        "toTable": "dimproduct",
-        "toColumn": "Number"
-      },
-      {
         "name": "3c2b022b-38f2-4b07-9663-c0ad6baf3e12",
         "fromTable": "FactReturnSalesWeb",
         "fromColumn": "valuepakhsh",
@@ -3085,12 +3790,93 @@
         "fromColumn": "batchID",
         "toTable": "dimsku",
         "toColumn": "Id"
+      },
+      {
+        "name": "10a0fd56-4719-4f42-a635-b2e4c29048e2",
+        "fromTable": "FactInventoryWeb",
+        "fromColumn": "BatchNo",
+        "toTable": "dimsku",
+        "toColumn": "Id"
+      },
+      {
+        "name": "59d20d8f-6527-41b7-9fac-97df0f943221",
+        "fromTable": "FactInventoryWeb",
+        "fromColumn": "datekey",
+        "toTable": "DimDate",
+        "toColumn": "datekey"
+      },
+      {
+        "name": "6ff53464-b207-4728-8d2f-e32cb11790af",
+        "fromTable": "FactInventoryWeb",
+        "fromColumn": "centerid",
+        "toTable": "DimCenterPakhsh",
+        "toColumn": "Id"
+      },
+      {
+        "name": "3921721b-acf7-4433-81a6-2af122d96c7c",
+        "fromTable": "FactInventoryWeb",
+        "fromColumn": "valuepakhsh",
+        "toTable": "dimcustomer",
+        "toColumn": "CustomerID"
+      },
+      {
+        "name": "9385ab76-1b36-430a-924b-80b8a700a12b",
+        "fromTable": "FactFinance",
+        "fromColumn": "DateID",
+        "toTable": "DimDate",
+        "toColumn": "datekey"
+      },
+      {
+        "name": "921640ca-3ce1-4b54-a391-da16560af106",
+        "fromTable": "FactFinance",
+        "fromColumn": "VoucherItemid",
+        "toTable": "FINDescription",
+        "toColumn": "VoucherItemID"
+      },
+      {
+        "name": "2e33304d-0acb-4f27-b98d-d14717b2fd7e",
+        "fromTable": "FactFinance",
+        "fromColumn": "AccountID",
+        "toTable": "DimAccount",
+        "toColumn": "EntityID"
+      },
+      {
+        "name": "2ab4735e-b4d1-4b2c-b1de-fa131ef36eed",
+        "fromTable": "FactFinance",
+        "fromColumn": "DateID",
+        "toTable": "DimDate",
+        "toColumn": "LastYearDateKey",
+        "isActive": false
+      }
+    ],
+    "roles": [
+      {
+        "name": "Role",
+        "modelPermission": "read",
+        "members": [
+          {
+            "memberName": "kharazmi",
+            "memberId": "S-1-5-21-499568545-3104466371-3761005532-1012"
+          },
+          {
+            "memberName": "EL\\Hajiloum",
+            "memberId": "S-1-5-21-703900734-646726423-983355036-8886"
+          },
+          {
+            "memberName": "EL\\IT-Group",
+            "memberId": "S-1-5-21-703900734-646726423-983355036-1284"
+          }
+        ]
       }
     ],
     "annotations": [
       {
         "name": "ClientCompatibilityLevel",
         "value": "700"
+      },
+      {
+        "name": "__TEdtr",
+        "value": "1"
       }
     ]
   }
