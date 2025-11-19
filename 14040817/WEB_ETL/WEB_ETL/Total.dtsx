@@ -11,8 +11,8 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="Total"
   DTS:PackageType="5"
-  DTS:VersionBuild="10"
-  DTS:VersionGUID="{F7E32ADD-F88F-4649-B865-9AA2C781834F}">
+  DTS:VersionBuild="11"
+  DTS:VersionGUID="{29CB60A4-44B5-4C8E-8219-DC0F2690BBE5}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -44,7 +44,7 @@
       <DTS:ObjectData>
         <ExecutePackageTask>
           <UseProjectReference>True</UseProjectReference>
-          <PackageName>Aggrigate All TAble Web to DW.dtsx</PackageName>
+          <PackageName>GatterALL.dtsx</PackageName>
         </ExecutePackageTask>
       </DTS:ObjectData>
     </DTS:Executable>
