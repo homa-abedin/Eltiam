@@ -1,0 +1,1102 @@
+{
+  "name": "SemanticModel",
+  "compatibilityLevel": 1600,
+  "model": {
+    "culture": "en-US",
+    "dataSources": [
+      {
+        "type": "structured",
+        "name": "SQL/192 168 10 10;DW",
+        "connectionDetails": {
+          "protocol": "tds",
+          "address": {
+            "server": "192.168.10.10",
+            "database": "DW"
+          },
+          "authentication": null,
+          "query": null
+        },
+        "credential": {
+          "AuthenticationKind": "Windows",
+          "Username": "el\\abedinzadehh",
+          "EncryptConnection": false
+        }
+      }
+    ],
+    "tables": [
+      {
+        "name": "FactDonation",
+        "columns": [
+          {
+            "name": "Id",
+            "dataType": "int64",
+            "sourceColumn": "Id"
+          },
+          {
+            "name": "Donation_ID",
+            "dataType": "string",
+            "sourceColumn": "Donation_ID"
+          },
+          {
+            "name": "DonorID",
+            "dataType": "int64",
+            "sourceColumn": "DonorID"
+          },
+          {
+            "name": "TestResult",
+            "dataType": "int64",
+            "sourceColumn": "TestResult"
+          },
+          {
+            "name": "TestResult_text",
+            "dataType": "int64",
+            "sourceColumn": "TestResult_text"
+          },
+          {
+            "name": "Heartbeat",
+            "dataType": "double",
+            "sourceColumn": "Heartbeat"
+          },
+          {
+            "name": "bloodpressure_Min",
+            "dataType": "double",
+            "sourceColumn": "bloodpressure_Min"
+          },
+          {
+            "name": "bloodpressure_Max",
+            "dataType": "double",
+            "sourceColumn": "bloodpressure_Max"
+          },
+          {
+            "name": "BodyTemprature",
+            "dataType": "double",
+            "sourceColumn": "BodyTemprature"
+          },
+          {
+            "name": "Bloodstream_confirm",
+            "dataType": "int64",
+            "sourceColumn": "Bloodstream_confirm"
+          },
+          {
+            "name": "Questionnaire_Confirm",
+            "dataType": "int64",
+            "sourceColumn": "Questionnaire_Confirm"
+          },
+          {
+            "name": "pupil_confirm",
+            "dataType": "int64",
+            "sourceColumn": "pupil_confirm"
+          },
+          {
+            "name": "behavior_confirm",
+            "dataType": "int64",
+            "sourceColumn": "behavior_confirm"
+          },
+          {
+            "name": "HB_Reciption1_Sys",
+            "dataType": "double",
+            "sourceColumn": "HB_Reciption1_Sys"
+          },
+          {
+            "name": "HB_Reciption2_Sys",
+            "dataType": "double",
+            "sourceColumn": "HB_Reciption2_Sys"
+          },
+          {
+            "name": "RBC1",
+            "dataType": "double",
+            "sourceColumn": "RBC1"
+          },
+          {
+            "name": "RBC2",
+            "dataType": "double",
+            "sourceColumn": "RBC2"
+          },
+          {
+            "name": "WBC1",
+            "dataType": "double",
+            "sourceColumn": "WBC1"
+          },
+          {
+            "name": "WBC2",
+            "dataType": "double",
+            "sourceColumn": "WBC2"
+          },
+          {
+            "name": "PLT1",
+            "dataType": "double",
+            "sourceColumn": "PLT1"
+          },
+          {
+            "name": "PLT2",
+            "dataType": "double",
+            "sourceColumn": "PLT2"
+          },
+          {
+            "name": "MCV1",
+            "dataType": "double",
+            "sourceColumn": "MCV1"
+          },
+          {
+            "name": "MCV2",
+            "dataType": "double",
+            "sourceColumn": "MCV2"
+          },
+          {
+            "name": "MCHC1",
+            "dataType": "double",
+            "sourceColumn": "MCHC1"
+          },
+          {
+            "name": "MCHC2",
+            "dataType": "double",
+            "sourceColumn": "MCHC2"
+          },
+          {
+            "name": "HCT1",
+            "dataType": "double",
+            "sourceColumn": "HCT1"
+          },
+          {
+            "name": "HCT2",
+            "dataType": "double",
+            "sourceColumn": "HCT2"
+          },
+          {
+            "name": "HB_Reciption1_Hemo",
+            "dataType": "double",
+            "sourceColumn": "HB_Reciption1_Hemo"
+          },
+          {
+            "name": "HB_Reciption2_Hemo",
+            "dataType": "double",
+            "sourceColumn": "HB_Reciption2_Hemo"
+          },
+          {
+            "name": "Reciption_Date",
+            "dataType": "string",
+            "sourceColumn": "Reciption_Date"
+          },
+          {
+            "name": "Reciption_Time",
+            "dataType": "int64",
+            "sourceColumn": "Reciption_Time"
+          },
+          {
+            "name": "HB_Medic",
+            "dataType": "double",
+            "sourceColumn": "HB_Medic"
+          },
+          {
+            "name": "Viro_serum",
+            "dataType": "int64",
+            "sourceColumn": "Viro_serum"
+          },
+          {
+            "name": "Viro_serum_text",
+            "dataType": "int64",
+            "sourceColumn": "Viro_serum_text"
+          },
+          {
+            "name": "Plasma",
+            "dataType": "int64",
+            "sourceColumn": "Plasma"
+          },
+          {
+            "name": "Plasma_Text",
+            "dataType": "string",
+            "sourceColumn": "Plasma_Text"
+          },
+          {
+            "name": "status_physician",
+            "dataType": "int64",
+            "sourceColumn": "status_physician"
+          },
+          {
+            "name": "Device_ID",
+            "dataType": "int64",
+            "sourceColumn": "Device_ID"
+          },
+          {
+            "name": "Arm",
+            "dataType": "int64",
+            "sourceColumn": "Arm"
+          },
+          {
+            "name": "arm_text",
+            "dataType": "string",
+            "sourceColumn": "arm_text"
+          },
+          {
+            "name": "Recipt2Venip_Time",
+            "dataType": "int64",
+            "sourceColumn": "Recipt2Venip_Time"
+          },
+          {
+            "name": "Recipt2Device_SetTime",
+            "dataType": "int64",
+            "sourceColumn": "Recipt2Device_SetTime"
+          },
+          {
+            "name": "Device_SetTime",
+            "dataType": "string",
+            "sourceColumn": "Device_SetTime"
+          },
+          {
+            "name": "Recipt2Proc_StartTime",
+            "dataType": "int64",
+            "sourceColumn": "Recipt2Proc_StartTime"
+          },
+          {
+            "name": "Recipt2Proc_Proc_EndTime",
+            "dataType": "int64",
+            "sourceColumn": "Recipt2Proc_Proc_EndTime"
+          },
+          {
+            "name": "start2EndProc",
+            "dataType": "int64",
+            "sourceColumn": "start2EndProc"
+          },
+          {
+            "name": "MedicMass_Plasma",
+            "dataType": "int64",
+            "sourceColumn": "MedicMass_Plasma"
+          },
+          {
+            "name": "DonationMass_plasma",
+            "dataType": "int64",
+            "sourceColumn": "DonationMass_plasma"
+          },
+          {
+            "name": "Donateloss_blood",
+            "dataType": "int64",
+            "sourceColumn": "Donateloss_blood"
+          },
+          {
+            "name": "Heartbeat_release",
+            "dataType": "double",
+            "sourceColumn": "Heartbeat_release"
+          },
+          {
+            "name": "bp_Min_release",
+            "dataType": "double",
+            "sourceColumn": "bp_Min_release"
+          },
+          {
+            "name": "bp_Max_release",
+            "dataType": "double",
+            "sourceColumn": "bp_Max_release"
+          },
+          {
+            "name": "BodyTemprature_release",
+            "dataType": "double",
+            "sourceColumn": "BodyTemprature_release"
+          },
+          {
+            "name": "Cash_Bon",
+            "dataType": "int64",
+            "sourceColumn": "Cash_Bon"
+          },
+          {
+            "name": "Cash_Total",
+            "dataType": "int64",
+            "sourceColumn": "Cash_Total"
+          },
+          {
+            "name": "Cash_Donation",
+            "dataType": "int64",
+            "sourceColumn": "Cash_Donation"
+          },
+          {
+            "name": "Recipt2release_Time",
+            "dataType": "int64",
+            "sourceColumn": "Recipt2release_Time"
+          },
+          {
+            "name": "Recipt2Payment_Time",
+            "dataType": "int64",
+            "sourceColumn": "Recipt2Payment_Time"
+          },
+          {
+            "name": "Plasma_totalWeight",
+            "dataType": "double",
+            "sourceColumn": "Plasma_totalWeight"
+          },
+          {
+            "name": "Plasma_btl_weight",
+            "dataType": "double",
+            "sourceColumn": "Plasma_btl_weight"
+          },
+          {
+            "name": "Plasma_real_volume",
+            "dataType": "double",
+            "sourceColumn": "Plasma_real_volume"
+          },
+          {
+            "name": "Product_Manage_Confirm",
+            "dataType": "int64",
+            "sourceColumn": "Product_Manage_Confirm"
+          },
+          {
+            "name": "Product_QC_Confirm",
+            "dataType": "int64",
+            "sourceColumn": "Product_QC_Confirm"
+          },
+          {
+            "name": "Product_QP_Confirm",
+            "dataType": "int64",
+            "sourceColumn": "Product_QP_Confirm"
+          },
+          {
+            "name": "Status_Donation",
+            "dataType": "int64",
+            "sourceColumn": "Status_Donation"
+          },
+          {
+            "name": "Status_Donation_Text",
+            "dataType": "string",
+            "sourceColumn": "Status_Donation_Text"
+          },
+          {
+            "name": "Donate_successful_status",
+            "dataType": "int64",
+            "sourceColumn": "Donate_successful_status"
+          },
+          {
+            "name": "physician_confirm",
+            "dataType": "int64",
+            "sourceColumn": "physician_confirm"
+          },
+          {
+            "name": "Plasma_Status",
+            "dataType": "int64",
+            "sourceColumn": "Plasma_Status"
+          },
+          {
+            "name": "Plasma_Status_Text",
+            "dataType": "int64",
+            "sourceColumn": "Plasma_Status_Text"
+          },
+          {
+            "name": "Donor_health_status",
+            "dataType": "int64",
+            "sourceColumn": "Donor_health_status"
+          },
+          {
+            "name": "Donor_health_status_Text",
+            "dataType": "int64",
+            "sourceColumn": "Donor_health_status_Text"
+          },
+          {
+            "name": "Donor_Status",
+            "dataType": "int64",
+            "sourceColumn": "Donor_Status"
+          },
+          {
+            "name": "Donor_Status_Text",
+            "dataType": "int64",
+            "sourceColumn": "Donor_Status_Text"
+          },
+          {
+            "name": "Save_Date",
+            "dataType": "string",
+            "sourceColumn": "Save_Date"
+          },
+          {
+            "name": "MCH1",
+            "dataType": "double",
+            "sourceColumn": "MCH1"
+          },
+          {
+            "name": "MCH2",
+            "dataType": "double",
+            "sourceColumn": "MCH2"
+          },
+          {
+            "name": "CUE",
+            "dataType": "int64",
+            "sourceColumn": "CUE"
+          },
+          {
+            "name": "UID",
+            "dataType": "string",
+            "sourceColumn": "UID"
+          },
+          {
+            "name": "TC",
+            "dataType": "string",
+            "sourceColumn": "TC"
+          },
+          {
+            "name": "PID",
+            "dataType": "int64",
+            "sourceColumn": "PID"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "Partition",
+            "dataView": "full",
+            "source": {
+              "type": "m",
+              "expression": [
+                "let",
+                "    Source = #\"SQL/192 168 10 10;DW\",",
+                "    plasma_FactDonation = Source{[Schema=\"plasma\",Item=\"FactDonation\"]}[Data]",
+                "in",
+                "    plasma_FactDonation"
+              ]
+            }
+          }
+        ],
+        "measures": [
+          {
+            "name": "CNTEntry",
+            "expression": [
+              " DISTINCTCOUNT(FactDonation[Donation_ID])",
+              ""
+            ],
+            "formatString": "#,0"
+          },
+          {
+            "name": "CntSuccessDonation",
+            "expression": [
+              " CALCULATE([CNTEntry], FactDonation[Plasma]=1)",
+              ""
+            ],
+            "formatString": "#,0"
+          },
+          {
+            "name": "Max Donations Per Person",
+            "expression": [
+              "",
+              "MAXX(",
+              "    VALUES(FactDonation[DonorID]),",
+              "    [CntSuccessDonation]",
+              ")"
+            ]
+          },
+          {
+            "name": "Min Donations Per Person",
+            "expression": [
+              "",
+              "MINX(",
+              "    VALUES(FactDonation[DonorID]),",
+              "    [CntSuccessDonation]",
+              ")"
+            ]
+          },
+          {
+            "name": "Persons Above Average Donation",
+            "expression": [
+              "",
+              "VAR AvgDonation = [Average Donation Per Person]",
+              "RETURN",
+              "CALCULATE(",
+              "    DISTINCTCOUNT(FactDonation[DonorID]),",
+              "    FILTER(",
+              "        VALUES(FactDonation[DonorID]),",
+              "        [CntSuccessDonation] > AvgDonation",
+              "    )",
+              ")",
+              ""
+            ]
+          },
+          {
+            "name": "Average Donation Per Person",
+            "expression": [
+              "",
+              "AVERAGEX(",
+              "    VALUES(DimDonors[Donor_ID]),",
+              "    [CntSuccessDonation]",
+              ")"
+            ],
+            "formatString": "#,0"
+          },
+          {
+            "name": "TonPlasma",
+            "expression": [
+              "DIVIDE(sum(FactDonation[Plasma_totalWeight]),1000)",
+              ""
+            ],
+            "formatString": "#,0"
+          },
+          {
+            "name": "CNTPerson",
+            "expression": " DISTINCTCOUNT(FactDonation[DonorID])"
+          }
+        ]
+      },
+      {
+        "name": "DimDonors",
+        "columns": [
+          {
+            "name": "Id",
+            "dataType": "int64",
+            "sourceColumn": "Id"
+          },
+          {
+            "name": "Donor_ID",
+            "dataType": "string",
+            "sourceColumn": "Donor_ID"
+          },
+          {
+            "name": "Name",
+            "dataType": "string",
+            "sourceColumn": "Name"
+          },
+          {
+            "name": "Lastname",
+            "dataType": "string",
+            "sourceColumn": "Lastname"
+          },
+          {
+            "name": "Latin_Name",
+            "dataType": "string",
+            "sourceColumn": "Latin_Name"
+          },
+          {
+            "name": "Latin_lastName",
+            "dataType": "string",
+            "sourceColumn": "Latin_lastName"
+          },
+          {
+            "name": "Father_Name",
+            "dataType": "string",
+            "sourceColumn": "Father_Name"
+          },
+          {
+            "name": "Latin_FatherName",
+            "dataType": "string",
+            "sourceColumn": "Latin_FatherName"
+          },
+          {
+            "name": "BirthDate",
+            "dataType": "string",
+            "sourceColumn": "BirthDate"
+          },
+          {
+            "name": "National_Code",
+            "dataType": "string",
+            "sourceColumn": "National_Code"
+          },
+          {
+            "name": "Num_ID",
+            "dataType": "string",
+            "sourceColumn": "Num_ID"
+          },
+          {
+            "name": "Weight",
+            "dataType": "int64",
+            "sourceColumn": "Weight"
+          },
+          {
+            "name": "Job",
+            "dataType": "int64",
+            "sourceColumn": "Job"
+          },
+          {
+            "name": "educate_Grade",
+            "dataType": "int64",
+            "sourceColumn": "educate_Grade"
+          },
+          {
+            "name": "educate_Grade_text",
+            "dataType": "string",
+            "sourceColumn": "educate_Grade_text"
+          },
+          {
+            "name": "Sex",
+            "dataType": "int64",
+            "sourceColumn": "Sex"
+          },
+          {
+            "name": "Sex_text",
+            "dataType": "string",
+            "sourceColumn": "Sex_text"
+          },
+          {
+            "name": "Tell",
+            "dataType": "string",
+            "sourceColumn": "Tell"
+          },
+          {
+            "name": "Mobile",
+            "dataType": "string",
+            "sourceColumn": "Mobile"
+          },
+          {
+            "name": "Codeposti",
+            "dataType": "string",
+            "sourceColumn": "Codeposti"
+          },
+          {
+            "name": "Address",
+            "dataType": "string",
+            "sourceColumn": "Address"
+          },
+          {
+            "name": "LatinAddress",
+            "dataType": "string",
+            "sourceColumn": "LatinAddress"
+          },
+          {
+            "name": "ID_Card1",
+            "dataType": "string",
+            "sourceColumn": "ID_Card1"
+          },
+          {
+            "name": "ID_Card2",
+            "dataType": "string",
+            "sourceColumn": "ID_Card2"
+          },
+          {
+            "name": "ID_Card3",
+            "dataType": "string",
+            "sourceColumn": "ID_Card3"
+          },
+          {
+            "name": "Card_Type1",
+            "dataType": "int64",
+            "sourceColumn": "Card_Type1"
+          },
+          {
+            "name": "Card_Type2",
+            "dataType": "int64",
+            "sourceColumn": "Card_Type2"
+          },
+          {
+            "name": "Card_Type3",
+            "dataType": "int64",
+            "sourceColumn": "Card_Type3"
+          },
+          {
+            "name": "EndCooperation",
+            "dataType": "int64",
+            "sourceColumn": "EndCooperation"
+          },
+          {
+            "name": "Donation_Times",
+            "dataType": "int64",
+            "sourceColumn": "Donation_Times"
+          },
+          {
+            "name": "Referral_Times",
+            "dataType": "int64",
+            "sourceColumn": "Referral_Times"
+          },
+          {
+            "name": "Acount_bank",
+            "dataType": "string",
+            "sourceColumn": "Acount_bank"
+          },
+          {
+            "name": "Reciption_Date",
+            "dataType": "string",
+            "sourceColumn": "Reciption_Date"
+          },
+          {
+            "name": "Introduce_Persone",
+            "dataType": "string",
+            "sourceColumn": "Introduce_Persone"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "Partition",
+            "dataView": "full",
+            "source": {
+              "type": "m",
+              "expression": [
+                "let",
+                "    Source = #\"SQL/192 168 10 10;DW\",",
+                "    plasma_DimDonors = Source{[Schema=\"plasma\",Item=\"DimDonors\"]}[Data]",
+                "in",
+                "    plasma_DimDonors"
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "name": "DimDate",
+        "columns": [
+          {
+            "name": "Date",
+            "dataType": "dateTime",
+            "sourceColumn": "Date"
+          },
+          {
+            "name": "Gregorian",
+            "dataType": "string",
+            "sourceColumn": "Gregorian"
+          },
+          {
+            "name": "Gregorian_Year",
+            "dataType": "int64",
+            "sourceColumn": "Gregorian_Year"
+          },
+          {
+            "name": "Gregorian_Month",
+            "dataType": "int64",
+            "sourceColumn": "Gregorian_Month"
+          },
+          {
+            "name": "Gregorian_MonthStr",
+            "dataType": "string",
+            "sourceColumn": "Gregorian_MonthStr"
+          },
+          {
+            "name": "Gregorian_MonthString",
+            "dataType": "string",
+            "sourceColumn": "Gregorian_MonthString"
+          },
+          {
+            "name": "Gregorian_Day",
+            "dataType": "int64",
+            "sourceColumn": "Gregorian_Day"
+          },
+          {
+            "name": "Gregorian_DayOfWeekId",
+            "dataType": "int64",
+            "sourceColumn": "Gregorian_DayOfWeekId"
+          },
+          {
+            "name": "Gregorian_DayOfWeek",
+            "dataType": "string",
+            "sourceColumn": "Gregorian_DayOfWeek"
+          },
+          {
+            "name": "Gregorian_DayOfWeekStr",
+            "dataType": "string",
+            "sourceColumn": "Gregorian_DayOfWeekStr"
+          },
+          {
+            "name": "Gregorian_DayOfYear",
+            "dataType": "int64",
+            "sourceColumn": "Gregorian_DayOfYear"
+          },
+          {
+            "name": "Gregorian_ToLongDateString",
+            "dataType": "string",
+            "sourceColumn": "Gregorian_ToLongDateString"
+          },
+          {
+            "name": "Gregorian_YearMonth",
+            "dataType": "string",
+            "sourceColumn": "Gregorian_YearMonth"
+          },
+          {
+            "name": "Gregorian_MonthDay",
+            "dataType": "string",
+            "sourceColumn": "Gregorian_MonthDay"
+          },
+          {
+            "name": "SeasonEn",
+            "dataType": "string",
+            "sourceColumn": "SeasonEn"
+          },
+          {
+            "name": "Gregorian_Format1",
+            "dataType": "string",
+            "sourceColumn": "Gregorian_Format1"
+          },
+          {
+            "name": "Gregorian_Format2",
+            "dataType": "string",
+            "sourceColumn": "Gregorian_Format2"
+          },
+          {
+            "name": "Gregorian_Format3",
+            "dataType": "string",
+            "sourceColumn": "Gregorian_Format3"
+          },
+          {
+            "name": "Gregorian_Format4",
+            "dataType": "string",
+            "sourceColumn": "Gregorian_Format4"
+          },
+          {
+            "name": "Gregorian_Format5",
+            "dataType": "string",
+            "sourceColumn": "Gregorian_Format5"
+          },
+          {
+            "name": "Gregorian_Format6",
+            "dataType": "string",
+            "sourceColumn": "Gregorian_Format6"
+          },
+          {
+            "name": "Jalali",
+            "dataType": "string",
+            "sourceColumn": "Jalali"
+          },
+          {
+            "name": "Jalali_Year",
+            "dataType": "int64",
+            "sourceColumn": "Jalali_Year"
+          },
+          {
+            "name": "Jalali_Month",
+            "dataType": "int64",
+            "sourceColumn": "Jalali_Month"
+          },
+          {
+            "name": "Jalali_MonthString",
+            "dataType": "string",
+            "sourceColumn": "Jalali_MonthString",
+            "sortByColumn": "Jalali_Month"
+          },
+          {
+            "name": "Jalali_Day",
+            "dataType": "int64",
+            "sourceColumn": "Jalali_Day"
+          },
+          {
+            "name": "Jalali_DayOfWeekId",
+            "dataType": "int64",
+            "sourceColumn": "Jalali_DayOfWeekId"
+          },
+          {
+            "name": "Jalali_DayOfWeek",
+            "dataType": "string",
+            "sourceColumn": "Jalali_DayOfWeek"
+          },
+          {
+            "name": "Jalali_DayOfYear",
+            "dataType": "int64",
+            "sourceColumn": "Jalali_DayOfYear"
+          },
+          {
+            "name": "Jalali_ToLongDateString",
+            "dataType": "string",
+            "sourceColumn": "Jalali_ToLongDateString"
+          },
+          {
+            "name": "Jalali_YearMonth",
+            "dataType": "string",
+            "sourceColumn": "Jalali_YearMonth"
+          },
+          {
+            "name": "Jalali_MonthDay",
+            "dataType": "string",
+            "sourceColumn": "Jalali_MonthDay"
+          },
+          {
+            "name": "SeasonFa",
+            "dataType": "string",
+            "sourceColumn": "SeasonFa"
+          },
+          {
+            "name": "Jalali_Format1",
+            "dataType": "string",
+            "sourceColumn": "Jalali_Format1"
+          },
+          {
+            "name": "Jalali_Format2",
+            "dataType": "string",
+            "sourceColumn": "Jalali_Format2"
+          },
+          {
+            "name": "LastYearDateKey",
+            "dataType": "int64",
+            "sourceColumn": "LastYearDateKey"
+          },
+          {
+            "name": "Jalali_Format3",
+            "dataType": "string",
+            "sourceColumn": "Jalali_Format3"
+          },
+          {
+            "name": "Jalali_Format4",
+            "dataType": "string",
+            "sourceColumn": "Jalali_Format4"
+          },
+          {
+            "name": "Jalali_Format5",
+            "dataType": "string",
+            "sourceColumn": "Jalali_Format5"
+          },
+          {
+            "name": "Jalali_Format6",
+            "dataType": "string",
+            "sourceColumn": "Jalali_Format6"
+          },
+          {
+            "name": "datekey",
+            "dataType": "int64",
+            "sourceColumn": "datekey"
+          },
+          {
+            "name": "isworkingday",
+            "dataType": "int64",
+            "sourceColumn": "isworkingday"
+          },
+          {
+            "name": "seasonID",
+            "dataType": "int64",
+            "sourceColumn": "seasonID"
+          },
+          {
+            "name": "Curren_Month",
+            "dataType": "int64",
+            "sourceColumn": "Curren_Month"
+          },
+          {
+            "name": "Current_Year",
+            "dataType": "int64",
+            "sourceColumn": "Current_Year"
+          },
+          {
+            "name": "Last_Month",
+            "dataType": "int64",
+            "sourceColumn": "Last_Month"
+          },
+          {
+            "name": "Last_Year",
+            "dataType": "int64",
+            "sourceColumn": "Last_Year"
+          },
+          {
+            "name": "Semester",
+            "dataType": "int64",
+            "sourceColumn": "Semester"
+          },
+          {
+            "name": "Istoday",
+            "dataType": "int64",
+            "sourceColumn": "Istoday"
+          },
+          {
+            "name": "week_in_season",
+            "dataType": "string",
+            "sourceColumn": "week_in_season"
+          },
+          {
+            "name": "number_week",
+            "dataType": "int64",
+            "sourceColumn": "number_week"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "Partition",
+            "dataView": "full",
+            "source": {
+              "type": "m",
+              "expression": [
+                "let",
+                "    Source = #\"SQL/192 168 10 10;DW\",",
+                "    dbo_vw_DimDate_Big = Source{[Schema=\"dbo\",Item=\"vw_DimDate_Big\"]}[Data]",
+                "in",
+                "    dbo_vw_DimDate_Big"
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "name": "Bin Index",
+        "columns": [
+          {
+            "type": "calculatedTableColumn",
+            "name": "Value",
+            "dataType": "int64",
+            "isNameInferred": false,
+            "isDataTypeInferred": true,
+            "sourceColumn": "[Value]"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "CalculatedTable 1",
+            "source": {
+              "type": "calculated",
+              "expression": [
+                "",
+                "GENERATESERIES(1, 10, 1)"
+              ]
+            }
+          }
+        ],
+        "measures": [
+          {
+            "name": "Bin Size",
+            "expression": [
+              "",
+              "DIVIDE(",
+              "    [Max Donations Per Person] - [Min Donations Per Person] + 1,",
+              "    10",
+              ")"
+            ]
+          },
+          {
+            "name": "Bin Min",
+            "expression": [
+              "",
+              "[Min Donations Per Person]",
+              "+ ( SELECTEDVALUE('Bin Index'[Value]) - 1 ) * [Bin Size]"
+            ]
+          },
+          {
+            "name": "Bin Max",
+            "expression": [
+              "",
+              "[Min Donations Per Person]",
+              "+ SELECTEDVALUE('Bin Index'[Value]) * [Bin Size]",
+              ""
+            ]
+          },
+          {
+            "name": "Persons in Dynamic Bin",
+            "expression": [
+              "",
+              "VAR BinMin = [Bin Min]",
+              "VAR BinMax = [Bin Max]",
+              "RETURN",
+              "CALCULATE(",
+              "    DISTINCTCOUNT(FactDonation[DonorID]),",
+              "    FILTER(",
+              "        VALUES(FactDonation[DonorID]),",
+              "        [CntSuccessDonation] >= BinMin &&",
+              "        [CntSuccessDonation]< BinMax",
+              "    )",
+              ")",
+              ""
+            ]
+          },
+          {
+            "name": "Bin Label",
+            "expression": [
+              "",
+              "FORMAT([Bin Min], \"0\") & \" – \" & FORMAT([Bin Max], \"0\")"
+            ]
+          }
+        ]
+      }
+    ],
+    "relationships": [
+      {
+        "name": "a1a93356-ef35-4fe6-af51-00831f8488bc",
+        "fromTable": "FactDonation",
+        "fromColumn": "Reciption_Date",
+        "toTable": "DimDate",
+        "toColumn": "datekey"
+      },
+      {
+        "name": "89e9becc-1832-487c-aab3-512dbae5b56a",
+        "fromTable": "FactDonation",
+        "fromColumn": "DonorID",
+        "toTable": "DimDonors",
+        "toColumn": "Id"
+      }
+    ],
+    "annotations": [
+      {
+        "name": "ClientCompatibilityLevel",
+        "value": "700"
+      }
+    ]
+  },
+  "id": "SemanticModel"
+}

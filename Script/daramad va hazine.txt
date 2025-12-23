@@ -1,0 +1,136 @@
+VAR SumNoZarib =
+    CALCULATE(
+        SUMX(DimL4, [Balanced]),
+        DimAccountL1_3[IdL2] in {36,37,33,31,34,35} ,
+        DimL4[TypeAccountID4] = 1,
+        ISBLANK(DimL4[zarib] )
+       
+    ) 
+
+    var x= if (isblank(SumNoZarib),0, SumNoZarib)
+    
+VAR Sum_WithZarib =
+    CALCULATE(
+        SUMX(
+            FILTER(DimL4, NOT ISBLANK(DimL4[zarib])),
+
+        [Balanced]+(x * DimL4[zarib])
+        ),
+        DimAccountL1_3[IdL2] in {36,37,33,31,34,35},
+        DimL4[TypeAccountID4] = 1
+    )
+
+RETURN     Sum_WithZarib 
+.
+
+
+
+
+
+VAR SumNoZarib =
+    CALCULATE(
+        SUMX(DimL4, [Balanced]),
+        DimAccountL1_3[IdL2] in{30, 28},
+        DimL4[TypeAccountID4] = 1,
+        ISBLANK(DimL4[zarib] )
+       
+    ) 
+
+    var x= if (isblank(SumNoZarib),0, SumNoZarib)
+    
+VAR Sum_WithZarib =
+    CALCULATE(
+        SUMX(
+            FILTER(DimL4, NOT ISBLANK(DimL4[zarib])),
+
+        -1*[Balanced]+x * DimL4[zarib]
+        ),
+        DimAccountL1_3[IdL2] in{30, 28},
+        DimL4[TypeAccountID4] = 1
+    )
+
+RETURN     Sum_WithZarib 
+
+
+
+
+
+
+
+
+
+
+
+VAR db1 =
+    CALCULATE(
+        [Balanced],
+        DimAccountL1_3[IdL3] IN {137,135},
+        NOT ( FactFinance[FINDocHeader_FINDocType] IN {2,4} )
+    )
+
+VAR SummaryL3 =
+    FILTER(
+        SUMMARIZE(
+            FactFinance,
+            FactFinance[IDL3]
+        ),
+        CALCULATE(
+            [Balanced],
+            DimAccountL1_3[IdL2] = 29,
+            NOT (FactFinance[FINDocHeader_FINDocType] IN {2,4}),
+            NOT (DimAccountL1_3[IdL3] IN {137,135})
+        ) < 0
+    )
+
+VAR SumL3 =
+    SUMX(
+        SummaryL3,
+        CALCULATE(
+            [Balanced],
+            DimAccountL1_3[IdL2] = 29,
+            NOT (FactFinance[FINDocHeader_FINDocType] IN {2,4}),
+            NOT (DimAccountL1_3[IdL3] IN {137,135})
+        )
+    )
+
+RETURN
+(
+    SumL3 +
+    IF(
+        db1 < 0,
+        db1,
+        0
+    )
+) * -1
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
